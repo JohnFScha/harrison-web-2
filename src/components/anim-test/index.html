@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas class="animContainer" id="animContainerID"></canvas>
+
+  <div class="bodyContainer" id="bodyContainerID">
+
+    <div class="hed">
+      <h1>SquirrelBit Just Wants To Be Part of the Hive...</h1>
+      <p>(scroll to see animation)</p>
+    </div>
+
+    <div class="controls">
+
+      <div id="sliderWrapper">
+        <div id="slider"></div>
+      </div>
+
+      <div class="buttons">
+        <button class="jumpBtn" value="0">Jump to BEGINNING (fr 0)</button>
+        <button class="jumpBtn" value="10">Jump to fr 10</button>
+        <button class="jumpBtn" value="50">Jump to fr 50</button>
+        <button class="jumpBtn" value="75">Jump to MIDDLE (fr75)</button>
+        <button class="jumpBtn" value="90">Jump to fr 90</button>
+        <button class="jumpBtn" value="120">Jump to fr 120</button>
+        <button class="jumpBtn" value="149">Jump to END (fr 149)</button>
+      </div>
+
+      <div class="buttons">
+        <button id="play">play()</button>
+        <button id="pause">pause()</button>
+        <button id="resume">resume()</button>
+        <button id="reverse">reverse()</button>
+        <button id="restart">restart</button>
+      </div>
+
+    </div>
+
+    <div class="stats">
+      <p class="framecount">frame: </p>
+      <p class="scrollProgress">scrollProgress: </p>
+      <p class="scrollPosition">scrollPosition: </p>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

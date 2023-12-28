@@ -1,0 +1,75 @@
+/* Colors */
+@font-face {
+    font-family: "Montserrat";
+    src: url("./assets/Montserrat-black/Montserrat-Black.eot");
+    /* IE9 Compat Modes */
+    src: url("./assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("./assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("./assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("./assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("./assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
+    /* Legacy iOS */
+    font-weight: 900;
+    font-style: normal;
+  }
+  :root {
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+main{
+    background: center /cover url(assets/404bg.png) no-repeat rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+main .titleCtn{
+    font-weight: 900;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20rem;
+    margin-bottom: 8rem;
+    color: #CBDB43;
+}
+
+
+main .spaceCtn{
+    color: transparent;
+    margin: 0 0.2rem;
+}
+
+main .subCtn{
+    color: white;
+    width: 960px;
+    position: absolute;
+    top: 65%;
+
+}
+
+main .sub1{
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    display: block;
+}
+main .sub2{
+    width: 100%;
+    font-size: 1.5rem;
+    display: inline-block;
+}
+p{
+    font-weight: 200;
+    width: 900px;
+    font-size: 1rem;
+    color: white;
+}

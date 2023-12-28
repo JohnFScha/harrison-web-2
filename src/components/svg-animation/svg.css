@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot");
+  /* IE9 Compat Modes */
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("../../assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("../../assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("../../assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("../../assets/Montserrat-black/Montserrat-Black.svg") format("svg");
+  /* Legacy iOS */
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+  height: 500vh;
+  width: 100vw;
+  background-color: black;
+  font-family: 'Montserrat';
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body #init {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../assets/Layer_1.png');
+  background-size: 150px;
+  backdrop-filter: opacity(10%);
+  animation: fadeOutAnimation 1s;
+  animation-delay: 2.5s;
+  z-index: 100;
+}
+
+body #scrollea {
+  position: fixed;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+body #init svg {
+  width: 30vw;
+  height: 30vh;
+  fill-opacity: 0;
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 1500px;
+  stroke-dashoffset: 1500px;
+  mix-blend-mode: lighten;
+  animation-name: draw, fill1, fill2;
+  animation-duration: 0.5s, 1s, 1.5s;
+  animation-delay: 0s, 1s, 1.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  margin: auto;
+}
+
+body #scrollea svg {
+  width: 15vw;
+  height: 15vh;
+  margin: auto;
+}
+
+body #scrollea svg path.st1 {
+  fill: white;
+  animation: scroll 0.8s infinite;
+}
+
+body #video {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+body #video canvas {
+  transition: opacity 1s ease; 
+  position: fixed;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+body #video #texto {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+}
+
+body #video #texto p {
+  font-size: 5rem;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+@keyframes draw1 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill1 {
+  from {
+    fill-opacity: 0;
+  }
+
+  to {
+    fill-opacity: 1;
+    fill: white;
+  }
+}
+
+@keyframes fill2 {
+  to {
+    fill-opacity: 1;
+    fill: #D1D821;
+    stroke: #D1D821;
+  }
+}
+
+
+@keyframes scroll {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

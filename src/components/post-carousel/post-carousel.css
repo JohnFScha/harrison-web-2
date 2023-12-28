@@ -1,0 +1,169 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot");
+  /* IE9 Compat Modes */
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("../../assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("../../assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("../../assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("../../assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
+  /* Legacy iOS */
+  font-weight: 900;
+  font-style: normal;
+}
+:root {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  height: 200vh;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* svg */
+section.outroContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.flipLogoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200vh;
+  width: 100vw;
+}
+
+#init {
+  position: absolute;
+  width: 300%;
+  height: 30%;
+  fill: rgb(203, 219, 67);
+}
+
+div#textAllCtn {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 110px;
+  position: absolute;
+  visibility: hidden;
+  transform-style: preserve-3d;
+}
+div#textAllCtn p.textPostC {
+  text-align: center;
+  width: fit-content;
+  font-family: "Montserraty", sans-serif;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+div#textAllCtn .letter-container {
+  display: flex;
+  font-size: 0;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+div#textAllCtn .letter-container .charSpan {
+  font-size: 110px;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+div#textAllCtn .letter-container .spacerSpan {
+  font-size: 2rem;
+  visibility: hidden;
+}
+
+.subTextContainer {
+  visibility: hidden;
+  display: flex;
+  position: absolute;
+  top: 12.5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#p2_postC {
+  color: rgb(203, 219, 67);
+  font-size: 1.8rem;
+  margin: 7rem;
+}
+
+.socialContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  min-height: 100px;
+}
+
+svg.svgInner {
+  width: 100px;
+  height: 100px;
+}
+
+.textEndCtn {
+  display: flex;
+  font-size: 0;
+  margin: 0;
+  margin-top: 5rem;
+  text-align: center;
+  color: transparent;
+}
+.textEndCtn .charSpan2 {
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  opacity: 0;
+}
+.textEndCtn .spacerSpan2 {
+  font-size: 0.5rem;
+  visibility: hidden;
+}
+
+/*svg rotate*/
+#init {
+  transform-style: preverse-3d;
+  perspective: 10em;
+  animation: svg-flip-animate 3s ease-out;
+  animation-delay: 2s;
+}
+
+@keyframes svg-flip-animate {
+  to {
+    rotate: y 809deg;
+  }
+}
+/* text flip */
+@keyframes text-flip-animate {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+/*# sourceMappingURL=post-carousel.css.map */
