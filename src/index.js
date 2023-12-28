@@ -60,12 +60,14 @@ window.addEventListener("DOMContentLoaded", () => {
     bubbles.style.width = 50 + "px";
     bubbles.style.height = 50 + "px";
 
-    if (document.body.className.match('open')) {
-      bubbles.style.background = 'rgb(29, 62, 78)'
-      bubbles.style.boxShadow = '10px 10px 30px rgb(29, 62, 78), -10px -10px 30px rgb(29, 62, 78)'
+    if (document.body.className.match("open")) {
+      bubbles.style.background = "rgb(29, 62, 78)";
+      bubbles.style.boxShadow =
+        "10px 10px 30px rgb(29, 62, 78), -10px -10px 30px rgb(29, 62, 78)";
     } else {
-      bubbles.style.background = '#D1D821'
-      bubbles.style.boxShadow = '10px 10px 30px #D1D821, -10px -10px 30px #D1D821'
+      bubbles.style.background = "#D1D821";
+      bubbles.style.boxShadow =
+        "10px 10px 30px #D1D821, -10px -10px 30px #D1D821";
     }
 
     document.body.appendChild(bubbles);
@@ -169,14 +171,12 @@ window.addEventListener("DOMContentLoaded", () => {
       social[1].src = "src/assets/whatsapp-dark.png";
       social[2].src = "src/assets/ig-dark.png";
       social[3].src = "src/assets/Linkedin-dark.png";
-      
     } else if (body.className.includes("open")) {
       body.className = "close";
       social[0].src = "src/assets/mail.png";
       social[1].src = "src/assets/wsp.png";
       social[2].src = "src/assets/ig.png";
       social[3].src = "src/assets/Linkedin.png";
-      
     }
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
@@ -474,11 +474,11 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#intro",
       start: "top top",
-      end: "bottom bottom",
+      end: "bottom top",
       scrub: true,
       pin: true,
-      // markers: true,
-      // id: 'intro',
+      markers: true,
+      id: "intro",
       pinSpacing: false,
     },
   });
@@ -487,11 +487,11 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#portfolio",
       start: "top top",
-      end: "bottom top",
+      end: "bottom+=5% top",
       scrub: true,
       pin: true,
-      // markers: true,
-      // id: 'portfolio',
+      markers: true,
+      id: "portfolio",
       pinSpacing: false,
     },
   });
@@ -499,7 +499,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const middleTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: "#middleVidCtn",
-      start: "top top",
+      start: "top+=5% top",
       end: "bottom+=15% top",
       scrub: true,
       pin: true,
@@ -553,30 +553,22 @@ window.addEventListener("DOMContentLoaded", () => {
       x: -100,
     }
   );
+  
+  const imgs = gsap.utils.toArray('#video-camara img')
 
-  vidCamaraTL.fromTo(
-    "#video-camara img",
-    {
-      display: "none",
-    },
-    {
-      display: "block",
-      stagger: 0.5,
-      duration: 1,
-    }
-  );
-
-  /*  vidCamaraTL.fromTo(
-    "#video-camara img",
-    {
-      display: 'block',
-    },
-    {
-      display: 'none',
-      stagger: 0.5,
-      duration: 1
-    }
-  ); */
+  imgs.forEach(img => {
+    vidCamaraTL.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.5, 
+        duration: 1,
+      },
+    ).set(img, {display: 'none'});
+  })
 
   vidCamaraTL.fromTo(
     "#texto",
@@ -595,47 +587,56 @@ window.addEventListener("DOMContentLoaded", () => {
   vidCamaraTL.to(".fill", {
     color: "#D1D821",
     stagger: 3,
-    duration: 10,
+    duration: 20,
     delay: -10,
   });
 
   vidCamaraTL.to("#texto", {
     y: -1000,
-    duration: 2,
-    delay: -10,
+    duration: 20,
   });
 
-  vidCamaraTL.to("#intro", {
-    opacity: 0.1,
-    duration: 10,
-  });
-
-  vidCamaraTL.to("#intro", {
+  vidCamaraTL.to("#video-camara", {
+    opacity: 0,
+    duration: 100,
     display: "none",
   });
+/* 
+  vidCamaraTL.to("#intro", {
+    opacity: 0,
+    duration: 100,
+    // display: "none",
+  }); */
+
 
   /* *********** END INTRO SCROLLING ********** */
 
   /* *********** PORTFOLIO SCROLLING ********** */
 
   portfolioTl
-    .to(".portfolio", {
-      opacity: 1,
-      delay: -1,
-      duration: 5,
-    })
+    .fromTo(
+      ".portfolio",
+      {
+        visibility: 'hidden'
+      },
+      {
+        visibility: 'visible',
+        delay: -1,
+        duration: 10,
+      }
+    )
     .addLabel("port");
 
   portfolioTl.to(".bg-rodaje", {
     yPercent: -66,
-    duration: 15,
+    duration: 50,
     opacity: 0.8,
     scrollTrigger: ".sup-rodaje",
   });
 
   portfolioTl.to(".sup-rodaje", {
     delay: 3,
-    duration: 12,
+    duration: 50,
     yPercent: -66,
   });
 
@@ -1042,8 +1043,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const carouselCtn = document.getElementById("carousel-container");
   const carousel = document.getElementById("carouselFig");
 
-  if (carouselCtn.style.transform === "scale(1)") {
+  if (carouselCtn.style.transform !== "scale(0, 0)") {
     carousel.style.animation = "rotateAnim 30s infinite forwards";
+  } else {
+    carousel.style.animation = "none";
   }
 
   endTimeline.fromTo(
@@ -1123,7 +1126,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   endTimeline.to("#carousel-container", {
-    transform: "scale(1)",
+    transform: "scale(1.3)",
     duration: 10,
     delay: -20,
   });
