@@ -1272,21 +1272,22 @@ bubbles {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-  background: #D1D821;
+  /* background: #D1D821;
   box-shadow: 10px 10px 30px #D1D821,
-    -10px -10px 30px #D1D821;
+    -10px -10px 30px #D1D821; */
   animation: colorgen;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
+  z-index: 999999999999999999999999;
 }
 
-bubbles:before {
+/* bubbles:before {
   box-shadow: 0px 0px 100px 10px #b5d334;
 }
 
 bubbles:after {
   box-shadow: inset 0px 0px 100px 10px #b5d334;
-}
+} */
 
 @keyframes colorgen {
   0% {

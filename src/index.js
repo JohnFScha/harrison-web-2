@@ -60,6 +60,14 @@ window.addEventListener("DOMContentLoaded", () => {
     bubbles.style.width = 50 + "px";
     bubbles.style.height = 50 + "px";
 
+    if (document.body.className.match('open')) {
+      bubbles.style.background = 'rgb(29, 62, 78)'
+      bubbles.style.boxShadow = '10px 10px 30px rgb(29, 62, 78), -10px -10px 30px rgb(29, 62, 78)'
+    } else {
+      bubbles.style.background = '#D1D821'
+      bubbles.style.boxShadow = '10px 10px 30px #D1D821, -10px -10px 30px #D1D821'
+    }
+
     document.body.appendChild(bubbles);
 
     setTimeout(function () {
@@ -161,12 +169,14 @@ window.addEventListener("DOMContentLoaded", () => {
       social[1].src = "src/assets/whatsapp-dark.png";
       social[2].src = "src/assets/ig-dark.png";
       social[3].src = "src/assets/Linkedin-dark.png";
+      
     } else if (body.className.includes("open")) {
       body.className = "close";
       social[0].src = "src/assets/mail.png";
       social[1].src = "src/assets/wsp.png";
       social[2].src = "src/assets/ig.png";
       social[3].src = "src/assets/Linkedin.png";
+      
     }
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
