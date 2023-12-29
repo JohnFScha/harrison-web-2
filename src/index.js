@@ -451,7 +451,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* ******** Video frames ******** */
 
-  let urls1 = new Array(190)
+  let urls1 = new Array(380)
     .fill()
     .map(
       (_, i) =>
@@ -490,8 +490,8 @@ window.addEventListener("DOMContentLoaded", () => {
       end: "bottom bottom",
       scrub: true,
       pin: true,
-      markers: true,
-      id: "portfolio",
+      // markers: true,
+      // id: "portfolio",
       pinSpacing: false,
     },
   });
@@ -503,8 +503,8 @@ window.addEventListener("DOMContentLoaded", () => {
       end: "bottom+=15% bottom",
       scrub: true,
       pin: true,
-      markers: true,
-      id: 'middle',
+      // markers: true,
+      // id: 'middle',
       pinSpacing: false,
     },
   });
@@ -549,6 +549,10 @@ window.addEventListener("DOMContentLoaded", () => {
       x: -100,
     }
   );
+
+  vidCamaraTL.to('#first-frame', {
+    opacity: 0
+  })
   
   const imgs = gsap.utils.toArray('#video-camara img')
 
@@ -578,8 +582,8 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       transform: "scale(1)",
       opacity: 1,
-      duration: 10,
-      delay: -60,
+      duration: 50,
+      delay: -100,
     }
   );
 
@@ -597,8 +601,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   vidCamaraTL.to("#video-camara", {
     opacity: 0,
-    duration: 100,
-    display: "none",
+    duration: 90,
     delay: -10
   });
 
@@ -849,19 +852,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /****************************************/
 
-  /* tiempoTimeline.fromTo(
-    ".bg-video",
-    {
-      opacity: 0,
-      delay: 5,
-      duration: 5,
-    },
-    {
-      opacity: 0.2,
-      delay: 5,
-      duration: 5,
-    }
-  ); */
 
   tiempoTimeline.fromTo(
     "#progressbar-ctn",
@@ -877,10 +867,6 @@ window.addEventListener("DOMContentLoaded", () => {
       delay: 5,
     }
   );
-
-  // tiempoTimeline.to("#tiempo-acc", {
-  //   position: "fixed",
-  // });
 
   tiempoTimeline.fromTo(
     "#middle .text",
