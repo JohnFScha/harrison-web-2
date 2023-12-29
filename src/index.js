@@ -1,9 +1,5 @@
 /* Imports */
 
-/* import Lenis from "../node_modules/@studio-freight/lenis/dist/lenis.mjs";
-import gsap from "../node_modules/gsap/index.js";
-import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger.js"; */
-
 var paths = document.querySelectorAll("#intro #init svg .paths");
 
 paths.forEach((path) => {
@@ -24,7 +20,6 @@ paths.forEach((path) => {
       console.log(top)
 }, false); */
 
-gsap.registerPlugin(ScrollTrigger);
 
 /* Lenis config */
 
@@ -48,6 +43,9 @@ gsap.ticker.lagSmoothing(0);
 /* Lenis config */
 
 window.addEventListener("DOMContentLoaded", () => {
+
+  gsap.registerPlugin(ScrollTrigger);
+
   /* **************** CURSOR **************** */
 
   document.addEventListener("mousemove", (e) => {
@@ -118,6 +116,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const separators = document.getElementsByClassName("separator");
   const icon = document.getElementById("buttonIcon");
   const social = document.querySelectorAll(".social-img");
+
   const tl = gsap.timeline({ paused: true });
 
   tl.fromTo(
@@ -191,12 +190,12 @@ window.addEventListener("DOMContentLoaded", () => {
     let element = document.querySelector(a.getAttribute("href")),
       linkST = ScrollTrigger.create({
         trigger: element,
-        start: "bottom+=5% bottom",
+        start: "top top",
       });
     ScrollTrigger.create({
       trigger: element,
       start: "top center",
-      end: "bottom center",
+      end: "bottom bottom",
       onToggle: (self) => self.isActive && setActive(a),
     });
     a.addEventListener("click", (e) => {
@@ -210,21 +209,22 @@ window.addEventListener("DOMContentLoaded", () => {
       isRotated = !isRotated;
       icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
       collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
-      if (isRotated) {
+      if (body.className.match("close")) {
+        body.className = "open";
         social[0].src = "src/assets/mail-dark.png";
         social[1].src = "src/assets/whatsapp-dark.png";
         social[2].src = "src/assets/ig-dark.png";
         social[3].src = "src/assets/Linkedin-dark.png";
-      } else {
+      } else if (body.className.includes("open")) {
+        body.className = "close";
         social[0].src = "src/assets/mail.png";
         social[1].src = "src/assets/wsp.png";
         social[2].src = "src/assets/ig.png";
         social[3].src = "src/assets/Linkedin.png";
       }
-
       if (tl.paused() || tl.totalProgress() === 0) {
         tl.play();
-      } else if (tl.totalProgress() === 1) {
+      } else if (tl) {
         tl.reverse();
       }
     });
@@ -477,8 +477,8 @@ window.addEventListener("DOMContentLoaded", () => {
       end: "bottom top",
       scrub: true,
       pin: true,
-      markers: true,
-      id: "intro",
+      // markers: true,
+      // id: "intro",
       pinSpacing: false,
     },
   });
@@ -487,7 +487,7 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#portfolio",
       start: "top top",
-      end: "bottom+=5% top",
+      end: "bottom bottom",
       scrub: true,
       pin: true,
       markers: true,
@@ -499,12 +499,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const middleTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: "#middleVidCtn",
-      start: "top+=5% top",
-      end: "bottom+=15% top",
+      start: "top bottom",
+      end: "bottom+=15% bottom",
       scrub: true,
       pin: true,
-      // markers: true,
-      // id: 'middle'
+      markers: true,
+      id: 'middle',
       pinSpacing: false,
     },
   });
@@ -538,10 +538,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** INTRO SCROLLING ********** */
 
-  /* vidCamaraTL.to("#intro", {
-    position: "fixed",
-  }); */
-
   vidCamaraTL.fromTo(
     "#scrollea",
     {
@@ -556,7 +552,7 @@ window.addEventListener("DOMContentLoaded", () => {
   
   const imgs = gsap.utils.toArray('#video-camara img')
 
-  imgs.forEach(img => {
+  imgs.forEach((img, index) => {
     vidCamaraTL.fromTo(
       img,
       {
@@ -567,7 +563,10 @@ window.addEventListener("DOMContentLoaded", () => {
         stagger: 0.5, 
         duration: 1,
       },
-    ).set(img, {display: 'none'});
+    )
+    if (index < imgs.length - 1) {
+      vidCamaraTL.set(img, { display: 'none' });
+    }
   })
 
   vidCamaraTL.fromTo(
@@ -580,7 +579,7 @@ window.addEventListener("DOMContentLoaded", () => {
       transform: "scale(1)",
       opacity: 1,
       duration: 10,
-      delay: -30,
+      delay: -60,
     }
   );
 
@@ -600,14 +599,12 @@ window.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     duration: 100,
     display: "none",
+    delay: -10
   });
-/* 
-  vidCamaraTL.to("#intro", {
-    opacity: 0,
-    duration: 100,
-    // display: "none",
-  }); */
 
+  vidCamaraTL.set("#intro", {
+    background: 'none'
+  });
 
   /* *********** END INTRO SCROLLING ********** */
 
@@ -811,7 +808,7 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 0,
   });
 
-  portfolioTl.to(".portfolio", {
+  portfolioTl.to(".sup-rodaje", {
     display: "none",
   });
 
@@ -819,15 +816,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** MIDDLE SCROLLING ********** */
 
+  middleTimeline.set('#middleVidCtn', {
+    position: 'fixed'
+  })
+
   middleTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 0,
-      // position: "relative",
     },
     {
       opacity: 1,
-      // position: "fixed",
       duration: 1,
     }
   );
@@ -836,23 +835,21 @@ window.addEventListener("DOMContentLoaded", () => {
     "#middleVidCtn",
     {
       opacity: 1,
-      // position: "fixed",
     },
     {
       opacity: 0,
       duration: 12,
-      // position: "relative",
       delay: 50,
     }
   );
 
   middleTimeline.to("#middleVidCtn", {
-    display: "none",
+    position: "relative",
   });
 
   /****************************************/
 
-  tiempoTimeline.fromTo(
+  /* tiempoTimeline.fromTo(
     ".bg-video",
     {
       opacity: 0,
@@ -864,7 +861,7 @@ window.addEventListener("DOMContentLoaded", () => {
       delay: 5,
       duration: 5,
     }
-  );
+  ); */
 
   tiempoTimeline.fromTo(
     "#progressbar-ctn",
