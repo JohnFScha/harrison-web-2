@@ -20,7 +20,6 @@ paths.forEach((path) => {
       console.log(top)
 }, false); */
 
-
 /* Lenis config */
 
 const lenis = new Lenis();
@@ -43,7 +42,6 @@ gsap.ticker.lagSmoothing(0);
 /* Lenis config */
 
 window.addEventListener("DOMContentLoaded", () => {
-
   gsap.registerPlugin(ScrollTrigger);
 
   /* **************** CURSOR **************** */
@@ -116,6 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const separators = document.getElementsByClassName("separator");
   const icon = document.getElementById("buttonIcon");
   const social = document.querySelectorAll(".social-img");
+  const progress = document.getElementById("progressbar-ctn");
 
   const tl = gsap.timeline({ paused: true });
 
@@ -179,7 +178,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
-    } else if (tl.totalProgress() === 1) {
+    } else if (tl.totalProgress() !== 0) {
       tl.reverse();
     }
   });
@@ -437,6 +436,7 @@ window.addEventListener("DOMContentLoaded", () => {
       modal.classList.add("shown");
       newVideo.play();
       currentVideo = newVideo;
+      progress.style.zIndex = "0 !important";
     })
   );
 
@@ -445,6 +445,7 @@ window.addEventListener("DOMContentLoaded", () => {
       currentVideo.pause();
       currentVideo.parentNode.removeChild(currentVideo);
       currentVideo = null;
+      progress.style.zIndex = "500 !important";
     }
     modal.classList.remove("shown");
   });
@@ -550,11 +551,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  vidCamaraTL.to('#first-frame', {
-    opacity: 0
-  })
-  
-  const imgs = gsap.utils.toArray('#video-camara img')
+  vidCamaraTL.to("#first-frame", {
+    opacity: 0,
+  });
+
+  const imgs = gsap.utils.toArray("#video-camara img");
 
   imgs.forEach((img, index) => {
     vidCamaraTL.fromTo(
@@ -564,14 +565,14 @@ window.addEventListener("DOMContentLoaded", () => {
       },
       {
         display: "block",
-        stagger: 0.5, 
+        stagger: 0.5,
         duration: 1,
-      },
-    )
+      }
+    );
     if (index < imgs.length - 1) {
-      vidCamaraTL.set(img, { display: 'none' });
+      vidCamaraTL.set(img, { display: "none" });
     }
-  })
+  });
 
   vidCamaraTL.fromTo(
     "#texto",
@@ -602,11 +603,11 @@ window.addEventListener("DOMContentLoaded", () => {
   vidCamaraTL.to("#video-camara", {
     opacity: 0,
     duration: 90,
-    delay: -10
+    delay: -10,
   });
 
   vidCamaraTL.set("#intro", {
-    background: 'none'
+    background: "none",
   });
 
   /* *********** END INTRO SCROLLING ********** */
@@ -617,10 +618,10 @@ window.addEventListener("DOMContentLoaded", () => {
     .fromTo(
       ".portfolio",
       {
-        visibility: 'hidden'
+        visibility: "hidden",
       },
       {
-        visibility: 'visible',
+        visibility: "visible",
         delay: -1,
         duration: 10,
       }
@@ -819,9 +820,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** MIDDLE SCROLLING ********** */
 
-  middleTimeline.set('#middleVidCtn', {
-    position: 'fixed'
-  })
+  /* middleTimeline.set("#middleVidCtn", {
+    position: "fixed",
+  }); */
 
   middleTimeline.fromTo(
     "#middleVidCtn",
@@ -846,12 +847,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  middleTimeline.to("#middleVidCtn", {
+  /* middleTimeline.to("#middleVidCtn", {
     position: "relative",
-  });
+  }); */
 
   /****************************************/
-
 
   tiempoTimeline.fromTo(
     "#progressbar-ctn",
@@ -1011,7 +1011,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   tiempoTimeline.to("#video-tiempo", {
     opacity: 0,
-    position: "relative",
     duration: 30,
   });
 
