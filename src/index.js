@@ -179,6 +179,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
     } else if (tl.totalProgress() !== 0) {
+      tl.kill();
       tl.reverse();
     }
   });
@@ -191,6 +192,7 @@ window.addEventListener("DOMContentLoaded", () => {
         trigger: element,
         start: "top top",
       });
+
     ScrollTrigger.create({
       trigger: element,
       start: "top center",
@@ -471,6 +473,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* ********* Timelines ********* */
 
+  const masterTimeline = gsap.timeline()
+
   const vidCamaraTL = gsap.timeline({
     scrollTrigger: {
       trigger: "#intro",
@@ -514,11 +518,11 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#tiempo-acc",
       start: "top top",
-      end: "bottom+=15% top",
+      end: "bottom top",
       scrub: true,
       pin: true,
-      /* markers: true,
-      id: 'tiempo', */
+      // markers: true,
+      // id: "tiempo",
       pinSpacing: false,
     },
   });
@@ -530,10 +534,15 @@ window.addEventListener("DOMContentLoaded", () => {
       end: "bottom+=200% bottom",
       scrub: true,
       pin: true,
-      /* markers: true,
-      id: 'end' */
+      markers: true,
+      id: "end",
+      pinSpacing: false,
     },
   });
+
+  masterTimeline.add(vidCamaraTL).add(portfolioTl, ">").add(middleTimeline, ">").add(tiempoTimeline, ">").add(endTimeline, ">")
+
+  console.log(masterTimeline.progress())
 
   /* *********** END TIMELINE SEQUENCE ********** */
 
@@ -820,9 +829,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** MIDDLE SCROLLING ********** */
 
-  /* middleTimeline.set("#middleVidCtn", {
+  middleTimeline.to("#middleVidCtn", {
     position: "fixed",
-  }); */
+  });
 
   middleTimeline.fromTo(
     "#middleVidCtn",
@@ -847,11 +856,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  /* middleTimeline.to("#middleVidCtn", {
+  middleTimeline.to("#middleVidCtn", {
     position: "relative",
-  }); */
+  });
 
   /****************************************/
+
+  tiempoTimeline.to("#tiempo-acc", {
+    position: "fixed",
+  });
 
   tiempoTimeline.fromTo(
     "#progressbar-ctn",
@@ -966,7 +979,6 @@ window.addEventListener("DOMContentLoaded", () => {
       rotateX: 0,
       duration: 10,
       opacity: 1,
-      scrollTrigger: ".accordion",
     }
   );
 
@@ -974,9 +986,11 @@ window.addEventListener("DOMContentLoaded", () => {
     "#video-tiempo #text-container-tiempo .text",
     {
       y: 5000,
+      opacity: 0,
     },
     {
       y: 0,
+      opacity: 1,
       stagger: 0.5,
       duration: 30,
     }
@@ -999,24 +1013,36 @@ window.addEventListener("DOMContentLoaded", () => {
     "#video-tiempo",
     {
       rotateX: 0,
-      duration: 10,
-      opacity: 1,
     },
     {
-      rotateX: -69.3,
-      opacity: 0,
+      rotateX: -65,
       duration: 50,
     }
   );
 
-  tiempoTimeline.to("#video-tiempo", {
-    opacity: 0,
-    duration: 30,
-  });
+  tiempoTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 1,
+      duration: 10,
+    },
+    {
+      opacity: 0,
+      duration: 10,
+    }
+  );
 
-  tiempoTimeline.to("#tiempo-acc", {
-    display: "none",
-  });
+  tiempoTimeline.fromTo(
+    "#video-tiempo",
+    {
+      display: 'block',
+      duration: 10,
+    },
+    {
+      display: 'none',
+      duration: 10,
+    }
+  );
 
   /* *********** TIEMPO SCROLLING ********** */
 
@@ -1113,6 +1139,18 @@ window.addEventListener("DOMContentLoaded", () => {
     delay: -20,
   });
 
+  endTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 20,
+    },
+    {
+      opacity: 0,
+      duration: 20,
+    }
+  );
+
   endTimeline.to("#txt-container-2", {
     delay: 30,
     y: 800,
@@ -1126,30 +1164,11 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   endTimeline.fromTo(
-    "#progressbar-ctn",
-    {
-      opacity: 1,
-      duration: 100,
-    },
-    {
-      opacity: 0,
-      duration: 2,
-      delay: 20,
-    }
-  );
-
-  // middleTimeline.to("#p2", {
-  //   opacity: 0,
-  //   duration: 0,
-  // });
-
-  endTimeline.fromTo(
     "#svgOutro",
     {
       y: -1000,
       transform: "scale(2.5)",
       duration: 20,
-      delay: -30,
       opacity: 0,
     },
     {
@@ -1157,6 +1176,7 @@ window.addEventListener("DOMContentLoaded", () => {
       transform: "scale(1.6)",
       duration: 20,
       opacity: 1,
+      delay: -20,
     }
   );
 

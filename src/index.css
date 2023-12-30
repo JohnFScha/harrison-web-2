@@ -14,6 +14,26 @@
   /* background-color: rgba(29, 62, 78, 0.241); */
 }
 
+.gsap-marker {
+  visibility: hidden;
+}
+
+.gsap-marker-start {
+  visibility: hidden;
+}
+
+.gsap-marker-end {
+  visibility: hidden;
+}
+
+.gsap-marker-scroller-end {
+  visibility: hidden;
+}
+
+.gsap-marker-scroller-start {
+  visibility: hidden;
+}
+
 /* lenis css */
 
 html.lenis {
@@ -110,6 +130,7 @@ nav {
 
 nav a {
   z-index: 7000;
+  cursor: url('assets/cursor-mano.svg'), pointer;
 }
 
 nav section#menu {
@@ -153,11 +174,12 @@ nav section#menu ul li a {
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 3px rgb(29, 62, 78);
-  transition: color 0.5s ease;
+  transition: color 1s ease;
 }
 
 nav section#menu ul li a:hover {
   color: rgb(29, 62, 78);
+  cursor: none;
 }
 
 nav button {
@@ -169,6 +191,7 @@ nav button {
   cursor: pointer;
   transition: transform 0.5s ease;
   margin: 0 0.5rem 0 0;
+  cursor: url('assets/cursor-mano.svg'), pointer;
 }
 
 nav a img {
@@ -259,9 +282,10 @@ body #intro #video {
 }
 
 div#first-frame {
-  background-color: #000;
+  background-image: url('assets/camara_frames/introframes%20(1).webp');
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 body #intro #video #video-camara {
@@ -440,6 +464,8 @@ section.portfolio ol li h2 {
   z-index: 20;
   transform: translateY(30px);
   opacity: 0;
+  cursor: url('assets/cursor-mano.svg'), pointer;
+
 }
 
 section.portfolio .desc-ctn {
@@ -822,22 +848,18 @@ body #middle #parent {
   width: 100%;
   transform-style: preserve-3d;
   transform-origin: center top;
-  transform: perspective(1000px) rotateX(0);
+  transform: perspective(1000px) rotateX(0) translate(0, 0) !important;
   transition: transform 0.5s;
-  top: 0;
 }
 
 #video-tiempo {
   position: absolute;
-  top: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
 }
 
 #video-tiempo #tiempoVidCtn {
   position: absolute;
-  top: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -853,17 +875,16 @@ body #middle #parent {
 
 #video-tiempo #text-container-tiempo {
   position: absolute;
-  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
-#video-tiempo #text-container-tiempo p {
+#video-tiempo #text-container-tiempo .text {
   font-size: 4rem;
   margin: 0;
   text-align: center;
