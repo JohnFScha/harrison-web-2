@@ -445,21 +445,23 @@ const progress = document.getElementById("progressbar-ctn");
       swapSrc.src = videos[index];
       newVideo.appendChild(swapSrc);
       modalContent.appendChild(newVideo);
+      modal.classList.remove('hidden')
       modal.classList.add("shown");
       newVideo.play();
+      gsap.set('#progressbar-ctn', {zIndex: 0})
       currentVideo = newVideo;
-      progress.style.zIndex = "0 !important";
     })
   );
-
+    console.log(progress)
   closeModal.addEventListener("click", () => {
     if (currentVideo) {
       currentVideo.pause();
+      gsap.set('#progressbar-ctn', {zIndex: '500'})
       currentVideo.parentNode.removeChild(currentVideo);
       currentVideo = null;
-      progress.style.zIndex = "500 !important";
     }
     modal.classList.remove("shown");
+    modal.classList.add('hidden')
   });
 
   /* ******** Video frames ******** */

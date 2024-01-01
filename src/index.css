@@ -99,7 +99,6 @@ body::-webkit-scrollbar {
   bottom: 0;
   left: 25%;
   margin: auto;
-  opacity: 0;
   margin: 0 auto;
   z-index: 500;
   width: 50%;
@@ -610,6 +609,7 @@ section.portfolio .hidden {
 
 section.portfolio .shown {
   display: block;
+  z-index: 9999999999 !important;
 }
 
 /* ======================== End PORTFOLIO =========================*/
@@ -1314,7 +1314,7 @@ bubbles {
   box-shadow: 10px 10px 30px #D1D821,
     -10px -10px 30px #D1D821;
   animation: colorgen;
-  animation-duration: 1000ms;
+  animation-duration: 500ms;
   animation-iteration-count: infinite;
   z-index: 999999999999999999999999;
 }
