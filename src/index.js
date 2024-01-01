@@ -1265,6 +1265,5 @@ const progress = document.getElementById("progressbar-ctn");
     },
     0.5
   );
-  console.log(portfolioTl, tiempoTimeline, endTimeline)
 });
 
