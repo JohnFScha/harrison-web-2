@@ -553,7 +553,7 @@ const progress = document.getElementById("progressbar-ctn");
     scrollTrigger: {
       trigger: "#end",
       start: "top top",
-      end: "bottom+=200% bottom",
+      end: "bottom+=150% bottom",
       scrub: true,
       pin: true,
       markers: true,
