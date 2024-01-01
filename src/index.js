@@ -95,7 +95,8 @@ const progress = document.getElementById("progressbar-ctn");
   /************** observer **************** */
 
   const video = document.getElementById("middleVidCtn");
-
+  console.log(video)
+  
   // Options for the Intersection Observer
   const options = {
     root: null, // Use the viewport as the root
@@ -103,17 +104,26 @@ const progress = document.getElementById("progressbar-ctn");
   };
 
   // Callback function to handle intersection changes
-  const handleIntersection = (entries, observer) => {
+  const handleIntersection = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Video is in the viewport, add the autoplay attribute
+        video.style.opacity = 1
+        video.style.display = 'block'
         video.play();
       } else {
         // Video is not in the viewport, remove the autoplay attribute
+        video.style.opacity = 0
+        video.style.display = 'none'
         video.pause();
       }
     });
   };
+
+  video.addEventListener('ended', (e) => {
+    e.preventDefault()
+    gsap.to(window, { scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("start-tiempo") });
+  })
 
   // Create the Intersection Observer
   const observer = new IntersectionObserver(handleIntersection, options);
@@ -452,7 +462,7 @@ const progress = document.getElementById("progressbar-ctn");
       currentVideo = newVideo;
     })
   );
-    console.log(progress)
+
   closeModal.addEventListener("click", () => {
     if (currentVideo) {
       currentVideo.pause();
@@ -837,8 +847,8 @@ const progress = document.getElementById("progressbar-ctn");
 
   /* *********** MIDDLE SCROLLING ********** */
 
-  middleTimeline.to("#middleVidCtn", {
-    position: "fixed",
+  middleTimeline.set("#middleVidCtn", {
+    display: "block",
   });
 
   middleTimeline.fromTo(
@@ -859,13 +869,13 @@ const progress = document.getElementById("progressbar-ctn");
     },
     {
       opacity: 0,
-      duration: 12,
-      delay: 50,
+      duration: 10,
+      delay: 10
     }
   );
 
-  middleTimeline.to("#middleVidCtn", {
-    position: "relative",
+  middleTimeline.set("#middleVidCtn", {
+    display: "none",
   });
 
   /****************************************/
@@ -874,8 +884,6 @@ const progress = document.getElementById("progressbar-ctn");
     position: "fixed",
   });
 
-  
-
   tiempoTimeline.fromTo(
     "#middle .text",
     {
@@ -883,15 +891,15 @@ const progress = document.getElementById("progressbar-ctn");
     },
     {
       y: -500,
-      stagger: 1,
+      stagger: 10,
       duration: 50,
     }
-  );
+  ).addLabel('start-tiempo', 70);
 
   tiempoTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
-    stagger: 2,
-    duration: 10,
+    stagger: 10,
+    duration: 50,
   });
 
   tiempoTimeline.fromTo(
