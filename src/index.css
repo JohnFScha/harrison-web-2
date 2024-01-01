@@ -10,10 +10,6 @@
   font-style: normal;
 }
 
-.pin-spacer {
-  /* background-color: rgba(29, 62, 78, 0.241); */
-}
-
 .gsap-marker {
   visibility: hidden;
 }
@@ -700,7 +696,6 @@ section.portfolio .shown {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20;
   position: absolute;
   top: 0;
   scale: 1;
@@ -851,6 +846,7 @@ body #middle #parent {
   transform-origin: center top;
   transform: perspective(1000px) rotateX(0) translate(0, 0) !important;
   transition: transform 0.5s;
+  z-index: 500;
 }
 
 #video-tiempo {
