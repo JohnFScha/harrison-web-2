@@ -50,7 +50,7 @@ link1.addEventListener("click", () => {
 }); */
 
 
-const context = videoCamara.getContext("2d");
+/* const context = videoCamara.getContext("2d");
 
   videoCamara.width = 1920;
   videoCamara.height = 1000;
@@ -81,10 +81,53 @@ const context = videoCamara.getContext("2d");
     },
     onUpdate: render, // use animation onUpdate instead of scrollTrigger's onUpdate
   });
-
+ */
   images[0].onload = render;
 
   function render() {
     context.clearRect(0, 0, videoCamara.width, videoCamara.height);
     context.drawImage(images[camara.frame], 0, 0);
   }
+
+  /* let element = document.querySelector(a.getAttribute("href")),
+      linkST = ScrollTrigger.create({
+        trigger: element,
+        start: "top top",
+      });
+
+    ScrollTrigger.create({
+      trigger: element,
+      start: "top center",
+      end: "bottom bottom",
+      onToggle: (self) => self.isActive && setActive(a),
+    });
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: linkST.start,
+        overwrite: "auto",
+      });
+
+      isRotated = !isRotated;
+      icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
+      collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+      if (body.className.match("close")) {
+        body.className = "open";
+        social[0].src = "src/assets/mail-dark.png";
+        social[1].src = "src/assets/whatsapp-dark.png";
+        social[2].src = "src/assets/ig-dark.png";
+        social[3].src = "src/assets/Linkedin-dark.png";
+      } else if (body.className.includes("open")) {
+        body.className = "close";
+        social[0].src = "src/assets/mail.png";
+        social[1].src = "src/assets/wsp.png";
+        social[2].src = "src/assets/ig.png";
+        social[3].src = "src/assets/Linkedin.png";
+      }
+      if (tl.paused() || tl.totalProgress() === 0) {
+        tl.play();
+      } else if (tl) {
+        tl.reverse();
+      }
+    }); */

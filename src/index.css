@@ -268,7 +268,7 @@ body #intro #scrollea svg path {
 
 body #intro #scrollea svg path.st1 {
   fill: white;
-  animation: scroll 0.8s infinite;
+  animation: scroll 1.1s infinite;
 }
 
 body #intro #video {
@@ -946,13 +946,18 @@ body #middle #parent {
 
 
 @keyframes scroll {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(-70px);
   }
 
-  to {
+  50% {
     opacity: 1;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 0;
     transform: translateY(50px);
   }
 }
@@ -1305,27 +1310,27 @@ bubbles {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-  /* background: #D1D821;
+  background: #D1D821;
   box-shadow: 10px 10px 30px #D1D821,
-    -10px -10px 30px #D1D821; */
+    -10px -10px 30px #D1D821;
   animation: colorgen;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
   z-index: 999999999999999999999999;
 }
 
-/* bubbles:before {
+bubbles:before {
   box-shadow: 0px 0px 100px 10px #b5d334;
 }
 
 bubbles:after {
   box-shadow: inset 0px 0px 100px 10px #b5d334;
-} */
+}
 
 @keyframes colorgen {
   from {
     opacity: 1;
-    filter: blur(5px);
+    filter: blur(20px);
     scale: 1;
   }
 

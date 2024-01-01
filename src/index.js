@@ -20,6 +20,12 @@ paths.forEach((path) => {
       console.log(top)
 }, false); */
 
+const baseUrl = 'http://127.0.0.1:5500/'
+const inicio = 0;
+const portfolio = 5751;
+const servicios = 8364;
+const clientes = 9664;
+
 /* Lenis config */
 
 const lenis = new Lenis();
@@ -42,11 +48,22 @@ gsap.ticker.lagSmoothing(0);
 /* Lenis config */
 
 window.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
+/* ************* DOM elements ************ */
+const body = document.getElementById("body");
+const collapse = document.getElementById("collapse");
+const menu = document.getElementById("menu");
+const navItems = document.getElementsByClassName("nav-item");
+const separators = document.getElementsByClassName("separator");
+const icon = document.getElementById("buttonIcon");
+const social = document.querySelectorAll(".social-img");
+const progress = document.getElementById("progressbar-ctn");
+
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   /* **************** CURSOR **************** */
 
-  document.addEventListener("mousemove", (e) => {
+  body.addEventListener("mousemove", (e) => {
+    
     let bubbles = document.createElement("bubbles");
     let x = e.pageX;
     let y = e.pageY;
@@ -70,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(function () {
       bubbles.remove();
-    }, 200);
+    }, 150);
   });
 
   /* **************** CURSOR **************** */
@@ -106,15 +123,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /************** observer **************** */
 
-  /* ************* DOM elements ************ */
-  const body = document.getElementById("body");
-  const collapse = document.getElementById("collapse");
-  const menu = document.getElementById("menu");
-  const navItems = document.getElementsByClassName("nav-item");
-  const separators = document.getElementsByClassName("separator");
-  const icon = document.getElementById("buttonIcon");
-  const social = document.querySelectorAll(".social-img");
-  const progress = document.getElementById("progressbar-ctn");
+  /**************** menu *************** */
 
   const tl = gsap.timeline({ paused: true });
 
@@ -186,26 +195,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* scroll test riido*/
   let links = gsap.utils.toArray(".nav-link");
-  links.forEach((a) => {
-    let element = document.querySelector(a.getAttribute("href")),
-      linkST = ScrollTrigger.create({
-        trigger: element,
-        start: "top top",
-      });
 
-    ScrollTrigger.create({
-      trigger: element,
-      start: "top center",
-      end: "bottom bottom",
-      onToggle: (self) => self.isActive && setActive(a),
-    });
-    a.addEventListener("click", (e) => {
-      e.preventDefault();
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: linkST.start,
-        overwrite: "auto",
-      });
+  links.forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault()
+
+      if(a.innerText === `Inicio`) {
+        // window.scrollTo(0, 0)
+        gsap.to(window, { scrollTo: vidCamaraTL.scrollTrigger.labelToScroll("intro") });
+      } else if (a.innerText === `Portfolio`) {
+        // window.scrollTo(0, portfolio)
+        gsap.to(window, { scrollTo: portfolioTl.scrollTrigger.labelToScroll("portfolio") });
+      } else if (a.innerText === `Servicios`) {
+        // window.scrollTo(0, servicios)
+        gsap.to(window, { scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("servicios") });
+      } else if (a.innerText === `Clientes`) {
+        // window.scrollTo(0, clientes)
+        gsap.to(window, { scrollTo: endTimeline.scrollTrigger.labelToScroll("clientes") });
+      } 
 
       isRotated = !isRotated;
       icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
@@ -223,18 +230,21 @@ window.addEventListener("DOMContentLoaded", () => {
         social[2].src = "src/assets/ig.png";
         social[3].src = "src/assets/Linkedin.png";
       }
+      
       if (tl.paused() || tl.totalProgress() === 0) {
         tl.play();
       } else if (tl) {
         tl.reverse();
       }
-    });
+    })
   });
 
   function setActive(link) {
     links.forEach((el) => el.classList.remove("active"));
     link.classList.add("active");
   }
+
+  /**************** menu *************** */
 
   /* ****************** Intro dom ****************** */
 
@@ -540,10 +550,6 @@ window.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  masterTimeline.add(vidCamaraTL).add(portfolioTl, ">").add(middleTimeline, ">").add(tiempoTimeline, ">").add(endTimeline, ">")
-
-  console.log(masterTimeline.progress())
-
   /* *********** END TIMELINE SEQUENCE ********** */
 
   /* *********** INTRO SCROLLING ********** */
@@ -558,7 +564,7 @@ window.addEventListener("DOMContentLoaded", () => {
       opacity: 0,
       x: -100,
     }
-  );
+  ).addLabel('intro', 0);
 
   vidCamaraTL.to("#first-frame", {
     opacity: 0,
@@ -593,7 +599,7 @@ window.addEventListener("DOMContentLoaded", () => {
       transform: "scale(1)",
       opacity: 1,
       duration: 50,
-      delay: -100,
+      delay: -120,
     }
   );
 
@@ -601,18 +607,19 @@ window.addEventListener("DOMContentLoaded", () => {
     color: "#D1D821",
     stagger: 3,
     duration: 20,
-    delay: -10,
+    delay: -90,
   });
 
   vidCamaraTL.to("#texto", {
     y: -1000,
     duration: 20,
+    delay: -50,
   });
 
   vidCamaraTL.to("#video-camara", {
     opacity: 0,
     duration: 90,
-    delay: -10,
+    delay: -20,
   });
 
   vidCamaraTL.set("#intro", {
@@ -634,8 +641,7 @@ window.addEventListener("DOMContentLoaded", () => {
         delay: -1,
         duration: 10,
       }
-    )
-    .addLabel("port");
+    );
 
   portfolioTl.to(".bg-rodaje", {
     yPercent: -66,
@@ -775,7 +781,7 @@ window.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     duration: 6,
     scrollTrigger: ".pf-accordion",
-  });
+  }).addLabel('portfolio');
 
   portfolioTl.to(".pf-accordion-outer ol li h2", {
     y: 30,
@@ -866,6 +872,26 @@ window.addEventListener("DOMContentLoaded", () => {
     position: "fixed",
   });
 
+  
+
+  tiempoTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 1000,
+    },
+    {
+      y: -500,
+      stagger: 1,
+      duration: 50,
+    }
+  );
+
+  tiempoTimeline.to("#middle #text-container .letter", {
+    color: "#D1D821",
+    stagger: 2,
+    duration: 10,
+  });
+
   tiempoTimeline.fromTo(
     "#progressbar-ctn",
     {
@@ -880,38 +906,6 @@ window.addEventListener("DOMContentLoaded", () => {
       delay: 5,
     }
   );
-
-  tiempoTimeline.fromTo(
-    "#middle .text",
-    {
-      y: 1000,
-      delay: 5,
-      duration: 10,
-    },
-    {
-      y: -500,
-      stagger: 1,
-      delay: 5,
-      duration: 10,
-    }
-  );
-  tiempoTimeline.to("#rect2", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
-
-  tiempoTimeline.to("#rect3", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 1,
-  });
-
-  tiempoTimeline.to("#middle #text-container .letter", {
-    color: "#D1D821",
-    stagger: 2,
-    duration: 4,
-  });
 
   tiempoTimeline.fromTo(
     "#middle #text-container",
@@ -934,23 +928,35 @@ window.addEventListener("DOMContentLoaded", () => {
     width: "400vw",
   });
 
+  tiempoTimeline.to("#rect2", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  tiempoTimeline.to("#rect3", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 2,
+  });
+
   tiempoTimeline.fromTo(
     ".accordion",
     {
       x: 2000,
       zIndex: 1,
-      duration: 20,
+      duration: 30,
     },
     {
       x: 0,
       zIndex: 0,
-      duration: 20,
+      duration: 30,
     }
-  );
+  ).addLabel('servicios');
 
   tiempoTimeline.to(".accordion", {
     rotateX: -69.3,
-    duration: 10,
+    duration: 30,
     delay: 30,
     zIndex: 0,
     opacity: 0,
@@ -977,7 +983,7 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     {
       rotateX: 0,
-      duration: 10,
+      duration: 20,
       opacity: 1,
     }
   );
@@ -1004,7 +1010,7 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       color: "rgb(203, 219, 67)",
       stagger: 4,
-      duration: 4,
+      duration: 15,
       delay: 1,
     }
   );
@@ -1110,11 +1116,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  endTimeline.to("#p1", {
-    opacity: 0,
-    duration: 0,
-  });
-
   endTimeline.to("#rect3", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
     fill: "#D9D9D9",
@@ -1127,6 +1128,11 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 1,
   });
 
+  endTimeline.to("#p1", {
+    opacity: 0,
+    duration: 0,
+  });
+
   endTimeline.to("#p2", {
     delay: -30,
     duration: 20,
@@ -1137,6 +1143,14 @@ window.addEventListener("DOMContentLoaded", () => {
     transform: "scale(1.3)",
     duration: 10,
     delay: -20,
+  }).addLabel('clientes');
+
+  endTimeline.to("#txt-container-2", {
+    delay: 30,
+    y: 800,
+    duration: 50,
+    transform: "scale(0.5)",
+    opacity: 0,
   });
 
   endTimeline.fromTo(
@@ -1150,14 +1164,6 @@ window.addEventListener("DOMContentLoaded", () => {
       duration: 20,
     }
   );
-
-  endTimeline.to("#txt-container-2", {
-    delay: 30,
-    y: 800,
-    duration: 50,
-    transform: "scale(0.5)",
-    opacity: 0,
-  });
 
   endTimeline.to("#txt-container-2", {
     display: "none",
@@ -1176,7 +1182,7 @@ window.addEventListener("DOMContentLoaded", () => {
       transform: "scale(1.6)",
       duration: 20,
       opacity: 1,
-      delay: -20,
+      delay: 1,
     }
   );
 
@@ -1259,4 +1265,6 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     0.5
   );
+  console.log(portfolioTl, tiempoTimeline, endTimeline)
 });
+
