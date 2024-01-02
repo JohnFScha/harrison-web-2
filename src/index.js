@@ -56,7 +56,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const separators = document.getElementsByClassName("separator");
   const icon = document.getElementById("buttonIcon");
   const social = document.querySelectorAll(".social-img");
-  const progress = document.getElementById("progressbar-ctn");
+  const nav = document.getElementById("nav");
 
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -184,6 +184,12 @@ window.addEventListener("DOMContentLoaded", () => {
   let isRotated = false;
 
   collapse.addEventListener("click", () => {
+    const isReversing = tl.isActive() && tl.reversed();
+
+    if (isReversing) {
+      return;
+    }
+
     isRotated = !isRotated;
     icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
     collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
@@ -194,6 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
       social[1].src = "src/assets/whatsapp-dark.png";
       social[2].src = "src/assets/ig-dark.png";
       social[3].src = "src/assets/Linkedin-dark.png";
+      nav.style.animation = "fadeInOut 0.5s ease";
     } else if (body.className.includes("open")) {
       body.className = "close";
       social[0].src = "src/assets/mail.png";
@@ -201,6 +208,7 @@ window.addEventListener("DOMContentLoaded", () => {
       social[2].src = "src/assets/ig.png";
       social[3].src = "src/assets/Linkedin.png";
     }
+
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
     } else if (tl.isActive() || tl.totalProgress() !== 0) {
@@ -213,29 +221,33 @@ window.addEventListener("DOMContentLoaded", () => {
   let links = gsap.utils.toArray(".nav-link");
 
   links.forEach((a) => {
+    console.log(a);
     a.addEventListener("click", (e) => {
       e.preventDefault();
-
       if (a.innerText === `Inicio`) {
         // window.scrollTo(0, 0)
         gsap.to(window, {
           scrollTo: vidCamaraTL.scrollTrigger.labelToScroll("intro"),
         });
+        setActive(a);
       } else if (a.innerText === `Portfolio`) {
         // window.scrollTo(0, portfolio)
         gsap.to(window, {
           scrollTo: portfolioTl.scrollTrigger.labelToScroll("portfolio"),
         });
+        setActive(a);
       } else if (a.innerText === `Servicios`) {
         // window.scrollTo(0, servicios)
         gsap.to(window, {
           scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("servicios"),
         });
+        setActive(a);
       } else if (a.innerText === `Clientes`) {
         // window.scrollTo(0, clientes)
         gsap.to(window, {
           scrollTo: endTimeline.scrollTrigger.labelToScroll("clientes"),
         });
+        setActive(a);
       }
 
       isRotated = !isRotated;
@@ -264,8 +276,9 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   function setActive(link) {
-    links.forEach((el) => el.classList.remove("active"));
-    link.classList.add("active");
+    link.className.includes("active")
+      ? link.classList.remove("active")
+      : link.classList.add("active");
   }
 
   /**************** menu *************** */
@@ -868,7 +881,7 @@ window.addEventListener("DOMContentLoaded", () => {
     display: "block",
   });
 
- /*  middleTimeline.fromTo(
+  /*  middleTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 0,
