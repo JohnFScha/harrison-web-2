@@ -905,10 +905,10 @@ window.addEventListener("DOMContentLoaded", () => {
       {
         y: -500,
         stagger: 10,
-        duration: 50,
+        duration: 100,
       }
     )
-    .addLabel("start-tiempo", 70);
+    .addLabel("start-tiempo", 120);
 
   tiempoTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
@@ -970,19 +970,19 @@ window.addEventListener("DOMContentLoaded", () => {
       {
         x: 2000,
         zIndex: 1,
-        duration: 30,
+        duration: 60,
       },
       {
         x: 0,
         zIndex: 0,
-        duration: 30,
+        duration: 60,
       }
     )
     .addLabel("servicios");
 
   tiempoTimeline.to(".accordion", {
     rotateX: -69.3,
-    duration: 30,
+    duration: 60,
     delay: 30,
     zIndex: 0,
     opacity: 0,
@@ -1009,7 +1009,7 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     {
       rotateX: 0,
-      duration: 20,
+      duration: 30,
       opacity: 1,
     }
   );
@@ -1023,8 +1023,8 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       y: 0,
       opacity: 1,
-      stagger: 0.5,
-      duration: 30,
+      stagger: 1,
+      duration: 100,
     }
   );
 
@@ -1036,7 +1036,7 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       color: "rgb(203, 219, 67)",
       stagger: 4,
-      duration: 15,
+      duration: 50,
       delay: 1,
     }
   );
