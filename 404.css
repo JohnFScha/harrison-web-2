@@ -26,7 +26,7 @@ body {
 }
 
 main {
-    background-image: url('assets/404bg.png');
+    background-image: url('src/assets/404bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -105,7 +105,7 @@ p {
     color: white;
 }
 
-button.404-btn {
+main .text .subCtn button.404-btn {
     margin-top: 20px;
     display: inline-flex;
     padding: 16px 21px;
