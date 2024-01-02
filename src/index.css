@@ -150,7 +150,7 @@ main .titleCtn {
 }
 
 main .error {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserraty", sans-serif;
   -webkit-text-stroke: 2px rgb(203, 219, 67);
   color: transparent;
   position: absolute;
