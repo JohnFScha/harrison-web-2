@@ -1,9 +1,9 @@
 /* Colors */
 @font-face {
     font-family: "Montserrat";
-    src: url("./assets/Montserrat-black/Montserrat-Black.eot");
+    src: url("src/assets/Montserrat-black/Montserrat-Black.eot");
     /* IE9 Compat Modes */
-    src: url("./assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("./assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("./assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("./assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("./assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
+    src: url("src/assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("src/assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("src/assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("src/assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("src/assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
     /* Legacy iOS */
     font-weight: 900;
     font-style: normal;
@@ -105,7 +105,7 @@ p {
     color: white;
 }
 
-main .text .subCtn button.404-btn {
+button {
     margin-top: 20px;
     display: inline-flex;
     padding: 16px 21px;
