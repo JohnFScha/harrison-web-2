@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   console.log(window.location.pathname)
   
-  if (window.location.pathname !== "/") {
+  if (window.location.pathname !== "/harrison-web-2/") {
     // Replace the body content with your 404 page content
     document.body.innerHTML = `<main class="text404">
     <div class="overlay"></div>
