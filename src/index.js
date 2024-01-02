@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Options for the Intersection Observer
   const options = {
     root: null, // Use the viewport as the root
-    threshold: 0.5, // Trigger when 50% of the video is visible
+    threshold: 1, // Trigger when 50% of the video is visible
   };
 
   // Callback function to handle intersection changes
@@ -108,12 +108,12 @@ window.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         // Video is in the viewport, add the autoplay attribute
         video.style.opacity = 1;
-        video.style.display = "block";
+        // video.style.display = "block";
         video.play();
       } else {
         // Video is not in the viewport, remove the autoplay attribute
         video.style.opacity = 0;
-        video.style.display = "none";
+        // video.style.display = "none";
         video.pause();
       }
     });

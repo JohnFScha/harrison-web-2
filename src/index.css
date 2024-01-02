@@ -725,6 +725,8 @@ section.portfolio .shown {
   transition: opacity 0.1s ease;
   transform: translate(0) !important;
   top: 0 !important;
+  background-color: #000;
+  z-index: 10;
 }
 
 #text-container {
