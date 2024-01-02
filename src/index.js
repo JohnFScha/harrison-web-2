@@ -49,29 +49,6 @@ gsap.ticker.lagSmoothing(0);
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  console.log(window.location.pathname)
-  
-  if (window.location.pathname !== "/harrison-web-2/") {
-    // Replace the body content with your 404 page content
-    document.body.innerHTML = `<main class="text404">
-    <div class="overlay"></div>
-    <div class="text">
-        <h1 class="titleCtn">
-            <span class="error">ERROR</span>
-            <span class="charCtn">4</span>
-            <span class="spaceCtn">0</span>
-            <span class="charCtn">4</span>
-        </h1>
-        <div class="subCtn">
-            <span class="sub1">¡UPS!</span>
-            <span class="sub2">Algo se rompió</span>
-            <p>La página que estás buscando fue removida o no está disponible en este momento. Pero no te preocupes, siempre podés volver!</p>
-            <button class="404-btn">Inicio/¿Volver a intentar?</button>
-        </div>
-    </div>
-</main>`;
-  }
-
   /* ************* DOM elements ************ */
   const body = document.getElementById("body");
   const collapse = document.getElementById("collapse");
