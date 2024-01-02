@@ -20,7 +20,7 @@ paths.forEach((path) => {
       console.log(top)
 }, false); */
 
-const baseUrl = 'http://127.0.0.1:5500/'
+const baseUrl = "http://127.0.0.1:5500/";
 const inicio = 0;
 const portfolio = 5751;
 const servicios = 8364;
@@ -48,22 +48,45 @@ gsap.ticker.lagSmoothing(0);
 /* Lenis config */
 
 window.addEventListener("DOMContentLoaded", () => {
-/* ************* DOM elements ************ */
-const body = document.getElementById("body");
-const collapse = document.getElementById("collapse");
-const menu = document.getElementById("menu");
-const navItems = document.getElementsByClassName("nav-item");
-const separators = document.getElementsByClassName("separator");
-const icon = document.getElementById("buttonIcon");
-const social = document.querySelectorAll(".social-img");
-const progress = document.getElementById("progressbar-ctn");
+
+  console.log(window.location.pathname)
+  
+  if (window.location.pathname !== "/") {
+    // Replace the body content with your 404 page content
+    document.body.innerHTML = `<main class="text404">
+    <div class="overlay"></div>
+    <div class="text">
+        <h1 class="titleCtn">
+            <span class="error">ERROR</span>
+            <span class="charCtn">4</span>
+            <span class="spaceCtn">0</span>
+            <span class="charCtn">4</span>
+        </h1>
+        <div class="subCtn">
+            <span class="sub1">¡UPS!</span>
+            <span class="sub2">Algo se rompió</span>
+            <p>La página que estás buscando fue removida o no está disponible en este momento. Pero no te preocupes, siempre podés volver!</p>
+            <button class="404-btn">Inicio/¿Volver a intentar?</button>
+        </div>
+    </div>
+</main>`;
+  }
+
+  /* ************* DOM elements ************ */
+  const body = document.getElementById("body");
+  const collapse = document.getElementById("collapse");
+  const menu = document.getElementById("menu");
+  const navItems = document.getElementsByClassName("nav-item");
+  const separators = document.getElementsByClassName("separator");
+  const icon = document.getElementById("buttonIcon");
+  const social = document.querySelectorAll(".social-img");
+  const progress = document.getElementById("progressbar-ctn");
 
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   /* **************** CURSOR **************** */
 
   body.addEventListener("mousemove", (e) => {
-    
     let bubbles = document.createElement("bubbles");
     let x = e.pageX;
     let y = e.pageY;
@@ -95,8 +118,7 @@ const progress = document.getElementById("progressbar-ctn");
   /************** observer **************** */
 
   const video = document.getElementById("middleVidCtn");
-  console.log(video)
-  
+
   // Options for the Intersection Observer
   const options = {
     root: null, // Use the viewport as the root
@@ -108,22 +130,24 @@ const progress = document.getElementById("progressbar-ctn");
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Video is in the viewport, add the autoplay attribute
-        video.style.opacity = 1
-        video.style.display = 'block'
+        video.style.opacity = 1;
+        video.style.display = "block";
         video.play();
       } else {
         // Video is not in the viewport, remove the autoplay attribute
-        video.style.opacity = 0
-        video.style.display = 'none'
+        video.style.opacity = 0;
+        video.style.display = "none";
         video.pause();
       }
     });
   };
 
-  video.addEventListener('ended', (e) => {
-    e.preventDefault()
-    gsap.to(window, { scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("start-tiempo") });
-  })
+  video.addEventListener("ended", (e) => {
+    e.preventDefault();
+    gsap.to(window, {
+      scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+    });
+  });
 
   // Create the Intersection Observer
   const observer = new IntersectionObserver(handleIntersection, options);
@@ -207,22 +231,30 @@ const progress = document.getElementById("progressbar-ctn");
   let links = gsap.utils.toArray(".nav-link");
 
   links.forEach((a) => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault()
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
 
-      if(a.innerText === `Inicio`) {
+      if (a.innerText === `Inicio`) {
         // window.scrollTo(0, 0)
-        gsap.to(window, { scrollTo: vidCamaraTL.scrollTrigger.labelToScroll("intro") });
+        gsap.to(window, {
+          scrollTo: vidCamaraTL.scrollTrigger.labelToScroll("intro"),
+        });
       } else if (a.innerText === `Portfolio`) {
         // window.scrollTo(0, portfolio)
-        gsap.to(window, { scrollTo: portfolioTl.scrollTrigger.labelToScroll("portfolio") });
+        gsap.to(window, {
+          scrollTo: portfolioTl.scrollTrigger.labelToScroll("portfolio"),
+        });
       } else if (a.innerText === `Servicios`) {
         // window.scrollTo(0, servicios)
-        gsap.to(window, { scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("servicios") });
+        gsap.to(window, {
+          scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("servicios"),
+        });
       } else if (a.innerText === `Clientes`) {
         // window.scrollTo(0, clientes)
-        gsap.to(window, { scrollTo: endTimeline.scrollTrigger.labelToScroll("clientes") });
-      } 
+        gsap.to(window, {
+          scrollTo: endTimeline.scrollTrigger.labelToScroll("clientes"),
+        });
+      }
 
       isRotated = !isRotated;
       icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
@@ -240,13 +272,13 @@ const progress = document.getElementById("progressbar-ctn");
         social[2].src = "src/assets/ig.png";
         social[3].src = "src/assets/Linkedin.png";
       }
-      
+
       if (tl.paused() || tl.totalProgress() === 0) {
         tl.play();
       } else if (tl) {
         tl.reverse();
       }
-    })
+    });
   });
 
   function setActive(link) {
@@ -455,10 +487,10 @@ const progress = document.getElementById("progressbar-ctn");
       swapSrc.src = videos[index];
       newVideo.appendChild(swapSrc);
       modalContent.appendChild(newVideo);
-      modal.classList.remove('hidden')
+      modal.classList.remove("hidden");
       modal.classList.add("shown");
       newVideo.play();
-      gsap.set('#progressbar-ctn', {zIndex: 0})
+      gsap.set("#progressbar-ctn", { zIndex: 0 });
       currentVideo = newVideo;
     })
   );
@@ -466,12 +498,12 @@ const progress = document.getElementById("progressbar-ctn");
   closeModal.addEventListener("click", () => {
     if (currentVideo) {
       currentVideo.pause();
-      gsap.set('#progressbar-ctn', {zIndex: '500'})
+      gsap.set("#progressbar-ctn", { zIndex: "500" });
       currentVideo.parentNode.removeChild(currentVideo);
       currentVideo = null;
     }
     modal.classList.remove("shown");
-    modal.classList.add('hidden')
+    modal.classList.add("hidden");
   });
 
   /* ******** Video frames ******** */
@@ -495,7 +527,7 @@ const progress = document.getElementById("progressbar-ctn");
 
   /* ********* Timelines ********* */
 
-  const masterTimeline = gsap.timeline()
+  const masterTimeline = gsap.timeline();
 
   const vidCamaraTL = gsap.timeline({
     scrollTrigger: {
@@ -566,17 +598,19 @@ const progress = document.getElementById("progressbar-ctn");
 
   /* *********** INTRO SCROLLING ********** */
 
-  vidCamaraTL.fromTo(
-    "#scrollea",
-    {
-      opacity: 1,
-      x: 0,
-    },
-    {
-      opacity: 0,
-      x: -100,
-    }
-  ).addLabel('intro', 0);
+  vidCamaraTL
+    .fromTo(
+      "#scrollea",
+      {
+        opacity: 1,
+        x: 0,
+      },
+      {
+        opacity: 0,
+        x: -100,
+      }
+    )
+    .addLabel("intro", 0);
 
   vidCamaraTL.to("#first-frame", {
     opacity: 0,
@@ -642,18 +676,17 @@ const progress = document.getElementById("progressbar-ctn");
 
   /* *********** PORTFOLIO SCROLLING ********** */
 
-  portfolioTl
-    .fromTo(
-      ".portfolio",
-      {
-        visibility: "hidden",
-      },
-      {
-        visibility: "visible",
-        delay: -1,
-        duration: 10,
-      }
-    );
+  portfolioTl.fromTo(
+    ".portfolio",
+    {
+      visibility: "hidden",
+    },
+    {
+      visibility: "visible",
+      delay: -1,
+      duration: 10,
+    }
+  );
 
   portfolioTl.to(".bg-rodaje", {
     yPercent: -66,
@@ -788,12 +821,14 @@ const progress = document.getElementById("progressbar-ctn");
     duration: 2,
   });
 
-  portfolioTl.to(".pf-accordion", {
-    delay: 5,
-    opacity: 0,
-    duration: 6,
-    scrollTrigger: ".pf-accordion",
-  }).addLabel('portfolio');
+  portfolioTl
+    .to(".pf-accordion", {
+      delay: 5,
+      opacity: 0,
+      duration: 6,
+      scrollTrigger: ".pf-accordion",
+    })
+    .addLabel("portfolio");
 
   portfolioTl.to(".pf-accordion-outer ol li h2", {
     y: 30,
@@ -870,7 +905,7 @@ const progress = document.getElementById("progressbar-ctn");
     {
       opacity: 0,
       duration: 10,
-      delay: 10
+      delay: 10,
     }
   );
 
@@ -884,17 +919,19 @@ const progress = document.getElementById("progressbar-ctn");
     position: "fixed",
   });
 
-  tiempoTimeline.fromTo(
-    "#middle .text",
-    {
-      y: 1000,
-    },
-    {
-      y: -500,
-      stagger: 10,
-      duration: 50,
-    }
-  ).addLabel('start-tiempo', 70);
+  tiempoTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 1000,
+      },
+      {
+        y: -500,
+        stagger: 10,
+        duration: 50,
+      }
+    )
+    .addLabel("start-tiempo", 70);
 
   tiempoTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
@@ -950,19 +987,21 @@ const progress = document.getElementById("progressbar-ctn");
     duration: 2,
   });
 
-  tiempoTimeline.fromTo(
-    ".accordion",
-    {
-      x: 2000,
-      zIndex: 1,
-      duration: 30,
-    },
-    {
-      x: 0,
-      zIndex: 0,
-      duration: 30,
-    }
-  ).addLabel('servicios');
+  tiempoTimeline
+    .fromTo(
+      ".accordion",
+      {
+        x: 2000,
+        zIndex: 1,
+        duration: 30,
+      },
+      {
+        x: 0,
+        zIndex: 0,
+        duration: 30,
+      }
+    )
+    .addLabel("servicios");
 
   tiempoTimeline.to(".accordion", {
     rotateX: -69.3,
@@ -1051,11 +1090,11 @@ const progress = document.getElementById("progressbar-ctn");
   tiempoTimeline.fromTo(
     "#video-tiempo",
     {
-      display: 'block',
+      display: "block",
       duration: 10,
     },
     {
-      display: 'none',
+      display: "none",
       duration: 10,
     }
   );
@@ -1129,13 +1168,13 @@ const progress = document.getElementById("progressbar-ctn");
   endTimeline.to("#rect3", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
     fill: "#D9D9D9",
-    duration: 1,
+    duration: 10,
   });
 
   endTimeline.to("#rect4", {
     attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
     fill: "#CBDB43",
-    duration: 1,
+    duration: 10,
   });
 
   endTimeline.to("#p1", {
@@ -1149,11 +1188,13 @@ const progress = document.getElementById("progressbar-ctn");
     y: 150,
   });
 
-  endTimeline.to("#carousel-container", {
-    transform: "scale(1.3)",
-    duration: 10,
-    delay: -20,
-  }).addLabel('clientes');
+  endTimeline
+    .to("#carousel-container", {
+      transform: "scale(1.3)",
+      duration: 10,
+      delay: -20,
+    })
+    .addLabel("clientes");
 
   endTimeline.to("#txt-container-2", {
     delay: 30,
@@ -1276,4 +1317,3 @@ const progress = document.getElementById("progressbar-ctn");
     0.5
   );
 });
-

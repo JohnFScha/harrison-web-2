@@ -7,24 +7,29 @@
     /* Legacy iOS */
     font-weight: 900;
     font-style: normal;
-  }
-  :root {
+}
+
+:root {
     font-size: 20px;
     font-family: "Montserrat", sans-serif;
-  }
+}
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     overflow: hidden;
     box-sizing: border-box;
+    font-family: 'Montserrat';
 }
 
-main{
-    background: center /cover url(assets/404bg.png) no-repeat rgba(0, 0, 0, 0.5);
+main {
+    background-image: url('assets/404bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -34,7 +39,23 @@ main{
     text-align: center;
 }
 
-main .titleCtn{
+main .overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(29, 62, 78, 0.549);
+}
+
+main .text {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .titleCtn {
     font-weight: 900;
     font-family: "Montserrat", sans-serif;
     font-size: 20rem;
@@ -42,34 +63,59 @@ main .titleCtn{
     color: #CBDB43;
 }
 
-
-main .spaceCtn{
+main .error {
+    font-family: "Montserrat", sans-serif;
+    -webkit-text-stroke: 2px rgb(203, 219, 67);
     color: transparent;
-    margin: 0 0.2rem;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    font-size: 3rem;
 }
 
-main .subCtn{
+main .spaceCtn {
+    visibility: hidden;
+    font-size: 10px
+}
+
+main .subCtn {
     color: white;
     width: 960px;
     position: absolute;
     top: 65%;
-
 }
 
-main .sub1{
+main .sub1 {
     width: 100%;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     display: block;
 }
-main .sub2{
+
+main .sub2 {
     width: 100%;
     font-size: 1.5rem;
     display: inline-block;
 }
-p{
+
+p {
     font-weight: 200;
-    width: 900px;
+    width: 960px;
     font-size: 1rem;
     color: white;
+}
+
+button.404-btn {
+    margin-top: 20px;
+    display: inline-flex;
+    padding: 16px 21px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: transparent;
+    font-family: 'Montserrat';
+    color: #CBDB43;
+    border: 3px solid var(--Estilos-Colores-Verde-Lima-green-500, #CBDB43);
+    cursor: pointer;
+    font-size: 1rem;
 }
