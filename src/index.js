@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Options for the Intersection Observer
   const options = {
     root: null, // Use the viewport as the root
-    threshold: 1, // Trigger when 50% of the video is visible
+    threshold: 0.75, // Trigger when 50% of the video is visible
   };
 
   // Callback function to handle intersection changes
@@ -868,7 +868,7 @@ window.addEventListener("DOMContentLoaded", () => {
     display: "block",
   });
 
-  middleTimeline.fromTo(
+ /*  middleTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 0,
@@ -889,7 +889,7 @@ window.addEventListener("DOMContentLoaded", () => {
       duration: 10,
       delay: 10,
     }
-  );
+  ); */
 
   middleTimeline.set("#middleVidCtn", {
     display: "none",
