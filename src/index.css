@@ -1379,6 +1379,10 @@ div#textAllCtn .letter-container .spacerSpan {
   min-height: 100px;
 }
 
+.svgSocial {
+  cursor: url('assets/cursor-mano.svg'), pointer;
+}
+
 svg.svgInner {
   width: 100px;
   height: 100px;
