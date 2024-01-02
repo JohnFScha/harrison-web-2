@@ -10,26 +10,6 @@
   font-style: normal;
 }
 
-.gsap-marker {
-  visibility: hidden;
-}
-
-.gsap-marker-start {
-  visibility: hidden;
-}
-
-.gsap-marker-end {
-  visibility: hidden;
-}
-
-.gsap-marker-scroller-end {
-  visibility: hidden;
-}
-
-.gsap-marker-scroller-start {
-  visibility: hidden;
-}
-
 /* lenis css */
 
 html.lenis {
@@ -944,7 +924,7 @@ body #middle #parent {
 /* ======================== TIEMPO SECTION =========================*/
 
 #tiempo-acc {
-  height: 100%;
+  height: 4000px;
   width: 100%;
   transform-style: preserve-3d;
   transform-origin: center top;
@@ -955,8 +935,8 @@ body #middle #parent {
 
 #video-tiempo {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 100;
 }
 
@@ -1108,7 +1088,7 @@ body #middle #parent {
 
 #end {
   width: 100%;
-  height: 100%;
+  height: 4000px;
 }
 
 #txt-container-2 {
@@ -1299,10 +1279,11 @@ body #middle #parent {
   /* position: absolute;
   top: 0; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   z-index: 0;
 }
 
@@ -1321,6 +1302,7 @@ div#textAllCtn {
   font-size: 110px;
   /* visibility: hidden; */
   transform-style: preserve-3d;
+  position: absolute;
 }
 
 div#textAllCtn p.textPostC {
@@ -1355,15 +1337,14 @@ div#textAllCtn .letter-container .spacerSpan {
 }
 
 .subTextContainer {
-  position: absolute;
   visibility: hidden;
   display: flex;
-  top: 12.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 10%;
 }
 
 #p2_postC {
@@ -1373,8 +1354,6 @@ div#textAllCtn .letter-container .spacerSpan {
 }
 
 .socialContainer {
-  /* position: absolute;
-  top: 0; */
   display: flex;
   flex-direction: row;
   gap: 2rem;

@@ -554,7 +554,7 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#tiempo-acc",
       start: "top top",
-      end: "bottom top",
+      end: "+=4000",
       scrub: true,
       pin: true,
       // markers: true,
@@ -567,11 +567,11 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#end",
       start: "top top",
-      end: "bottom+=100% bottom",
+      end: "bottom bottom",
       scrub: true,
       pin: true,
-      markers: true,
-      id: "end",
+      // markers: true,
+      // id: "end",
       pinSpacing: false,
     },
   });
@@ -1226,7 +1226,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   endTimeline.to("#svgOutro", {
-    visibility: "hidden",
+    display: "none",
   });
 
   endTimeline.fromTo(
