@@ -48,7 +48,6 @@ gsap.ticker.lagSmoothing(0);
 /* Lenis config */
 
 window.addEventListener("DOMContentLoaded", () => {
-
   /* ************* DOM elements ************ */
   const body = document.getElementById("body");
   const collapse = document.getElementById("collapse");
@@ -141,19 +140,31 @@ window.addEventListener("DOMContentLoaded", () => {
   tl.fromTo(
     menu,
     {
-      xPercent: "100",
+      x: 1000,
       opacity: 0,
       background: "transparent",
       display: "none",
       ease: "power2.inOut",
     },
     {
-      xPercent: "0",
+      x: 0,
       duration: 0.5,
       opacity: 1,
       background: "rgb(203, 219, 67)",
       display: "block",
       ease: "power2.inOut",
+    }
+  );
+
+  tl.fromTo(
+    separators,
+    {
+      x: 1000,
+    },
+    {
+      x: 0,
+      transformOrigin: "100% 50%",
+      duration: 0.5,
     }
   );
 
@@ -169,12 +180,6 @@ window.addEventListener("DOMContentLoaded", () => {
       duration: 0.5,
     }
   );
-
-  tl.to(separators, {
-    x: 0,
-    transformOrigin: "100% 50%",
-    duration: 0.5,
-  });
 
   let isRotated = false;
 
@@ -198,8 +203,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
-    } else if (tl.totalProgress() !== 0) {
-      tl.kill();
+    } else if (tl.isActive() || tl.totalProgress() !== 0) {
+      // tl.kill();
       tl.reverse();
     }
   });
