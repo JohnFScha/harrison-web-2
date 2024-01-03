@@ -1,22 +1,6 @@
-/* Imports */
+/* Scroll config */
 
-var paths = document.querySelectorAll("#intro #init svg .paths");
-
-
-/* window.addEventListener("scroll", function(event) {
-  var top = this.scrollY,
-      left =this.scrollX;
-
-      console.log(top)
-}, false); */
-
-const baseUrl = "http://127.0.0.1:5500/";
-const inicio = 0;
-const portfolio = 5751;
-const servicios = 8364;
-const clientes = 9664;
-
-/* Lenis config */
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const lenis = new Lenis();
 
@@ -35,7 +19,7 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-/* Lenis config */
+/* Scroll config */
 
 window.onload = () => {
   const init = document.getElementById("init");
@@ -43,6 +27,7 @@ window.onload = () => {
 };
 
 /* ************* DOM elements ************ */
+
 const body = document.getElementById("body");
 const collapse = document.getElementById("collapse");
 const menu = document.getElementById("menu");
@@ -53,7 +38,6 @@ const social = document.querySelectorAll(".social-img");
 const nav = document.getElementById("nav");
 const countdown = document.getElementById("countdown")
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* **************** CURSOR **************** */
 
@@ -101,13 +85,13 @@ const handleIntersection = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // Video is in the viewport, add the autoplay attribute
-      video.style.opacity = 1;
-      // video.style.display = "block";
+      // video.style.opacity = 1;
+      video.style.display = "block";
       video.play();
     } else {
       // Video is not in the viewport, remove the autoplay attribute
-      video.style.opacity = 0;
-      // video.style.display = "none";
+      // video.style.opacity = 0;s
+      video.style.display = "none";
       video.pause();
     }
   });
@@ -216,7 +200,6 @@ collapse.addEventListener("click", () => {
 let links = gsap.utils.toArray(".nav-link");
 
 links.forEach((a) => {
-  console.log(a);
   a.addEventListener("click", (e) => {
     e.preventDefault();
     if (a.innerText === `Inicio`) {
@@ -280,7 +263,6 @@ function setActive(link) {
 
 /* ****************** Intro dom ****************** */
 
-const scrollCtn = document.getElementById("scrollea");
 const videoCamara = document.getElementById("video-camara");
 
 /* ****************** end intro dom ****************** */
