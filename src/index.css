@@ -1078,7 +1078,7 @@ body #middle #parent {
   transform-style: preserve-3d;
   transition: transform 0.5s;
   transform-origin: 50% 50% -400px;
-  /* animation: rotateAnim 30s infinite forwards; */
+  animation: rotateAnim 30s infinite forwards;
 }
 
 .carousel figure .card-ctn {
