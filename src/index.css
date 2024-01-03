@@ -329,6 +329,7 @@ section#init svg {
   animation-iteration-count: infinite, infinite, infinite;
   animation-timing-function: linear;
   margin: auto;
+  z-index: 100;
 }
 
 body #intro #scrollea svg {
@@ -358,8 +359,8 @@ body #intro #video {
 
 div#first-frame {
   background-color: black;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
 }
 

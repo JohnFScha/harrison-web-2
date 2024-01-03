@@ -595,10 +595,6 @@ vidCamaraTL
   )
   .addLabel("intro", 0);
 
-vidCamaraTL.to("#first-frame", {
-  opacity: 0,
-});
-
 const imgs = gsap.utils.toArray("#video-camara img");
 
 imgs.forEach((img, index) => {
@@ -616,6 +612,11 @@ imgs.forEach((img, index) => {
   if (index < imgs.length - 1) {
     vidCamaraTL.set(img, { display: "none" });
   }
+});
+
+vidCamaraTL.to("#first-frame", {
+  opacity: 0,
+  duration: 0
 });
 
 vidCamaraTL.fromTo(
