@@ -655,19 +655,19 @@ vidCamaraTL.fromTo(
 vidCamaraTL.to(".fill", {
   color: "#D1D821",
   stagger: 3,
-  duration: 20,
+  duration: 50,
   delay: -90,
 });
 
 vidCamaraTL.to("#texto", {
   y: -1000,
-  duration: 20,
+  duration: 50,
   delay: -50,
 });
 
 vidCamaraTL.to("#video-camara", {
   opacity: 0,
-  duration: 90,
+  duration: 50,
   delay: -20,
 });
 
