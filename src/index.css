@@ -1,10 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 
 @font-face {
   font-family: "Montserraty";
   src: url("assets/Montserrat-black/Montserrat-Black.eot");
   /* IE9 Compat Modes */
-  src: url("assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
+  src: url("assets/Montserrat-black/Montserrat-Black.eot")
+      format("embedded-opentype"),
+    url("assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"),
+    url("assets/Montserrat-black/Montserrat-Black.woff") format("woff"),
+    url("assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"),
+    url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName")
+      format("svg");
   /* Legacy iOS */
   font-weight: 900;
   font-style: normal;
@@ -50,7 +56,7 @@ html.lenis {
 
 a {
   text-decoration: none;
-  color: inherit
+  color: inherit;
 }
 
 body {
@@ -60,7 +66,7 @@ body {
   width: 100vw;
   height: 100%;
   background-color: black;
-  font-family: 'Montserraty';
+  font-family: "Montserraty";
   cursor: none;
   user-select: none;
 }
@@ -105,7 +111,7 @@ nav {
 
 nav a {
   z-index: 7000;
-  cursor: url('assets/cursor-mano.svg'), pointer;
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 nav section#menu {
@@ -166,7 +172,7 @@ nav button {
   cursor: pointer;
   transition: transform 0.5s ease;
   margin: 0 0.5rem 0 0;
-  cursor: url('assets/cursor-mano.svg'), pointer;
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 nav a img {
@@ -186,7 +192,7 @@ body #intro {
   width: 100vw;
   height: 4000px;
   top: 0;
-  background-image: url('assets/rodaje.png');
+  background-image: url("assets/rodaje.png");
   background-position: top;
 }
 
@@ -195,7 +201,7 @@ section#init {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-image: url('assets/Layer_1.png');
+  background-image: url("assets/Layer_1.png");
   background-size: 300px;
   position: fixed;
   top: 0;
@@ -353,7 +359,7 @@ section.portfolio p,
 section.portfolio strong {
   font-size: 18px;
   white-space: nowrap;
-  color: #FFF;
+  color: #fff;
 }
 
 section.portfolio p {
@@ -384,7 +390,7 @@ section.portfolio .txt-row {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  font-family: 'Montserraty', sans-serif;
+  font-family: "Montserraty", sans-serif;
 }
 
 section.portfolio .dup-ctn {
@@ -392,9 +398,8 @@ section.portfolio .dup-ctn {
   z-index: 3;
 }
 
-section.portfolio .dup-ctn span{
-  font-family: 'Montserraty', sans-serif !important;
-  
+section.portfolio .dup-ctn span {
+  font-family: "Montserraty", sans-serif !important;
 }
 
 section.portfolio .txt-row h2 {
@@ -407,7 +412,7 @@ section.portfolio .hand-cursor {
   position: absolute;
   width: 80px;
   height: 80px;
-  background-image: url('assets/cursor-mano.svg');
+  background-image: url("assets/cursor-mano.svg");
   background-size: cover;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -441,8 +446,7 @@ section.portfolio ol li h2 {
   z-index: 20;
   transform: translateY(30px);
   opacity: 0;
-  cursor: url('assets/cursor-mano.svg'), pointer;
-
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 section.portfolio .desc-ctn {
@@ -480,7 +484,7 @@ section.portfolio .dup-ctn span {
   font-size: 3.8rem;
   color: transparent;
   z-index: 0 !important;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   opacity: 0;
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
@@ -528,7 +532,6 @@ section.portfolio .box-ctn .preview-video {
   object-fit: cover;
   opacity: 0;
   pointer-events: none;
-
 }
 
 section.portfolio .logo-box {
@@ -704,8 +707,8 @@ body #middle #parent {
   width: 140vw;
   height: 450px;
   right: -50%;
-  border-top: 2px solid #FFF;
-  border-bottom: 2px solid #FFF;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   z-index: -4;
 }
 
@@ -766,7 +769,7 @@ body #middle #parent {
 
 .text-ctn::after {
   position: absolute;
-  content: '';
+  content: "";
   width: 100%;
   height: 350px;
   top: 0;
@@ -779,9 +782,9 @@ body #middle #parent {
   text-wrap: wrap;
   font-size: 0.8rem;
   letter-spacing: -0.5px;
-  color: #FFF;
+  color: #fff;
   line-height: 1.4rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }
 
@@ -903,13 +906,12 @@ body #middle #parent {
   width: 100%;
   height: 20%;
   z-index: 1000;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   color: white;
 }
 
 /* ======================== End Tiempo Section =========================*/
-
 
 /* ======================== Keyframes =========================*/
 
@@ -941,15 +943,14 @@ body #middle #parent {
 
   50% {
     fill-opacity: 1;
-    fill: #D1D821;
-    stroke: #D1D821;
+    fill: #d1d821;
+    stroke: #d1d821;
   }
 
   100% {
     fill-opacity: 0;
   }
 }
-
 
 @keyframes scroll {
   0% {
@@ -1067,7 +1068,7 @@ body #middle #parent {
   height: -1000px;
 }
 
-.carousel>* {
+.carousel > * {
   flex: 0 0 auto;
 }
 
@@ -1078,7 +1079,7 @@ body #middle #parent {
   transform-style: preserve-3d;
   transition: transform 0.5s;
   transform-origin: 50% 50% -400px;
-  animation: rotateAnim 30s infinite forwards;
+  animation: rotateAnim 15s infinite forwards;
 }
 
 .carousel figure .card-ctn {
@@ -1094,7 +1095,8 @@ body #middle #parent {
   opacity: 0.9;
   border-radius: 6%;
   overflow: hidden;
-  transform: translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:not(:first-of-type) {
@@ -1105,27 +1107,33 @@ body #middle #parent {
 }
 
 .carousel figure .card-ctn:nth-child(2) {
-  transform: rotateY(0.897597901rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(0.897597901rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(3) {
-  transform: rotateY(1.7951958021rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(1.7951958021rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(4) {
-  transform: rotateY(2.6927937031rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(2.6927937031rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(5) {
-  transform: rotateY(3.5903916041rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(3.5903916041rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(6) {
-  transform: rotateY(4.4879895051rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(4.4879895051rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(7) {
-  transform: rotateY(5.3855874062rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(5.3855874062rad) translateZ(200px)
+    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn img {
@@ -1297,7 +1305,7 @@ div#textAllCtn .letter-container .spacerSpan {
 }
 
 .svgSocial {
-  cursor: url('assets/cursor-mano.svg'), pointer;
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 svg.svgInner {
@@ -1331,9 +1339,8 @@ bubbles {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-  background: #D1D821;
-  box-shadow: 10px 10px 30px #D1D821,
-    -10px -10px 30px #D1D821;
+  background: #d1d821;
+  box-shadow: 10px 10px 30px #d1d821, -10px -10px 30px #d1d821;
   animation: colorgen;
   animation-duration: 600ms;
   animation-iteration-count: infinite;
