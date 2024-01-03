@@ -51,6 +51,7 @@ const separators = document.getElementsByClassName("separator");
 const icon = document.getElementById("buttonIcon");
 const social = document.querySelectorAll(".social-img");
 const nav = document.getElementById("nav");
+const countdown = document.getElementById("countdown")
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -868,29 +869,6 @@ middleTimeline.set("#middleVidCtn", {
   display: "block",
 });
 
-/*  middleTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-      duration: 1,
-    }
-  );
-
-  middleTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 1,
-    },
-    {
-      opacity: 0,
-      duration: 10,
-      delay: 10,
-    }
-  ); */
-
 middleTimeline.set("#middleVidCtn", {
   display: "none",
 });
@@ -1016,6 +994,38 @@ tiempoTimeline.fromTo(
     rotateX: 0,
     duration: 30,
     opacity: 1,
+    onStart: () => {
+      function startCountdown() {
+        let minutes = 1;
+        let seconds = 0;
+        let milliseconds = 0;
+      
+        const countdownInterval = setInterval(function () {
+          milliseconds -= 100;
+          
+          if (milliseconds <= 0) {
+            milliseconds = 1000;
+            seconds = seconds - 1;
+      
+            if (seconds <= 0) {
+              seconds = 60;
+              minutes = minutes - 1;
+      
+              if (minutes < 0) {
+                clearInterval(countdownInterval);
+                // Restart the countdown
+                startCountdown();
+              }
+            }
+          }
+      
+          // Format the time as 00:00:00:00
+          countdown.innerText = `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(Math.floor(milliseconds / 100)).padStart(2, '0')}`;
+          
+        }, 100);
+      }
+      startCountdown()
+    }
   }
 );
 
@@ -1298,3 +1308,5 @@ endTimeline.staggerTo(
   },
   0.5
 );
+
+

@@ -963,7 +963,6 @@ body #middle #parent {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* z-index: 1; */
 }
 
 #video-tiempo #text-container-tiempo .text {
@@ -994,6 +993,18 @@ body #middle #parent {
   padding: 0;
   color: transparent;
   -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+#video-tiempo #countdown {
+  position: absolute;
+  bottom: 0;
+  left: 44%;
+  width: 100%;
+  height: 20%;
+  z-index: 1000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: white;
 }
 
 /* ======================== End Tiempo Section =========================*/
