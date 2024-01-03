@@ -52,9 +52,9 @@ function startCountdown() {
           minutes--;
 
           if (minutes <= 0) {
-            minutes = 1
-            seconds = 30
-            milliseconds = 1000
+            minutes = 1;
+            seconds = 30;
+            milliseconds = 1000;
             startCountdown();
           } else {
             seconds = 59;
@@ -587,9 +587,9 @@ const tiempoTimeline = gsap.timeline({
     pin: true,
     pinSpacing: false,
     onEnter: () => {
-      console.log('enter')
+      console.log("enter");
       startCountdown();
-    }
+    },
   },
 });
 
@@ -864,26 +864,26 @@ portfolioTl.to(".pf-accordion-outer ol li h2", {
   duration: 5,
 });
 
-portfolioTl.to(".pf-accordion-outer ol li h2", { duration: 10 })
+portfolioTl.to(".pf-accordion-outer ol li h2", { duration: 10 });
 
 portfolioTl.to(".sup-rodaje", {
   delay: 4,
   duration: 10,
   width: "450%",
   left: "-290%",
-  top: "-65%",
+  top: "-62%",
   scrollTrigger: ".box-ctn",
 });
-
 
 portfolioTl.to(".box-ctn", {
   delay: 4,
   duration: 7.5,
-  skewX: '0deg',
-  skewY: '0deg',
+  skewX: "0deg",
+  skewY: "8deg",
   transform: "scale(3.9)",
-  borderRadius: '10px',
+  borderRadius: "10px",
   xPercent: -100,
+  opacity: 0,
   top: "30%",
 });
 
@@ -928,7 +928,7 @@ tiempoTimeline
   .to("#tiempo-acc", {
     position: "fixed",
   })
-  .fromTo(".bg-video", {opacity: 0}, { opacity: 1, duration: 0 });
+  .fromTo(".bg-video", { opacity: 0 }, { opacity: 1, duration: 0 });
 
 tiempoTimeline
   .fromTo(
@@ -989,13 +989,13 @@ tiempoTimeline.to(".acc-borders", {
 tiempoTimeline.to("#rect2", {
   attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
   fill: "#D9D9D9",
-  duration: 1,
+  duration: 5,
 });
 
 tiempoTimeline.to("#rect3", {
   attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
   fill: "#CBDB43",
-  duration: 2,
+  duration: 5,
 });
 
 tiempoTimeline
@@ -1017,7 +1017,7 @@ tiempoTimeline
 tiempoTimeline.to(".accordion", {
   rotateX: -69.3,
   duration: 60,
-  delay: 30,
+  delay: 200,
   zIndex: 0,
   opacity: 0,
 });
@@ -1030,7 +1030,7 @@ tiempoTimeline.fromTo(
   {
     opacity: 0,
 
-    duration: 16,
+    duration: 30,
     delay: 0,
   }
 );
@@ -1121,7 +1121,7 @@ endTimeline.fromTo(
   },
   {
     opacity: 1,
-    duration: 2
+    duration: 2,
   }
 );
 
@@ -1193,7 +1193,7 @@ endTimeline.to("#p2", {
 
 endTimeline
   .to("#carousel-container", {
-    transform: "scale(1.3)",
+    transform: "scale(1.5)",
     duration: 10,
     delay: -20,
   })
