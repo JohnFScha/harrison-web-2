@@ -65,7 +65,7 @@ body.addEventListener("mousemove", (e) => {
 
   setTimeout(function () {
     bubbles.remove();
-  }, 150);
+  }, 300);
 });
 
 /* **************** CURSOR **************** */

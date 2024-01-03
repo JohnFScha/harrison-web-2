@@ -1435,7 +1435,7 @@ bubbles {
   box-shadow: 10px 10px 30px #D1D821,
     -10px -10px 30px #D1D821;
   animation: colorgen;
-  animation-duration: 1000ms;
+  animation-duration: 500ms;
   animation-iteration-count: infinite;
   z-index: 999999999999999999999999;
 }
