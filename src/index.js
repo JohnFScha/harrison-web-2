@@ -74,11 +74,6 @@ function startCountdown() {
   }
 }
 
-function stopCountdown() {
-  clearInterval(countdownInterval);
-  countdownStarted = false; // Reset the flag when stopping the countdown
-}
-
 function renderCountdown(time) {
   // Assuming countdown is the ID of your container
   const countdownContainer = document.getElementById("countdown");
@@ -133,7 +128,6 @@ body.addEventListener("mousemove", (e) => {
 
 const video = document.getElementById("middleVidCtn");
 
-// Options for the Intersection Observer
 const options = {
   root: null, // Use the viewport as the root
   threshold: 0.01, // Trigger when 75% of the video is visible
@@ -143,14 +137,10 @@ const options = {
 const handleIntersection = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Video is in the viewport, add the autoplay attribute
-      // video.style.opacity = 1;
       video.style.display = "block";
       video.style.position = "fixed";
       video.play();
     } else {
-      // Video is not in the viewport, remove the autoplay attribute
-      // video.style.opacity = 0;s
       video.style.display = "none";
       video.style.position = "relative";
       video.pause();
@@ -252,7 +242,6 @@ collapse.addEventListener("click", () => {
   if (tl.paused() || tl.totalProgress() === 0) {
     tl.play();
   } else if (tl.isActive() || tl.totalProgress() !== 0) {
-    // tl.kill();
     tl.reverse();
   }
 });
@@ -264,25 +253,21 @@ links.forEach((a) => {
   a.addEventListener("click", (e) => {
     e.preventDefault();
     if (a.innerText === `Inicio`) {
-      // window.scrollTo(0, 0)
       gsap.to(window, {
         scrollTo: vidCamaraTL.scrollTrigger.labelToScroll("intro"),
       });
       setActive(a);
     } else if (a.innerText === `Portfolio`) {
-      // window.scrollTo(0, portfolio)
       gsap.to(window, {
         scrollTo: portfolioTl.scrollTrigger.labelToScroll("portfolio"),
       });
       setActive(a);
     } else if (a.innerText === `Servicios`) {
-      // window.scrollTo(0, servicios)
       gsap.to(window, {
         scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("servicios"),
       });
       setActive(a);
     } else if (a.innerText === `Clientes`) {
-      // window.scrollTo(0, clientes)
       gsap.to(window, {
         scrollTo: endTimeline.scrollTrigger.labelToScroll("clientes"),
       });
@@ -560,17 +545,8 @@ const vidCamaraTL = gsap.timeline({
     end: "bottom top",
     scrub: true,
     pin: true,
-    // markers: true,
-    // id: "intro",
     pinSpacing: false,
   },
-  /* onComplete: () => {
-    console.log('intro complete')
-    gsap.to(window, {
-      scrollTo: portfolioTl.scrollTrigger.labelToScroll('portfolio-init'),
-      duration: 5,
-    })
-  } */
 });
 
 let portfolioTl = gsap.timeline({
@@ -580,8 +556,6 @@ let portfolioTl = gsap.timeline({
     end: "bottom bottom",
     scrub: true,
     pin: true,
-    // markers: true,
-    // id: "portfolio",
     pinSpacing: false,
   },
 });
@@ -593,8 +567,6 @@ const middleTimeline = gsap.timeline({
     end: "bottom+=15% bottom",
     scrub: true,
     pin: true,
-    // markers: true,
-    // id: 'middle',
     pinSpacing: false,
   },
 });
@@ -606,16 +578,11 @@ const tiempoTimeline = gsap.timeline({
     end: "+=4000",
     scrub: true,
     pin: true,
-    // markers: true,
-    // id: "tiempo",
     pinSpacing: false,
   },
   onStart: () => {
     startCountdown();
-  },
-  onComplete: () => {
-    stopCountdown();
-  },
+  }
 });
 
 const endTimeline = gsap.timeline({
@@ -625,8 +592,6 @@ const endTimeline = gsap.timeline({
     end: "bottom bottom",
     scrub: true,
     pin: true,
-    // markers: true,
-    // id: "end",
     pinSpacing: false,
   },
 });
@@ -1135,15 +1100,6 @@ tiempoTimeline.fromTo(
 
 /* **************** SECCION FINAL ***************** */
 
-const carouselCtn = document.getElementById("carousel-container");
-const carousel = document.getElementById("carouselFig");
-
-if (carouselCtn.style.transform !== "scale(0, 0)") {
-  carousel.style.animation = "rotateAnim 30s infinite forwards";
-} else {
-  carousel.style.animation = "none";
-}
-
 endTimeline.fromTo(
   "#txt-container-2",
   {
@@ -1349,3 +1305,5 @@ endTimeline.staggerTo(
   },
   0.5
 );
+
+/* **************** SECCION FINAL ***************** */
