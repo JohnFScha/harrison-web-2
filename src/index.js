@@ -1,4 +1,4 @@
-/* Scroll config */
+/* ************** Scroll config ************** */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -19,12 +19,73 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-/* Scroll config */
+/* ************** Scroll config ************** */
 
 window.onload = () => {
   const init = document.getElementById("init");
-  init.style.display = 'none'
+  init.style.display = "none";
 };
+
+let countdownStarted = false;
+let countdownInterval;
+
+function startCountdown() {
+  // Check if the countdown has already started
+  if (!countdownStarted) {
+    countdownStarted = true;
+
+    // Clear any existing interval before starting a new one
+    clearInterval(countdownInterval);
+
+    let minutes = 1;
+    let seconds = 59;
+    let milliseconds = 1000;
+
+    countdownInterval = setInterval(function () {
+      milliseconds -= 100;
+
+      if (milliseconds <= 0) {
+        milliseconds = 1000;
+        seconds--;
+
+        if (seconds < 0) {
+          minutes--;
+
+          if (minutes < 0) {
+            clearInterval(countdownInterval);
+            countdownStarted = false; // Reset the flag for the next time
+          } else {
+            seconds = 59;
+          }
+        }
+      }
+
+      // Format the time as 00:00:00:00
+      const formattedTime = `00:${String(minutes).padStart(2, "0")}:${String(
+        seconds
+      ).padStart(2, "0")}:${String(Math.floor(milliseconds / 100)).padStart(
+        2,
+        "0"
+      )}`;
+
+      // Render the formatted time
+      renderCountdown(formattedTime);
+    }, 100);
+  }
+}
+
+function stopCountdown() {
+  clearInterval(countdownInterval);
+  countdownStarted = false; // Reset the flag when stopping the countdown
+}
+
+function renderCountdown(time) {
+  // Assuming countdown is the ID of your container
+  const countdownContainer = document.getElementById("countdown");
+  if (countdownContainer) {
+    countdownContainer.innerText = time;
+  }
+}
 
 /* ************* DOM elements ************ */
 
@@ -36,8 +97,6 @@ const separators = document.getElementsByClassName("separator");
 const icon = document.getElementById("buttonIcon");
 const social = document.querySelectorAll(".social-img");
 const nav = document.getElementById("nav");
-const countdown = document.getElementById("countdown")
-
 
 /* **************** CURSOR **************** */
 
@@ -48,8 +107,8 @@ body.addEventListener("mousemove", (e) => {
 
   bubbles.style.left = x + "px";
   bubbles.style.top = y + "px";
-  bubbles.style.width = 50 + "px";
-  bubbles.style.height = 50 + "px";
+  bubbles.style.width = 25 + "px";
+  bubbles.style.height = 25 + "px";
 
   if (document.body.className.match("open")) {
     bubbles.style.background = "rgb(29, 62, 78)";
@@ -65,7 +124,7 @@ body.addEventListener("mousemove", (e) => {
 
   setTimeout(function () {
     bubbles.remove();
-  }, 300);
+  }, 500);
 });
 
 /* **************** CURSOR **************** */
@@ -77,7 +136,7 @@ const video = document.getElementById("middleVidCtn");
 // Options for the Intersection Observer
 const options = {
   root: null, // Use the viewport as the root
-  threshold: 0.75, // Trigger when 50% of the video is visible
+  threshold: 0.01, // Trigger when 75% of the video is visible
 };
 
 // Callback function to handle intersection changes
@@ -87,11 +146,13 @@ const handleIntersection = (entries) => {
       // Video is in the viewport, add the autoplay attribute
       // video.style.opacity = 1;
       video.style.display = "block";
+      video.style.position = "fixed";
       video.play();
     } else {
       // Video is not in the viewport, remove the autoplay attribute
       // video.style.opacity = 0;s
       video.style.display = "none";
+      video.style.position = "relative";
       video.pause();
     }
   });
@@ -492,8 +553,6 @@ urls1.forEach((url) => {
 
 /* ********* Timelines ********* */
 
-const masterTimeline = gsap.timeline();
-
 const vidCamaraTL = gsap.timeline({
   scrollTrigger: {
     trigger: "#intro",
@@ -505,6 +564,13 @@ const vidCamaraTL = gsap.timeline({
     // id: "intro",
     pinSpacing: false,
   },
+  /* onComplete: () => {
+    console.log('intro complete')
+    gsap.to(window, {
+      scrollTo: portfolioTl.scrollTrigger.labelToScroll('portfolio-init'),
+      duration: 5,
+    })
+  } */
 });
 
 let portfolioTl = gsap.timeline({
@@ -543,6 +609,12 @@ const tiempoTimeline = gsap.timeline({
     // markers: true,
     // id: "tiempo",
     pinSpacing: false,
+  },
+  onStart: () => {
+    startCountdown();
+  },
+  onComplete: () => {
+    stopCountdown();
   },
 });
 
@@ -598,7 +670,7 @@ imgs.forEach((img, index) => {
 
 vidCamaraTL.to("#first-frame", {
   opacity: 0,
-  duration: 0
+  duration: 0,
 });
 
 vidCamaraTL.fromTo(
@@ -656,30 +728,32 @@ portfolioTl.fromTo(
 
 portfolioTl.to(".bg-rodaje", {
   yPercent: -66,
-  duration: 50,
+  duration: 25,
   opacity: 0.8,
   scrollTrigger: ".sup-rodaje",
 });
 
 portfolioTl.to(".sup-rodaje", {
   delay: 3,
-  duration: 50,
+  duration: 25,
   yPercent: -66,
 });
 
-portfolioTl.fromTo(
-  "#progressbar-ctn",
-  {
-    opacity: 0,
-    y: 200,
-  },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 2,
-    delay: -5,
-  }
-);
+portfolioTl
+  .fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  )
+  .addLabel("portfolio-init");
 
 portfolioTl.to(".txt-ctn-1 .txt-row h2", {
   opacity: 1,
@@ -759,6 +833,19 @@ portfolioTl.to(".txt-ctn-2", {
   duration: 4,
   delay: 4,
 });
+
+portfolioTl.fromTo(
+  ".pf-accordion-outer",
+  {
+    display: "none",
+    duration: 0,
+  },
+  {
+    display: "flex",
+    duration: 0,
+    scrollTrigger: ".bg-overlay",
+  }
+);
 
 portfolioTl.to(".pf-accordion-outer", {
   opacity: 1,
@@ -858,9 +945,11 @@ middleTimeline.set("#middleVidCtn", {
 
 /****************************************/
 
-tiempoTimeline.to("#tiempo-acc", {
-  position: "fixed",
-});
+tiempoTimeline
+  .to("#tiempo-acc", {
+    position: "fixed",
+  })
+  .to(".bg-video", { opacity: 1, duration: 0 });
 
 tiempoTimeline
   .fromTo(
@@ -977,38 +1066,6 @@ tiempoTimeline.fromTo(
     rotateX: 0,
     duration: 30,
     opacity: 1,
-    onStart: () => {
-      function startCountdown() {
-        let minutes = 1;
-        let seconds = 0;
-        let milliseconds = 0;
-      
-        const countdownInterval = setInterval(function () {
-          milliseconds -= 100;
-          
-          if (milliseconds <= 0) {
-            milliseconds = 1000;
-            seconds = seconds - 1;
-      
-            if (seconds <= 0) {
-              seconds = 60;
-              minutes = minutes - 1;
-      
-              if (minutes < 0) {
-                clearInterval(countdownInterval);
-                // Restart the countdown
-                startCountdown();
-              }
-            }
-          }
-      
-          // Format the time as 00:00:00:00
-          countdown.innerText = `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(Math.floor(milliseconds / 100)).padStart(2, '0')}`;
-          
-        }, 100);
-      }
-      startCountdown()
-    }
   }
 );
 
@@ -1094,6 +1151,7 @@ endTimeline.fromTo(
   },
   {
     opacity: 1,
+    duration: 2
   }
 );
 
@@ -1291,5 +1349,3 @@ endTimeline.staggerTo(
   },
   0.5
 );
-
-

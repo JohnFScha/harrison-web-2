@@ -89,106 +89,6 @@ body::-webkit-scrollbar {
   overflow: visible;
 }
 
-/* ============= 404 ============= */
-
-main {
-  background-image: url('assets/404bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-main .overlay {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 1;
-  background-color: rgba(29, 62, 78, 0.549);
-}
-
-main .text {
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-main .titleCtn {
-  font-weight: 900;
-  font-family: "Montserrat", sans-serif;
-  font-size: 20rem;
-  margin-bottom: 8rem;
-  color: #CBDB43;
-}
-
-main .error {
-  font-family: "Montserraty", sans-serif;
-  -webkit-text-stroke: 2px rgb(203, 219, 67);
-  color: transparent;
-  position: absolute;
-  top: 25%;
-  left: 20%;
-  font-size: 3rem;
-}
-
-main .spaceCtn {
-  visibility: hidden;
-  font-size: 10px
-}
-
-main .subCtn {
-  color: white;
-  width: 960px;
-  position: absolute;
-  top: 65%;
-}
-
-main .sub1 {
-  width: 100%;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  display: block;
-}
-
-main .sub2 {
-  width: 100%;
-  font-size: 1.5rem;
-  display: inline-block;
-}
-
-main .text p {
-  font-weight: 200;
-  width: 960px;
-  font-size: 1rem;
-  color: white;
-}
-
-button.404-btn {
-  margin-top: 20px;
-  display: inline-flex;
-  padding: 16px 21px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background-color: transparent;
-  font-family: 'Montserrat';
-  color: #CBDB43;
-  border: 3px solid var(--Estilos-Colores-Verde-Lima-green-500, #CBDB43);
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-/* ============= 404 ============= */
-
-
 /* ============= INTRO ============= */
 
 nav {
@@ -912,7 +812,7 @@ body #middle #parent {
 
 .bg-video {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   object-fit: cover;
@@ -1435,7 +1335,7 @@ bubbles {
   box-shadow: 10px 10px 30px #D1D821,
     -10px -10px 30px #D1D821;
   animation: colorgen;
-  animation-duration: 500ms;
+  animation-duration: 600ms;
   animation-iteration-count: infinite;
   z-index: 999999999999999999999999;
 }
@@ -1451,7 +1351,7 @@ bubbles:after {
 @keyframes colorgen {
   from {
     opacity: 1;
-    filter: blur(20px);
+    filter: blur(10px);
     scale: 1;
   }
 
