@@ -719,8 +719,6 @@ body #middle #parent {
   overflow: hidden;
   padding: 50px 0 50px 80px;
   text-align: left;
-  font-family: 'Montserraty', sans-serif;
-  /* font-weight: 700 !important; */
 }
 
 /* .child:nth-child(1) {
@@ -783,6 +781,8 @@ body #middle #parent {
   letter-spacing: -0.5px;
   color: #FFF;
   line-height: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 
 .text-ctn p,

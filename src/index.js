@@ -38,7 +38,7 @@ function startCountdown() {
     clearInterval(countdownInterval);
 
     let minutes = 1;
-    let seconds = 59;
+    let seconds = 30;
     let milliseconds = 1000;
 
     countdownInterval = setInterval(function () {
@@ -48,12 +48,14 @@ function startCountdown() {
         milliseconds = 1000;
         seconds--;
 
-        if (seconds < 0) {
+        if (seconds <= 0) {
           minutes--;
 
-          if (minutes < 0) {
-            clearInterval(countdownInterval);
-            countdownStarted = false; // Reset the flag for the next time
+          if (minutes <= 0) {
+            minutes = 1
+            seconds = 30
+            milliseconds = 1000
+            startCountdown();
           } else {
             seconds = 59;
           }
@@ -72,6 +74,11 @@ function startCountdown() {
       renderCountdown(formattedTime);
     }, 100);
   }
+}
+
+function stopCountdown() {
+  clearInterval(countdownInterval);
+  countdownStarted = false; // Reset the flag when stopping the countdown
 }
 
 function renderCountdown(time) {
@@ -579,10 +586,11 @@ const tiempoTimeline = gsap.timeline({
     scrub: true,
     pin: true,
     pinSpacing: false,
+    onEnter: () => {
+      console.log('enter')
+      startCountdown();
+    }
   },
-  onStart: () => {
-    startCountdown();
-  }
 });
 
 const endTimeline = gsap.timeline({
@@ -856,21 +864,32 @@ portfolioTl.to(".pf-accordion-outer ol li h2", {
   duration: 5,
 });
 
+portfolioTl.to(".pf-accordion-outer ol li h2", { duration: 10 })
+
 portfolioTl.to(".sup-rodaje", {
   delay: 4,
   duration: 10,
   width: "450%",
   left: "-290%",
-  top: "-55%",
+  top: "-65%",
   scrollTrigger: ".box-ctn",
 });
+
 
 portfolioTl.to(".box-ctn", {
   delay: 4,
   duration: 7.5,
-  transform: "scale(4.1)",
+  skewX: '0deg',
+  skewY: '0deg',
+  transform: "scale(3.9)",
+  borderRadius: '10px',
   xPercent: -100,
   top: "30%",
+});
+
+portfolioTl.to(".portfolio", {
+  opacity: 0,
+  duration: 0,
 });
 
 portfolioTl.fromTo(
@@ -886,11 +905,6 @@ portfolioTl.fromTo(
     delay: 0,
   }
 );
-
-portfolioTl.to(".portfolio", {
-  opacity: 0,
-  duration: 0,
-});
 
 portfolioTl.to(".sup-rodaje", {
   display: "none",
@@ -914,7 +928,7 @@ tiempoTimeline
   .to("#tiempo-acc", {
     position: "fixed",
   })
-  .to(".bg-video", { opacity: 1, duration: 0 });
+  .fromTo(".bg-video", {opacity: 0}, { opacity: 1, duration: 0 });
 
 tiempoTimeline
   .fromTo(
