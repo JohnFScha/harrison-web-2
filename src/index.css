@@ -290,30 +290,30 @@ body #intro {
   background-position: top;
 }
 
-body #intro #init {
+section#init {
   display: flex;
   justify-content: center;
   height: 100vh;
   width: 100vw;
   background-image: url('assets/Layer_1.png');
   background-size: 300px;
-  backdrop-filter: opacity(10%);
-  animation: fadeOutAnimation 1s;
-  animation-delay: 2.5s;
-  z-index: 1000000000000000000000000000;
-
+  position: fixed;
+  top: 0;
+  z-index: 100000000000;
 }
 
 body #intro #scrollea {
   position: absolute;
   top: 0;
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
   background-color: black;
 }
 
-body #intro #init svg {
+section#init svg {
   width: 30vw;
   height: 30vh;
   fill-opacity: 0;
@@ -323,10 +323,10 @@ body #intro #init svg {
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
   animation-name: draw, fill1, fill2;
-  animation-duration: 2s, 0.5s, 0.5s;
-  animation-delay: 0s, 1s, 1.5s;
+  animation-duration: 2s, 2s, 2s;
+  animation-delay: 0s, 2s, 2.5s;
   animation-fill-mode: both;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite, infinite, infinite;
   animation-timing-function: linear;
   margin: auto;
 }
@@ -1008,21 +1008,33 @@ body #middle #parent {
 }
 
 @keyframes fill1 {
-  from {
+  0% {
     fill-opacity: 0;
   }
 
-  to {
+  50% {
     fill-opacity: 1;
     fill: white;
+  }
+
+  100% {
+    fill-opacity: 0;
   }
 }
 
 @keyframes fill2 {
-  to {
+  0% {
+    fill-opacity: 0;
+  }
+
+  50% {
     fill-opacity: 1;
     fill: #D1D821;
     stroke: #D1D821;
+  }
+
+  100% {
+    fill-opacity: 0;
   }
 }
 
