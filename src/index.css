@@ -106,6 +106,7 @@ nav {
   gap: 1rem;
   width: 100vw;
   height: 12%;
+  opacity: 0;
   z-index: 7000;
 }
 
@@ -820,7 +821,7 @@ body #middle #parent {
   top: 0;
   object-fit: cover;
   z-index: -1;
-  filter: hue-rotate(120deg) contrast(100%) saturate(100%) opacity(35%);
+  filter: hue-rotate(0deg) saturate(100%) opacity(10%);
 }
 
 /* ======================== End middle =========================*/
@@ -1080,6 +1081,7 @@ body #middle #parent {
   transition: transform 0.5s;
   transform-origin: 50% 50% -400px;
   animation: rotateAnim 15s infinite forwards;
+  animation-delay: 2s;
 }
 
 .carousel figure .card-ctn {
@@ -1213,7 +1215,7 @@ body #middle #parent {
   }
 
   100% {
-    transform: rotateY(-359.99deg);
+    transform: rotateY(-360deg);
   }
 }
 

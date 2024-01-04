@@ -501,6 +501,7 @@ liElements.forEach((liElement, index) =>
     }
     let newVideo = document.createElement("video");
     newVideo.id = "modalVideo";
+    newVideo.preload = "auto";
     let swapSrc = document.createElement("source");
     swapSrc.src = videos[index];
     newVideo.appendChild(swapSrc);
@@ -698,6 +699,14 @@ portfolioTl.fromTo(
   }
 );
 
+portfolioTl.to("nav", { opacity: 1, duration: 2 });
+
+portfolioTl.fromTo(
+  ".social-nav",
+  { transform: "scale(0)" },
+  { transform: "scale(1)", duration: 5 }
+);
+
 portfolioTl.to(".bg-rodaje", {
   yPercent: -66,
   duration: 25,
@@ -843,7 +852,7 @@ portfolioTl.to(".pf-accordion-outer ol li h2", {
 portfolioTl.to(".pf-accordion", {
   delay: 3,
   opacity: 1,
-  duration: 2,
+  duration: 50,
 });
 
 portfolioTl
@@ -1190,6 +1199,12 @@ endTimeline.to("#p2", {
   y: 150,
 });
 
+endTimeline.fromTo(
+  "#carousel-container",
+  { display: "none" },
+  { display: "block" }
+);
+
 endTimeline
   .to("#carousel-container", {
     transform: "scale(1.5)",
@@ -1220,6 +1235,12 @@ endTimeline.fromTo(
 
 endTimeline.to("#txt-container-2", {
   display: "none",
+});
+
+endTimeline.to(".bg-video", {
+  filter: "hue-rotate(120deg) saturate(100%) opacity(25%)",
+  duration: 30,
+  delay: -20,
 });
 
 endTimeline.fromTo(
