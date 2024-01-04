@@ -1377,14 +1377,18 @@ bubbles:after {
   /* ============= nav ============ */
 
   nav {
-    height: 4%;
+    height: 10%;
   }
 
   nav button {
     margin: 0;
     width: 60px;
-    height: 0px;
     margin-right: 10px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    cursor: url("assets/cursor-mano.svg"), pointer;
   }
 
   nav button img {
@@ -1436,11 +1440,17 @@ bubbles:after {
   #logo-menu {
     margin: 0 !important;
     position: fixed;
-    top: 40px;
+    top: 20px;
     left: 20px;
   }
 
   /* =============== sections ============== */
+
+  bubbles,
+  bubbles::after,
+  bubbles::before {
+    display: none;
+  }
 
   body #intro #scrollea svg {
     width: 30vw;
@@ -1449,7 +1459,7 @@ bubbles:after {
   body #intro #video #texto p {
     font-size: 3rem !important;
   }
-  
+
   body #intro #video #video-camara img {
     object-fit: contain;
     transform: rotate(-90deg);
@@ -1496,90 +1506,90 @@ bubbles:after {
     height: 100vh;
     object-fit: cover;
     object-position: 71% 50%;
+  }
 }
-  }
 
-  section.portfolio .txt-ctn-1 .dup-ctn {
-    left: -5px;
-  }
+section.portfolio .txt-ctn-1 .dup-ctn {
+  left: -5px;
+}
 
-  section.portfolio .txt-ctn-2 .dup-ctn {
-    left: 1px;
-  }
+section.portfolio .txt-ctn-2 .dup-ctn {
+  left: 1px;
+}
 
-  section.portfolio .txt-ctn-1 .dup-ctn,
-  section.portfolio .txt-ctn-2 .dup-ctn {
-    width: 246px;
-    margin-top: 5px;
-    text-align: center;
-  }
+section.portfolio .txt-ctn-1 .dup-ctn,
+section.portfolio .txt-ctn-2 .dup-ctn {
+  width: 246px;
+  margin-top: 5px;
+  text-align: center;
+}
 
-  section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
-  section.portfolio .txt-ctn-2 .dup-ctn span.spacer {
-    width: 9px;
-    font-size: 1.3rem;
-  }
+section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
+section.portfolio .txt-ctn-2 .dup-ctn span.spacer {
+  width: 9px;
+  font-size: 1.3rem;
+}
 
-  section.portfolio div.txt-ctn-1 .dup-ctn span.spacer:nth-child(2) {
-    display: none;
-  }
+section.portfolio div.txt-ctn-1 .dup-ctn span.spacer:nth-child(2) {
+  display: none;
+}
 
-  section.portfolio div.txt-ctn-2 .spaced-txt {
-    position: absolute;
-    width: 325px;
-    left: -42px;
-  }
+section.portfolio div.txt-ctn-2 .spaced-txt {
+  position: absolute;
+  width: 325px;
+  left: -42px;
+}
 
-  section.portfolio .pf-accordion-outer {
-    flex-direction: column;
-    justify-content: center;
-  }
+section.portfolio .pf-accordion-outer {
+  flex-direction: column;
+  justify-content: center;
+}
 
-  section.portfolio ol {
-    width: 50%;
-    position: absolute;
-    /* padding-left: 25px; */
-    z-index: 20;
-    top: 80px;
-    left: 21%;
-  }
+section.portfolio ol {
+  width: 50%;
+  position: absolute;
+  /* padding-left: 25px; */
+  z-index: 20;
+  top: 80px;
+  left: 21%;
+}
 
-  section.portfolio ol li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+section.portfolio ol li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-  section.portfolio ol li hr.ctn-line {
-    width: 100%;
-  }
+section.portfolio ol li hr.ctn-line {
+  width: 100%;
+}
 
-  section.portfolio .desc-ctn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-  }
+section.portfolio .desc-ctn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
 
-  section.portfolio .desc-ctn hr.desc-line {
-    display: none;
-  }
+section.portfolio .desc-ctn hr.desc-line {
+  display: none;
+}
 
-  section.portfolio div.video-ctn {
-    position: absolute;
-  }
+section.portfolio div.video-ctn {
+  position: absolute;
+}
 
-  section.portfolio .box-ctn {
-    width: 7rem;
-    height: 4rem;
-    top: 74.5%;
-  }
+section.portfolio .box-ctn {
+  width: 7rem;
+  height: 4rem;
+  top: 74.5%;
+}
 
-  section.portfolio .logo-box {
-    width: 50px;
-    height: 50px;
-  }
+section.portfolio .logo-box {
+  width: 50px;
+  height: 50px;
+}
 
 }
