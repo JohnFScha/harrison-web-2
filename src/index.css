@@ -1138,9 +1138,9 @@ body #middle #parent {
 
 .carousel figure .card-ctn img {
   position: relative;
-  width: 100px;
+  width: 150px;
   height: 100%;
-  object-fit: scale-down;
+  object-fit: contain;
   z-index: 1;
 }
 

@@ -51,7 +51,7 @@ function startCountdown() {
         if (seconds <= 0) {
           minutes--;
 
-          if (minutes <= 0) {
+          if (minutes === 0 && seconds === 0) {
             minutes = 1;
             seconds = 30;
             milliseconds = 1000;
@@ -587,7 +587,6 @@ const tiempoTimeline = gsap.timeline({
     pin: true,
     pinSpacing: false,
     onEnter: () => {
-      console.log("enter");
       startCountdown();
     },
   },
