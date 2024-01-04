@@ -4,13 +4,11 @@
   font-family: "Montserraty";
   src: url("assets/Montserrat-black/Montserrat-Black.eot");
   /* IE9 Compat Modes */
-  src: url("assets/Montserrat-black/Montserrat-Black.eot")
-      format("embedded-opentype"),
+  src: url("assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"),
     url("assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"),
     url("assets/Montserrat-black/Montserrat-Black.woff") format("woff"),
     url("assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"),
-    url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName")
-      format("svg");
+    url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
   /* Legacy iOS */
   font-weight: 900;
   font-style: normal;
@@ -125,6 +123,10 @@ nav section#menu {
   z-index: 1000;
   background: rgb(203, 219, 67);
   opacity: 0;
+}
+
+nav #menu #social-container {
+  display: none;
 }
 
 nav section#menu ul {
@@ -1028,7 +1030,7 @@ body #middle #parent {
 
 #end {
   width: 100%;
-  height: 4000px;
+  height: 20000px;
 }
 
 #txt-container-2 {
@@ -1069,7 +1071,7 @@ body #middle #parent {
   height: -1000px;
 }
 
-.carousel > * {
+.carousel>* {
   flex: 0 0 auto;
 }
 
@@ -1097,8 +1099,7 @@ body #middle #parent {
   opacity: 0.9;
   border-radius: 6%;
   overflow: hidden;
-  transform: translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:not(:first-of-type) {
@@ -1109,33 +1110,27 @@ body #middle #parent {
 }
 
 .carousel figure .card-ctn:nth-child(2) {
-  transform: rotateY(0.897597901rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(0.897597901rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(3) {
-  transform: rotateY(1.7951958021rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(1.7951958021rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(4) {
-  transform: rotateY(2.6927937031rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(2.6927937031rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(5) {
-  transform: rotateY(3.5903916041rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(3.5903916041rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(6) {
-  transform: rotateY(4.4879895051rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(4.4879895051rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(7) {
-  transform: rotateY(5.3855874062rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(5.3855874062rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn img {
@@ -1371,4 +1366,80 @@ bubbles:after {
   }
 }
 
-/*# sourceMappingURL=flip.css.map */
+/* ==================== Media query ==================== */
+
+@media screen and (max-width: 390px) {
+
+  body {
+    min-width: 390px;
+  }
+
+  nav {
+    height: 4%;
+  }
+
+  nav button {
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  nav button img {
+    height: 2.5rem;
+  }
+
+  nav .social-nav {
+    display: none;
+  }
+
+  nav #menu {
+    padding: 0 !important;
+  }
+
+  nav #menu #social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    margin: 2rem 0;
+    position: fixed;
+    bottom: 0;
+
+  }
+  
+  nav #menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    height: 10%;
+    margin-top: 10rem;
+
+  }
+
+  nav #menu a {
+    display: block !important;
+    font-size: 2rem !important;
+    text-transform: uppercase !important;
+    -webkit-text-stroke: 2px rgb(29, 62, 78) !important;
+  }
+
+  nav #menu ul hr {
+    width: 50% !important;
+  }
+
+  #logo-menu {
+    margin: 0 !important;
+    position: fixed;
+    top: 40px;
+    left: 20px;
+  }
+
+  /* #video-tiempo {
+    overflow: hidden !important;
+  } */
+
+}

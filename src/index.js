@@ -133,7 +133,7 @@ body.addEventListener("mousemove", (e) => {
 
 /************** observer **************** */
 
-const video = document.getElementById("middleVidCtn");
+/* const video = document.getElementById("middleVidCtn");
 
 const options = {
   root: null, // Use the viewport as the root
@@ -167,45 +167,82 @@ const observer = new IntersectionObserver(handleIntersection, options);
 
 // Start observing the video
 observer.observe(video);
-
+ */
 /************** observer **************** */
 
 /**************** menu *************** */
 
-const tl = gsap.timeline({ paused: true });
+const matchMedia = gsap.matchMedia();
 
-tl.fromTo(
-  menu,
-  {
-    x: 1000,
-    opacity: 0,
-    background: "transparent",
-    display: "none",
-    ease: "power2.inOut",
-  },
-  {
-    x: 0,
-    duration: 0.5,
-    opacity: 1,
-    background: "rgb(203, 219, 67)",
-    display: "block",
-    ease: "power2.inOut",
-  }
-);
+const desktopTl = gsap.timeline({ paused: true });
 
-tl.fromTo(
-  separators,
-  {
-    x: 1000,
-  },
-  {
-    x: 0,
-    transformOrigin: "100% 50%",
-    duration: 0.5,
-  }
-);
+matchMedia.add("(max-width: 390px)", () => {
+  desktopTl.fromTo(
+    menu,
+    {
+      y: 1000,
+      opacity: 0,
+      background: "transparent",
+      display: "none",
+      ease: "power2.inOut",
+    },
+    {
+      y: 0,
+      duration: 0.5,
+      opacity: 1,
+      background: "rgb(203, 219, 67)",
+      display: "block",
+      ease: "power2.inOut",
+    }
+  );
 
-tl.fromTo(
+  desktopTl.fromTo(
+    separators,
+    {
+      y: 1000,
+    },
+    {
+      y: 0,
+      transformOrigin: "100% 50%",
+      duration: 0.5,
+    }
+  );
+});
+
+matchMedia.add("(min-width: 391px)", () => {
+  desktopTl.fromTo(
+    menu,
+    {
+      x: 1000,
+      opacity: 0,
+      background: "transparent",
+      display: "none",
+      ease: "power2.inOut",
+    },
+    {
+      x: 0,
+      duration: 0.5,
+      opacity: 1,
+      background: "rgb(203, 219, 67)",
+      display: "block",
+      ease: "power2.inOut",
+    }
+  );
+
+  desktopTl.fromTo(
+    separators,
+    {
+      x: 1000,
+    },
+    {
+      x: 0,
+      transformOrigin: "100% 50%",
+      duration: 0.5,
+    }
+  );
+});
+
+desktopTl.fromTo(
   navItems,
   {
     opacity: 0,
@@ -221,7 +258,7 @@ tl.fromTo(
 let isRotated = false;
 
 collapse.addEventListener("click", () => {
-  const isReversing = tl.isActive() && tl.reversed();
+  const isReversing = desktopTl.isActive() && desktopTl.reversed();
 
   if (isReversing) {
     return;
@@ -246,10 +283,10 @@ collapse.addEventListener("click", () => {
     social[3].src = "src/assets/Linkedin.png";
   }
 
-  if (tl.paused() || tl.totalProgress() === 0) {
-    tl.play();
-  } else if (tl.isActive() || tl.totalProgress() !== 0) {
-    tl.reverse();
+  if (desktopTl.paused() || desktopTl.totalProgress() === 0) {
+    desktopTl.play();
+  } else if (desktopTl.isActive() || desktopTl.totalProgress() !== 0) {
+    desktopTl.reverse();
   }
 });
 
@@ -311,6 +348,8 @@ function setActive(link) {
     ? link.classList.remove("active")
     : link.classList.add("active");
 }
+
+// matchMedia.revert();
 
 /**************** menu *************** */
 
