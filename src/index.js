@@ -26,6 +26,8 @@ window.onload = () => {
   init.style.display = "none";
 };
 
+/* **************** Helper functions **************** */
+
 let countdownStarted = false;
 let countdownInterval;
 
@@ -87,6 +89,10 @@ function renderCountdown(time) {
   if (countdownContainer) {
     countdownContainer.innerText = time;
   }
+}
+
+function isMobile () {
+  return window.innerWidth <= 900
 }
 
 /* ************* DOM elements ************ */
@@ -174,10 +180,10 @@ observer.observe(video);
 
 const matchMedia = gsap.matchMedia();
 
-const desktopTl = gsap.timeline({ paused: true });
+const menuTl = gsap.timeline({ paused: true });
 
 matchMedia.add("(max-width: 390px)", () => {
-  desktopTl.fromTo(
+  menuTl.fromTo(
     menu,
     {
       y: 1000,
@@ -196,7 +202,7 @@ matchMedia.add("(max-width: 390px)", () => {
     }
   );
 
-  desktopTl.fromTo(
+  menuTl.fromTo(
     separators,
     {
       y: 1000,
@@ -210,7 +216,7 @@ matchMedia.add("(max-width: 390px)", () => {
 });
 
 matchMedia.add("(min-width: 391px)", () => {
-  desktopTl.fromTo(
+  menuTl.fromTo(
     menu,
     {
       x: 1000,
@@ -229,7 +235,7 @@ matchMedia.add("(min-width: 391px)", () => {
     }
   );
 
-  desktopTl.fromTo(
+  menuTl.fromTo(
     separators,
     {
       x: 1000,
@@ -242,7 +248,7 @@ matchMedia.add("(min-width: 391px)", () => {
   );
 });
 
-desktopTl.fromTo(
+menuTl.fromTo(
   navItems,
   {
     opacity: 0,
@@ -258,7 +264,7 @@ desktopTl.fromTo(
 let isRotated = false;
 
 collapse.addEventListener("click", () => {
-  const isReversing = desktopTl.isActive() && desktopTl.reversed();
+  const isReversing = menuTl.isActive() && menuTl.reversed();
 
   if (isReversing) {
     return;
@@ -283,10 +289,10 @@ collapse.addEventListener("click", () => {
     social[3].src = "src/assets/Linkedin.png";
   }
 
-  if (desktopTl.paused() || desktopTl.totalProgress() === 0) {
-    desktopTl.play();
-  } else if (desktopTl.isActive() || desktopTl.totalProgress() !== 0) {
-    desktopTl.reverse();
+  if (menuTl.paused() || menuTl.totalProgress() === 0) {
+    menuTl.play();
+  } else if (menuTl.isActive() || menuTl.totalProgress() !== 0) {
+    menuTl.reverse();
   }
 });
 
@@ -335,10 +341,10 @@ links.forEach((a) => {
       social[3].src = "src/assets/Linkedin.png";
     }
 
-    if (tl.paused() || tl.totalProgress() === 0) {
-      tl.play();
+    if (menuTl.paused() || menuTl.totalProgress() === 0) {
+      menuTl.play();
     } else if (tl) {
-      tl.reverse();
+      menuTl.reverse();
     }
   });
 });
@@ -492,11 +498,17 @@ function hover(event, index) {
   });
   gsap.to(titleCtn[index], 0.3, {
     color: "rgb(203, 219, 67)",
-    height: 100,
+    height: 80,
   });
-  gsap.to(titleCtn[1], 0.7, {
-    height: 190,
-  });
+  if (isMobile()) {
+    gsap.to(titleCtn[1], 0.7, {
+      height: 120,
+    });
+  } else {
+    gsap.to(titleCtn[1], 0.7, {
+      height: 190,
+    });
+  }
   gsap.to(previewVideos[index], 0.4, {
     opacity: 1,
   });
@@ -746,18 +758,50 @@ portfolioTl.fromTo(
   { transform: "scale(1)", duration: 5 }
 );
 
-portfolioTl.to(".bg-rodaje", {
-  yPercent: -66,
-  duration: 25,
-  opacity: 0.8,
-  scrollTrigger: ".sup-rodaje",
-});
+if (isMobile()) {
+  // If the screen width is 900px or less
+  portfolioTl.fromTo(".bg-rodaje", {
+    yPercent: 40,
+    duration: 25,
+    opacity: 0.8,
+    scrollTrigger: ".sup-rodaje",
+    ease: "power1.inOut",
+  },{
+    yPercent: 0,
+    duration: 25,
+    opacity: 0.8,
+    scrollTrigger: ".sup-rodaje",
+    ease: "power1.inOut",
+  });
 
-portfolioTl.to(".sup-rodaje", {
-  delay: 3,
-  duration: 25,
-  yPercent: -66,
-});
+  portfolioTl.fromTo(".sup-rodaje", {
+    delay: 3,
+    duration: 23,
+    yPercent: 50,
+    ease: "power1.inOut",
+  }, {
+    delay: 3,
+    duration: 23,
+    yPercent: 0,
+    ease: "power1.inOut",
+  });
+} else {
+  // If the screen width is greater than 900px
+  portfolioTl.to(".bg-rodaje", {
+    yPercent: -66,
+    duration: 25,
+    opacity: 0.8,
+    scrollTrigger: ".sup-rodaje",
+    ease: "power1.inOut",
+  });
+
+  portfolioTl.to(".sup-rodaje", {
+    delay: 3,
+    duration: 23,
+    yPercent: -66,
+    ease: "power1.inOut",
+  });
+}
 
 portfolioTl
   .fromTo(
