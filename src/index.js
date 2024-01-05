@@ -91,8 +91,8 @@ function renderCountdown(time) {
   }
 }
 
-function isMobile () {
-  return window.innerWidth <= 900
+function isMobile() {
+  return window.innerWidth <= 900;
 }
 
 /* ************* DOM elements ************ */
@@ -760,31 +760,39 @@ portfolioTl.fromTo(
 
 if (isMobile()) {
   // If the screen width is 900px or less
-  portfolioTl.fromTo(".bg-rodaje", {
-    yPercent: 40,
-    duration: 25,
-    opacity: 0.8,
-    scrollTrigger: ".sup-rodaje",
-    ease: "power1.inOut",
-  },{
-    yPercent: 0,
-    duration: 25,
-    opacity: 0.8,
-    scrollTrigger: ".sup-rodaje",
-    ease: "power1.inOut",
-  });
+  portfolioTl.fromTo(
+    ".bg-rodaje",
+    {
+      yPercent: 40,
+      duration: 25,
+      opacity: 0.8,
+      scrollTrigger: ".sup-rodaje",
+      ease: "power1.inOut",
+    },
+    {
+      yPercent: 0,
+      duration: 25,
+      opacity: 0.8,
+      scrollTrigger: ".sup-rodaje",
+      ease: "power1.inOut",
+    }
+  );
 
-  portfolioTl.fromTo(".sup-rodaje", {
-    delay: 3,
-    duration: 23,
-    yPercent: 50,
-    ease: "power1.inOut",
-  }, {
-    delay: 3,
-    duration: 23,
-    yPercent: 0,
-    ease: "power1.inOut",
-  });
+  portfolioTl.fromTo(
+    ".sup-rodaje",
+    {
+      delay: 3,
+      duration: 23,
+      yPercent: 50,
+      ease: "power1.inOut",
+    },
+    {
+      delay: 3,
+      duration: 23,
+      yPercent: 0,
+      ease: "power1.inOut",
+    }
+  );
 } else {
   // If the screen width is greater than 900px
   portfolioTl.to(".bg-rodaje", {
@@ -1088,6 +1096,25 @@ tiempoTimeline.to("#rect3", {
   fill: "#CBDB43",
   duration: 5,
 });
+
+matchMedia.add(
+  ("max-width: 390px",
+  () => {
+    tiempoTimeline.fromTo(
+      ".accordion",
+      {
+        x: 200,
+        zIndex: 1,
+        duration: 60,
+      },
+      {
+        x: 0,
+        zIndex: 0,
+        duration: 60,
+      }
+    );
+  })
+);
 
 tiempoTimeline
   .fromTo(

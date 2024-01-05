@@ -57,6 +57,7 @@ a {
   color: inherit;
 }
 
+
 body {
   margin: 0;
   padding: 0;
@@ -67,11 +68,12 @@ body {
   font-family: "Montserraty";
   cursor: none;
   user-select: none;
+  overflow-x: hidden;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
-}
+} */
 
 #progressbar-ctn {
   position: fixed;
