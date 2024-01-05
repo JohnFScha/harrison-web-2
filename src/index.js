@@ -139,40 +139,40 @@ body.addEventListener("mousemove", (e) => {
 
 /************** observer **************** */
 
-const video = document.getElementById("middleVidCtn");
+// const video = document.getElementById("middleVidCtn");
 
-const options = {
-  root: null, // Use the viewport as the root
-  threshold: 0.01, // Trigger when 75% of the video is visible
-};
+// const options = {
+//   root: null, // Use the viewport as the root
+//   threshold: 0.01, // Trigger when 75% of the video is visible
+// };
 
-// Callback function to handle intersection changes
-const handleIntersection = (entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      video.style.display = "block";
-      video.style.position = "fixed";
-      video.play();
-    } else {
-      video.style.display = "none";
-      video.style.position = "relative";
-      video.pause();
-    }
-  });
-};
+// // Callback function to handle intersection changes
+// const handleIntersection = (entries) => {
+//   entries.forEach((entry) => {
+//     if (entry.isIntersecting) {
+//       video.style.display = "block";
+//       video.style.position = "fixed";
+//       video.play();
+//     } else {
+//       video.style.display = "none";
+//       video.style.position = "relative";
+//       video.pause();
+//     }
+//   });
+// };
 
-video.addEventListener("ended", (e) => {
-  e.preventDefault();
-  gsap.to(window, {
-    scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-  });
-});
+// video.addEventListener("ended", (e) => {
+//   e.preventDefault();
+//   gsap.to(window, {
+//     scrollTo: tiempoTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+//   });
+// });
 
-// Create the Intersection Observer
-const observer = new IntersectionObserver(handleIntersection, options);
+// // Create the Intersection Observer
+// const observer = new IntersectionObserver(handleIntersection, options);
 
-// Start observing the video
-observer.observe(video);
+// // Start observing the video
+// observer.observe(video);
 
 /************** observer **************** */
 
@@ -182,7 +182,7 @@ const matchMedia = gsap.matchMedia();
 
 const menuTl = gsap.timeline({ paused: true });
 
-/* matchMedia.add("(max-width: 390px)", () => {
+matchMedia.add("(max-width: 390px)", () => {
   menuTl.fromTo(
     menu,
     {
@@ -216,38 +216,37 @@ const menuTl = gsap.timeline({ paused: true });
 });
 
 matchMedia.add("(min-width: 391px)", () => {
-}); */
+  menuTl.fromTo(
+    menu,
+    {
+      x: 1000,
+      opacity: 0,
+      background: "transparent",
+      display: "none",
+      ease: "power2.inOut",
+    },
+    {
+      x: 0,
+      duration: 0.5,
+      opacity: 1,
+      background: "rgb(203, 219, 67)",
+      display: "block",
+      ease: "power2.inOut",
+    }
+  );
 
-menuTl.fromTo(
-  menu,
-  {
-    x: 1000,
-    opacity: 0,
-    background: "transparent",
-    display: "none",
-    ease: "power2.inOut",
-  },
-  {
-    x: 0,
-    duration: 0.5,
-    opacity: 1,
-    background: "rgb(203, 219, 67)",
-    display: "block",
-    ease: "power2.inOut",
-  }
-);
-
-menuTl.fromTo(
-  separators,
-  {
-    x: 1000,
-  },
-  {
-    x: 0,
-    transformOrigin: "100% 50%",
-    duration: 0.5,
-  }
-);
+  menuTl.fromTo(
+    separators,
+    {
+      x: 1000,
+    },
+    {
+      x: 0,
+      transformOrigin: "100% 50%",
+      duration: 0.5,
+    }
+  );
+});
 
 menuTl.fromTo(
   navItems,
@@ -1098,7 +1097,7 @@ tiempoTimeline.to("#rect3", {
   duration: 5,
 });
 
-/* matchMedia.add(
+matchMedia.add(
   ("max-width: 390px",
   () => {
     tiempoTimeline.fromTo(
@@ -1116,7 +1115,7 @@ tiempoTimeline.to("#rect3", {
     );
   })
 );
- */
+
 tiempoTimeline
   .fromTo(
     ".accordion",
