@@ -18,7 +18,7 @@ bubbles {
   box-shadow: 10px 10px 30px #D1D821,
     -10px -10px 30px #D1D821;
   animation: colorgen;
-  animation-duration: 1000ms;
+  animation-duration: 2000ms;
   animation-iteration-count: infinite;
 }
 
@@ -33,31 +33,26 @@ bubbles:after {
 @keyframes colorgen {
   0% {
     opacity: 1;
-    filter: blur(10px);
-    scale: 1;
+    filter: blur(0px);
   }
 
-  /* 25% {
+  25% {
     opacity: 0.75;
     filter: blur(10px);
-    scale: 0.75;
   }
 
   50% {
     opacity: 0.5;
     filter: blur(15px);
-    scale: 0.50;
   }
 
   75% {
     opacity: 0.25;
     filter: blur(20px);
-    scale: 0.25;
-  } */
+  }
 
   100% {
     opacity: 0;
     filter: blur(30px);
-    scale: 0;
   }
 }
