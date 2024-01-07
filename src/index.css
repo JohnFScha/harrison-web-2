@@ -1684,8 +1684,7 @@ div#textAllCtn .letter-container .spacerSpan {
   .modal .close { 
     position: absolute;
     z-index: 50000;
-    top: 0%;
-    bottom: 18%;
+    bottom: 18% !important;
     right: 11.5%;
     width: 60px;
     cursor: pointer;

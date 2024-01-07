@@ -554,7 +554,6 @@ if (isMobile()) {
 /* ****************** End Middle dom ****************** */
 
 /* ******************  dom manipulation ****************** */
-console.log(bgVideo)
 if (isMobile()) {
   bgVideo.src = ''
   textCtn2.innerHTML = `
