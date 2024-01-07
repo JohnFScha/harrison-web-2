@@ -123,8 +123,8 @@ button {
 
 @media screen and (max-width: 900px) {
     main {
-        width: 110vw;
-        height: 110vh;
+        width: 100vw;
+        height: 100vh;
     }
 
     main .text {
@@ -137,8 +137,8 @@ button {
     }
 
     main .overlay {
-        width: 110vw;
-        height: 110vh;
+        width: 100vw;
+        height: 100vh;
     }
 
     main .titleCtn {
@@ -156,7 +156,7 @@ button {
         position: absolute;
         top: 57%;
     }
-    }
+
 
     main .subCtn .sub1 {
         margin: 0;
