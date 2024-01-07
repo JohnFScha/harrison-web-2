@@ -133,7 +133,6 @@ button {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: -80px;
     }
 
     main .overlay {
@@ -143,16 +142,18 @@ button {
 
     main .titleCtn {
         font-size: 8rem;
+        margin: 0;
     }
 
     main .titleCtn .error {
-        left: 25%;
+        left: 22%;
         top: 15%;
     }
 
     main .subCtn {
+        
         color: white;
-        width: 960px;
+        width: 100%;
         position: absolute;
         top: 57%;
     }
