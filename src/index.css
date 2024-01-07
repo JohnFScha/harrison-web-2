@@ -1682,8 +1682,15 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   .modal .close { 
-    top: 0;
+    position: absolute;
+    z-index: 50000;
+    top: 0%;
     bottom: 18%;
+    right: 11.5%;
+    width: 60px;
+    cursor: pointer;
+    filter: invert(1);
+    cursor: url(assets/cursor-mano.svg),pointer;
   }
 
   #modalVideo {
