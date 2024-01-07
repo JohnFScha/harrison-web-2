@@ -5,8 +5,8 @@ document.addEventListener("mousemove", (e) => {
 
   bubbles.style.left = x + "px";
   bubbles.style.top = y + "px";
-  bubbles.style.width = 50 + "px";
-  bubbles.style.height = 50 + "px";
+  bubbles.style.width = 100 + "px";
+  bubbles.style.height = 100 + "px";
 
   document.body.appendChild(bubbles);
 
