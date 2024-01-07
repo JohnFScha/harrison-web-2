@@ -1681,6 +1681,11 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 50px;
   }
 
+  .modal .close { 
+    top: 0;
+    bottom: 18%;
+  }
+
   #modalVideo {
     transform: rotate(90deg);
     width: 160vw;
