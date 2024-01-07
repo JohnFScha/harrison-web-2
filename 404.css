@@ -142,7 +142,7 @@ button {
 
     main .titleCtn {
         font-size: 8rem;
-        margin: 0;
+        margin-bottom: 5rem;
     }
 
     main .titleCtn .error {
@@ -171,7 +171,7 @@ button {
     main .subCtn p {
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300;
-        width: 80%;
+        width: 100%;
     }
 
     main .subCtn button {
