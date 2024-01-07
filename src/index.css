@@ -1686,6 +1686,7 @@ div#textAllCtn .letter-container .spacerSpan {
     z-index: 50000;
     bottom: 18% !important;
     right: 11.5%;
+    top: none;
     width: 60px;
     cursor: pointer;
     filter: invert(1);
