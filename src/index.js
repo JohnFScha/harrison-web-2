@@ -84,14 +84,24 @@ window.onload = () => {
   }, 1000);
 };
 
-const timeout = setTimeout(() => {
-  window.location.href = "/error"; // Adjust the path as needed
-}, 10000); // 5 seconds in milliseconds
+if (isMobile()) {
+  const timeout = setTimeout(() => {
+    window.location.href = "/error"; // Adjust the path as needed
+  }, 20000); // 10 seconds in milliseconds  
+  // Clear the timeout if the content loads before the timeout triggers
+  window.addEventListener("load", () => {
+    clearTimeout(timeout);
+  });
+} else {
+  const timeout = setTimeout(() => {
+    window.location.href = "/error"; // Adjust the path as needed
+  }, 10000); // 10 seconds in milliseconds  
+  // Clear the timeout if the content loads before the timeout triggers
+  window.addEventListener("load", () => {
+    clearTimeout(timeout);
+  });
+}
 
-// Clear the timeout if the content loads before the timeout triggers
-window.addEventListener("load", () => {
-  clearTimeout(timeout);
-});
 
 /* ********* Timeline ********* */
 
