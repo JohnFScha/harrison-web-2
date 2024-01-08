@@ -1411,22 +1411,18 @@ div#textAllCtn .letter-container .spacerSpan {
 
 .socialContainer #svgLinkedIn a {
   background-image: url("assets/logos_end/Linkedin.webp");
-  width: 30px;
 }
 
 .socialContainer #svgMail a {
   background-image: url("assets/logos_end/mail.webp");
-  width: 30px;
 }
 
 .socialContainer #svgInstagram a {
   background-image: url("assets/logos_end/ig.webp");
-  width: 30px;
 }
 
 .socialContainer #svgWhatsapp a {
   background-image: url("assets/logos_end/wsp.webp");
-  width: 30px;
 }
 
 .textEndCtn {
