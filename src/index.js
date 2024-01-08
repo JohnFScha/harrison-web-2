@@ -431,7 +431,6 @@ let childTitleCtn = document.querySelectorAll(".child .title-ctn");
 
 if (isMobile()) {
   let isOpen = false;
-  // console.log(txtContainers);
 
   expandBtns.forEach((btn, index) => {
     btn.addEventListener("click", () => {
@@ -1553,7 +1552,6 @@ mainTimeline.fromTo(
     opacity: 1,
     duration: 4,
     onStart: () => {
-      console.log("start");
       middleVideo.play();
     },
   }
@@ -2111,7 +2109,7 @@ if (isMobile()) {
       duration: 5,
       // scrollTrigger: '#p2'
     }
-  );
+  ).addLabel('clientes');
 } else {
   mainTimeline.fromTo(
     "#p1",
@@ -2192,35 +2190,38 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.fromTo(
-  "#carousel-container",
-  {
-    display: "none",
-    duration: 0,
-    delay: -20,
-  },
-  {
-    display: "block",
-    duration: 0,
-    delay: -20,
-  }
-);
-
-mainTimeline
-  .fromTo(
+if(!isMobile()) {
+  mainTimeline.fromTo(
     "#carousel-container",
     {
-      transform: "scale(0)",
-      duration: 10,
+      display: "none",
+      duration: 0,
       delay: -20,
     },
     {
-      transform: "scale(1.3)",
-      duration: 10,
+      display: "block",
+      duration: 0,
       delay: -20,
     }
-  )
-  .addLabel("clientes");
+  );
+  
+  mainTimeline
+    .fromTo(
+      "#carousel-container",
+      {
+        transform: "scale(0)",
+        duration: 10,
+        delay: -20,
+      },
+      {
+        transform: "scale(1.3)",
+        duration: 10,
+        delay: -20,
+      }
+    )
+    .addLabel("clientes");
+  
+}
 
 mainTimeline.to("#txt-container-2", {
   delay: 30,
