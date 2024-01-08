@@ -699,7 +699,6 @@ section.portfolio .logo-box {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  z-index: 1000;
   position: fixed;
   top: 0;
 }
@@ -1413,19 +1412,23 @@ div#textAllCtn .letter-container .spacerSpan {
 }
 
 .socialContainer #svgLinkedIn a {
-  background-image: url("assets/logos_end/linkedin.webp");
+  background-image: url("assets/logos_end/Linkedin.webp");
+  width: 30px;
 }
 
 .socialContainer #svgMail a {
   background-image: url("assets/logos_end/mail.webp");
+  width: 30px;
 }
 
 .socialContainer #svgInstagram a {
   background-image: url("assets/logos_end/ig.webp");
+  width: 30px;
 }
 
 .socialContainer #svgWhatsapp a {
   background-image: url("assets/logos_end/wsp.webp");
+  width: 30px;
 }
 
 .textEndCtn {
@@ -1480,7 +1483,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #intro #scrollea img {
-    width: 40vw;
+    width: 30vw;
     display: block;
   }
 
@@ -1743,10 +1746,6 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   /* ============= servicios ============ */
-
-  #middle {
-    background-color: #1d3e4e9e;
-  }
 
   #middle #text-container {
     clip-path: inset(120px 0 90px 0);

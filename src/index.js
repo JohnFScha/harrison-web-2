@@ -574,7 +574,7 @@ if (isMobile()) {
 
 /* ******************  dom manipulation ****************** */
 if (isMobile()) {
-  bgVideo.src = "";
+  // bgVideo.src = "";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
@@ -591,7 +591,7 @@ if (isMobile()) {
 </div>
   `;
 } else {
-  bgVideo.src = "src/assets/fondo-verde.webm";
+  // bgVideo.src = "src/assets/fondo-verde.webm";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
