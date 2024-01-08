@@ -34,7 +34,6 @@ a {
 }
 
 html {
-  /* overflow: hidden; */
   height: 100%;
 }
 
@@ -268,10 +267,9 @@ body #intro {
   height: 100vh;
   width: 100vw;
   background-image: url("assets/Layer_1.png");
-  background-size: 150px;
-  backdrop-filter: opacity(10%);
-  animation: fadeOutAnimation 1s;
-  animation-delay: 2.5s;
+  background-color: #000;
+  background-size: 300px;
+  background-repeat: space;
   z-index: 100;
 }
 
@@ -292,13 +290,16 @@ body #intro {
   stroke-dasharray: 1500px;
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
-  animation-name: draw, fill1, fill2;
-  animation-duration: 1s, 1s, 1s;
-  animation-delay: 0s, 1s, 1.5s;
+  animation-name: draw;
+  animation-duration: 3s;
   animation-fill-mode: both;
-  animation-iteration-count: infinite, infinite, infinite;
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
   margin: auto;
+}
+
+#intro #scrollea img {
+  display: none;
 }
 
 #intro #scrollea svg {
@@ -570,7 +571,7 @@ section.portfolio .box-ctn {
   align-items: center;
   width: 50%;
   height: 30%;
-  background-color: rgb(10, 10, 10);
+  background-color: transparent;
   transform: skew(3.5deg, 7deg) translate(-5px, 40px);
 }
 
@@ -580,7 +581,7 @@ section.portfolio .vid-overlay {
   height: 101%;
   top: -1px;
   left: -1px;
-  background-color: rgb(10, 10, 10);
+  background-color: transparent;
   z-index: 6;
   opacity: 1;
 }
@@ -779,7 +780,6 @@ section.portfolio .logo-box {
 #middle #parent {
   position: relative;
   display: flex;
-  /* overflow: hidden; */
   white-space: nowrap;
   width: 100vw;
   height: 450px;
@@ -813,20 +813,10 @@ section.portfolio .logo-box {
   text-align: left;
 }
 
-/* .child:nth-child(1) {
-  left: 0;
-  float: left;
-} */
-
 .child:nth-child(2) {
   border-left: 2px solid #fff;
   border-right: 2px solid #fff;
 }
-
-/* .child:nth-child(3) {
-  right: 0;
-  float: right;
-} */
 
 .title-ctn,
 .text-ctn {
@@ -932,9 +922,6 @@ section.portfolio .logo-box {
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
-  /* transform: translate3d(0,0%,-500px); */
-  /* scale: 0.75; */
-  /* animation: flipCard 1s ease-in-out 1;  */
   opacity: 0;
 }
 
@@ -945,7 +932,6 @@ section.portfolio .logo-box {
   height: 100vh;
   z-index: 1;
   object-fit: cover;
-  /* opacity: 0; */
 }
 
 #middle #video-tiempo #tiempoVidCtn img {
@@ -975,7 +961,6 @@ section.portfolio .logo-box {
   height: 100vh;
   z-index: 1;
   animation: pulse 1.5s infinite;
-  /* opacity: 0; */
 }
 
 #middle #video-tiempo #elementos-mob {
@@ -1034,24 +1019,24 @@ section.portfolio .logo-box {
 /* ======================== Keyframes =========================*/
 
 @keyframes draw {
-  to {
-    stroke-dashoffset: 1;
+  0% {
+    stroke-dashoffset: 1500px;
   }
-}
 
-@keyframes fill1 {
-  from {
+  25% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
     fill-opacity: 0;
   }
 
-  to {
+  75% {
     fill-opacity: 1;
     fill: white;
   }
-}
 
-@keyframes fill2 {
-  to {
+  100% {
     fill-opacity: 1;
     fill: #d1d821;
     stroke: #d1d821;
@@ -1072,6 +1057,23 @@ section.portfolio .logo-box {
   100% {
     opacity: 0;
     transform: translateY(40px);
+  }
+}
+
+@keyframes scroll2 {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }
 
@@ -1407,22 +1409,23 @@ div#textAllCtn .letter-container .spacerSpan {
   height: 100%;
   background-size: cover;
   background-position: center;
+  cursor: url('assets/cursor-mano.svg'), pointer;
 }
 
 .socialContainer #svgLinkedIn a {
-  background-image: url("assets/logos_end/linkedin.png");
+  background-image: url("assets/logos_end/linkedin.webp");
 }
 
 .socialContainer #svgMail a {
-  background-image: url("assets/logos_end/mail.png");
+  background-image: url("assets/logos_end/mail.webp");
 }
 
 .socialContainer #svgInstagram a {
-  background-image: url("assets/logos_end/ig.png");
+  background-image: url("assets/logos_end/ig.webp");
 }
 
 .socialContainer #svgWhatsapp a {
-  background-image: url("assets/logos_end/wsp.png");
+  background-image: url("assets/logos_end/wsp.webp");
 }
 
 .textEndCtn {
@@ -1447,7 +1450,39 @@ div#textAllCtn .letter-container .spacerSpan {
   visibility: hidden;
 }
 
+#middle #subir {
+  display: none;
+}
+
+/* =================== media queries =================== */
+
 @media (max-width: 900px) {
+
+  #intro #init {
+    background-size: 100px;
+    background-repeat: space;
+  }
+
+  #intro #scrollea {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #intro #scrollea svg {
+    width: 30vw;
+    margin: 0;
+  }
+
+  #intro #scrollea img {
+    width: 40vw;
+    display: block;
+  }
 
   #progressbar-ctn {
     width: 100%;
@@ -1460,6 +1495,17 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   /* ============= nav ============ */
+
+  nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    height: 125px;
+    z-index: 10;
+  }
 
   nav .menu-btn-ctn button {
     margin: 0;
@@ -1667,7 +1713,6 @@ div#textAllCtn .letter-container .spacerSpan {
   section.portfolio .box-ctn {
     width: 7.8rem;
     height: 4.6rem;
-    /* top: 71.5%; */
     bottom: 15%;
     background-color: transparent;
   }
@@ -1686,11 +1731,10 @@ div#textAllCtn .letter-container .spacerSpan {
     z-index: 50000;
     bottom: 18% !important;
     right: 11.5%;
-    top: none;
+    top: unset;
     width: 60px;
-    cursor: pointer;
     filter: invert(1);
-    cursor: url(assets/cursor-mano.svg),pointer;
+    cursor: url(assets/cursor-mano.svg), pointer;
   }
 
   #modalVideo {
@@ -1757,7 +1801,6 @@ div#textAllCtn .letter-container .spacerSpan {
     overflow-y: scroll;
     overflow-x: hidden;
     border: none;
-    /* gap: 10rem; */
   }
 
   #middle #parent::-webkit-scrollbar {
@@ -1775,7 +1818,6 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #middle #parent .child .text-ctn {
     margin: 0;
-    /* position: relative; */
     width: 100%;
     height: 100%;
     margin-left: 15%;
@@ -1803,14 +1845,15 @@ div#textAllCtn .letter-container .spacerSpan {
     top: 21.7rem;
   }
 
-  /* #middle #parent .child:hover .text-ctn ol {
-    clip-path: inset(0 0 0 0);
-} */
+  #middle #video-tiempo {
+    justify-content: center;
+    align-items: center;
+  }
 
   #middle #video-tiempo #countdown-timer {
     left: 28%;
     bottom: -45px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   #middle #video-tiempo #elementos-desk {
@@ -1821,22 +1864,22 @@ div#textAllCtn .letter-container .spacerSpan {
     display: block;
     opacity: 1;
     width: 100%;
-    padding: 2rem;
+    padding: 0rem;
     z-index: 100;
+    height: 100vh;
   }
 
   #middle #video-tiempo #text-container-2 .text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   /* carousel*/
   #text-container-2 {
     max-width: 360px !important;
-    margin: 0 1rem;
   }
 
   p#p1,
@@ -1890,8 +1933,8 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #textAllCtn>p.letter-container {
-    padding: 0 1rem;
     display: block;
+    width: 400px;
   }
 
   .subTextContainer {
@@ -1923,6 +1966,31 @@ div#textAllCtn .letter-container .spacerSpan {
 
   .charSpan2 {
     font-size: 20px !important;
+  }
+
+  #middle #subir {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1000000000;
+  }
+
+  #middle #subir button {
+    width: 20vw;
+    height: 20vh;
+    background-color: transparent;
+    border: none;
+  }
+
+  #middle #subir button svg {
+    width: 20vw;
+    height: 20vh;
+  }
+
+  #middle #subir button svg .swipe {
+    animation: scroll2 1s infinite;
   }
 }
 

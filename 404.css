@@ -27,7 +27,7 @@ body {
 }
 
 main {
-    background-image: url('src/assets/404bg.png');
+    background-image: url('src/assets/404bg.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -99,6 +99,16 @@ main .sub2 {
     display: inline-block;
 }
 
+main .subCtn .social a img {
+    width: 50px;
+    margin: 0 10px;
+}
+
+main .subCtn .social {
+    position: fixed;
+    right: 0;
+}
+
 p {
     font-weight: 200;
     width: 960px;
@@ -142,7 +152,7 @@ button {
 
     main .titleCtn {
         font-size: 8rem;
-        margin-bottom: 5rem;
+        margin: 1rem 0;
     }
 
     main .titleCtn .error {
@@ -151,30 +161,45 @@ button {
     }
 
     main .subCtn {
-        
         color: white;
-        width: 100%;
-        position: absolute;
-        top: 57%;
+        width: 80%;
+        position: inherit;
+        display: flex;
+        flex-direction: column;
+        margin: -12rem 0;
+        gap: 15px;
     }
 
 
     main .subCtn .sub1 {
-        margin: 0;
+        margin-top: 13rem;
+        margin-bottom: 0;
+        font-size: 45px;
     }
 
     main .subCtn .sub2 {
         margin: 0;
-        font-size: 35px;
+        font-size: 25px;
     }
 
     main .subCtn p {
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300;
         width: 100%;
+        margin: 0;
+        font-size: 18px;
     }
 
     main .subCtn button {
-        margin-bottom: 20px;
+        margin: 0;
+        padding: 10px;
+        font-size: 20px;
+        width: 69%;
+        margin: auto;
+    }
+
+    main .subCtn .social a img {
+        width: 50px;
+        margin: 0 10px;
     }
 }

@@ -61,19 +61,6 @@ function renderCountdown(time) {
   }
 }
 
-/* var paths = document.querySelectorAll(".path");
-
-paths.forEach((path) => {
-  var length = path.getTotalLength();
-  path.style.transition = path.style.WebkitTransition = "none";
-  path.style.strokeDasharray = length + " " + length;
-  path.style.strokeDashoffset = length;
-  path.getBoundingClientRect();
-  path.style.transition = path.style.WebkitTransition =
-    "stroke-dashoffset 2s ease-in-out";
-  path.style.strokeDashoffset = "0";
-}); */
-
 /* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -91,11 +78,14 @@ requestAnimationFrame(raf);
 
 window.onload = () => {
   const init = document.getElementById("init");
-  init.style.display = "none";
+  init.style.animation = "fadeOutAnimation 1s";
+  setTimeout(() => {
+    init.style.display = "none";
+  }, 1000);
 };
 
 const timeout = setTimeout(() => {
-  window.location.href = "/harrison-web/404.html"; // Adjust the path as needed
+  window.location.href = "/error"; // Adjust the path as needed
 }, 10000); // 5 seconds in milliseconds
 
 // Clear the timeout if the content loads before the timeout triggers
@@ -129,6 +119,8 @@ const wrapperCtn = document.querySelector(".wrapper");
 const expandBtns = document.querySelectorAll(".expand");
 const expandBtnImgs = document.querySelectorAll(".btn-img");
 const textCtn2 = document.getElementById("txt-container-2");
+const desliza = document.getElementById("desliza");
+const subir = document.querySelector("#subir #subirbtn");
 
 /* ********* CURSOR *********** */
 
@@ -258,21 +250,21 @@ collapse.addEventListener("click", () => {
   }
 
   isRotated = !isRotated;
-  icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
+  icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
   collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
 
   if (body.className.match("close")) {
     body.className = "open";
-    social[0].src = "src/assets/mail-dark.png";
-    social[1].src = "src/assets/whatsapp-dark.png";
-    social[2].src = "src/assets/ig-dark.png";
-    social[3].src = "src/assets/Linkedin-dark.png";
+    social[0].src = "src/assets/mail-dark.webp";
+    social[1].src = "src/assets/whatsapp-dark.webp";
+    social[2].src = "src/assets/ig-dark.webp";
+    social[3].src = "src/assets/Linkedin-dark.webp";
   } else if (body.className.includes("open")) {
     body.className = "close";
-    social[0].src = "src/assets/mail.png";
-    social[1].src = "src/assets/wsp.png";
-    social[2].src = "src/assets/ig.png";
-    social[3].src = "src/assets/Linkedin.png";
+    social[0].src = "src/assets/mail.webp";
+    social[1].src = "src/assets/wsp.webp";
+    social[2].src = "src/assets/ig.webp";
+    social[3].src = "src/assets/Linkedin.webp";
   }
   if (menuTl.totalProgress() === 0) {
     menuTl.play();
@@ -290,36 +282,40 @@ links.forEach((a) => {
     if (a.innerText.toLowerCase() === `inicio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+        duration: 0,
       });
     } else if (a.innerText.toLowerCase() === `portfolio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+        duration: 3,
       });
     } else if (a.innerText.toLowerCase() === `servicios`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+        duration: 3,
       });
     } else if (a.innerText.toLowerCase() === `clientes`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+        duration: 3,
       });
     }
 
     isRotated = !isRotated;
-    icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
     collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
     if (body.className.match("close")) {
       body.className = "open";
-      social[0].src = "src/assets/mail-dark.png";
-      social[1].src = "src/assets/whatsapp-dark.png";
-      social[2].src = "src/assets/ig-dark.png";
-      social[3].src = "src/assets/Linkedin-dark.png";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
     } else if (body.className.includes("open")) {
       body.className = "close";
-      social[0].src = "src/assets/mail.png";
-      social[1].src = "src/assets/wsp.png";
-      social[2].src = "src/assets/ig.png";
-      social[3].src = "src/assets/Linkedin.png";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
     }
 
     if (menuTl.paused() || menuTl.totalProgress() === 0) {
@@ -339,6 +335,7 @@ const middleVideo = document.getElementById("middleVidCtn");
 const tiempoVideo = document.getElementById("tiempoVidCtn");
 const progressBar = document.getElementById("progressbar-ctn");
 const nav = document.querySelector("nav");
+const intro = document.getElementById('intro')
 
 /* ****************** end intro dom ****************** */
 
@@ -372,7 +369,7 @@ const videoEl = document.getElementById("modalVideo");
 const closeModal = document.getElementById("closeModal");
 const middleVidSection = document.getElementById("middleVidCtn");
 const portfolioSection = document.getElementById("portfolio");
-const bgVideo = document.getElementById('bg-video')
+const bgVideo = document.getElementById("bg-video");
 
 const videos = [
   "src/assets/casos/eugenie-comp.webm",
@@ -383,12 +380,27 @@ let currentVideo = null;
 
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
+  desliza.innerHTML = ``;
 } else {
+  desliza.innerHTML = `<path class="st0"
+  d="M89.8,306c1.8-0.8,3.2-1.9,4.2-3.4c1-1.5,1.5-3.3,1.5-5.4c0-2.1-0.5-3.9-1.5-5.4c-1-1.5-2.4-2.7-4.2-3.5 c-1.8-0.8-4-1.2-6.5-1.2H71.2v28h6.5v-7.8h5.6c0.1,0,0.2,0,0.3,0L89,315h7L89.8,306C89.7,306,89.7,306,89.8,306z M87.4,293.6 c1,0.9,1.5,2.1,1.5,3.6c0,1.5-0.5,2.7-1.5,3.6c-1,0.9-2.5,1.3-4.5,1.3h-5.3v-9.8h5.3C84.9,292.3,86.4,292.7,87.4,293.6z" />
+<path class="st0"
+  d="M34.2,300.8c-1-0.6-2-1.1-3.2-1.4c-1.1-0.3-2.3-0.7-3.5-0.9c-1.1-0.3-2.2-0.5-3.2-0.8c-1-0.3-1.7-0.6-2.3-1 c-0.6-0.5-0.9-1-0.9-1.8c0-0.6,0.2-1.1,0.5-1.6c0.3-0.5,0.9-0.9,1.7-1.2c0.8-0.3,1.8-0.4,3.1-0.4s2.5,0.2,3.8,0.6 c1.3,0.3,2.6,0.9,3.9,1.6l2-4.9c-1.3-0.8-2.8-1.4-4.5-1.8c-1.7-0.4-3.4-0.6-5.2-0.6c-2.6,0-4.8,0.4-6.6,1.2c-1.7,0.8-3,1.8-3.9,3.2 c-0.9,1.3-1.3,2.8-1.3,4.4c0,1.5,0.3,2.7,0.9,3.7c0.6,1,1.4,1.7,2.4,2.3c1,0.6,2,1.1,3.2,1.4c1.2,0.4,2.3,0.7,3.5,1 c1.2,0.2,2.2,0.5,3.2,0.8c1,0.3,1.7,0.6,2.3,1.1c0.6,0.4,0.9,1,0.9,1.8c0,0.6-0.2,1.1-0.6,1.6c-0.4,0.5-1,0.8-1.8,1.1 c-0.8,0.2-1.8,0.4-3.1,0.4c-1.7,0-3.3-0.3-5-0.8c-1.6-0.6-3-1.3-4.2-2.1l-2.2,4.9c1.3,1,2.9,1.7,5,2.4c2.1,0.6,4.2,0.9,6.4,0.9 c2.7,0,4.9-0.4,6.6-1.2c1.8-0.8,3.1-1.9,4-3.2s1.3-2.7,1.3-4.3c0-1.5-0.3-2.7-0.9-3.6C35.9,302.2,35.1,301.4,34.2,300.8z" />
+<polygon class="st0" points="229.9,279 223.2,279 217.8,284.7 222.7,284.7 	" />
+<path class="st0"
+  d="M49.1,294.5c0.8-0.8,1.7-1.4,2.8-1.8c1.1-0.4,2.3-0.6,3.6-0.6c1.4,0,2.7,0.3,3.8,0.8c1.2,0.5,2.2,1.3,3.2,2.4 l4.2-3.8c-1.3-1.6-3-2.9-5-3.7c-1.9-0.9-4.1-1.3-6.6-1.3c-2.2,0-4.2,0.4-6,1.1c-1.8,0.7-3.5,1.7-4.8,3c-1.4,1.3-2.4,2.8-3.2,4.6 c-0.7,1.8-1.1,3.7-1.1,5.8s0.4,4,1.1,5.8c0.8,1.8,1.8,3.3,3.2,4.6s3,2.3,4.8,3c1.9,0.7,3.9,1,6,1c2.5,0,4.7-0.4,6.6-1.3 c2-0.9,3.6-2.1,5-3.7l-4.2-3.8c-1,1.1-2,2-3.2,2.5c-1.2,0.5-2.5,0.8-3.8,0.8c-1.3,0-2.5-0.2-3.6-0.6c-1.1-0.4-2-1-2.8-1.8 c-0.8-0.8-1.4-1.7-1.9-2.8c-0.4-1.1-0.6-2.3-0.6-3.6s0.2-2.5,0.6-3.6C47.7,296.3,48.3,295.3,49.1,294.5z" />
+<polygon class="st0" points="189,303.3 202,303.3 202,298.3 189,298.3 189,292.2 203.8,292.2 203.8,287 182.6,287 182.6,315 204.3,315 204.3,309.8 189,309.8 	" />
+<path class="st0"
+  d="M125.1,290.6c-1.4-1.3-3-2.3-4.8-3c-1.8-0.7-3.9-1.1-6.1-1.1c-2.2,0-4.2,0.4-6.1,1.1c-1.9,0.7-3.5,1.7-4.9,3 c-1.4,1.3-2.5,2.8-3.2,4.6c-0.7,1.8-1.1,3.7-1.1,5.8c0,2.1,0.4,4,1.1,5.8c0.8,1.8,1.8,3.3,3.2,4.6c1.4,1.3,3,2.3,4.9,3 c1.9,0.7,3.9,1.1,6.2,1.1c2.2,0,4.2-0.4,6-1.1c1.9-0.7,3.5-1.7,4.8-3c1.4-1.3,2.5-2.8,3.2-4.6c0.8-1.8,1.2-3.7,1.2-5.8 c0-2.1-0.4-4-1.2-5.8C127.5,293.5,126.4,291.9,125.1,290.6z M122.2,304.6c-0.4,1.1-1,2-1.8,2.8s-1.7,1.4-2.8,1.8 c-1,0.4-2.2,0.6-3.4,0.6c-1.3,0-2.4-0.2-3.5-0.6c-1.1-0.4-2-1-2.8-1.8c-0.8-0.8-1.4-1.7-1.8-2.8c-0.4-1.1-0.6-2.3-0.6-3.6 c0-1.3,0.2-2.5,0.6-3.6c0.5-1.1,1.1-2,1.9-2.8c0.8-0.8,1.7-1.4,2.8-1.8c1.1-0.4,2.2-0.6,3.5-0.6c1.3,0,2.4,0.2,3.5,0.6 c1.1,0.4,2,1,2.8,1.8c0.8,0.8,1.4,1.7,1.8,2.8c0.5,1.1,0.7,2.3,0.7,3.6S122.7,303.5,122.2,304.6z" />
+<path class="st0"
+  d="M230.4,315h6.8l-12.5-28h-6.4l-12.5,28h6.6l2.5-6h13L230.4,315z M216.9,304.1l4.5-10.7l4.4,10.7H216.9z" />
+<polygon class="st0" points="140.8,287 134.3,287 134.3,315 154.8,315 154.8,309.7 140.8,309.7 	" />
+<polygon class="st0" points="164.9,287 158.5,287 158.5,315 179,315 179,309.7 164.9,309.7 	" />`;
   middleVidSection.src = "src/assets/calidad.webm";
 }
 
 if (isMobile()) {
-  videoTiempo.src = "src/assets/Video-tiempo_v.mp4";
+  videoTiempo.src = "src/assets/Video-tiempo_v.webm";
 } else {
   videoTiempo.src = "src/assets/video-tiempo.webm";
 }
@@ -401,9 +413,17 @@ middleVideo.addEventListener("ended", () => {
   middleVideo.style.display = "none";
   gsap.to(window, {
     scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+    duration: 3,
   });
   middleVideo.currentTime = 0;
   middleVideo.load();
+});
+
+subir.addEventListener("click", () => {
+  gsap.to(window, {
+    scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+    duration: 2,
+  });
 });
 
 let ctn = document.querySelectorAll(".child");
@@ -418,7 +438,7 @@ if (isMobile()) {
       isOpen = !isOpen; // Toggle the isOpen variable
 
       if (isOpen) {
-        expandBtnImgs[index].src = "src/assets/contract.png";
+        expandBtnImgs[index].src = "src/assets/contract.webp";
 
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
@@ -448,7 +468,7 @@ if (isMobile()) {
           });
         }
       } else {
-        expandBtnImgs[index].src = "src/assets/expand.png";
+        expandBtnImgs[index].src = "src/assets/expand.webp";
 
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
@@ -555,24 +575,24 @@ if (isMobile()) {
 
 /* ******************  dom manipulation ****************** */
 if (isMobile()) {
-  bgVideo.src = ''
+  bgVideo.src = "";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
   <div id="mobileBrandsCtn">
-  <img src="/src/assets/logo-eugenie.png" alt="logo de Eugenie" class="mobileBrands">
-  <img src="/src/assets/logo-flexy.png" alt="logo de Flexy" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="logo de La Caja" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="logo de Delsud" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="logo de PBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="/src/assets/logo-eugenie.webp" alt="logo de Eugenie" class="mobileBrands">
+  <img src="/src/assets/logo-flexy.webp" alt="logo de Flexy" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_La_Caja.webp" alt="logo de La Caja" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_Desarrollos.webp" alt="logo de Delsud" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_PBA.webp" alt="logo de PBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_NBA.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Yacoub.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_FCE.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Sancor.webp" alt="logo de Jr. NBA" class="mobileBrands">
 </div>
   `;
 } else {
-  bgVideo.src = 'src/assets/fondo-verde.webm'
+  bgVideo.src = "src/assets/fondo-verde.webm";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
@@ -580,51 +600,51 @@ if (isMobile()) {
     <div class="carousel">
       <figure id="carouselFig">
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logo_Desarrollos.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logo_FCE.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_La_Caja.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_NBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_PBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_Sancor.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_Yacoub.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
       </figure>
     </div>
   </div>
-  `
+  `;
 }
 
 if (isMobile()) {
@@ -919,7 +939,7 @@ cameraFrames.forEach((img, index) => {
     {
       display: "block",
       stagger: 0.3,
-      duration: 0.5,
+      duration: 0.2,
     }
   );
   if (index < cameraFrames.length - 1) {
@@ -927,9 +947,9 @@ cameraFrames.forEach((img, index) => {
   }
 });
 
-mainTimeline.to("#video-camara", {
+/* mainTimeline.to("#video-camara", {
   delay: 10,
-});
+}); */
 
 mainTimeline.fromTo(
   "#texto",
@@ -942,7 +962,7 @@ mainTimeline.fromTo(
     transform: "scale(1)",
     opacity: 1,
     duration: 20,
-    delay: -80,
+    delay: -30,
   }
 );
 
@@ -950,20 +970,19 @@ mainTimeline.to(".fill", {
   color: "#D1D821",
   stagger: 3,
   duration: 10,
-  delay: -50,
+  delay: -20,
 });
 
 mainTimeline.to("#texto", {
   y: -800,
   duration: 30,
-  delay: -10,
+  delay: -1,
 });
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 100,
+  duration: 20,
   delay: 20,
-  scrollTrigger: "#portfolio",
 });
 
 mainTimeline.fromTo(
@@ -991,6 +1010,36 @@ mainTimeline.fromTo(
   {
     display: "block",
     delay: -50,
+  }
+);
+
+mainTimeline.fromTo(
+  "#nav button",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav .social-ctn .social-nav",
+  }
+);
+
+mainTimeline.fromTo(
+  "#nav .social-ctn .social-nav",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav button",
   }
 );
 
@@ -1101,12 +1150,14 @@ mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
   scrollTrigger: ".dup-ctn span",
 });
 
-mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-  color: "#D1D821",
-  stagger: 1,
-  duration: 3,
-  delay: 5,
-});
+mainTimeline
+  .to(".txt-ctn-1 .dup-ctn span", {
+    color: "#D1D821",
+    stagger: 1,
+    duration: 3,
+    delay: 5,
+  })
+  .addLabel("initPortolio");
 
 mainTimeline.to(".sup-rodaje.zoomed", {
   duration: 3,
@@ -1358,14 +1409,24 @@ if (isMobile()) {
     },
     {
       delay: 4,
-      duration: 10,
+      duration: 5,
       scale: 30,
       y: 1300,
       transformOrigin: "50% 100%",
       scrollTrigger: ".box-ctn",
     }
   );
+  mainTimeline.to("#portfolio", {
+    filter: "blur(100px)",
+    duration: 5,
+    delay: 5
+  });
 } else {
+  mainTimeline.to(".sup-rodaje", {
+    backgroundColor: "transparent",
+    duration: 0,
+    scrollTrigger: ".box-ctn",
+  });
   mainTimeline.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
@@ -1374,6 +1435,18 @@ if (isMobile()) {
     top: "-200%",
     scrollTrigger: ".box-ctn",
   });
+  /* mainTimeline.to(".box-ctn", {
+    delay: 4,
+    duration: 10,
+    transform: "scale(4)",
+    opacity: 0,
+    xPercent: -100,
+    top: "30%",
+  });
+  mainTimeline.to('#portfolio', {
+    filter: 'blur(100px)',
+    duration: 1
+  }) */
 }
 
 if (isMobile()) {
@@ -1408,11 +1481,16 @@ if (isMobile()) {
 } else {
   mainTimeline.to(".box-ctn", {
     delay: 4,
-    duration: 7.5,
+    duration: 10,
     transform: "scale(4)",
     opacity: 0,
     xPercent: -100,
     top: "30%",
+  });
+  mainTimeline.to("#portfolio", {
+    filter: "blur(100px)",
+    duration: 10,
+    delay: -8,
   });
 }
 
@@ -1664,6 +1742,7 @@ if (isMobile()) {
     width: "400vw",
     delay: -30,
   });
+
   mainTimeline
     .fromTo(
       ".accordion",
@@ -2176,6 +2255,10 @@ mainTimeline.fromTo(
   }
 );
 
+mainTimeline.to("#progressbar-ctn", {
+  display: "none",
+});
+
 mainTimeline.fromTo(
   ".bg-video",
   {
@@ -2298,6 +2381,19 @@ mainTimeline.staggerTo(
     duration: 25,
   },
   0.5
+);
+
+mainTimeline.fromTo(
+  "#subir",
+  {
+    y: 500,
+    opacity: 0,
+  },
+  {
+    y: 0,
+    opacity: 1,
+    duration: 2,
+  }
 );
 
 /******** JS MEDIA QUERIES  ********/
