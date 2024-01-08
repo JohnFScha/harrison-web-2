@@ -956,10 +956,6 @@ cameraFrames.forEach((img, index) => {
   }
 });
 
-/* mainTimeline.to("#video-camara", {
-  delay: 10,
-}); */
-
 mainTimeline.fromTo(
   "#texto",
   {
@@ -990,7 +986,7 @@ mainTimeline.to("#texto", {
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 20,
+  duration: 10,
   delay: 20,
 });
 
@@ -1086,14 +1082,14 @@ if (isMobile()) {
     ".bg-rodaje",
     {
       yPercent: 40,
-      duration: 25,
+      duration: 10,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
     },
     {
       yPercent: 0,
-      duration: 25,
+      duration: 10,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
@@ -1104,13 +1100,13 @@ if (isMobile()) {
     ".sup-rodaje",
     {
       delay: 3,
-      duration: 23,
+      duration: 15,
       yPercent: 50,
       ease: "power1.inOut",
     },
     {
       delay: 3,
-      duration: 23,
+      duration: 15,
       yPercent: 0,
       ease: "power1.inOut",
     }
@@ -1444,18 +1440,6 @@ if (isMobile()) {
     top: "-200%",
     scrollTrigger: ".box-ctn",
   });
-  /* mainTimeline.to(".box-ctn", {
-    delay: 4,
-    duration: 10,
-    transform: "scale(4)",
-    opacity: 0,
-    xPercent: -100,
-    top: "30%",
-  });
-  mainTimeline.to('#portfolio', {
-    filter: 'blur(100px)',
-    duration: 1
-  }) */
 }
 
 if (isMobile()) {
@@ -1484,14 +1468,22 @@ if (isMobile()) {
   mainTimeline.to(".box-ctn", {
     delay: -2,
     duration: 9,
-    transform: "scale(4.1)",
+    scale: 4.1,
     top: "50%",
   });
 } else {
-  mainTimeline.to(".box-ctn", {
+  mainTimeline.fromTo(".box-ctn", {
     delay: 4,
     duration: 10,
-    transform: "scale(4)",
+    transform: " translate(-0.5535px, 39.3861px) rotate(6.1998deg) skew(8.5002deg, 1deg) scale(1.0075, 0.9851)",
+    opacity: 1,
+    xPercent: 0,
+    top: "35%",
+  },
+  {
+    delay: 4,
+    duration: 10,
+    transform: "translate(-2.5535px, 39.3861px) rotate(7.2deg) skew(10.5002deg, 0deg) scale(4)",
     opacity: 0,
     xPercent: -100,
     top: "30%",

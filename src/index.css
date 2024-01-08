@@ -569,10 +569,8 @@ section.portfolio .box-ctn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 30%;
-  background-color: transparent;
-  transform: skew(3.5deg, 7deg) translate(-5px, 40px);
+  width: 483px;
+  height: 269px;
 }
 
 section.portfolio .vid-overlay {
