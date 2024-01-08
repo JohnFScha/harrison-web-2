@@ -43,6 +43,23 @@ body {
   cursor: none;
 }
 
+.alert {
+  border-radius: 15px;
+  font-family: 'Montserrat';
+  padding: 1rem;
+  background-color: #D9D9D9;
+  color: #000;
+}
+
+.alert .swal2-confirm {
+  border-radius: 15px;
+  font-family: 'Montserrat';
+}
+
+.alert .swal2-html-container {
+  margin: 1rem;
+}
+
 main {
   position: fixed;
   margin: 0;
@@ -1563,7 +1580,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   nav section#menu ul #logo-menu {
     position: fixed;
-    top: 0;
+    top: 10px;
     left: 0;
     margin: 1rem 1.5rem;
   }
@@ -1708,8 +1725,8 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   section.portfolio .box-ctn {
-    width: 7.8rem;
-    height: 4.6rem;
+    width: 7.5rem;
+    height: 4rem;
     bottom: 15%;
     background-color: transparent;
   }

@@ -61,11 +61,9 @@ function renderCountdown(time) {
   }
 }
 
-/* gsap config */
+/* scroll config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-/* Lenis config */
 
 const lenis = new Lenis();
 
@@ -76,6 +74,9 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+/* scroll config */
+
+
 window.onload = () => {
   const init = document.getElementById("init");
   init.style.animation = "fadeOutAnimation 1s";
@@ -85,6 +86,16 @@ window.onload = () => {
 };
 
 if (isMobile()) {
+  Swal.fire({
+    title: '¡HOLA!',
+    text: 'Para una mejor experiencia, te invitamos a visitar nuestra web desde una computadora',
+    showConfirmButton: true,
+    showCancelButton: false,
+    confirmButtonColor: '#1D3E4E',
+    confirmButtonText: 'CONTINUAR',
+    position: 'bottom',
+    customClass: 'alert'
+  })  
   const timeout = setTimeout(() => {
     window.location.href = "/error"; // Adjust the path as needed
   }, 20000); // 10 seconds in milliseconds  
@@ -1443,6 +1454,7 @@ if (isMobile()) {
 }
 
 if (isMobile()) {
+
   mainTimeline.fromTo(
     ".vid-overlay",
     {
@@ -1454,6 +1466,7 @@ if (isMobile()) {
       duration: 1,
     }
   );
+
   mainTimeline.fromTo(
     ".box-ctn",
     {
@@ -1465,10 +1478,22 @@ if (isMobile()) {
       duration: 5,
     }
   );
-  mainTimeline.to(".box-ctn", {
+
+  mainTimeline.to('.box-ctn', {
+    opacity: 0,
+  })
+
+  mainTimeline.fromTo(".box-ctn", 
+  {
     delay: -2,
     duration: 9,
-    scale: 4.1,
+    top: '74.2652%',
+    transform: 'translate(-3.5535px, 43.3861px) rotate(7.19985deg) skew(9.50025deg, 0deg) scale(1.0077, 0.9824)'
+  },
+  {
+    delay: -2,
+    duration: 9,
+    transform: 'translate(-3.5535px, 43.3861px) rotate(7.19985deg) skew(9.50025deg, 0deg) scale(4.1)',
     top: "50%",
   });
 } else {
