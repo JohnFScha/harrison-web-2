@@ -105,8 +105,8 @@ main .subCtn .social a img {
 }
 
 main .subCtn .social {
-    position: fixed;
-    right: 0;
+    /* position: fixed;
+    right: 0; */
 }
 
 p {

@@ -7,5 +7,5 @@ if (window.innerWidth <= 390) {
 }
 
 back.addEventListener('click', () => {
-  window.history.back()
+  window.location.replace('/')
 })
