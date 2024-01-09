@@ -950,22 +950,42 @@ mainTimeline.fromTo(
 
 const cameraFrames = gsap.utils.toArray("#video-camara img");
 
-cameraFrames.forEach((img, index) => {
-  mainTimeline.fromTo(
-    img,
-    {
-      display: "none",
-    },
-    {
-      display: "block",
-      stagger: 0.1,
-      duration: 0.1,
+if (isMobile()) {
+  cameraFrames.forEach((img, index) => {
+    mainTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.1,
+        duration: 0.1,
+      }
+    );
+    if (index < cameraFrames.length - 1) {
+      mainTimeline.set(img, { display: "none" });
     }
-  );
-  if (index < cameraFrames.length - 1) {
-    mainTimeline.set(img, { display: "none" });
-  }
-});
+  });
+  
+} else {
+  cameraFrames.forEach((img, index) => {
+    mainTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.3,
+        duration: 0.2,
+      }
+    );
+    if (index < cameraFrames.length - 1) {
+      mainTimeline.set(img, { display: "none" });
+    }
+  });
+}
 
 if(!isMobile()) {
   mainTimeline.fromTo(
@@ -1050,12 +1070,12 @@ mainTimeline.fromTo(
   {
     display: "none",
     duration: 2,
-    delay: -50,
+    delay: 0,
   },
   {
     display: "block",
     duration: 2,
-    delay: -50,
+    delay: 0,
   }
 );
 
@@ -1064,12 +1084,12 @@ mainTimeline.fromTo(
   {
     opacity: 0,
     scale: 0,
-    duration: 5,
+    duration: 2,
   },
   {
     opacity: 1,
     scale: 1,
-    duration: 5,
+    duration: 2,
     scrollTrigger: "#nav .social-ctn .social-nav",
   }
 );
@@ -1079,12 +1099,12 @@ mainTimeline.fromTo(
   {
     opacity: 0,
     scale: 0,
-    duration: 5,
+    duration: 2,
   },
   {
     opacity: 1,
     scale: 1,
-    duration: 5,
+    duration: 2,
     scrollTrigger: "#nav button",
   }
 );
