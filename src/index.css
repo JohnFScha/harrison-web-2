@@ -499,6 +499,7 @@ section.portfolio .txt-row {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 2rem;
 }
 
 section.portfolio .dup-ctn {
@@ -1666,6 +1667,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   body #intro #video #texto .spanIntroCtn span {
     font-size: 2.2rem;
+    color: #d1d821;
   }
 
   /* ============= portfolio ============ */
@@ -1681,6 +1683,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   section.portfolio .txt-ctn-2 .txt-row {
     height: 450px;
+    margin: 0;
   }
 
   body #intro #video #texto p,
@@ -1694,6 +1697,7 @@ div#textAllCtn .letter-container .spacerSpan {
   section.portfolio .dup-ctn span {
     letter-spacing: -5px;
     line-height: 2.2rem;
+    color: #d1d821;
   }
 
   section.portfolio .bg-rodaje,
@@ -1839,9 +1843,13 @@ div#textAllCtn .letter-container .spacerSpan {
     width: 250px;
   }
 
-  #middle #text-container p,
+  #middle #text-container p {
+    font-size: 2rem;
+  }
+
   #middle #text-container #letter-ctn span {
     font-size: 2rem;
+    color: #d1d821;
   }
 
   #middle #text-container p:nth-child(1) {
@@ -1955,6 +1963,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span {
+    color: #d1d821;
     font-size: 1.6rem;
   }
 
@@ -2017,9 +2026,13 @@ div#textAllCtn .letter-container .spacerSpan {
     font-size: 0;
   }
 
-  #textAllCtn>p.letter-container {
+  #textAllCtn p.letter-container {
     display: block;
     width: 350px;
+  }
+
+  #textAllCtn p.letter-container .charSpan {
+    color: #d1d821;
   }
 
   #textAllCtn>p.letter-container .spacerSpan {
