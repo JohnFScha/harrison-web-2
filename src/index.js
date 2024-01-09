@@ -1070,12 +1070,12 @@ mainTimeline.fromTo(
   {
     display: "none",
     duration: 2,
-    delay: 0,
+    delay: 2,
   },
   {
     display: "block",
     duration: 2,
-    delay: 0,
+    delay: 2,
   }
 );
 
