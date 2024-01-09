@@ -2094,7 +2094,7 @@ if (isMobile()) {
     {
       y: 150,
       x: 0,
-      duration: 25,
+      duration: 15,
     }
   );
 
@@ -2107,20 +2107,19 @@ if (isMobile()) {
     {
       y: 150,
       x: 0,
-      duration: 30,
+      duration: 20,
       delay: -18,
     }
   );
 
   mainTimeline.to("#p1", {
-    delay: 20,
-    duration: 30,
+    delay: 10,
+    duration: 20,
     y: -2000,
   });
 
   mainTimeline.to("#p2", {
-    delay: -30,
-    duration: 20,
+    duration: 10,
     y: -50,
   });
 
@@ -2141,13 +2140,13 @@ if (isMobile()) {
   mainTimeline.to("#rect3", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
     fill: "#D9D9D9",
-    duration: 1,
+    duration: 5,
   });
 
   mainTimeline.to("#rect4", {
     attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
     fill: "#CBDB43",
-    duration: 1,
+    duration: 5,
   });
 
   mainTimeline
@@ -2303,12 +2302,12 @@ mainTimeline.fromTo(
   "#progressbar-ctn",
   {
     opacity: 1,
-    duration: 100,
+    duration: 5,
   },
   {
     opacity: 0,
-    duration: 2,
-    delay: 20,
+    duration: 5,
+    delay: 0,
   }
 );
 
@@ -2337,21 +2336,21 @@ if (isMobile()) {
       y: -1000,
       transform: "scale(2.5)",
       duration: 10,
-      delay: -20,
+      delay: 0,
       opacity: 0,
     },
     {
-      delay: -20,
+      delay: 0,
       y: 0,
       transform: "scale(1.6)",
-      duration: 20,
+      duration: 10,
       opacity: 1,
     }
   );
   
   mainTimeline.to("#svgOutro", {
-    delay: 10,
-    duration: 50,
+    delay: 5,
+    duration: 35,
     rotateY: 809,
   });
 
@@ -2461,7 +2460,7 @@ mainTimeline.to(".charSpan", {
 mainTimeline.to("#textAllCtn", {
   scale: 0.6,
   y: -100,
-  duration: 15,
+  duration: 5,
 });
 
 mainTimeline.to(".subTextContainer", {
@@ -2483,8 +2482,8 @@ mainTimeline.fromTo(
 
 mainTimeline.fromTo(
   ".svgSocial",
-  { scale: 0, duration: 10 },
-  { scale: 1, duration: 10 }
+  { scale: 0, duration: 5 },
+  { scale: 1, duration: 5 }
 );
 
 mainTimeline.staggerTo(
@@ -2493,7 +2492,7 @@ mainTimeline.staggerTo(
   {
     color: "#D1D821",
     opacity: 1,
-    duration: 25,
+    duration: 10,
   },
   0.5
 );
