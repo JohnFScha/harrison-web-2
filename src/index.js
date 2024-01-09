@@ -61,9 +61,11 @@ function renderCountdown(time) {
   }
 }
 
-/* scroll config */
+/* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+/* Lenis config */
 
 const lenis = new Lenis();
 
@@ -73,9 +75,6 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
-
-/* scroll config */
-
 
 window.onload = () => {
   const init = document.getElementById("init");
@@ -113,7 +112,6 @@ if (isMobile()) {
   });
 }
 
-
 /* ********* Timeline ********* */
 
 const mainTimeline = gsap.timeline({
@@ -128,6 +126,7 @@ const mainTimeline = gsap.timeline({
 });
 
 /* ************* DOM elements ************ */
+
 const html = document.querySelector("html");
 const body = document.getElementById("body");
 const collapse = document.getElementById("collapse");
@@ -430,6 +429,7 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
+
 middleVideo.addEventListener("ended", () => {
   middleVideo.style.display = "none";
   gsap.to(window, {
@@ -452,6 +452,7 @@ let childTitleCtn = document.querySelectorAll(".child .title-ctn");
 
 if (isMobile()) {
   let isOpen = false;
+  // console.log(txtContainers);
 
   expandBtns.forEach((btn, index) => {
     btn.addEventListener("click", () => {
@@ -526,7 +527,6 @@ if (isMobile()) {
 
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
-    // let originalWidth = getComputedStyle(event.currentTarget).width;
 
     gsap.to(event.currentTarget, 0.7, {
       width: "2000px",
@@ -595,7 +595,7 @@ if (isMobile()) {
 
 /* ******************  dom manipulation ****************** */
 if (isMobile()) {
-  // bgVideo.src = "";
+  bgVideo.src = "";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
@@ -612,7 +612,7 @@ if (isMobile()) {
 </div>
   `;
 } else {
-  // bgVideo.src = "src/assets/fondo-verde.webm";
+  bgVideo.src = "src/assets/fondo-verde.webm";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
@@ -823,6 +823,7 @@ liElements.forEach((liElement, index) =>
     newVideo.id = "modalVideo";
     let swapSrc = document.createElement("source");
     swapSrc.src = videos[index];
+    newVideo.controls = true
     newVideo.appendChild(swapSrc);
     modalContent.appendChild(newVideo);
     modal.classList.remove("hidden");
@@ -982,7 +983,12 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.to(".fill", {
+mainTimeline.fromTo(".fill", {
+  color: "transparent",
+  stagger: 3,
+  duration: 10,
+  delay: -20,
+},{
   color: "#D1D821",
   stagger: 3,
   duration: 10,
@@ -997,8 +1003,8 @@ mainTimeline.to("#texto", {
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 10,
-  delay: 20,
+  duration: 20,
+  delay: -10,
 });
 
 mainTimeline.fromTo(
@@ -1021,10 +1027,12 @@ mainTimeline.fromTo(
   "#portfolio",
   {
     display: "none",
+    duration: 2,
     delay: -50,
   },
   {
     display: "block",
+    duration: 2,
     delay: -50,
   }
 );
@@ -1093,14 +1101,14 @@ if (isMobile()) {
     ".bg-rodaje",
     {
       yPercent: 40,
-      duration: 10,
+      duration: 25,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
     },
     {
       yPercent: 0,
-      duration: 10,
+      duration: 25,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
@@ -1111,13 +1119,13 @@ if (isMobile()) {
     ".sup-rodaje",
     {
       delay: 3,
-      duration: 15,
+      duration: 23,
       yPercent: 50,
       ease: "power1.inOut",
     },
     {
       delay: 3,
-      duration: 15,
+      duration: 23,
       yPercent: 0,
       ease: "power1.inOut",
     }
@@ -1145,6 +1153,8 @@ mainTimeline.fromTo(
   {
     opacity: 0,
     y: 200,
+    duration: 2,
+    delay: -5,
   },
   {
     opacity: 1,
@@ -1426,17 +1436,12 @@ if (isMobile()) {
     {
       delay: 4,
       duration: 5,
-      scale: 30,
-      y: 1300,
-      transformOrigin: "50% 100%",
+      scale: 40,
+      y: 1400,
+      transformOrigin: "50% 99%",
       scrollTrigger: ".box-ctn",
     }
   );
-  mainTimeline.to("#portfolio", {
-    filter: "blur(100px)",
-    duration: 5,
-    delay: 5
-  });
 } else {
   mainTimeline.to(".sup-rodaje", {
     backgroundColor: "transparent",
@@ -1446,15 +1451,14 @@ if (isMobile()) {
   mainTimeline.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
-    width: "450%",
-    left: "-290%",
-    top: "-200%",
+    width: "700%",
+    left: "-480%",
+    top: "-300%",
     scrollTrigger: ".box-ctn",
   });
 }
 
 if (isMobile()) {
-
   mainTimeline.fromTo(
     ".vid-overlay",
     {
@@ -1466,7 +1470,6 @@ if (isMobile()) {
       duration: 1,
     }
   );
-
   mainTimeline.fromTo(
     ".box-ctn",
     {
@@ -1478,45 +1481,32 @@ if (isMobile()) {
       duration: 5,
     }
   );
-
   mainTimeline.to('.box-ctn', {
     opacity: 0,
+    duration: 2,
+    delay: -4
   })
-
-  mainTimeline.fromTo(".box-ctn", 
-  {
+  mainTimeline.to(".box-ctn", {
     delay: -2,
-    duration: 9,
-    top: '74.2652%',
-    transform: 'translate(-3.5535px, 43.3861px) rotate(7.19985deg) skew(9.50025deg, 0deg) scale(1.0077, 0.9824)'
-  },
-  {
-    delay: -2,
-    duration: 9,
-    transform: 'translate(-3.5535px, 43.3861px) rotate(7.19985deg) skew(9.50025deg, 0deg) scale(4.1)',
+    duration: 7,
+    transform: "scale(4.1)",
     top: "50%",
   });
 } else {
-  mainTimeline.fromTo(".box-ctn", {
+  mainTimeline.fromTo(".box-ctn", 
+  {
     delay: 4,
     duration: 10,
-    transform: " translate(-0.5535px, 39.3861px) rotate(6.1998deg) skew(8.5002deg, 1deg) scale(1.0075, 0.9851)",
-    opacity: 1,
-    xPercent: 0,
-    top: "35%",
+    transform: "translate(-3.5535px, 50.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851)",
+    xPercent: -0,
+    top: "34.9998%",
   },
   {
     delay: 4,
     duration: 10,
-    transform: "translate(-2.5535px, 39.3861px) rotate(7.2deg) skew(10.5002deg, 0deg) scale(4)",
-    opacity: 0,
+    transform: "scale(4) skew(3.5deg, 7deg) translate(-5px, 40px)",
     xPercent: -100,
     top: "30%",
-  });
-  mainTimeline.to("#portfolio", {
-    filter: "blur(100px)",
-    duration: 10,
-    delay: -8,
   });
 }
 
@@ -1580,7 +1570,7 @@ mainTimeline.fromTo(
     duration: 4,
     onStart: () => {
       middleVideo.play();
-    },
+    }
   }
 );
 
@@ -1634,7 +1624,7 @@ mainTimeline.fromTo(
   },
   {
     delay: -10,
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 5,
   }
 );
@@ -1717,7 +1707,7 @@ if (isMobile()) {
   mainTimeline.fromTo(
     ".acc-borders",
     {
-      opacity: 1,
+      opacity: 0,
       x: 1000,
       duration: 20,
       width: "0vw",
@@ -1746,8 +1736,12 @@ if (isMobile()) {
         duration: 20,
         delay: -5,
       }
-    )
-    .addLabel("servicios");
+    ).addLabel("servicios");
+    mainTimeline.fromTo("#middle #text-container", {
+      display: "flex"
+    }, {
+      display: "none"
+    });
 } else {
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -1760,6 +1754,11 @@ if (isMobile()) {
       duration: 30,
     }
   );
+  mainTimeline.fromTo("#middle #text-container", {
+    display: "flex"
+  }, {
+    display: "none"
+  });
   mainTimeline.to(".acc-borders", {
     opacity: 1,
     x: 0,
@@ -1855,43 +1854,44 @@ mainTimeline.fromTo(
   }
 );
 
-/* mainTimeline.fromTo("svg#TEXT", {
-  opacity: 0,
-  duration: 0
-}, {
-  opacity: 1,
-  duration: 0
-}); */
-
-// mainTimeline.to("#video-tiempo", {
-//   scrollTrigger: {
-//     trigger: "#video-tiempo",
-//     onEnter: () => {
-//       startCountdown();
-//     },
-//     onLeave: () => {
-//       stopCountdown();
-//     }
-//   }
-// });
-
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    zIndex: -1,
-    rotateX: 115.3,
-  },
-  {
-    zIndex: 4,
-    rotateX: 0,
-    // translateY: -90,
-    duration: 10,
-    scrollTrigger: ".accordion",
-    onStart: () => {
-      startCountdown();
+if (isMobile()) {
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
     },
-  }
-);
+    {
+      zIndex: 4,
+      rotateX: 0,
+      // translateY: -90,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+} else {
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      // translateY: -90,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+}
+
 
 mainTimeline.to("#video-tiempo #text-container-2 .text", {
   y: 1500,
@@ -2011,7 +2011,7 @@ mainTimeline.fromTo(
     duration: 0,
   },
   {
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 0,
   }
 );
@@ -2031,13 +2031,6 @@ mainTimeline.fromTo(
 /* *********** TIEMPO SCROLLING ********** */
 
 /* **************** SECCION FINAL ***************** */
-
-/* const carouselCtn = document.getElementById("carousel-container");
-const carousel = document.getElementById("carouselFig");
-
-if (carouselCtn.style.transform === "scale(1)") {
-  carousel.style.animation = "rotateAnim 30s infinite forwards";
-} */
 
 mainTimeline.fromTo(
   "#txt-container-2",
@@ -2093,7 +2086,6 @@ if (isMobile()) {
     delay: -30,
     duration: 20,
     y: -50,
-    // scrollTrigger: '#mobileBrandsCtn'
   });
 
   mainTimeline.fromTo(
@@ -2134,7 +2126,7 @@ if (isMobile()) {
       y: 0,
       x: 0,
       duration: 5,
-      // scrollTrigger: '#p2'
+      scrollTrigger: '#progressbar-ctn'
     }
   ).addLabel('clientes');
 } else {
@@ -2290,12 +2282,12 @@ mainTimeline.to("#progressbar-ctn", {
 mainTimeline.fromTo(
   ".bg-video",
   {
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 12,
     delay: -15,
   },
   {
-    opacity: 0.2,
+    opacity: 0.8,
     duration: 12,
     delay: -15,
   }
