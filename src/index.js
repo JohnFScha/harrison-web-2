@@ -958,8 +958,8 @@ cameraFrames.forEach((img, index) => {
     },
     {
       display: "block",
-      stagger: 0.3,
-      duration: 0.2,
+      stagger: 0.1,
+      duration: 0.1,
     }
   );
   if (index < cameraFrames.length - 1) {
@@ -967,20 +967,37 @@ cameraFrames.forEach((img, index) => {
   }
 });
 
-mainTimeline.fromTo(
-  "#texto",
-  {
-    transform: "scale(0)",
-    opacity: 0,
-    duration: 10,
-  },
-  {
-    transform: "scale(1)",
-    opacity: 1,
-    duration: 30,
-    delay: -30,
-  }
-);
+if(!isMobile()) {
+  mainTimeline.fromTo(
+    "#texto",
+    {
+      transform: "scale(0)",
+      opacity: 0,
+      duration: 10,
+    },
+    {
+      transform: "scale(1)",
+      opacity: 1,
+      duration: 30,
+      delay: -30,
+    }
+  );  
+} else {
+  mainTimeline.fromTo(
+    "#texto",
+    {
+      transform: "scale(0)",
+      opacity: 0,
+      duration: 10,
+    },
+    {
+      transform: "scale(1)",
+      opacity: 1,
+      duration: 10,
+      delay: -15,
+    }
+  );
+}
 
 if (!isMobile()) {
   mainTimeline.fromTo(
