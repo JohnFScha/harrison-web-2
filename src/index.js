@@ -120,7 +120,7 @@ const mainTimeline = gsap.timeline({
     trigger: "main.wrapper",
     start: "top top",
     end: "bottom+=2000% bottom",
-    scrub: true,
+    scrub: 5,
     pin: true,
     inertia: true
   },
@@ -993,8 +993,8 @@ if (isMobile()) {
       },
       {
         display: "block",
-        stagger: 0.1,
-        duration: 0.1,
+        stagger: 1,
+        duration: 2,
       }
     );
     if (index < cameraFrames.length - 1) {
@@ -1031,7 +1031,7 @@ if (!isMobile()) {
     {
       transform: "scale(1)",
       opacity: 1,
-      duration: 30,
+      duration: 10,
       delay: -30,
     }
   );
@@ -1041,12 +1041,12 @@ if (!isMobile()) {
     {
       transform: "scale(0)",
       opacity: 0,
-      duration: 10,
+      duration: 20,
     },
     {
       transform: "scale(1)",
       opacity: 1,
-      duration: 10,
+      duration: 20,
       delay: -15,
     }
   );
@@ -1057,14 +1057,14 @@ if (!isMobile()) {
     ".fill",
     {
       color: "transparent",
-      stagger: 3,
-      duration: 10,
+      stagger: 1,
+      duration: 5,
       delay: -20,
     },
     {
       color: "#D1D821",
-      stagger: 3,
-      duration: 10,
+      stagger: 1,
+      duration: 5,
       delay: -20,
     }
   );
@@ -1072,13 +1072,13 @@ if (!isMobile()) {
 
 mainTimeline.to("#texto", {
   y: -800,
-  duration: 30,
+  duration: 10,
   delay: -1,
 });
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 20,
+  duration: 10,
   delay: -10,
 });
 
@@ -2052,7 +2052,7 @@ if (!isMobile()) {
     {
       color: "rgb(203, 219, 67)",
       stagger: 0.5,
-      duration: 4,
+      duration: 5,
       delay: 1,
     }
   );
@@ -2500,15 +2500,13 @@ if (isMobile()) {
 }
 
 if (!isMobile()) {
-  mainTimeline.staggerTo(
+  mainTimeline.to(
     [".charSpan"],
-    1,
     {
       color: "#D1D821",
-      stagger: 1,
-      duration: 20,
-    },
-    2
+      stagger: 0.5,
+      duration: 5,
+    }
   );
 }
 
