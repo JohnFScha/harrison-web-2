@@ -2293,14 +2293,24 @@ if (!isMobile()) {
     )
     .addLabel("clientes");
 }
+if (isMobile()) {
+  mainTimeline.to("#txt-container-2", {
+    delay: 30,
+    y: 800,
+    duration: 10,
+    transform: "scale(0.5)",
+    opacity: 0,
+  })
 
-mainTimeline.to("#txt-container-2", {
-  delay: 30,
-  y: 800,
-  duration: 30,
-  transform: "scale(0.5)",
-  opacity: 0,
-});
+} else {
+  mainTimeline.to("#txt-container-2", {
+    delay: 30,
+    y: 800,
+    duration: 30,
+    transform: "scale(0.5)",
+    opacity: 0,
+  });
+}
 
 mainTimeline.fromTo(
   "#txt-container-2",
@@ -2351,7 +2361,7 @@ if (isMobile()) {
     {
       y: -1000,
       transform: "scale(2.5)",
-      duration: 10,
+      duration: 2,
       delay: 0,
       opacity: 0,
     },
@@ -2359,7 +2369,7 @@ if (isMobile()) {
       delay: 0,
       y: 0,
       transform: "scale(1.6)",
-      duration: 10,
+      duration: 2,
       opacity: 1,
     }
   );
