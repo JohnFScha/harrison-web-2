@@ -264,7 +264,7 @@ let isRotated = false;
 collapse.addEventListener("click", () => {
   // Check if the timeline is reversing
   const isReversing = menuTl.isActive() && menuTl.reversed();
-
+  
   // Disable the button if the timeline is reversing
   if (isReversing) {
     return;
@@ -308,17 +308,17 @@ links.forEach((a) => {
     } else if (a.innerText.toLowerCase() === `portfolio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-        duration: 3,
+        duration: 2,
       });
     } else if (a.innerText.toLowerCase() === `servicios`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-        duration: 3,
+        duration: 2,
       });
     } else if (a.innerText.toLowerCase() === `clientes`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-        duration: 3,
+        duration: 2,
       });
     }
 
@@ -1248,14 +1248,14 @@ mainTimeline.to(".txt-ctn-1 .txt-row h2", {
 if (!isMobile()) {
   mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
     opacity: 1,
-    stagger: 1,
-    duration: 3,
+    stagger: 0.5,
+    duration: 5,
     scrollTrigger: ".dup-ctn span",
   });
   mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
     color: "#D1D821",
-    stagger: 1,
-    duration: 3,
+    stagger: 0.5,
+    duration: 5,
     delay: 5,
   });
 } else {
@@ -1320,14 +1320,14 @@ mainTimeline.to(".txt-ctn-2 .txt-row h2", {
 if (!isMobile()) {
   mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
     opacity: 1,
-    stagger: 1,
-    duration: 2,
+    stagger: 0.5,
+    duration: 5,
     scrollTrigger: ".dup-ctn span",
   });
   mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
     color: "#D1D821",
-    stagger: 1,
-    duration: 2,
+    stagger: 0.5,
+    duration: 5,
     delay: 4,
   });
 } else {
@@ -1781,8 +1781,8 @@ mainTimeline
 if (!isMobile()) {
   mainTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
-    stagger: 1.5,
-    duration: 3,
+    stagger: 0.5,
+    duration: 5,
   });
 }
 
@@ -2047,13 +2047,13 @@ if (!isMobile()) {
     {
       color: "transparent",
       duration: 4,
-      delay: 15,
+      delay: 1,
     },
     {
       color: "rgb(203, 219, 67)",
-      stagger: 4,
+      stagger: 0.5,
       duration: 4,
-      delay: 15,
+      delay: 1,
     }
   );
 } else {
