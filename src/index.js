@@ -83,13 +83,6 @@ window.onload = () => {
   setTimeout(() => {
     init.style.display = "none";
   }, 1000);
-  if (isMobile()) {
-    document.body.requestFullscreen({
-      navigationUI: 'hide'
-    })
-  } else {
-    
-  }
 };
 
 if (isMobile()) {
