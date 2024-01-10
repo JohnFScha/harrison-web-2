@@ -119,7 +119,7 @@ const mainTimeline = gsap.timeline({
     trigger: "main.wrapper",
     start: "top top",
     end: "bottom+=2000% bottom",
-    scrub: 5,
+    scrub: true,
     pin: true,
     inertia: true
   },
@@ -1143,14 +1143,14 @@ if (isMobile()) {
     ".bg-rodaje",
     {
       yPercent: 40,
-      duration: 25,
+      duration: 15,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
     },
     {
       yPercent: 0,
-      duration: 25,
+      duration: 15,
       opacity: 0.8,
       scrollTrigger: ".sup-rodaje",
       ease: "power1.inOut",
@@ -1161,13 +1161,13 @@ if (isMobile()) {
     ".sup-rodaje",
     {
       delay: 3,
-      duration: 23,
+      duration: 12,
       yPercent: 50,
       ease: "power1.inOut",
     },
     {
       delay: 3,
-      duration: 23,
+      duration: 12,
       yPercent: 0,
       ease: "power1.inOut",
     }
@@ -1211,14 +1211,14 @@ mainTimeline.to(".txt-ctn-1 .txt-row h2", {
   duration: 5,
 });
 
-mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-  opacity: 1,
-  stagger: 1,
-  duration: 3,
-  scrollTrigger: ".dup-ctn span",
-});
 
 if (!isMobile()) {
+  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
+    opacity: 1,
+    stagger: 1,
+    duration: 3,
+    scrollTrigger: ".dup-ctn span",
+  });
   mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
     color: "#D1D821",
     stagger: 1,
@@ -1226,9 +1226,11 @@ if (!isMobile()) {
     delay: 5,
   });
 } else {
+
   mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    duration: 3,
-    delay: 5,
+    opacity: 1, 
+    duration: 5,
+    delay: -5,
   });
 }
 
@@ -1281,14 +1283,14 @@ mainTimeline.to(".txt-ctn-2 .txt-row h2", {
   duration: 4,
 });
 
-mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-  opacity: 1,
-  stagger: 1,
-  duration: 2,
-  scrollTrigger: ".dup-ctn span",
-});
 
 if (!isMobile()) {
+  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
+    opacity: 1,
+    stagger: 1,
+    duration: 2,
+    scrollTrigger: ".dup-ctn span",
+  });
   mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
     color: "#D1D821",
     stagger: 1,
@@ -1297,8 +1299,10 @@ if (!isMobile()) {
   });
 } else {
   mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    duration: 10,
-    delay: 10,
+    opacity: 1,
+    duration: 4,
+    delay: -4,
+    scrollTrigger: ".dup-ctn span",
   });
 }
 
@@ -2123,42 +2127,34 @@ mainTimeline.fromTo(
 
 if (isMobile()) {
   mainTimeline.fromTo(
-    "#p1",
+    "#txt-container-2 p",
     {
       y: 2000,
       x: 0,
     },
     {
-      y: 150,
+      y: 15,
       x: 0,
-      duration: 15,
+      stagger: 1,
+      duration: 10,
     }
   );
 
-  mainTimeline.fromTo(
-    "#p2",
+  mainTimeline
+  .fromTo(
+    "#mobileBrandsCtn",
     {
-      y: 2000,
+      visibility: "hidden",
+      y: 200,
       x: 0,
     },
     {
-      y: 150,
+      visibility: "visible",
+      y: 0,
       x: 0,
-      duration: 20,
-      delay: -18,
+      duration: 2,
     }
   );
-
-  mainTimeline.to("#p1", {
-    delay: 10,
-    duration: 20,
-    y: -2000,
-  });
-
-  mainTimeline.to("#p2", {
-    duration: 10,
-    y: -50,
-  });
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
@@ -2184,25 +2180,8 @@ if (isMobile()) {
     attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
     fill: "#CBDB43",
     duration: 5,
-  });
+  }).addLabel('clientes');
 
-  mainTimeline
-    .fromTo(
-      "#mobileBrandsCtn",
-      {
-        visibility: "hidden",
-        y: 200,
-        x: 0,
-      },
-      {
-        visibility: "visible",
-        y: 0,
-        x: 0,
-        duration: 2,
-        scrollTrigger: "#progressbar-ctn",
-      }
-    )
-    .addLabel("clientes");
 } else {
   mainTimeline.fromTo(
     "#p1",

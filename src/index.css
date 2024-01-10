@@ -1690,7 +1690,7 @@ div#textAllCtn .letter-container .spacerSpan {
   section.portfolio h2,
   section.portfolio .dup-ctn span {
     line-height: 2.6rem;
-    font-size: 2.2rem;
+    font-size: 2rem;
     text-align: center;
   }
 
@@ -1716,7 +1716,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   section.portfolio .txt-ctn-1 .dup-ctn,
   section.portfolio .txt-ctn-2 .dup-ctn {
-    width: 246px;
+    width: 64%;
     margin-top: 5px;
     text-align: center;
     display: block;
