@@ -1073,7 +1073,7 @@ if (!isMobile()) {
 mainTimeline.to("#texto", {
   y: -800,
   duration: 10,
-  delay: -1,
+  delay: -10,
 });
 
 mainTimeline.to("#intro", {
@@ -1891,7 +1891,7 @@ if (isMobile()) {
 mainTimeline.to(".accordion", {
   rotateX: -69.3,
   duration: 10,
-  delay: 30,
+  delay: 10,
 });
 
 mainTimeline.to(".accordion", {
