@@ -118,10 +118,10 @@ const mainTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "main.wrapper",
     start: "top top",
-    end: "bottom+=3000% bottom",
-    scrub: true,
+    end: "bottom+=2000% bottom",
+    scrub: 5,
     pin: true,
-    inertia: true,
+    inertia: true
   },
 });
 
@@ -864,6 +864,7 @@ closeModal.addEventListener("click", () => {
   body.style.position = "absolute";
   gsap.to(window, {
     scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+    duration: 0
   });
 
   // mainTimeline.scrollTrigger.enable(true);
@@ -967,7 +968,6 @@ if (isMobile()) {
       mainTimeline.set(img, { display: "none" });
     }
   });
-  
 } else {
   cameraFrames.forEach((img, index) => {
     mainTimeline.fromTo(
@@ -987,7 +987,7 @@ if (isMobile()) {
   });
 }
 
-if(!isMobile()) {
+if (!isMobile()) {
   mainTimeline.fromTo(
     "#texto",
     {
@@ -1001,7 +1001,7 @@ if(!isMobile()) {
       duration: 30,
       delay: -30,
     }
-  );  
+  );
 } else {
   mainTimeline.fromTo(
     "#texto",
@@ -1625,7 +1625,7 @@ mainTimeline.fromTo(
     opacity: 1,
     duration: 4,
     onStart: () => {
-      middleVideo.play();
+      middleVideo.play()
     },
   }
 );
@@ -1654,7 +1654,7 @@ mainTimeline.fromTo(
     duration: 10,
     delay: 20,
     onComplete: () => {
-      middleVideo.pause();
+      middleVideo.pause()
     },
   }
 );
@@ -1831,7 +1831,7 @@ if (isMobile()) {
     x: 0,
     duration: 20,
     width: "400vw",
-    delay: -30,
+    delay: -35,
   });
 
   mainTimeline
@@ -2384,7 +2384,7 @@ if (isMobile()) {
       opacity: 1,
     }
   );
-  
+
   mainTimeline.to("#svgOutro", {
     delay: 5,
     duration: 35,
@@ -2441,7 +2441,7 @@ if (isMobile()) {
   );
   mainTimeline.to("#svgOutro", {
     delay: 10,
-    duration: 70,
+    duration: 20,
     rotateY: 809,
   });
 
@@ -2466,13 +2466,13 @@ if (isMobile()) {
     {
       visibility: "hidden",
       rotateY: -90,
-      duration: 8,
+      duration: 10,
     },
     {
       visibility: "visible",
       rotateY: 0,
       duration: 10,
-      delay: 15,
+      delay: 10,
     }
   );
 }
@@ -2484,7 +2484,7 @@ if (!isMobile()) {
     {
       color: "#D1D821",
       stagger: 1,
-      duration: 80,
+      duration: 20,
     },
     2
   );
