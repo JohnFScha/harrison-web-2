@@ -940,12 +940,12 @@ mainTimeline.fromTo(
   "#scrollea",
   {
     opacity: 1,
-    duration: 8,
+    duration: 2,
     x: 0,
   },
   {
     opacity: 0,
-    duration: 8,
+    duration: 2,
     x: -100,
   }
 );

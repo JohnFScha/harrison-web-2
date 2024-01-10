@@ -1755,7 +1755,7 @@ div#textAllCtn .letter-container .spacerSpan {
     align-items: center;
     width: 50%;
     padding-left: 0;
-    margin-top: -65%;
+    margin-top: -40%;
   }
 
   section.portfolio ol li {
@@ -1808,6 +1808,7 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 4rem;
     bottom: 15%;
     background-color: transparent;
+    transform: translate(-4.5535px, 32.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851) !important;
   }
 
   section.portfolio .vid-overlay {
