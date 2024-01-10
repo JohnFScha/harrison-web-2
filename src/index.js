@@ -61,6 +61,7 @@ function renderCountdown(time) {
   }
 }
 
+
 /* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -463,14 +464,28 @@ if (isMobile()) {
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
             txtInnerCtn[0].classList.add("reveal");
+            txtInnerCtn[1].classList.remove('reveal')
+            txtInnerCtn[2].classList.remove('reveal')
+            txtInnerCtn[3].classList.remove('reveal')
+            expandBtns[1].disabled = true
+            expandBtns[2].disabled = true
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
+            txtInnerCtn[0].classList.remove('reveal')
+            txtInnerCtn[3].classList.remove('reveal')
             gsap.to(ctn[2], 0.3, {
               y: 100,
             });
+            expandBtns[0].disabled = true
+            expandBtns[2].disabled = true
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
+            txtInnerCtn[0].classList.remove('reveal')
+            txtInnerCtn[1].classList.remove('reveal')
+            txtInnerCtn[2].classList.remove('reveal')
+            expandBtns[0].disabled = true
+            expandBtns[1].disabled = true
           }
         }
 
@@ -493,14 +508,20 @@ if (isMobile()) {
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
             txtInnerCtn[0].classList.remove("reveal");
+            expandBtns[1].disabled = false
+            expandBtns[2].disabled = false
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
             gsap.to(ctn[2], 0.3, {
               y: 0,
             });
+            expandBtns[0].disabled = false
+            expandBtns[2].disabled = false
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
+            expandBtns[0].disabled = false
+            expandBtns[1].disabled = false
           }
         }
 

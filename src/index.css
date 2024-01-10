@@ -1722,6 +1722,10 @@ div#textAllCtn .letter-container .spacerSpan {
     display: block;
   }
 
+  section.portfolio .txt-ctn-1 .dup-ctn #first-letter {
+    margin-left: 15px;
+  }
+
   section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
   section.portfolio .txt-ctn-2 .dup-ctn span.spacer {
     width: 9px;
