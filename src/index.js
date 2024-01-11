@@ -1722,6 +1722,8 @@ if (!isMobile()) {
     }
   );
 
+  mainTimeline.fromTo(".bg-video", { rotateX: 0 }, { rotateX: 0 });
+
   mainTimeline.fromTo(
     ".bg-video",
     {
@@ -3037,7 +3039,6 @@ if (!isMobile()) {
     {
       zIndex: 4,
       rotateX: 0,
-      // translateY: -90,
       duration: 10,
       scrollTrigger: ".accordion",
       onStart: () => {
