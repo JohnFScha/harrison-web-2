@@ -3210,7 +3210,7 @@ if (!isMobile()) {
     {
       opacity: 1,
       y: 0,
-      duration: 5,
+      duration: 2,
       delay: -2,
     }
   );
@@ -3218,14 +3218,14 @@ if (!isMobile()) {
   mainTimeline.to("#rect3", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
     fill: "#D9D9D9",
-    duration: 5,
+    duration: 2,
   });
 
   mainTimeline
     .to("#rect4", {
       attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
       fill: "#CBDB43",
-      duration: 5,
+      duration: 2,
     })
     .addLabel("clientes");
 
@@ -3262,9 +3262,9 @@ if (!isMobile()) {
   );
 
   mainTimeline.to("#txt-container-2", {
-    delay: 30,
+    delay: 5,
     y: 800,
-    duration: 10,
+    duration: 5,
     transform: "scale(0.5)",
     opacity: 0,
   });
@@ -3285,11 +3285,11 @@ if (!isMobile()) {
     "#progressbar-ctn",
     {
       opacity: 1,
-      duration: 5,
+      duration: 2,
     },
     {
       opacity: 0,
-      duration: 5,
+      duration: 2,
       delay: 0,
     }
   );
@@ -3302,12 +3302,12 @@ if (!isMobile()) {
     ".bg-video",
     {
       opacity: 0.5,
-      duration: 12,
+      duration: 5,
       delay: -15,
     },
     {
       opacity: 0.8,
-      duration: 12,
+      duration: 5,
       delay: -15,
     }
   );
@@ -3332,7 +3332,7 @@ if (!isMobile()) {
 
   mainTimeline.to("#svgOutro", {
     delay: 5,
-    duration: 35,
+    duration: 15,
     rotateY: 809,
   });
 
@@ -3357,13 +3357,13 @@ if (!isMobile()) {
     {
       visibility: "hidden",
       rotateY: -90,
-      duration: 8,
+      duration: 4,
     },
     {
       visibility: "visible",
       rotateY: 0,
-      duration: 10,
-      delay: 15,
+      duration: 4,
+      delay: 5,
     }
   );
 
@@ -3374,7 +3374,7 @@ if (!isMobile()) {
   mainTimeline.to("#textAllCtn", {
     scale: 0.6,
     y: -100,
-    duration: 5,
+    duration: 2,
   });
 
   mainTimeline.to(".subTextContainer", {
@@ -3386,29 +3386,28 @@ if (!isMobile()) {
     "nav .social-ctn a",
     {
       scale: 1,
-      duration: 4,
+      duration: 2,
     },
     {
       scale: 0,
-      duration: 4,
+      duration: 2,
     }
   );
 
   mainTimeline.fromTo(
     ".svgSocial",
-    { scale: 0, duration: 5 },
-    { scale: 1, duration: 5 }
+    { scale: 0, duration: 3 },
+    { scale: 1, duration: 3 }
   );
 
-  mainTimeline.staggerTo(
+  mainTimeline.to(
     [".charSpan2"],
-    3,
     {
       color: "#D1D821",
       opacity: 1,
-      duration: 10,
+      stagger: 0.5,
+      duration: 2,
     },
-    0.5
   );
 
   mainTimeline.fromTo(

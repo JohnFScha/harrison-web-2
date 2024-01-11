@@ -142,7 +142,10 @@ button {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 2rem;
         align-items: center;
+        height: 100vh;
+        margin-top: -5rem;
     }
 
     main .overlay {
@@ -151,32 +154,27 @@ button {
     }
 
     main .titleCtn {
-        position: absolute;
-        top: 31%;
         font-size: 8rem;
         margin: 0rem 0;
     }
 
-    main .titleCtn .error {
-        left: 16%;
-        top: -59%;
+    main .error {
+        left: 22%;
+        top: 9%;
     }
 
     main .subCtn {
-        position: absolute !important;
-        bottom: 29%;
-        color: white;
-        width: 80%;
-        position: inherit;
         display: flex;
         flex-direction: column;
-        margin: -12rem 0;
-        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        margin-top: -3rem;
     }
 
-
     main .subCtn .sub1 {
-        margin-top: 7rem;
+        color: white;
         margin-bottom: 0;
         font-size: 45px;
     }
@@ -189,7 +187,7 @@ button {
     main .subCtn p {
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300;
-        width: 100%;
+        width: 80%;
         margin: 0;
         font-size: 18px;
     }
@@ -198,14 +196,12 @@ button {
         margin: 0;
         padding: 10px;
         font-size: 20px;
-        width: 69%;
+        width: 60%;
         margin: 0 auto;
     }
 
     main .subCtn .social {
-        position: fixed;
-        bottom: 7%;
-        right: 11%;
+        position: initial;
     }
 
     main .subCtn .social a img {
