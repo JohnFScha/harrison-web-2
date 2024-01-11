@@ -170,24 +170,24 @@ button {
         align-items: center;
         width: 100%;
         gap: 1rem;
-        margin-top: -3rem;
+        margin-top: -2rem;
     }
 
     main .subCtn .sub1 {
         color: white;
         margin-bottom: 0;
-        font-size: 45px;
+        font-size: 25px;
     }
 
     main .subCtn .sub2 {
         margin: 0;
-        font-size: 25px;
+        font-size: 20px;
     }
 
     main .subCtn p {
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300;
-        width: 80%;
+        width: 90%;
         margin: 0;
         font-size: 18px;
     }
