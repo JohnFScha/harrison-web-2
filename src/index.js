@@ -351,9 +351,11 @@ if (isMobile()) {
             txtInnerCtn[2].classList.remove("reveal");
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[1].disabled = true;
-            expandBtnImgs[1].style.opacity = 0.5;
             expandBtns[2].disabled = true;
-            expandBtnImgs[2].style.opacity = 0.5;
+            expandBtnImgs[1].src = 'src/assets/X.webp'
+            expandBtnImgs[2].src = 'src/assets/X.webp'
+            expandBtnImgs[1].style.opacity = 0.5
+            expandBtnImgs[2].style.opacity = 0.5
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
@@ -364,8 +366,10 @@ if (isMobile()) {
             });
             expandBtns[0].disabled = true;
             expandBtns[2].disabled = true;
-            expandBtnImgs[0].style.opacity = 0.5;
-            expandBtnImgs[2].style.opacity = 0.5;
+            expandBtnImgs[0].src = 'src/assets/X.webp'
+            expandBtnImgs[2].src = 'src/assets/X.webp'
+            expandBtnImgs[0].style.opacity = 0.5
+            expandBtnImgs[2].style.opacity = 0.5
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
             txtInnerCtn[0].classList.remove("reveal");
@@ -373,8 +377,10 @@ if (isMobile()) {
             txtInnerCtn[2].classList.remove("reveal");
             expandBtns[0].disabled = true;
             expandBtns[1].disabled = true;
-            expandBtnImgs[0].style.opacity = 0.5;
-            expandBtnImgs[1].style.opacity = 0.5;
+            expandBtnImgs[0].src = 'src/assets/X.webp'
+            expandBtnImgs[1].src = 'src/assets/X.webp'
+            expandBtnImgs[0].style.opacity = 0.5
+            expandBtnImgs[1].style.opacity = 0.5
           }
         }
 
@@ -399,8 +405,10 @@ if (isMobile()) {
             txtInnerCtn[0].classList.remove("reveal");
             expandBtns[1].disabled = false;
             expandBtns[2].disabled = false;
-            expandBtnImgs[1].style.opacity = 1;
-            expandBtnImgs[2].style.opacity = 1;
+            expandBtnImgs[1].src = 'src/assets/expand.webp';
+            expandBtnImgs[2].src = 'src/assets/expand.webp';
+            expandBtnImgs[1].style.opacity = 1
+            expandBtnImgs[2].style.opacity = 1
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
@@ -409,14 +417,18 @@ if (isMobile()) {
             });
             expandBtns[0].disabled = false;
             expandBtns[2].disabled = false;
-            expandBtnImgs[0].style.opacity = 1;
-            expandBtnImgs[2].style.opacity = 1;
+            expandBtnImgs[0].src = 'src/assets/expand.webp';
+            expandBtnImgs[2].src = 'src/assets/expand.webp';
+            expandBtnImgs[0].style.opacity = 1
+            expandBtnImgs[2].style.opacity = 1
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[0].disabled = false;
             expandBtns[1].disabled = false;
-            expandBtnImgs[0].style.opacity = 1;
-            expandBtnImgs[1].style.opacity = 1;
+            expandBtnImgs[0].src = 'src/assets/expand.webp';
+            expandBtnImgs[1].src = 'src/assets/expand.webp';
+            expandBtnImgs[0].style.opacity = 1
+            expandBtnImgs[1].style.opacity = 1
           }
         }
 
