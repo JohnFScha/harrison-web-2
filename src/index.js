@@ -61,7 +61,6 @@ function renderCountdown(time) {
   }
 }
 
-
 /* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -112,19 +111,6 @@ if (isMobile()) {
     clearTimeout(timeout);
   });
 }
-
-/* ********* Timeline ********* */
-
-const mainTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "main.wrapper",
-    start: "top top",
-    end: "bottom+=2000% bottom",
-    scrub: 5,
-    pin: true,
-    inertia: true
-  },
-});
 
 /* ************* DOM elements ************ */
 
@@ -261,92 +247,6 @@ menuTl.fromTo(
 
 let isRotated = false;
 
-collapse.addEventListener("click", () => {
-  // Check if the timeline is reversing
-  const isReversing = menuTl.isActive() && menuTl.reversed();
-  
-  // Disable the button if the timeline is reversing
-  if (isReversing) {
-    return;
-  }
-
-  isRotated = !isRotated;
-  icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
-  collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
-
-  if (body.className.match("close")) {
-    body.className = "open";
-    social[0].src = "src/assets/mail-dark.webp";
-    social[1].src = "src/assets/whatsapp-dark.webp";
-    social[2].src = "src/assets/ig-dark.webp";
-    social[3].src = "src/assets/Linkedin-dark.webp";
-  } else if (body.className.includes("open")) {
-    body.className = "close";
-    social[0].src = "src/assets/mail.webp";
-    social[1].src = "src/assets/wsp.webp";
-    social[2].src = "src/assets/ig.webp";
-    social[3].src = "src/assets/Linkedin.webp";
-  }
-  if (menuTl.totalProgress() === 0) {
-    menuTl.play();
-  } else if (menuTl.totalProgress() > 0) {
-    menuTl.reverse();
-  }
-});
-
-let links = gsap.utils.toArray(".nav-link");
-
-links.forEach((a) => {
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    if (a.innerText.toLowerCase() === `inicio`) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-        duration: 0,
-      });
-    } else if (a.innerText.toLowerCase() === `portfolio`) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-        duration: 2,
-      });
-    } else if (a.innerText.toLowerCase() === `servicios`) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-        duration: 2,
-      });
-    } else if (a.innerText.toLowerCase() === `clientes`) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-        duration: 2,
-      });
-    }
-
-    isRotated = !isRotated;
-    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
-    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
-    if (body.className.match("close")) {
-      body.className = "open";
-      social[0].src = "src/assets/mail-dark.webp";
-      social[1].src = "src/assets/whatsapp-dark.webp";
-      social[2].src = "src/assets/ig-dark.webp";
-      social[3].src = "src/assets/Linkedin-dark.webp";
-    } else if (body.className.includes("open")) {
-      body.className = "close";
-      social[0].src = "src/assets/mail.webp";
-      social[1].src = "src/assets/wsp.webp";
-      social[2].src = "src/assets/ig.webp";
-      social[3].src = "src/assets/Linkedin.webp";
-    }
-
-    if (menuTl.paused() || menuTl.totalProgress() === 0) {
-      menuTl.play();
-    } else if (menuTl) {
-      menuTl.reverse();
-    }
-  });
-});
-
 /* ****************** Intro dom ****************** */
 
 const logoCtn = document.getElementById("init");
@@ -430,23 +330,6 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
-middleVideo.addEventListener("ended", () => {
-  middleVideo.style.display = "none";
-  gsap.to(window, {
-    scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-    duration: 3,
-  });
-  middleVideo.currentTime = 0;
-  middleVideo.load();
-});
-
-subir.addEventListener("click", () => {
-  gsap.to(window, {
-    scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-    duration: 2,
-  });
-});
-
 let ctn = document.querySelectorAll(".child");
 let childTitleCtn = document.querySelectorAll(".child .title-ctn");
 
@@ -464,34 +347,34 @@ if (isMobile()) {
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
             txtInnerCtn[0].classList.add("reveal");
-            txtInnerCtn[1].classList.remove('reveal')
-            txtInnerCtn[2].classList.remove('reveal')
-            txtInnerCtn[3].classList.remove('reveal')
-            expandBtns[1].disabled = true
-            expandBtnImgs[1].style.opacity = 0.5
-            expandBtns[2].disabled = true
-            expandBtnImgs[2].style.opacity = 0.5
+            txtInnerCtn[1].classList.remove("reveal");
+            txtInnerCtn[2].classList.remove("reveal");
+            txtInnerCtn[3].classList.remove("reveal");
+            expandBtns[1].disabled = true;
+            expandBtnImgs[1].style.opacity = 0.5;
+            expandBtns[2].disabled = true;
+            expandBtnImgs[2].style.opacity = 0.5;
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
-            txtInnerCtn[0].classList.remove('reveal')
-            txtInnerCtn[3].classList.remove('reveal')
+            txtInnerCtn[0].classList.remove("reveal");
+            txtInnerCtn[3].classList.remove("reveal");
             gsap.to(ctn[2], 0.3, {
               y: 100,
             });
-            expandBtns[0].disabled = true
-            expandBtns[2].disabled = true
-            expandBtnImgs[0].style.opacity = 0.5
-            expandBtnImgs[2].style.opacity = 0.5
+            expandBtns[0].disabled = true;
+            expandBtns[2].disabled = true;
+            expandBtnImgs[0].style.opacity = 0.5;
+            expandBtnImgs[2].style.opacity = 0.5;
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
-            txtInnerCtn[0].classList.remove('reveal')
-            txtInnerCtn[1].classList.remove('reveal')
-            txtInnerCtn[2].classList.remove('reveal')
-            expandBtns[0].disabled = true
-            expandBtns[1].disabled = true
-            expandBtnImgs[0].style.opacity = 0.5
-            expandBtnImgs[1].style.opacity = 0.5
+            txtInnerCtn[0].classList.remove("reveal");
+            txtInnerCtn[1].classList.remove("reveal");
+            txtInnerCtn[2].classList.remove("reveal");
+            expandBtns[0].disabled = true;
+            expandBtns[1].disabled = true;
+            expandBtnImgs[0].style.opacity = 0.5;
+            expandBtnImgs[1].style.opacity = 0.5;
           }
         }
 
@@ -514,26 +397,26 @@ if (isMobile()) {
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
             txtInnerCtn[0].classList.remove("reveal");
-            expandBtns[1].disabled = false
-            expandBtns[2].disabled = false
-            expandBtnImgs[1].style.opacity = 1
-            expandBtnImgs[2].style.opacity = 1
+            expandBtns[1].disabled = false;
+            expandBtns[2].disabled = false;
+            expandBtnImgs[1].style.opacity = 1;
+            expandBtnImgs[2].style.opacity = 1;
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
             gsap.to(ctn[2], 0.3, {
               y: 0,
             });
-            expandBtns[0].disabled = false
-            expandBtns[2].disabled = false
-            expandBtnImgs[0].style.opacity = 1
-            expandBtnImgs[2].style.opacity = 1
+            expandBtns[0].disabled = false;
+            expandBtns[2].disabled = false;
+            expandBtnImgs[0].style.opacity = 1;
+            expandBtnImgs[2].style.opacity = 1;
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
-            expandBtns[0].disabled = false
-            expandBtns[1].disabled = false
-            expandBtnImgs[0].style.opacity = 1
-            expandBtnImgs[1].style.opacity = 1
+            expandBtns[0].disabled = false;
+            expandBtns[1].disabled = false;
+            expandBtnImgs[0].style.opacity = 1;
+            expandBtnImgs[1].style.opacity = 1;
           }
         }
 
@@ -841,68 +724,6 @@ if (isMobile()) {
   }
 }
 
-liElements.forEach((liElement, index) =>
-  liElement.addEventListener("click", () => {
-    if (currentVideo && currentVideo.parentNode) {
-      currentVideo.parentNode.removeChild(currentVideo);
-    }
-    // Save the current scroll position
-    // const scrollPosition = window.scrollY;
-
-    // Disable body scrolling
-    // wrapperCtn.style.overflow = "hidden";
-    let newVideo = document.createElement("video");
-    newVideo.id = "modalVideo";
-    let swapSrc = document.createElement("source");
-    swapSrc.src = videos[index];
-    newVideo.controls = true;
-    newVideo.appendChild(swapSrc);
-    modalContent.appendChild(newVideo);
-    modal.classList.remove("hidden");
-    modal.classList.add("shown");
-    // wrapperCtn.style.top = `-${scrollPosition}px`;
-    newVideo.play();
-    currentVideo = newVideo;
-    // mainTimeline.scrub = 0;
-    // mainTimeline.scrollTrigger.pause();
-    mainTimeline.seek("portfolio");
-    body.style.position = "fixed";
-    gsap.to(window, {
-      scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-    });
-    // wrapperCtn.style.zIndex = "500 !important";
-
-    // mainTimeline.scrollTrigger.disable(false);
-  })
-);
-
-closeModal.addEventListener("click", () => {
-  if (currentVideo) {
-    setTimeout(() => {
-      currentVideo.pause();
-      currentVideo.parentNode.removeChild(currentVideo);
-      currentVideo = null;
-      modal.classList.remove("shown");
-      modal.classList.add("hidden");
-    }, 500);
-
-    // progress.style.zIndex = "0 !important";
-  }
-  wrapperCtn.style.overflow = "";
-  // const scrollPosition = parseInt(document.body.style.top || "0", 10);
-  wrapperCtn.style.top = "";
-  // window.scrollTo(0, -scrollPosition);
-
-  mainTimeline.seek("portfolio");
-  body.style.position = "absolute";
-  gsap.to(window, {
-    scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-    duration: 0
-  });
-
-  // mainTimeline.scrollTrigger.enable(true);
-});
-
 /* ****************** end dom manipulation ****************** */
 
 /* ******** Video frames ******** */
@@ -920,88 +741,234 @@ urls1.forEach((url) => {
   videoCamara.appendChild(img);
 });
 
-/* *********** END TIMELINE ********** */
+if (!isMobile()) {
+  /* ************************** Desktop Timeline ************************** */
 
-/* *********** INTRO SCROLLING ********** */
+  const mainTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: "main.wrapper",
+      start: "top top",
+      end: "bottom+=2000% bottom",
+      scrub: 5,
+      pin: true,
+      inertia: true,
+    },
+  });
 
-mainTimeline
-  .fromTo(
+  /* ********* MENU ********* */
+
+  collapse.addEventListener("click", () => {
+    // Check if the timeline is reversing
+    const isReversing = menuTl.isActive() && menuTl.reversed();
+
+    // Disable the button if the timeline is reversing
+    if (isReversing) {
+      return;
+    }
+
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
+    if (body.className.match("close")) {
+      body.className = "open";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
+    } else if (body.className.includes("open")) {
+      body.className = "close";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
+    }
+    if (menuTl.totalProgress() === 0) {
+      menuTl.play();
+    } else if (menuTl.totalProgress() > 0) {
+      menuTl.reverse();
+    }
+  });
+
+  let links = gsap.utils.toArray(".nav-link");
+
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (a.innerText.toLowerCase() === `inicio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+          duration: 0,
+        });
+      } else if (a.innerText.toLowerCase() === `portfolio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `servicios`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `clientes`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+          duration: 2,
+        });
+      }
+
+      isRotated = !isRotated;
+      icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+      collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+      if (body.className.match("close")) {
+        body.className = "open";
+        social[0].src = "src/assets/mail-dark.webp";
+        social[1].src = "src/assets/whatsapp-dark.webp";
+        social[2].src = "src/assets/ig-dark.webp";
+        social[3].src = "src/assets/Linkedin-dark.webp";
+      } else if (body.className.includes("open")) {
+        body.className = "close";
+        social[0].src = "src/assets/mail.webp";
+        social[1].src = "src/assets/wsp.webp";
+        social[2].src = "src/assets/ig.webp";
+        social[3].src = "src/assets/Linkedin.webp";
+      }
+
+      if (menuTl.paused() || menuTl.totalProgress() === 0) {
+        menuTl.play();
+      } else if (menuTl) {
+        menuTl.reverse();
+      }
+    });
+  });
+
+  /* ***** casos portfolio ***** */
+
+  liElements.forEach((liElement, index) =>
+    liElement.addEventListener("click", () => {
+      if (currentVideo && currentVideo.parentNode) {
+        currentVideo.parentNode.removeChild(currentVideo);
+      }
+      // Save the current scroll position
+      // const scrollPosition = window.scrollY;
+
+      // Disable body scrolling
+      // wrapperCtn.style.overflow = "hidden";
+      let newVideo = document.createElement("video");
+      newVideo.id = "modalVideo";
+      let swapSrc = document.createElement("source");
+      swapSrc.src = videos[index];
+      newVideo.controls = true;
+      newVideo.appendChild(swapSrc);
+      modalContent.appendChild(newVideo);
+      modal.classList.remove("hidden");
+      modal.classList.add("shown");
+      // wrapperCtn.style.top = `-${scrollPosition}px`;
+      newVideo.play();
+      currentVideo = newVideo;
+      // mainTimeline.scrub = 0;
+      // mainTimeline.scrollTrigger.pause();
+      mainTimeline.seek("portfolio");
+      body.style.position = "fixed";
+      gsap.to(window, {
+        scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      });
+      // wrapperCtn.style.zIndex = "500 !important";
+
+      // mainTimeline.scrollTrigger.disable(false);
+    })
+  );
+
+  closeModal.addEventListener("click", () => {
+    if (currentVideo) {
+      setTimeout(() => {
+        currentVideo.pause();
+        currentVideo.parentNode.removeChild(currentVideo);
+        currentVideo = null;
+        modal.classList.remove("shown");
+        modal.classList.add("hidden");
+      }, 500);
+
+      // progress.style.zIndex = "0 !important";
+    }
+    wrapperCtn.style.overflow = "";
+    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
+    wrapperCtn.style.top = "";
+    // window.scrollTo(0, -scrollPosition);
+
+    mainTimeline.seek("portfolio");
+    body.style.position = "absolute";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      duration: 0,
+    });
+
+    // mainTimeline.scrollTrigger.enable(true);
+  });
+
+  /* *********** INTRO SCROLLING ********** */
+
+  mainTimeline
+    .fromTo(
+      "#scrollea",
+      {
+        display: "none",
+      },
+      {
+        display: "flex",
+      }
+    )
+    .addLabel("intro");
+
+  mainTimeline.fromTo(
     "#scrollea",
+    {
+      opacity: 1,
+      duration: 2,
+      x: 0,
+    },
+    {
+      opacity: 0,
+      duration: 2,
+      x: -100,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video",
     {
       display: "none",
     },
     {
       display: "flex",
     }
-  )
-  .addLabel("intro");
+  );
 
-mainTimeline.fromTo(
-  "#scrollea",
-  {
-    opacity: 1,
-    duration: 2,
-    x: 0,
-  },
-  {
-    opacity: 0,
-    duration: 2,
-    x: -100,
-  }
-);
-
-mainTimeline.fromTo(
-  "#scrollea",
-  {
-    display: "flex",
-  },
-  {
-    display: "none",
-  }
-);
-
-mainTimeline.fromTo(
-  "#video",
-  {
-    display: "none",
-  },
-  {
-    display: "flex",
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-camara",
-  {
-    opacity: 0,
-    duration: 5,
-  },
-  {
-    opacity: 1,
-    duration: 5,
-  }
-);
-
-const cameraFrames = gsap.utils.toArray("#video-camara img");
-
-if (isMobile()) {
-  cameraFrames.forEach((img, index) => {
-    mainTimeline.fromTo(
-      img,
-      {
-        display: "none",
-      },
-      {
-        display: "block",
-        stagger: 1,
-        duration: 2,
-      }
-    );
-    if (index < cameraFrames.length - 1) {
-      mainTimeline.set(img, { display: "none" });
+  mainTimeline.fromTo(
+    "#video-camara",
+    {
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      opacity: 1,
+      duration: 5,
     }
-  });
-} else {
+  );
+
+  const cameraFrames = gsap.utils.toArray("#video-camara img");
+
   cameraFrames.forEach((img, index) => {
     mainTimeline.fromTo(
       img,
@@ -1018,9 +985,7 @@ if (isMobile()) {
       mainTimeline.set(img, { display: "none" });
     }
   });
-}
 
-if (!isMobile()) {
   mainTimeline.fromTo(
     "#texto",
     {
@@ -1035,24 +1000,7 @@ if (!isMobile()) {
       delay: -30,
     }
   );
-} else {
-  mainTimeline.fromTo(
-    "#texto",
-    {
-      transform: "scale(0)",
-      opacity: 0,
-      duration: 20,
-    },
-    {
-      transform: "scale(1)",
-      opacity: 1,
-      duration: 20,
-      delay: -15,
-    }
-  );
-}
 
-if (!isMobile()) {
   mainTimeline.fromTo(
     ".fill",
     {
@@ -1068,145 +1016,106 @@ if (!isMobile()) {
       delay: -20,
     }
   );
-}
 
-mainTimeline.to("#texto", {
-  y: -800,
-  duration: 10,
-  delay: -10,
-});
-
-mainTimeline.to("#intro", {
-  opacity: 0,
-  duration: 10,
-  delay: -10,
-});
-
-mainTimeline.fromTo(
-  "#intro",
-  {
-    display: "flex",
-    duration: 0,
-  },
-  {
-    display: "none",
-    duration: 0,
-  }
-);
-
-/* *********** END INTRO SCROLLING ********** */
-
-/* *********** PORTFOLIO SCROLLING ********** */
-
-mainTimeline.fromTo(
-  "#portfolio",
-  {
-    display: "none",
-    duration: 2,
-    delay: 2,
-  },
-  {
-    display: "block",
-    duration: 2,
-    delay: 2,
-  }
-);
-
-mainTimeline.fromTo(
-  "#nav button",
-  {
-    opacity: 0,
-    scale: 0,
-    duration: 2,
-  },
-  {
-    opacity: 1,
-    scale: 1,
-    duration: 2,
-    scrollTrigger: "#nav .social-ctn .social-nav",
-  }
-);
-
-mainTimeline.fromTo(
-  "#nav .social-ctn .social-nav",
-  {
-    opacity: 0,
-    scale: 0,
-    duration: 2,
-  },
-  {
-    opacity: 1,
-    scale: 1,
-    duration: 2,
-    scrollTrigger: "#nav button",
-  }
-);
-
-mainTimeline.fromTo(
-  ".portfolio",
-  {
-    opacity: 0,
-    zIndex: -1,
-    delay: -30,
-  },
-  {
-    opacity: 1,
-    delay: -30,
+  mainTimeline.to("#texto", {
+    y: -800,
     duration: 10,
-    zIndex: 2,
-  }
-);
+    delay: -10,
+  });
 
-mainTimeline.fromTo(
-  "#intro",
-  {
-    zIndex: 1,
-    visibility: "visible",
-  },
-  {
-    zIndex: -1,
-    visibility: "hidden",
-  }
-);
+  mainTimeline.to("#intro", {
+    opacity: 0,
+    duration: 10,
+    delay: -10,
+  });
 
-// Conditional tweens based on screen width
-if (isMobile()) {
-  // If the screen width is 900px or less
   mainTimeline.fromTo(
-    ".bg-rodaje",
+    "#intro",
     {
-      yPercent: 40,
-      duration: 15,
-      opacity: 0.8,
-      scrollTrigger: ".sup-rodaje",
-      ease: "power1.inOut",
+      display: "flex",
+      duration: 0,
     },
     {
-      yPercent: 0,
-      duration: 15,
-      opacity: 0.8,
-      scrollTrigger: ".sup-rodaje",
-      ease: "power1.inOut",
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  /* *********** END INTRO SCROLLING ********** */
+
+  /* *********** PORTFOLIO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "none",
+      duration: 2,
+      delay: 2,
+    },
+    {
+      display: "block",
+      duration: 2,
+      delay: 2,
     }
   );
 
   mainTimeline.fromTo(
-    ".sup-rodaje",
+    "#nav button",
     {
-      delay: 3,
-      duration: 12,
-      yPercent: 50,
-      ease: "power1.inOut",
+      opacity: 0,
+      scale: 0,
+      duration: 2,
     },
     {
-      delay: 3,
-      duration: 12,
-      yPercent: 0,
-      ease: "power1.inOut",
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav .social-ctn .social-nav",
     }
   );
-} else {
-  // If the screen width is greater than 900px
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 2,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav button",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".portfolio",
+    {
+      opacity: 0,
+      zIndex: -1,
+      delay: -30,
+    },
+    {
+      opacity: 1,
+      delay: -30,
+      duration: 10,
+      zIndex: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      zIndex: 1,
+      visibility: "visible",
+    },
+    {
+      zIndex: -1,
+      visibility: "hidden",
+    }
+  );
+
   mainTimeline.to(".bg-rodaje", {
     yPercent: -66,
     duration: 25,
@@ -1221,31 +1130,28 @@ if (isMobile()) {
     yPercent: -66,
     ease: "power1.inOut",
   });
-}
 
-mainTimeline.fromTo(
-  "#progressbar-ctn",
-  {
-    opacity: 0,
-    y: 200,
-    duration: 2,
-    delay: -5,
-  },
-  {
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+      duration: 2,
+      delay: -5,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  );
+
+  mainTimeline.to(".txt-ctn-1 .txt-row h2", {
     opacity: 1,
-    y: 0,
-    duration: 2,
-    delay: -5,
-  }
-);
+    duration: 5,
+  });
 
-mainTimeline.to(".txt-ctn-1 .txt-row h2", {
-  opacity: 1,
-  duration: 5,
-});
-
-
-if (!isMobile()) {
   mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
     opacity: 1,
     stagger: 0.5,
@@ -1258,66 +1164,47 @@ if (!isMobile()) {
     duration: 5,
     delay: 5,
   });
-} else {
 
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    opacity: 1, 
+  mainTimeline.to(".sup-rodaje.zoomed", {
+    duration: 3,
+    opacity: 1,
+    delay: 10,
+  });
+
+  mainTimeline.to(".txt-ctn-1", {
     duration: 5,
-    delay: -5,
+    opacity: 0,
   });
-}
 
-mainTimeline.to(".sup-rodaje.zoomed", {
-  duration: 3,
-  opacity: 1,
-  delay: 10,
-});
-
-mainTimeline.to(".txt-ctn-1", {
-  duration: 5,
-  opacity: 0,
-});
-
-mainTimeline.to("#rect1", {
-  attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-  fill: "#D9D9D9",
-  duration: 1,
-});
-
-mainTimeline.to("#rect2", {
-  attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-  fill: "#CBDB43",
-  duration: 1,
-});
-
-if (isMobile()) {
-  mainTimeline.to(".sup-rodaje", {
-    duration: 10,
-    scale: 2.5,
-    transformOrigin: "49% bottom",
-    scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+  mainTimeline.to("#rect1", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
   });
-} else {
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
+
   mainTimeline.to(".sup-rodaje", {
     duration: 10,
     scale: 2.5,
     transformOrigin: "32% bottom",
     scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
   });
-}
 
-mainTimeline.to(".bg-overlay", {
-  duration: 5,
-  opacity: 0.3,
-});
+  mainTimeline.to(".bg-overlay", {
+    duration: 5,
+    opacity: 0.3,
+  });
 
-mainTimeline.to(".txt-ctn-2 .txt-row h2", {
-  opacity: 1,
-  duration: 4,
-});
+  mainTimeline.to(".txt-ctn-2 .txt-row h2", {
+    opacity: 1,
+    duration: 4,
+  });
 
-
-if (!isMobile()) {
   mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
     opacity: 1,
     stagger: 0.5,
@@ -1330,209 +1217,62 @@ if (!isMobile()) {
     duration: 5,
     delay: 4,
   });
-} else {
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
+
+  mainTimeline.to(".txt-ctn-2", {
+    opacity: 0,
+    duration: 4,
+    delay: 4,
+  });
+
+  mainTimeline.to(".pf-accordion-outer", {
     opacity: 1,
     duration: 4,
-    delay: -4,
-    scrollTrigger: ".dup-ctn span",
+    scrollTrigger: ".bg-overlay",
+    zIndex: 20,
   });
-}
 
-mainTimeline.to(".txt-ctn-2", {
-  opacity: 0,
-  duration: 4,
-  delay: 4,
-});
+  mainTimeline.to(".bg-overlay", {
+    duration: 4,
+    opacity: 0.5,
+    scrollTrigger: ".pf-accordion-outer ol li h2",
+  });
 
-if (isMobile()) {
-  // Additional animations from animateOut()
-  mainTimeline.to(
-    ".ctn-line",
-    {
-      margin: "-12 0",
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".desc-ctn",
-    {
-      y: -100,
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    "section.portfolio li h2",
-    {
-      color: "transparent",
-      height: "auto",
-      duration: 0.5,
-      zIndex: -1,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".preview-video",
-    {
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".vid-overlay",
-    {
-      opacity: 1,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".logo-box",
-    {
-      opacity: 0.4,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-}
-
-mainTimeline.to(".pf-accordion-outer", {
-  opacity: 1,
-  duration: 4,
-  scrollTrigger: ".bg-overlay",
-  zIndex: 20,
-});
-
-mainTimeline.to(".bg-overlay", {
-  duration: 4,
-  opacity: 0.5,
-  scrollTrigger: ".pf-accordion-outer ol li h2",
-});
-
-mainTimeline.to(".pf-accordion-outer ol li h2", {
-  y: 0,
-  opacity: 1,
-  stagger: 1,
-  duration: 3,
-  delay: 2,
-});
-
-mainTimeline
-  .to(".pf-accordion", {
-    delay: 10,
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 0,
     opacity: 1,
-    duration: 2,
-  })
-  .addLabel("portfolio");
+    stagger: 1,
+    duration: 3,
+    delay: 2,
+  });
 
-mainTimeline.to(".pf-accordion", {
-  delay: 5,
-  opacity: 0,
-  duration: 6,
-  scrollTrigger: ".pf-accordion",
-});
-
-mainTimeline.to(".pf-accordion-outer ol li h2", {
-  y: 30,
-  opacity: 0,
-  stagger: 1,
-  delay: 4,
-  duration: 5,
-});
-
-mainTimeline.to(".pf-accordion-outer ol li h2", {
-  duration: 0,
-  display: "none",
-});
-
-if (isMobile()) {
-  // Additional animations from animateOut()
-  mainTimeline.to(
-    ".ctn-line",
-    {
-      margin: "-12 0",
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".desc-ctn",
-    {
-      y: -100,
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    "section.portfolio li h2",
-    {
-      color: "transparent",
-      height: "auto",
-      duration: 0.5,
-      zIndex: -1,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".preview-video",
-    {
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".vid-overlay",
-    {
+  mainTimeline
+    .to(".pf-accordion", {
+      delay: 10,
       opacity: 1,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
+      duration: 2,
+    })
+    .addLabel("portfolio");
 
-  mainTimeline.to(
-    ".logo-box",
-    {
-      opacity: 0.4,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-}
+  mainTimeline.to(".pf-accordion", {
+    delay: 5,
+    opacity: 0,
+    duration: 6,
+    scrollTrigger: ".pf-accordion",
+  });
 
-if (isMobile()) {
-  mainTimeline.fromTo(
-    ".sup-rodaje.zoomed, .sup-rodaje",
-    {
-      transformOrigin: "49% 100%",
-      scale: 2.5,
-      duration: 5,
-      y: 0,
-    },
-    {
-      delay: 4,
-      duration: 5,
-      scale: 40,
-      y: 1400,
-      transformOrigin: "50% 99%",
-      scrollTrigger: ".box-ctn",
-    }
-  );
-} else {
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 30,
+    opacity: 0,
+    stagger: 1,
+    delay: 4,
+    duration: 5,
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    duration: 0,
+    display: "none",
+  });
+
   mainTimeline.to(".sup-rodaje", {
     backgroundColor: "transparent",
     duration: 0,
@@ -1546,43 +1286,7 @@ if (isMobile()) {
     top: "-300%",
     scrollTrigger: ".box-ctn",
   });
-}
 
-if (isMobile()) {
-  mainTimeline.fromTo(
-    ".vid-overlay",
-    {
-      opacity: 1,
-      duration: 1,
-    },
-    {
-      opacity: 0,
-      duration: 1,
-    }
-  );
-  mainTimeline.fromTo(
-    ".box-ctn",
-    {
-      backgroundColor: "transparent",
-      duration: 5,
-    },
-    {
-      backgroundColor: "transparent",
-      duration: 5,
-    }
-  );
-  mainTimeline.to(".box-ctn", {
-    opacity: 0,
-    duration: 2,
-    delay: -4,
-  });
-  mainTimeline.to(".box-ctn", {
-    delay: -2,
-    duration: 7,
-    transform: "scale(4.1)",
-    top: "50%",
-  });
-} else {
   mainTimeline.fromTo(
     ".box-ctn",
     {
@@ -1601,248 +1305,207 @@ if (isMobile()) {
       top: "30%",
     }
   );
-}
 
-mainTimeline.fromTo(
-  "#progressbar-ctn",
-  {
-    opacity: 1,
-    y: 0,
-  },
-  {
-    opacity: 0,
-    y: 200,
-    duration: 5,
-    delay: 0,
-  }
-);
-
-mainTimeline.to(".portfolio", {
-  opacity: 0,
-  duration: 8,
-});
-
-/* *********** END PORTFOLIO SCROLLING ********** */
-
-/* *********** MIDDLE SCROLLING ********** */
-
-mainTimeline.fromTo(
-  "#middle",
-  {
-    opacity: 0,
-    zIndex: -1,
-  },
-  {
-    opacity: 1,
-    duration: 8,
-    delay: -10,
-    zIndex: 3,
-  }
-);
-
-mainTimeline.fromTo(
-  "#middleVidCtn",
-  {
-    display: "none",
-    duration: 0,
-  },
-  {
-    display: "block",
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  "#middleVidCtn",
-  {
-    opacity: 0,
-    duration: 4,
-  },
-  {
-    opacity: 1,
-    duration: 4,
-    onStart: () => {
-      middleVideo.play()
-    },
-  }
-);
-
-mainTimeline.fromTo(
-  "#portfolio",
-  {
-    display: "block",
-    delay: 0,
-  },
-  {
-    display: "none",
-    delay: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  "#middleVidCtn",
-  {
-    opacity: 1,
-    duration: 10,
-    delay: -10,
-  },
-  {
-    opacity: 0,
-    duration: 10,
-    delay: 20,
-    onComplete: () => {
-      middleVideo.pause()
-    },
-  }
-);
-
-mainTimeline.fromTo(
-  "#middleVidCtn",
-  {
-    display: "block",
-    duration: 0,
-  },
-  {
-    display: "none",
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  ".bg-video",
-  {
-    delay: -10,
-    opacity: 0,
-    duration: 5,
-  },
-  {
-    delay: -10,
-    opacity: 0.5,
-    duration: 5,
-  }
-);
-
-mainTimeline.fromTo(
-  "#progressbar-ctn",
-  {
-    opacity: 0,
-    delay: 5,
-    y: 200,
-  },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 4,
-    delay: 5,
-  }
-);
-
-mainTimeline.fromTo(
-  ".accordion",
-  {
-    display: "none",
-    duration: 0,
-  },
-  {
-    display: "flex",
-    duration: 0,
-  }
-);
-
-mainTimeline
-  .fromTo(
-    "#middle .text",
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
     {
-      y: 1000,
-      duration: 10,
-    },
-    {
+      opacity: 1,
       y: 0,
-      stagger: 1,
-      duration: 10,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 0,
     }
-  )
-  .addLabel("start-tiempo");
+  );
 
-mainTimeline.to("#rect2", {
-  attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-  fill: "#D9D9D9",
-  duration: 1,
-});
+  mainTimeline.to(".portfolio", {
+    opacity: 0,
+    duration: 8,
+  });
 
-mainTimeline
-  .to("#rect3", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
+  /* *********** END PORTFOLIO SCROLLING ********** */
+
+  /* *********** MIDDLE SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#middle",
+    {
+      opacity: 0,
+      zIndex: -1,
+    },
+    {
+      opacity: 1,
+      duration: 8,
+      delay: -10,
+      zIndex: 3,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "block",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 0,
+      duration: 4,
+    },
+    {
+      opacity: 1,
+      duration: 4,
+      onStart: () => {
+        middleVideo.play();
+      },
+    }
+  );
+
+  middleVideo.addEventListener("ended", () => {
+    middleVideo.style.display = "none";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+      duration: 3,
+    });
+    middleVideo.currentTime = 0;
+    middleVideo.load();
+  });
+
+  subir.addEventListener("click", () => {
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+      duration: 2,
+    });
+  });
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "block",
+      delay: 0,
+    },
+    {
+      display: "none",
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 1,
+      duration: 10,
+      delay: -10,
+    },
+    {
+      opacity: 0,
+      duration: 10,
+      delay: 20,
+      onComplete: () => {
+        middleVideo.pause();
+      },
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "block",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      delay: -10,
+      rotateX: 0,
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      delay: -10,
+      rotateX: 0,
+      opacity: 0.5,
+      duration: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      delay: 5,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 4,
+      delay: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".accordion",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 1000,
+        duration: 10,
+      },
+      {
+        y: 0,
+        stagger: 1,
+        duration: 10,
+      }
+    )
+    .addLabel("start-tiempo");
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
     duration: 1,
-  })
-  .addLabel("servicios");
+  });
 
-if (!isMobile()) {
+  mainTimeline
+    .to("#rect3", {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    })
+    .addLabel("servicios");
+
   mainTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
     stagger: 0.5,
     duration: 5,
   });
-}
 
-if (isMobile()) {
-  mainTimeline.fromTo(
-    "#middle .text",
-    {
-      y: 0,
-    },
-    {
-      y: -2000,
-      delay: 3,
-      duration: 50,
-      scrollTrigger: ".acc-borders",
-    }
-  );
-  mainTimeline.fromTo(
-    ".acc-borders",
-    {
-      opacity: 0,
-      x: 1000,
-      duration: 20,
-      width: "0vw",
-      delay: -10,
-      scrollTrigger: ".accordion #parent",
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 20,
-      width: "400vw",
-      delay: -10,
-      scrollTrigger: ".accordion #parent",
-    }
-  );
-  mainTimeline
-    .fromTo(
-      ".accordion #parent",
-      {
-        y: 2000,
-        duration: 20,
-        delay: -5,
-      },
-      {
-        y: 0,
-        duration: 20,
-        delay: -5,
-      }
-    )
-    .addLabel("servicios");
-  mainTimeline.fromTo(
-    "#middle #text-container",
-    {
-      display: "flex",
-    },
-    {
-      display: "none",
-    }
-  );
-} else {
   mainTimeline.fromTo(
     "#middle #text-container",
     {
@@ -1886,162 +1549,101 @@ if (isMobile()) {
       }
     )
     .addLabel("servicios");
-}
 
-mainTimeline.to(".accordion", {
-  rotateX: -69.3,
-  duration: 10,
-  delay: 10,
-});
-
-mainTimeline.to(".accordion", {
-  opacity: 0,
-  duration: 2,
-  delay: -4,
-});
-
-mainTimeline.to(".bg-video", {
-  opacity: 0,
-  duration: 10,
-  delay: -10,
-});
-
-/* *********** END MIDDLE SCROLLING ********** */
-
-/* *********** TIEMPO SCROLLING ********** */
-
-mainTimeline.fromTo(
-  "#progressbar-ctn",
-  {
-    opacity: 1,
-  },
-  {
-    opacity: 0,
-    duration: 16,
-    delay: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    opacity: 0,
-    duration: 0,
-  },
-  {
-    opacity: 1,
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  ".bg-video",
-  {
-    rotateX: "0",
-    duration: 0,
-  },
-  {
-    rotateX: "-65deg",
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  ".accordion",
-  {
-    display: "flex",
-    duration: 0,
-  },
-  {
-    display: "none",
-    duration: 0,
-  }
-);
-
-if (isMobile()) {
-  mainTimeline.fromTo(
-    "#video-tiempo",
-    {
-      zIndex: -1,
-      rotateX: 115.3,
-    },
-    {
-      zIndex: 4,
-      rotateX: 0,
-      // translateY: -90,
-      duration: 10,
-      scrollTrigger: ".accordion",
-      onStart: () => {
-        startCountdown();
-      },
-    }
-  );
-} else {
-  mainTimeline.fromTo(
-    "#video-tiempo",
-    {
-      zIndex: -1,
-      rotateX: 115.3,
-    },
-    {
-      zIndex: 4,
-      rotateX: 0,
-      // translateY: -90,
-      duration: 10,
-      scrollTrigger: ".accordion",
-      onStart: () => {
-        startCountdown();
-      },
-    }
-  );
-}
-
-mainTimeline.to("#video-tiempo #text-container-2 .text", {
-  y: 1500,
-  duration: 0,
-});
-
-mainTimeline.fromTo(
-  "#tiempoVidCtn",
-  {
-    opacity: 0,
-    delay: -10,
-  },
-  {
-    opacity: 1,
-    duration: 6,
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-tiempo #text-container-2",
-  {
-    x: -2000,
-    duration: 0,
-    delay: -10,
-  },
-  {
-    x: 0,
-    duration: 0,
-    delay: -10,
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-tiempo #text-container-2 .text",
-  {
-    y: 1500,
-    delay: 15,
-  },
-  {
-    y: 0,
-    stagger: 0.5,
-    duration: 15,
+  mainTimeline.to(".accordion", {
+    rotateX: -69.3,
+    duration: 10,
     delay: 10,
-  }
-);
+  });
 
-if (!isMobile()) {
+  mainTimeline.to(".accordion", {
+    opacity: 0,
+    duration: 2,
+    delay: -4,
+  });
+
+  mainTimeline.to(".bg-video", {
+    opacity: 0,
+    duration: 10,
+    delay: -10,
+  });
+
+  /* *********** END MIDDLE SCROLLING ********** */
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+
+  mainTimeline.to("#video-tiempo #text-container-2 .text", {
+    y: 1500,
+    duration: 0,
+  });
+
+  mainTimeline.fromTo(
+    "#tiempoVidCtn",
+    {
+      opacity: 0,
+      delay: -10,
+    },
+    {
+      opacity: 1,
+      duration: 6,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2",
+    {
+      x: -2000,
+      duration: 0,
+      delay: -10,
+    },
+    {
+      x: 0,
+      duration: 0,
+      delay: -10,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      delay: 15,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 15,
+      delay: 10,
+    }
+  );
+
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2 .letter",
     {
@@ -2056,166 +1658,102 @@ if (!isMobile()) {
       delay: 1,
     }
   );
-} else {
-  mainTimeline.to("#video-tiempo #text-container-2 .letter", {
-    duration: 5,
-    delay: 5,
-  });
-}
 
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    rotateX: 0,
-    duration: 20,
-  },
-  {
-    rotateX: 110,
-    duration: 20,
-    scrollTrigger: ".accordion",
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    opacity: 1,
-    duration: 20,
-    scrollTrigger: ".accordion",
-  },
-  {
-    opacity: 0,
-    // delay: 12,
-    duration: 20,
-  }
-);
-
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    display: "flex",
-    duration: 0,
-  },
-  {
-    display: "none",
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  "#txt-container-2",
-  {
-    display: "none",
-    duration: 0,
-  },
-  {
-    display: "flex",
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  ".bg-video",
-  {
-    opacity: 0,
-    duration: 0,
-  },
-  {
-    opacity: 0.5,
-    duration: 0,
-  }
-);
-
-mainTimeline.fromTo(
-  ".bg-video",
-  {
-    rotateX: -65,
-    duration: 20,
-  },
-  {
-    rotateX: 0,
-    duration: 20,
-  }
-);
-
-/* *********** TIEMPO SCROLLING ********** */
-
-/* **************** SECCION FINAL ***************** */
-
-mainTimeline.fromTo(
-  "#txt-container-2",
-  {
-    zIndex: -1,
-    opacity: 0,
-    duration: 10,
-    delay: -20,
-  },
-  {
-    zIndex: 5,
-    opacity: 1,
-    duration: 10,
-    delay: -20,
-  }
-);
-
-if (isMobile()) {
   mainTimeline.fromTo(
-    "#txt-container-2 p",
+    "#video-tiempo",
     {
-      y: 2000,
-      x: 0,
+      rotateX: 0,
+      duration: 20,
     },
     {
-      y: 15,
-      x: 0,
-      stagger: 1,
-      duration: 10,
-    }
-  );
-
-  mainTimeline
-  .fromTo(
-    "#mobileBrandsCtn",
-    {
-      visibility: "hidden",
-      y: 200,
-      x: 0,
-    },
-    {
-      visibility: "visible",
-      y: 0,
-      x: 0,
-      duration: 2,
+      rotateX: 110,
+      duration: 20,
+      scrollTrigger: ".accordion",
     }
   );
 
   mainTimeline.fromTo(
-    "#progressbar-ctn",
-    {
-      opacity: 0,
-      y: 200,
-    },
+    "#video-tiempo",
     {
       opacity: 1,
-      y: 0,
-      duration: 5,
-      delay: -2,
+      duration: 20,
+      scrollTrigger: ".accordion",
+    },
+    {
+      opacity: 0,
+      // delay: 12,
+      duration: 20,
     }
   );
 
-  mainTimeline.to("#rect3", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 5,
-  });
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
 
-  mainTimeline.to("#rect4", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 5,
-  }).addLabel('clientes');
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
 
-} else {
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    {
+      opacity: 0.5,
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: -65,
+      duration: 20,
+    },
+    {
+      rotateX: 0,
+      duration: 20,
+    }
+  );
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  /* **************** SECCION FINAL ***************** */
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      zIndex: -1,
+      opacity: 0,
+      duration: 10,
+      delay: -20,
+    },
+    {
+      zIndex: 5,
+      opacity: 1,
+      duration: 10,
+      delay: -20,
+    }
+  );
+
   mainTimeline.fromTo(
     "#p1",
     {
@@ -2281,21 +1819,19 @@ if (isMobile()) {
     duration: 20,
     y: 150,
   });
-}
 
-mainTimeline.fromTo(
-  ".flipLogoContainer",
-  {
-    display: "none",
-    duration: 0,
-  },
-  {
-    display: "flex",
-    duration: 0,
-  }
-);
+  mainTimeline.fromTo(
+    ".flipLogoContainer",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
 
-if (!isMobile()) {
   mainTimeline.fromTo(
     "#carousel-container",
     {
@@ -2319,23 +1855,13 @@ if (!isMobile()) {
         delay: -20,
       },
       {
-        transform: "scale(1.3)",
+        transform: "scale(1.5)",
         duration: 10,
         delay: -20,
       }
     )
     .addLabel("clientes");
-}
-if (isMobile()) {
-  mainTimeline.to("#txt-container-2", {
-    delay: 30,
-    y: 800,
-    duration: 10,
-    transform: "scale(0.5)",
-    opacity: 0,
-  })
 
-} else {
   mainTimeline.to("#txt-container-2", {
     delay: 30,
     y: 800,
@@ -2343,52 +1869,1448 @@ if (isMobile()) {
     transform: "scale(0.5)",
     opacity: 0,
   });
-}
 
-mainTimeline.fromTo(
-  "#txt-container-2",
-  {
-    display: "flex",
-    duration: 0,
-  },
-  {
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 5,
+    },
+    {
+      opacity: 0,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.to("#progressbar-ctn", {
     display: "none",
-    duration: 0,
-  }
-);
+  });
 
-mainTimeline.fromTo(
-  "#progressbar-ctn",
-  {
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0.5,
+      duration: 12,
+      delay: -15,
+    },
+    {
+      opacity: 0.8,
+      duration: 12,
+      delay: -15,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#svgOutro",
+    {
+      y: -1000,
+      transform: "scale(2.5)",
+      duration: 20,
+      delay: -20,
+      opacity: 0,
+    },
+    {
+      delay: -20,
+      y: 0,
+      transform: "scale(1.6)",
+      duration: 20,
+      opacity: 1,
+    }
+  );
+  mainTimeline.to("#svgOutro", {
+    delay: 10,
+    duration: 20,
+    rotateY: 809,
+  });
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.to("#svgOutro", {
+    visibility: "hidden",
+  });
+
+  mainTimeline.fromTo(
+    "#textAllCtn",
+    {
+      visibility: "hidden",
+      rotateY: -90,
+      duration: 10,
+    },
+    {
+      visibility: "visible",
+      rotateY: 0,
+      duration: 10,
+      delay: 10,
+    }
+  );
+
+  mainTimeline.to([".charSpan"], {
+    color: "#D1D821",
+    stagger: 0.5,
+    duration: 5,
+  });
+
+  mainTimeline.to(".charSpan", {
+    delay: 10,
+  });
+
+  mainTimeline.to("#textAllCtn", {
+    scale: 0.6,
+    y: -100,
+    duration: 5,
+  });
+
+  mainTimeline.to(".subTextContainer", {
+    y: 0,
+    visibility: "visible",
+  });
+
+  mainTimeline.fromTo(
+    "nav .social-ctn a",
+    {
+      scale: 1,
+      duration: 4,
+    },
+    {
+      scale: 0,
+      duration: 4,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".svgSocial",
+    { scale: 0, duration: 5 },
+    { scale: 1, duration: 5 }
+  );
+
+  mainTimeline.staggerTo(
+    [".charSpan2"],
+    3,
+    {
+      color: "#D1D821",
+      opacity: 1,
+      duration: 10,
+    },
+    0.5
+  );
+
+  mainTimeline.fromTo(
+    "#subir",
+    {
+      y: 500,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 2,
+    }
+  );
+
+  /* *********** END TIMELINE ********** */
+} else {
+  /* ************************** MOBILE TIMELINE ************************** */
+
+  const mainTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: "main.wrapper",
+      start: "top top",
+      end: "bottom+=2000% bottom",
+      scrub: true,
+      pin: true,
+      inertia: true,
+    },
+  });
+
+  /* ********* MENU ********* */
+
+  collapse.addEventListener("click", () => {
+    // Check if the timeline is reversing
+    const isReversing = menuTl.isActive() && menuTl.reversed();
+
+    // Disable the button if the timeline is reversing
+    if (isReversing) {
+      return;
+    }
+
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
+    if (body.className.match("close")) {
+      body.className = "open";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
+    } else if (body.className.includes("open")) {
+      body.className = "close";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
+    }
+    if (menuTl.totalProgress() === 0) {
+      menuTl.play();
+    } else if (menuTl.totalProgress() > 0) {
+      menuTl.reverse();
+    }
+  });
+
+  let links = gsap.utils.toArray(".nav-link");
+
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (a.innerText.toLowerCase() === `inicio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+          duration: 0,
+        });
+      } else if (a.innerText.toLowerCase() === `portfolio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `servicios`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `clientes`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+          duration: 2,
+        });
+      }
+
+      isRotated = !isRotated;
+      icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+      collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+      if (body.className.match("close")) {
+        body.className = "open";
+        social[0].src = "src/assets/mail-dark.webp";
+        social[1].src = "src/assets/whatsapp-dark.webp";
+        social[2].src = "src/assets/ig-dark.webp";
+        social[3].src = "src/assets/Linkedin-dark.webp";
+      } else if (body.className.includes("open")) {
+        body.className = "close";
+        social[0].src = "src/assets/mail.webp";
+        social[1].src = "src/assets/wsp.webp";
+        social[2].src = "src/assets/ig.webp";
+        social[3].src = "src/assets/Linkedin.webp";
+      }
+
+      if (menuTl.paused() || menuTl.totalProgress() === 0) {
+        menuTl.play();
+      } else if (menuTl) {
+        menuTl.reverse();
+      }
+    });
+  });
+
+  /* ******* casos portfolio ****** */
+
+  liElements.forEach((liElement, index) =>
+    liElement.addEventListener("click", () => {
+      if (currentVideo && currentVideo.parentNode) {
+        currentVideo.parentNode.removeChild(currentVideo);
+      }
+      let newVideo = document.createElement("video");
+      newVideo.id = "modalVideo";
+      let swapSrc = document.createElement("source");
+      swapSrc.src = videos[index];
+      newVideo.controls = true;
+      newVideo.appendChild(swapSrc);
+      modalContent.appendChild(newVideo);
+      modal.classList.remove("hidden");
+      modal.classList.add("shown");
+      newVideo.play();
+      currentVideo = newVideo;
+      mainTimeline.seek("portfolio");
+      body.style.position = "fixed";
+      gsap.to(window, {
+        scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      });
+    })
+  );
+
+  closeModal.addEventListener("click", () => {
+    if (currentVideo) {
+      setTimeout(() => {
+        currentVideo.pause();
+        currentVideo.parentNode.removeChild(currentVideo);
+        currentVideo = null;
+        modal.classList.remove("shown");
+        modal.classList.add("hidden");
+      }, 500);
+
+      // progress.style.zIndex = "0 !important";
+    }
+    wrapperCtn.style.overflow = "";
+    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
+    wrapperCtn.style.top = "";
+    // window.scrollTo(0, -scrollPosition);
+
+    mainTimeline.seek("portfolio");
+    body.style.position = "absolute";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      duration: 0,
+    });
+
+    // mainTimeline.scrollTrigger.enable(true);
+  });
+
+  /* *********** INTRO SCROLLING ********** */
+
+  mainTimeline
+    .fromTo(
+      "#scrollea",
+      {
+        display: "none",
+      },
+      {
+        display: "flex",
+      }
+    )
+    .addLabel("intro");
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      opacity: 1,
+      duration: 2,
+      x: 0,
+    },
+    {
+      opacity: 0,
+      duration: 2,
+      x: -100,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video",
+    {
+      display: "none",
+    },
+    {
+      display: "flex",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-camara",
+    {
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      opacity: 1,
+      duration: 5,
+    }
+  );
+
+  const cameraFrames = gsap.utils.toArray("#video-camara img");
+
+  cameraFrames.forEach((img, index) => {
+    mainTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.1,
+        duration: 0.2,
+      }
+    );
+    if (index < cameraFrames.length - 1) {
+      mainTimeline.set(img, { display: "none" });
+    }
+  });
+
+  mainTimeline.fromTo(
+    "#texto",
+    {
+      transform: "scale(0)",
+      opacity: 0,
+      duration: 10,
+    },
+    {
+      transform: "scale(1)",
+      opacity: 1,
+      duration: 10,
+      delay: -25,
+    }
+  );
+
+  mainTimeline.to("#texto", {
+    y: -800,
+    duration: 10,
+    delay: -10,
+  });
+
+  mainTimeline.to("#intro", {
+    opacity: 0,
+    duration: 20,
+    delay: -10,
+  });
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  /* *********** END INTRO SCROLLING ********** */
+
+  /* *********** PORTFOLIO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "none",
+      duration: 2,
+      delay: 2,
+    },
+    {
+      display: "block",
+      duration: 2,
+      delay: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#nav button",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 2,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav .social-ctn .social-nav",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 2,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav button",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".portfolio",
+    {
+      opacity: 0,
+      zIndex: -1,
+      delay: -30,
+    },
+    {
+      opacity: 1,
+      delay: -30,
+      duration: 10,
+      zIndex: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      zIndex: 1,
+      visibility: "visible",
+    },
+    {
+      zIndex: -1,
+      visibility: "hidden",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-rodaje",
+    {
+      yPercent: 40,
+      duration: 15,
+      opacity: 0.8,
+      scrollTrigger: ".sup-rodaje",
+      ease: "power1.inOut",
+    },
+    {
+      yPercent: 0,
+      duration: 15,
+      opacity: 0.8,
+      scrollTrigger: ".sup-rodaje",
+      ease: "power1.inOut",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".sup-rodaje",
+    {
+      delay: 3,
+      duration: 12,
+      yPercent: 50,
+      ease: "power1.inOut",
+    },
+    {
+      delay: 3,
+      duration: 12,
+      yPercent: 0,
+      ease: "power1.inOut",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+      duration: 2,
+      delay: -5,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  );
+
+  mainTimeline.to(".txt-ctn-1 .txt-row h2", {
     opacity: 1,
     duration: 5,
-  },
-  {
-    opacity: 0,
+  });
+
+  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
+    opacity: 1,
     duration: 5,
-    delay: 0,
-  }
-);
+    delay: -5,
+  });
 
-mainTimeline.to("#progressbar-ctn", {
-  display: "none",
-});
+  mainTimeline.to(".sup-rodaje.zoomed", {
+    duration: 3,
+    opacity: 1,
+    delay: 10,
+  });
 
-mainTimeline.fromTo(
-  ".bg-video",
-  {
+  mainTimeline.to(".txt-ctn-1", {
+    duration: 5,
+    opacity: 0,
+  });
+
+  mainTimeline.to("#rect1", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
+
+  mainTimeline.to(".sup-rodaje", {
+    duration: 10,
+    scale: 2.5,
+    transformOrigin: "49% bottom",
+    scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+  });
+
+  mainTimeline.to(".bg-overlay", {
+    duration: 5,
+    opacity: 0.3,
+  });
+
+  mainTimeline.to(".txt-ctn-2 .txt-row h2", {
+    opacity: 1,
+    duration: 4,
+  });
+
+  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
+    opacity: 1,
+    duration: 4,
+    delay: -4,
+    scrollTrigger: ".dup-ctn span",
+  });
+
+  mainTimeline.to(".txt-ctn-2", {
+    opacity: 0,
+    duration: 4,
+    delay: 4,
+  });
+
+  mainTimeline.to(
+    ".ctn-line",
+    {
+      margin: "-12 0",
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".desc-ctn",
+    {
+      y: -100,
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    "section.portfolio li h2",
+    {
+      color: "transparent",
+      height: "auto",
+      duration: 0.5,
+      zIndex: -1,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".preview-video",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".vid-overlay",
+    {
+      opacity: 1,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".logo-box",
+    {
+      opacity: 0.4,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(".pf-accordion-outer", {
+    opacity: 1,
+    duration: 4,
+    scrollTrigger: ".bg-overlay",
+    zIndex: 20,
+  });
+
+  mainTimeline.to(".bg-overlay", {
+    duration: 4,
     opacity: 0.5,
-    duration: 12,
-    delay: -15,
-  },
-  {
-    opacity: 0.8,
-    duration: 12,
-    delay: -15,
-  }
-);
+    scrollTrigger: ".pf-accordion-outer ol li h2",
+  });
 
-if (isMobile()) {
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 0,
+    opacity: 1,
+    stagger: 1,
+    duration: 3,
+    delay: 2,
+  });
+
+  mainTimeline
+    .to(".pf-accordion", {
+      delay: 10,
+      opacity: 1,
+      duration: 2,
+    })
+    .addLabel("portfolio");
+
+  mainTimeline.to(".pf-accordion", {
+    delay: 5,
+    opacity: 0,
+    duration: 6,
+    scrollTrigger: ".pf-accordion",
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 30,
+    opacity: 0,
+    stagger: 1,
+    delay: 4,
+    duration: 5,
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    duration: 0,
+    display: "none",
+  });
+
+  mainTimeline.to(
+    ".ctn-line",
+    {
+      margin: "-12 0",
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".desc-ctn",
+    {
+      y: -100,
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    "section.portfolio li h2",
+    {
+      color: "transparent",
+      height: "auto",
+      duration: 0.5,
+      zIndex: -1,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".preview-video",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".vid-overlay",
+    {
+      opacity: 1,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".logo-box",
+    {
+      opacity: 0.4,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.fromTo(
+    ".sup-rodaje.zoomed, .sup-rodaje",
+    {
+      transformOrigin: "49% 100%",
+      scale: 2.5,
+      duration: 5,
+      y: 0,
+    },
+    {
+      delay: 4,
+      duration: 5,
+      scale: 40,
+      y: 1400,
+      transformOrigin: "50% 99%",
+      scrollTrigger: ".box-ctn",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".vid-overlay",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    {
+      opacity: 0,
+      duration: 1,
+    }
+  );
+  mainTimeline.fromTo(
+    ".box-ctn",
+    {
+      backgroundColor: "transparent",
+      duration: 5,
+    },
+    {
+      backgroundColor: "transparent",
+      duration: 5,
+    }
+  );
+
+  mainTimeline.to(".box-ctn", {
+    opacity: 0,
+    duration: 2,
+    delay: -4,
+  });
+
+  mainTimeline.to(".box-ctn", {
+    delay: -2,
+    duration: 7,
+    transform: "scale(4.1)",
+    top: "50%",
+  });
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      y: 0,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.to(".portfolio", {
+    opacity: 0,
+    duration: 8,
+  });
+
+  /* *********** END PORTFOLIO SCROLLING ********** */
+
+  /* *********** MIDDLE SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#middle",
+    {
+      opacity: 0,
+      zIndex: -1,
+    },
+    {
+      opacity: 1,
+      duration: 8,
+      delay: -10,
+      zIndex: 3,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "block",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 0,
+      duration: 4,
+    },
+    {
+      opacity: 1,
+      duration: 4,
+      onStart: () => {
+        middleVideo.play();
+      },
+    }
+  );
+
+  middleVideo.addEventListener("ended", () => {
+    middleVideo.style.display = "none";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+      duration: 3,
+    });
+    middleVideo.currentTime = 0;
+    middleVideo.load();
+  });
+
+  subir.addEventListener("click", () => {
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+      duration: 2,
+    });
+  });
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "block",
+      delay: 0,
+    },
+    {
+      display: "none",
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 1,
+      duration: 10,
+      delay: -10,
+    },
+    {
+      opacity: 0,
+      duration: 10,
+      delay: 20,
+      onComplete: () => {
+        middleVideo.pause();
+      },
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "block",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      delay: -10,
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      delay: -10,
+      opacity: 0.5,
+      duration: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      delay: 5,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 4,
+      delay: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".accordion",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 1000,
+        duration: 10,
+      },
+      {
+        y: 0,
+        stagger: 1,
+        duration: 10,
+      }
+    )
+    .addLabel("start-tiempo");
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  mainTimeline
+    .to("#rect3", {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    })
+    .addLabel("servicios");
+
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 0,
+    },
+    {
+      y: -2000,
+      delay: 3,
+      duration: 50,
+      scrollTrigger: ".acc-borders",
+    }
+  );
+  mainTimeline.fromTo(
+    ".acc-borders",
+    {
+      opacity: 0,
+      x: 1000,
+      duration: 20,
+      width: "0vw",
+      delay: -10,
+      scrollTrigger: ".accordion #parent",
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 20,
+      width: "400vw",
+      delay: -10,
+      scrollTrigger: ".accordion #parent",
+    }
+  );
+  mainTimeline
+    .fromTo(
+      ".accordion #parent",
+      {
+        y: 2000,
+        duration: 20,
+        delay: -5,
+      },
+      {
+        y: 0,
+        duration: 20,
+        delay: -5,
+      }
+    )
+    .addLabel("servicios");
+  mainTimeline.fromTo(
+    "#middle #text-container",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    }
+  );
+
+  mainTimeline.to(".accordion", {
+    rotateX: -69.3,
+    duration: 10,
+    delay: 10,
+  });
+
+  mainTimeline.to(".accordion", {
+    opacity: 0,
+    duration: 2,
+    delay: -4,
+  });
+
+  mainTimeline.to(".bg-video", {
+    opacity: 0,
+    duration: 10,
+    delay: -10,
+  });
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 16,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    {
+      opacity: 1,
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: "0",
+      duration: 0,
+    },
+    {
+      rotateX: "-65deg",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".accordion",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  /* *********** END MIDDLE SCROLLING ********** */
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      // translateY: -90,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+
+  mainTimeline.to("#video-tiempo #text-container-2 .text", {
+    y: 1500,
+    duration: 0,
+  });
+
+  mainTimeline.fromTo(
+    "#tiempoVidCtn",
+    {
+      opacity: 0,
+      delay: -10,
+    },
+    {
+      opacity: 1,
+      duration: 6,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2",
+    {
+      x: -2000,
+      duration: 0,
+      delay: -10,
+    },
+    {
+      x: 0,
+      duration: 0,
+      delay: -10,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      delay: 15,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 15,
+      delay: 10,
+    }
+  );
+
+  mainTimeline.to("#video-tiempo #text-container-2 .letter", {
+    duration: 5,
+    delay: 5,
+  });
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      rotateX: 0,
+      duration: 20,
+    },
+    {
+      rotateX: 110,
+      duration: 20,
+      scrollTrigger: ".accordion",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 1,
+      duration: 20,
+      scrollTrigger: ".accordion",
+    },
+    {
+      opacity: 0,
+      // delay: 12,
+      duration: 20,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    {
+      opacity: 0.5,
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: -65,
+      duration: 20,
+    },
+    {
+      rotateX: 0,
+      duration: 20,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2 p",
+    {
+      y: 2000,
+      x: 0,
+    },
+    {
+      y: 15,
+      x: 0,
+      stagger: 1,
+      duration: 10,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#mobileBrandsCtn",
+    {
+      visibility: "hidden",
+      y: 200,
+      x: 0,
+    },
+    {
+      visibility: "visible",
+      y: 0,
+      x: 0,
+      duration: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 5,
+      delay: -2,
+    }
+  );
+
+  mainTimeline.to("#rect3", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 5,
+  });
+
+  mainTimeline
+    .to("#rect4", {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 5,
+    })
+    .addLabel("clientes");
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  /* **************** SECCION FINAL ***************** */
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      zIndex: -1,
+      opacity: 0,
+      duration: 10,
+      delay: -20,
+    },
+    {
+      zIndex: 5,
+      opacity: 1,
+      duration: 10,
+      delay: -20,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".flipLogoContainer",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.to("#txt-container-2", {
+    delay: 30,
+    y: 800,
+    duration: 10,
+    transform: "scale(0.5)",
+    opacity: 0,
+  });
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 5,
+    },
+    {
+      opacity: 0,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.to("#progressbar-ctn", {
+    display: "none",
+  });
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0.5,
+      duration: 12,
+      delay: -15,
+    },
+    {
+      opacity: 0.8,
+      duration: 12,
+      delay: -15,
+    }
+  );
+
   mainTimeline.fromTo(
     "#svgOutro",
     {
@@ -2443,128 +3365,63 @@ if (isMobile()) {
       delay: 15,
     }
   );
-} else {
+
+  mainTimeline.to(".charSpan", {
+    delay: 10,
+  });
+
+  mainTimeline.to("#textAllCtn", {
+    scale: 0.6,
+    y: -100,
+    duration: 5,
+  });
+
+  mainTimeline.to(".subTextContainer", {
+    y: 0,
+    visibility: "visible",
+  });
+
   mainTimeline.fromTo(
-    "#svgOutro",
+    "nav .social-ctn a",
     {
-      y: -1000,
-      transform: "scale(2.5)",
-      duration: 20,
-      delay: -20,
+      scale: 1,
+      duration: 4,
+    },
+    {
+      scale: 0,
+      duration: 4,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".svgSocial",
+    { scale: 0, duration: 5 },
+    { scale: 1, duration: 5 }
+  );
+
+  mainTimeline.staggerTo(
+    [".charSpan2"],
+    3,
+    {
+      color: "#D1D821",
+      opacity: 1,
+      duration: 10,
+    },
+    0.5
+  );
+
+  mainTimeline.fromTo(
+    "#subir",
+    {
+      y: 500,
       opacity: 0,
     },
     {
-      delay: -20,
       y: 0,
-      transform: "scale(1.6)",
-      duration: 20,
       opacity: 1,
-    }
-  );
-  mainTimeline.to("#svgOutro", {
-    delay: 10,
-    duration: 20,
-    rotateY: 809,
-  });
-
-  mainTimeline.fromTo(
-    "#txt-container-2",
-    {
-      display: "flex",
-      duration: 0,
-    },
-    {
-      display: "none",
-      duration: 0,
+      duration: 2,
     }
   );
 
-  mainTimeline.to("#svgOutro", {
-    visibility: "hidden",
-  });
-
-  mainTimeline.fromTo(
-    "#textAllCtn",
-    {
-      visibility: "hidden",
-      rotateY: -90,
-      duration: 10,
-    },
-    {
-      visibility: "visible",
-      rotateY: 0,
-      duration: 10,
-      delay: 10,
-    }
-  );
+  /* *********** END TIMELINE ********** */
 }
-
-if (!isMobile()) {
-  mainTimeline.to(
-    [".charSpan"],
-    {
-      color: "#D1D821",
-      stagger: 0.5,
-      duration: 5,
-    }
-  );
-}
-
-mainTimeline.to(".charSpan", {
-  delay: 10,
-});
-
-mainTimeline.to("#textAllCtn", {
-  scale: 0.6,
-  y: -100,
-  duration: 5,
-});
-
-mainTimeline.to(".subTextContainer", {
-  y: 0,
-  visibility: "visible",
-});
-
-mainTimeline.fromTo(
-  "nav .social-ctn a",
-  {
-    scale: 1,
-    duration: 4,
-  },
-  {
-    scale: 0,
-    duration: 4,
-  }
-);
-
-mainTimeline.fromTo(
-  ".svgSocial",
-  { scale: 0, duration: 5 },
-  { scale: 1, duration: 5 }
-);
-
-mainTimeline.staggerTo(
-  [".charSpan2"],
-  3,
-  {
-    color: "#D1D821",
-    opacity: 1,
-    duration: 10,
-  },
-  0.5
-);
-
-mainTimeline.fromTo(
-  "#subir",
-  {
-    y: 500,
-    opacity: 0,
-  },
-  {
-    y: 0,
-    opacity: 1,
-    duration: 2,
-  }
-);
-
-/******** JS MEDIA QUERIES  ********/
