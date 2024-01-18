@@ -3,6 +3,14 @@ function isMobile() {
   return window.innerWidth <= 900;
 }
 
+function isLaptop() {
+  return window.innerWidth >= 1366;
+}
+
+function isDesktop() {
+  return window.innerWidth >= 1920;
+}
+
 let countdownStarted = false;
 let countdownInterval;
 
@@ -352,10 +360,10 @@ if (isMobile()) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[1].disabled = true;
             expandBtns[2].disabled = true;
-            expandBtnImgs[1].src = 'src/assets/X.webp'
-            expandBtnImgs[2].src = 'src/assets/X.webp'
-            expandBtnImgs[1].style.opacity = 0.5
-            expandBtnImgs[2].style.opacity = 0.5
+            expandBtnImgs[1].src = "src/assets/X.webp";
+            expandBtnImgs[2].src = "src/assets/X.webp";
+            expandBtnImgs[1].style.opacity = 0.5;
+            expandBtnImgs[2].style.opacity = 0.5;
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
@@ -366,10 +374,10 @@ if (isMobile()) {
             });
             expandBtns[0].disabled = true;
             expandBtns[2].disabled = true;
-            expandBtnImgs[0].src = 'src/assets/X.webp'
-            expandBtnImgs[2].src = 'src/assets/X.webp'
-            expandBtnImgs[0].style.opacity = 0.5
-            expandBtnImgs[2].style.opacity = 0.5
+            expandBtnImgs[0].src = "src/assets/X.webp";
+            expandBtnImgs[2].src = "src/assets/X.webp";
+            expandBtnImgs[0].style.opacity = 0.5;
+            expandBtnImgs[2].style.opacity = 0.5;
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
             txtInnerCtn[0].classList.remove("reveal");
@@ -377,10 +385,10 @@ if (isMobile()) {
             txtInnerCtn[2].classList.remove("reveal");
             expandBtns[0].disabled = true;
             expandBtns[1].disabled = true;
-            expandBtnImgs[0].src = 'src/assets/X.webp'
-            expandBtnImgs[1].src = 'src/assets/X.webp'
-            expandBtnImgs[0].style.opacity = 0.5
-            expandBtnImgs[1].style.opacity = 0.5
+            expandBtnImgs[0].src = "src/assets/X.webp";
+            expandBtnImgs[1].src = "src/assets/X.webp";
+            expandBtnImgs[0].style.opacity = 0.5;
+            expandBtnImgs[1].style.opacity = 0.5;
           }
         }
 
@@ -405,10 +413,10 @@ if (isMobile()) {
             txtInnerCtn[0].classList.remove("reveal");
             expandBtns[1].disabled = false;
             expandBtns[2].disabled = false;
-            expandBtnImgs[1].src = 'src/assets/expand.webp';
-            expandBtnImgs[2].src = 'src/assets/expand.webp';
-            expandBtnImgs[1].style.opacity = 1
-            expandBtnImgs[2].style.opacity = 1
+            expandBtnImgs[1].src = "src/assets/expand.webp";
+            expandBtnImgs[2].src = "src/assets/expand.webp";
+            expandBtnImgs[1].style.opacity = 1;
+            expandBtnImgs[2].style.opacity = 1;
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
@@ -417,18 +425,18 @@ if (isMobile()) {
             });
             expandBtns[0].disabled = false;
             expandBtns[2].disabled = false;
-            expandBtnImgs[0].src = 'src/assets/expand.webp';
-            expandBtnImgs[2].src = 'src/assets/expand.webp';
-            expandBtnImgs[0].style.opacity = 1
-            expandBtnImgs[2].style.opacity = 1
+            expandBtnImgs[0].src = "src/assets/expand.webp";
+            expandBtnImgs[2].src = "src/assets/expand.webp";
+            expandBtnImgs[0].style.opacity = 1;
+            expandBtnImgs[2].style.opacity = 1;
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[0].disabled = false;
             expandBtns[1].disabled = false;
-            expandBtnImgs[0].src = 'src/assets/expand.webp';
-            expandBtnImgs[1].src = 'src/assets/expand.webp';
-            expandBtnImgs[0].style.opacity = 1
-            expandBtnImgs[1].style.opacity = 1
+            expandBtnImgs[0].src = "src/assets/expand.webp";
+            expandBtnImgs[1].src = "src/assets/expand.webp";
+            expandBtnImgs[0].style.opacity = 1;
+            expandBtnImgs[1].style.opacity = 1;
           }
         }
 
@@ -447,6 +455,8 @@ if (isMobile()) {
     });
   });
 } else {
+  let titles = gsap.utils.toArray('.child .title-ctn h1')
+  console.log(titles)
   ctn.forEach((element, index) => {
     element.addEventListener("mouseover", (event) => hoverAcc(event, index));
     element.addEventListener("mouseout", (event) => outAcc(event, index));
@@ -454,35 +464,71 @@ if (isMobile()) {
 
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
-
-    gsap.to(event.currentTarget, 0.7, {
-      width: "2000px",
-    });
-
-    // Use forEach to iterate over siblings
-    event.currentTarget.parentNode.childNodes.forEach((sibling) => {
-      if (sibling !== event.currentTarget && sibling.nodeType === 1) {
-        gsap.to(sibling, 0.7, {
-          width: "1000px",
-        });
-      }
-    });
-
-    // Check if the hovered element is the second or third
-    if (index === 1 || index === 2) {
-      gsap.to(ctn[0], 0.7, {
-        marginLeft: "-100px",
-      });
-    }
-
-    if (index === 1) {
-      gsap.to(ctn[1], 0.7, {
+    if(isLaptop()) {
+      gsap.to(event.currentTarget, 0.7, {
         width: "3000px",
       });
 
-      gsap.to(ctn[0], 0.7, {
-        marginLeft: "-200px",
+      titles.forEach((title) => {
+        gsap.to(title[index], {color: 'rgb(203, 219, 67)'})
+      })
+
+      // Use forEach to iterate over siblings
+      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+          gsap.to(sibling, 0.7, {
+            width: "1000px",
+          });
+        }
       });
+  
+      // Check if the hovered element is the second or third
+      if (index === 1 || index === 2) {
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-100px",
+        });
+      }
+  
+      if (index === 1) {
+        gsap.to(ctn[1], 0.7, {
+          width: "3500px",
+        });
+  
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-200px",
+        });
+      }
+    } else {
+
+      gsap.to(event.currentTarget, 0.7, {
+        width: "2000px",
+      });
+  
+      // Use forEach to iterate over siblings
+      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+          gsap.to(sibling, 0.7, {
+            width: "1000px",
+          });
+        }
+      });
+  
+      // Check if the hovered element is the second or third
+      if (index === 1 || index === 2) {
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-100px",
+        });
+      }
+  
+      if (index === 1) {
+        gsap.to(ctn[1], 0.7, {
+          width: "3000px",
+        });
+  
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-200px",
+        });
+      }
     }
   }
 
@@ -753,7 +799,7 @@ urls1.forEach((url) => {
   videoCamara.appendChild(img);
 });
 
-if (!isMobile()) {
+if (isDesktop()) {
   /* ************************** Desktop Timeline ************************** */
 
   const mainTimeline = gsap.timeline({
@@ -1585,6 +1631,18 @@ if (!isMobile()) {
   /* *********** TIEMPO SCROLLING ********** */
 
   mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 16,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
     "#video-tiempo",
     {
       opacity: 0,
@@ -2045,7 +2103,1310 @@ if (!isMobile()) {
   );
 
   /* *********** END TIMELINE ********** */
-} else {
+} else if (isLaptop()) {
+  /* ************************** Desktop Timeline ************************** */
+
+  const mainTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: "main.wrapper",
+      start: "top top",
+      end: "bottom+=2000% bottom",
+      scrub: true,
+      pin: true,
+      inertia: true,
+    },
+  });
+
+  /* ********* MENU ********* */
+
+  collapse.addEventListener("click", () => {
+    // Check if the timeline is reversing
+    const isReversing = menuTl.isActive() && menuTl.reversed();
+
+    // Disable the button if the timeline is reversing
+    if (isReversing) {
+      return;
+    }
+
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
+    if (body.className.match("close")) {
+      body.className = "open";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
+    } else if (body.className.includes("open")) {
+      body.className = "close";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
+    }
+    if (menuTl.totalProgress() === 0) {
+      menuTl.play();
+    } else if (menuTl.totalProgress() > 0) {
+      menuTl.reverse();
+    }
+  });
+
+  let links = gsap.utils.toArray(".nav-link");
+
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (a.innerText.toLowerCase() === `inicio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+          duration: 0,
+        });
+      } else if (a.innerText.toLowerCase() === `portfolio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `servicios`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+          duration: 2,
+        });
+      } else if (a.innerText.toLowerCase() === `clientes`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+          duration: 2,
+        });
+      }
+
+      isRotated = !isRotated;
+      icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+      collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+      if (body.className.match("close")) {
+        body.className = "open";
+        social[0].src = "src/assets/mail-dark.webp";
+        social[1].src = "src/assets/whatsapp-dark.webp";
+        social[2].src = "src/assets/ig-dark.webp";
+        social[3].src = "src/assets/Linkedin-dark.webp";
+      } else if (body.className.includes("open")) {
+        body.className = "close";
+        social[0].src = "src/assets/mail.webp";
+        social[1].src = "src/assets/wsp.webp";
+        social[2].src = "src/assets/ig.webp";
+        social[3].src = "src/assets/Linkedin.webp";
+      }
+
+      if (menuTl.paused() || menuTl.totalProgress() === 0) {
+        menuTl.play();
+      } else if (menuTl) {
+        menuTl.reverse();
+      }
+    });
+  });
+
+  /* ***** casos portfolio ***** */
+
+  liElements.forEach((liElement, index) =>
+    liElement.addEventListener("click", () => {
+      if (currentVideo && currentVideo.parentNode) {
+        currentVideo.parentNode.removeChild(currentVideo);
+      }
+      // Save the current scroll position
+      // const scrollPosition = window.scrollY;
+
+      // Disable body scrolling
+      // wrapperCtn.style.overflow = "hidden";
+      let newVideo = document.createElement("video");
+      newVideo.id = "modalVideo";
+      let swapSrc = document.createElement("source");
+      swapSrc.src = videos[index];
+      newVideo.controls = true;
+      newVideo.appendChild(swapSrc);
+      modalContent.appendChild(newVideo);
+      modal.classList.remove("hidden");
+      modal.classList.add("shown");
+      // wrapperCtn.style.top = `-${scrollPosition}px`;
+      newVideo.play();
+      currentVideo = newVideo;
+      // mainTimeline.scrub = 0;
+      // mainTimeline.scrollTrigger.pause();
+      mainTimeline.seek("portfolio");
+      body.style.position = "fixed";
+      gsap.to(window, {
+        scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      });
+      // wrapperCtn.style.zIndex = "500 !important";
+
+      // mainTimeline.scrollTrigger.disable(false);
+    })
+  );
+
+  closeModal.addEventListener("click", () => {
+    if (currentVideo) {
+      setTimeout(() => {
+        currentVideo.pause();
+        currentVideo.parentNode.removeChild(currentVideo);
+        currentVideo = null;
+        modal.classList.remove("shown");
+        modal.classList.add("hidden");
+      }, 500);
+
+      // progress.style.zIndex = "0 !important";
+    }
+    wrapperCtn.style.overflow = "";
+    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
+    wrapperCtn.style.top = "";
+    // window.scrollTo(0, -scrollPosition);
+
+    mainTimeline.seek("portfolio");
+    body.style.position = "absolute";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      duration: 0,
+    });
+  });
+
+  /* *********** INTRO SCROLLING ********** */
+
+  mainTimeline
+    .fromTo(
+      "#scrollea",
+      {
+        display: "none",
+      },
+      {
+        display: "flex",
+      }
+    )
+    .addLabel("intro");
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      opacity: 1,
+      duration: 2,
+      x: 0,
+    },
+    {
+      opacity: 0,
+      duration: 2,
+      x: -100,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video",
+    {
+      display: "none",
+    },
+    {
+      display: "flex",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-camara",
+    {
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      opacity: 1,
+      duration: 5,
+    }
+  );
+
+  const cameraFrames = gsap.utils.toArray("#video-camara img");
+
+  cameraFrames.forEach((img, index) => {
+    mainTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.3,
+        duration: 0.2,
+      }
+    );
+    if (index < cameraFrames.length - 1) {
+      mainTimeline.set(img, { display: "none" });
+    }
+  });
+
+  mainTimeline.fromTo(
+    "#texto",
+    {
+      transform: "scale(0)",
+      opacity: 0,
+      duration: 10,
+    },
+    {
+      transform: "scale(1)",
+      opacity: 1,
+      duration: 10,
+      delay: -30,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".fill",
+    {
+      color: "transparent",
+      stagger: 1,
+      duration: 5,
+      delay: -20,
+    },
+    {
+      color: "#D1D821",
+      stagger: 1,
+      duration: 5,
+      delay: -20,
+    }
+  );
+
+  mainTimeline.to("#texto", {
+    y: -800,
+    duration: 10,
+    delay: -10,
+  });
+
+  mainTimeline.to("#intro", {
+    opacity: 0,
+    duration: 10,
+    delay: -10,
+  });
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  /* *********** END INTRO SCROLLING ********** */
+
+  /* *********** PORTFOLIO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "none",
+      duration: 2,
+      delay: 2,
+    },
+    {
+      display: "block",
+      duration: 2,
+      delay: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#nav button",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 2,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav .social-ctn .social-nav",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 2,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      scrollTrigger: "#nav button",
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".portfolio",
+    {
+      opacity: 0,
+      zIndex: -1,
+      delay: -30,
+    },
+    {
+      opacity: 1,
+      delay: -30,
+      duration: 10,
+      zIndex: 2,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      zIndex: 1,
+      visibility: "visible",
+    },
+    {
+      zIndex: -1,
+      visibility: "hidden",
+    }
+  );
+
+  mainTimeline.to(".bg-rodaje", {
+    yPercent: -62,
+    duration: 25,
+    opacity: 0.8,
+    scrollTrigger: ".sup-rodaje",
+    ease: "power1.inOut",
+  });
+
+  mainTimeline.to(".sup-rodaje", {
+    delay: 3,
+    duration: 23,
+    yPercent: -62,
+    ease: "power1.inOut",
+  });
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+      duration: 2,
+      delay: -5,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  );
+
+  mainTimeline.to(".txt-ctn-1 .txt-row h2", {
+    opacity: 1,
+    duration: 5,
+  });
+
+  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
+    opacity: 1,
+    stagger: 0.5,
+    duration: 5,
+    scrollTrigger: ".dup-ctn span",
+  });
+  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
+    color: "#D1D821",
+    stagger: 0.5,
+    duration: 5,
+    delay: 5,
+  });
+
+  mainTimeline.to(".sup-rodaje.zoomed", {
+    duration: 3,
+    opacity: 1,
+    delay: 10,
+  });
+
+  mainTimeline.to(".txt-ctn-1", {
+    duration: 5,
+    opacity: 0,
+  });
+
+  mainTimeline.to("#rect1", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
+
+  mainTimeline.to(".sup-rodaje", {
+    duration: 10,
+    scale: 2.5,
+    transformOrigin: "32% bottom",
+    scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+  });
+
+  mainTimeline.to(".bg-overlay", {
+    duration: 5,
+    opacity: 0.3,
+  });
+
+  mainTimeline.to(".txt-ctn-2 .txt-row h2", {
+    opacity: 1,
+    duration: 4,
+  });
+
+  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
+    opacity: 1,
+    stagger: 0.5,
+    duration: 5,
+    scrollTrigger: ".dup-ctn span",
+  });
+  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
+    color: "#D1D821",
+    stagger: 0.5,
+    duration: 5,
+    delay: 4,
+  });
+
+  mainTimeline.to(".txt-ctn-2", {
+    opacity: 0,
+    duration: 4,
+    delay: 4,
+  });
+
+  mainTimeline.to(".pf-accordion-outer", {
+    opacity: 1,
+    duration: 4,
+    scrollTrigger: ".bg-overlay",
+    zIndex: 20,
+  });
+
+  mainTimeline.to(".bg-overlay", {
+    duration: 4,
+    opacity: 0.5,
+    scrollTrigger: ".pf-accordion-outer ol li h2",
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 0,
+    opacity: 1,
+    stagger: 1,
+    duration: 3,
+    delay: 2,
+  });
+
+  mainTimeline
+    .to(".pf-accordion", {
+      delay: 10,
+      opacity: 1,
+      duration: 2,
+    })
+    .addLabel("portfolio");
+
+  mainTimeline.to(".pf-accordion", {
+    delay: 5,
+    opacity: 0,
+    duration: 6,
+    scrollTrigger: ".pf-accordion",
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    y: 30,
+    opacity: 0,
+    stagger: 1,
+    delay: 4,
+    duration: 5,
+  });
+
+  mainTimeline.to(".pf-accordion-outer ol li h2", {
+    duration: 0,
+    display: "none",
+  });
+
+  mainTimeline.to(".sup-rodaje", {
+    backgroundColor: "transparent",
+    duration: 0,
+    scrollTrigger: ".box-ctn",
+  });
+
+  mainTimeline.to(".sup-rodaje", {
+    // delay: 4,
+    duration: 5,
+    width: "700%",
+    left: "-480%",
+    top: "-340%",
+    scrollTrigger: ".box-ctn",
+  });
+
+  mainTimeline.fromTo(
+    ".box-ctn",
+    {
+      // delay: -2,
+      duration: 5,
+      transform:
+        "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(1.0075, 0.85)",
+      top: "50%",
+    },
+    {
+      // delay: -2,
+      duration: 7,
+      transform:
+        "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(4.1)",
+      top: "50%",
+      scrollTrigger: ".sup-rodaje",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      y: 0,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.to(".portfolio", {
+    opacity: 0,
+    duration: 8,
+  });
+
+  /* *********** END PORTFOLIO SCROLLING ********** */
+
+  /* *********** MIDDLE SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#middle",
+    {
+      opacity: 0,
+      zIndex: -1,
+    },
+    {
+      opacity: 1,
+      duration: 8,
+      delay: -10,
+      zIndex: 3,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "block",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 0,
+      duration: 4,
+    },
+    {
+      opacity: 1,
+      duration: 4,
+      onStart: () => {
+        middleVideo.play();
+      },
+    }
+  );
+
+  middleVideo.addEventListener("ended", () => {
+    middleVideo.style.display = "none";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+      duration: 3,
+    });
+    middleVideo.currentTime = 0;
+    middleVideo.load();
+  });
+
+  subir.addEventListener("click", () => {
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+      duration: 2,
+    });
+  });
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "block",
+      delay: 0,
+    },
+    {
+      display: "none",
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 1,
+      duration: 10,
+      delay: -10,
+    },
+    {
+      opacity: 0,
+      duration: 10,
+      delay: 20,
+      onComplete: () => {
+        middleVideo.pause();
+      },
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "block",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      delay: -10,
+      rotateX: 0,
+      opacity: 0,
+      duration: 5,
+    },
+    {
+      delay: -10,
+      rotateX: 0,
+      opacity: 0.5,
+      duration: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      delay: 5,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 4,
+      delay: 5,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".accordion",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 1000,
+        duration: 10,
+      },
+      {
+        y: 0,
+        stagger: 1,
+        duration: 10,
+      }
+    )
+    .addLabel("start-tiempo");
+
+  mainTimeline.to("#rect2", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  mainTimeline
+    .to("#rect3", {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    })
+    .addLabel("servicios");
+
+  mainTimeline.to("#middle #text-container .letter", {
+    color: "#D1D821",
+    stagger: 0.5,
+    duration: 5,
+  });
+
+  mainTimeline.fromTo(
+    "#middle #text-container",
+    {
+      x: 0,
+    },
+    {
+      x: -2000,
+      delay: 3,
+      duration: 30,
+    }
+  );
+  mainTimeline.fromTo(
+    "#middle #text-container",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    }
+  );
+  mainTimeline.to(".acc-borders", {
+    opacity: 1,
+    x: 0,
+    duration: 20,
+    width: "400vw",
+    delay: -35,
+  });
+
+  mainTimeline
+    .fromTo(
+      ".accordion",
+      {
+        x: 2000,
+        delay: -20,
+        duration: 20,
+      },
+      {
+        x: 0,
+        delay: -20,
+        duration: 20,
+      }
+    )
+    .addLabel("servicios");
+
+  mainTimeline.to(".accordion", {
+    rotateX: -69.3,
+    duration: 10,
+    delay: 10,
+  });
+
+  mainTimeline.to(".accordion", {
+    opacity: 0,
+    duration: 2,
+    delay: -4,
+  });
+
+  mainTimeline.to(".bg-video", {
+    opacity: 0,
+    duration: 10,
+    delay: -10,
+  });
+
+  /* *********** END MIDDLE SCROLLING ********** */
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 16,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+
+  mainTimeline.to("#video-tiempo #text-container-2 .text", {
+    y: 1500,
+    duration: 0,
+  });
+
+  mainTimeline.fromTo(
+    "#tiempoVidCtn",
+    {
+      opacity: 0,
+      delay: -10,
+    },
+    {
+      opacity: 1,
+      duration: 6,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2",
+    {
+      x: -2000,
+      duration: 0,
+      delay: -10,
+    },
+    {
+      x: 0,
+      duration: 0,
+      delay: -10,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      delay: 15,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 15,
+      delay: 10,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2 .letter",
+    {
+      color: "transparent",
+      duration: 4,
+      delay: 1,
+    },
+    {
+      color: "rgb(203, 219, 67)",
+      stagger: 0.5,
+      duration: 5,
+      delay: 1,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      rotateX: 0,
+      duration: 20,
+    },
+    {
+      rotateX: 110,
+      duration: 20,
+      scrollTrigger: ".accordion",
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 1,
+      duration: 20,
+      scrollTrigger: ".accordion",
+    },
+    {
+      opacity: 0,
+      // delay: 12,
+      duration: 20,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    {
+      opacity: 0.5,
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(".bg-video", { rotateX: 0 }, { rotateX: 0 });
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: -65,
+      duration: 20,
+    },
+    {
+      rotateX: 0,
+      duration: 20,
+    }
+  );
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  /* **************** SECCION FINAL ***************** */
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      zIndex: -1,
+      opacity: 0,
+      duration: 10,
+      delay: -20,
+    },
+    {
+      zIndex: 5,
+      opacity: 1,
+      duration: 10,
+      delay: -20,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#p1",
+    {
+      x: 2000,
+    },
+    {
+      x: 0,
+      duration: 25,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#p2",
+    {
+      x: 2000,
+    },
+    {
+      x: 0,
+      duration: 30,
+      delay: -18,
+    }
+  );
+
+  mainTimeline.to("#p1", {
+    delay: 20,
+    duration: 30,
+    x: -2000,
+  });
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 16,
+      delay: -2,
+    }
+  );
+
+  mainTimeline.to("#p1", {
+    opacity: 0,
+    duration: 0,
+  });
+
+  mainTimeline.to("#rect3", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  mainTimeline.to("#rect4", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
+
+  mainTimeline.to("#p2", {
+    delay: -30,
+    duration: 20,
+    y: 150,
+  });
+
+  mainTimeline.fromTo(
+    ".flipLogoContainer",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#carousel-container",
+    {
+      display: "none",
+      duration: 0,
+      delay: -20,
+    },
+    {
+      display: "block",
+      duration: 0,
+      delay: -20,
+    }
+  );
+
+  mainTimeline
+    .fromTo(
+      "#carousel-container",
+      {
+        transform: "scale(0)",
+        duration: 10,
+        delay: -20,
+      },
+      {
+        transform: "scale(1.2)",
+        duration: 10,
+        delay: -20,
+      }
+    )
+    .addLabel("clientes");
+
+  mainTimeline.to("#txt-container-2", {
+    delay: 30,
+    y: 800,
+    duration: 30,
+    transform: "scale(0.5)",
+    opacity: 0,
+  });
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 5,
+    },
+    {
+      opacity: 0,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.to("#progressbar-ctn", {
+    display: "none",
+  });
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0.5,
+      duration: 12,
+      delay: -15,
+    },
+    {
+      opacity: 0.8,
+      duration: 12,
+      delay: -15,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#svgOutro",
+    {
+      y: -1000,
+      transform: "scale(2.5)",
+      duration: 20,
+      delay: -20,
+      opacity: 0,
+    },
+    {
+      delay: -20,
+      y: 0,
+      transform: "scale(1.6)",
+      duration: 20,
+      opacity: 1,
+    }
+  );
+  mainTimeline.to("#svgOutro", {
+    delay: 10,
+    duration: 20,
+    rotateY: 809,
+  });
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    }
+  );
+
+  mainTimeline.to("#svgOutro", {
+    visibility: "hidden",
+  });
+
+  mainTimeline.fromTo(
+    "#textAllCtn",
+    {
+      visibility: "hidden",
+      rotateY: -90,
+      duration: 10,
+    },
+    {
+      visibility: "visible",
+      rotateY: 0,
+      duration: 10,
+      delay: 10,
+    }
+  );
+
+  mainTimeline.to([".charSpan"], {
+    color: "#D1D821",
+    stagger: 0.5,
+    duration: 5,
+  });
+
+  mainTimeline.to(".charSpan", {
+    delay: 10,
+  });
+
+  mainTimeline.to("#textAllCtn", {
+    scale: 0.6,
+    y: -100,
+    duration: 5,
+  });
+
+  mainTimeline.to(".subTextContainer", {
+    y: 0,
+    visibility: "visible",
+  });
+
+  mainTimeline.fromTo(
+    "nav .social-ctn a",
+    {
+      scale: 1,
+      duration: 4,
+    },
+    {
+      scale: 0,
+      duration: 4,
+    }
+  );
+
+  mainTimeline.fromTo(
+    ".svgSocial",
+    { scale: 0, duration: 5 },
+    { scale: 1, duration: 5 }
+  );
+
+  mainTimeline.staggerTo(
+    [".charSpan2"],
+    3,
+    {
+      color: "#D1D821",
+      opacity: 1,
+      duration: 10,
+    },
+    0.5
+  );
+
+  mainTimeline.fromTo(
+    "#subir",
+    {
+      y: 500,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 2,
+    }
+  );
+
+  /* *********** END TIMELINE ********** */
+} else if (isMobile()) {
   /* ************************** MOBILE TIMELINE ************************** */
 
   const mainTimeline = gsap.timeline({
@@ -2613,63 +3974,6 @@ if (!isMobile()) {
     display: "none",
   });
 
-  mainTimeline.to(
-    ".ctn-line",
-    {
-      margin: "-12 0",
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".desc-ctn",
-    {
-      y: -100,
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    "section.portfolio li h2",
-    {
-      color: "transparent",
-      height: "auto",
-      duration: 0.5,
-      zIndex: -1,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".preview-video",
-    {
-      opacity: 0,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".vid-overlay",
-    {
-      opacity: 1,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
-  mainTimeline.to(
-    ".logo-box",
-    {
-      opacity: 0.4,
-      duration: 0.5,
-    },
-    "-=0.5"
-  );
-
   mainTimeline.fromTo(
     ".sup-rodaje.zoomed, .sup-rodaje",
     {
@@ -3043,6 +4347,18 @@ if (!isMobile()) {
   /* *********** TIEMPO SCROLLING ********** */
 
   mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 16,
+      delay: 0,
+    }
+  );
+
+  mainTimeline.fromTo(
     "#video-tiempo",
     {
       zIndex: -1,
@@ -3412,15 +4728,12 @@ if (!isMobile()) {
     { scale: 1, duration: 3 }
   );
 
-  mainTimeline.to(
-    [".charSpan2"],
-    {
-      color: "#D1D821",
-      opacity: 1,
-      stagger: 0.5,
-      duration: 2,
-    },
-  );
+  mainTimeline.to([".charSpan2"], {
+    color: "#D1D821",
+    opacity: 1,
+    stagger: 0.5,
+    duration: 2,
+  });
 
   mainTimeline.fromTo(
     "#subir",

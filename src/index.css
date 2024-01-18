@@ -1502,7 +1502,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
 /* =================== media queries =================== */
 
-@media (max-width: 900px) {
+@media only screen (max-width: 900px) {
 
   #intro #init {
     background-size: 100px;
@@ -2102,6 +2102,23 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #middle #subir button svg .swipe {
     animation: scroll2 1s infinite;
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1366px) {
+  nav section#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    background: rgb(203, 219, 67);
+    opacity: 0;
+  }
+
+  nav section#menu ul li a {
+    font-size: 3.5rem;
   }
 }
 
