@@ -375,7 +375,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[2].style.opacity = 0.5;
-            titles[0].style.color = 'rgb(203, 219, 67)'
+            titles[1].style.color = 'rgb(203, 219, 67)'
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
             txtInnerCtn[0].classList.remove("reveal");
@@ -387,7 +387,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[1].style.opacity = 0.5;
-            titles[0].style.color = 'rgb(203, 219, 67)'
+            titles[2].style.color = 'rgb(203, 219, 67)'
           }
         }
 
@@ -429,7 +429,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[2].style.opacity = 1;
-            titles[0].style.color = 'transparent'
+            titles[1].style.color = 'transparent'
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[0].disabled = false;
@@ -438,7 +438,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[1].style.opacity = 1;
-            titles[0].style.color = 'transparent'
+            titles[2].style.color = 'transparent'
           }
         }
 
