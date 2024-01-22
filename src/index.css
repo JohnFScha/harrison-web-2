@@ -326,6 +326,10 @@ body #intro {
   margin: auto;
 }
 
+#intro #scrollea svg .st0 {
+  stroke: none;
+}
+
 #intro #scrollea svg path.st1 {
   fill: white;
   animation: scroll 0.8s infinite;
@@ -791,6 +795,7 @@ section.portfolio .logo-box {
   margin-top: -70px;
   font-size: 6.8rem;
   color: transparent;
+  /* color:rgb(203, 219, 67); */
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
@@ -871,6 +876,10 @@ section.portfolio .logo-box {
   left: 50%;
 }
 
+.title-ctn h1 {
+  color:rgb(203, 219, 67);
+}
+
 .text-ctn {
   position: absolute;
   left: 0;
@@ -914,6 +923,10 @@ section.portfolio .logo-box {
   width: object-fit;
   transition: 0.8s ease clip-path;
   clip-path: inset(0 100% 0 0);
+}
+
+.child:nth-child(1) .text-ctn ol {
+  clip-path: inset(0 0% 0 0);
 }
 
 .child:hover .text-ctn p,
@@ -1006,7 +1019,6 @@ section.portfolio .logo-box {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  animation: pulse 1.5s infinite;
 }
 
 #middle #video-tiempo #elementos-mob {
@@ -1153,15 +1165,6 @@ section.portfolio .logo-box {
   }
 }
 
-@keyframes pulse {
-  from {
-    z-index: -2;
-  }
-
-  to {
-    z-index: 2;
-  }
-}
 
 /* seccion final */
 
@@ -1502,7 +1505,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
 /* =================== media queries =================== */
 
-@media only screen (max-width: 900px) {
+@media only screen and (max-width: 900px) {
 
   #intro #init {
     background-size: 100px;
@@ -1912,6 +1915,10 @@ div#textAllCtn .letter-container .spacerSpan {
     padding: 250px 10% 50px 15%;
     overflow: visible;
     border: 0;
+  }
+
+  #middle #parent .child .title-ctn h1 {
+    transition: color 0.5s ease;
   }
 
   #middle #parent .child .text-ctn {

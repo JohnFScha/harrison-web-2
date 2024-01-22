@@ -1,6 +1,6 @@
 // Function to check if the screen width is 900px or less
 function isMobile() {
-  return window.innerWidth <= 900;
+  return window.innerWidth < 1366;
 }
 
 function isLaptop() {
@@ -104,7 +104,7 @@ if (isMobile()) {
     customClass: "alert",
   });
   const timeout = setTimeout(() => {
-    window.location.href = "/error"; // Adjust the path as needed
+    window.location.href = "/404.html"; // Adjust the path as needed
   }, 20000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
   window.addEventListener("load", () => {
@@ -112,7 +112,7 @@ if (isMobile()) {
   });
 } else {
   const timeout = setTimeout(() => {
-    window.location.href = "/error"; // Adjust the path as needed
+    window.location.href = "/404.html"; // Adjust the path as needed
   }, 10000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
   window.addEventListener("load", () => {
@@ -266,16 +266,12 @@ const progressBar = document.getElementById("progressbar-ctn");
 const nav = document.querySelector("nav");
 const intro = document.getElementById("intro");
 
-/* ****************** end intro dom ****************** */
-
 /* ****************** Portfolio dom ****************** */
 
 let txtCtn = document.querySelectorAll(".text-ctn-1");
 let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
-let hoveredTitleCtn = document.querySelectorAll(
-  "section.portfolio li h2:hover"
-);
+let hoveredTitleCtn = document.querySelectorAll("section.portfolio li h2:hover");
 let descCtn = document.querySelectorAll(".desc-ctn");
 let ctnHr = document.querySelectorAll("hr.ctn-line");
 let previewVideos = document.querySelectorAll(".preview-video");
@@ -340,10 +336,10 @@ if (isMobile()) {
 
 let ctn = document.querySelectorAll(".child");
 let childTitleCtn = document.querySelectorAll(".child .title-ctn");
+let titles = gsap.utils.toArray(".child .title-ctn h1");
 
 if (isMobile()) {
   let isOpen = false;
-  // console.log(txtContainers);
 
   expandBtns.forEach((btn, index) => {
     btn.addEventListener("click", () => {
@@ -364,6 +360,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/X.webp";
             expandBtnImgs[1].style.opacity = 0.5;
             expandBtnImgs[2].style.opacity = 0.5;
+            titles[0].style.color = 'rgb(203, 219, 67)'
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
@@ -378,6 +375,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[2].style.opacity = 0.5;
+            titles[0].style.color = 'rgb(203, 219, 67)'
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
             txtInnerCtn[0].classList.remove("reveal");
@@ -389,6 +387,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[1].style.opacity = 0.5;
+            titles[0].style.color = 'rgb(203, 219, 67)'
           }
         }
 
@@ -417,6 +416,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/expand.webp";
             expandBtnImgs[1].style.opacity = 1;
             expandBtnImgs[2].style.opacity = 1;
+            titles[0].style.color = 'transparent';
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
@@ -429,6 +429,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[2].style.opacity = 1;
+            titles[0].style.color = 'transparent'
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[0].disabled = false;
@@ -437,6 +438,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[1].style.opacity = 1;
+            titles[0].style.color = 'transparent'
           }
         }
 
@@ -455,23 +457,79 @@ if (isMobile()) {
     });
   });
 } else {
-  let titles = gsap.utils.toArray('.child .title-ctn h1')
-  console.log(titles)
+
+  gsap.set(ctn[0], {
+    width: "1000px",
+  });
+
+  gsap.set(titles[0], {
+    color: 'rgb(203, 219, 67)'
+  })
+
   ctn.forEach((element, index) => {
     element.addEventListener("mouseover", (event) => hoverAcc(event, index));
     element.addEventListener("mouseout", (event) => outAcc(event, index));
   });
-
+  
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
-    if(isLaptop()) {
+    if (isDesktop()) {
+      if (index !== 0) {
+        gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 100% 0 0)', duration: 0.2,delay: 0})
+      } else if (index === 0) {
+        gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 0 0 0)', duration: 0.2,delay: 0})
+      }
+       
+      gsap.to(event.currentTarget, 0.7, {
+        width: "2000px",
+      });
+
+      // Reset color for all titles
+      titles.forEach((title, idx) => {
+        gsap.to(title, { color: "transparent" });
+      });
+
+      // Change color for the hovered title
+      gsap.to(titles[index], { color: "rgb(203, 219, 67)" });
+
+
+      // Use forEach to iterate over siblings
+      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+          gsap.to(sibling, 0.7, {
+            width: "1000px",
+          });
+        }
+      });
+
+      // Check if the hovered element is the second or third
+      if (index === 1 || index === 2) {
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-100px",
+        });
+      }
+
+      if (index === 1) {
+        gsap.to(ctn[1], 0.7, {
+          width: "3000px",
+          clipPath: 'inset(0 0 0 0)'
+        });
+
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "-200px",
+        });
+      }
+    } else if (isLaptop()) {
       gsap.to(event.currentTarget, 0.7, {
         width: "3000px",
       });
 
       titles.forEach((title) => {
-        gsap.to(title[index], {color: 'rgb(203, 219, 67)'})
-      })
+        gsap.to(title[index], { color: "rgb(203, 219, 67)" });
+      });
+
+      // Change color for the hovered title
+      gsap.to(titles[index], { color: "rgb(203, 219, 67)" });
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -481,50 +539,19 @@ if (isMobile()) {
           });
         }
       });
-  
+
       // Check if the hovered element is the second or third
       if (index === 1 || index === 2) {
         gsap.to(ctn[0], 0.7, {
           marginLeft: "-100px",
         });
       }
-  
+
       if (index === 1) {
         gsap.to(ctn[1], 0.7, {
           width: "3500px",
         });
-  
-        gsap.to(ctn[0], 0.7, {
-          marginLeft: "-200px",
-        });
-      }
-    } else {
 
-      gsap.to(event.currentTarget, 0.7, {
-        width: "2000px",
-      });
-  
-      // Use forEach to iterate over siblings
-      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
-        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
-          gsap.to(sibling, 0.7, {
-            width: "1000px",
-          });
-        }
-      });
-  
-      // Check if the hovered element is the second or third
-      if (index === 1 || index === 2) {
-        gsap.to(ctn[0], 0.7, {
-          marginLeft: "-100px",
-        });
-      }
-  
-      if (index === 1) {
-        gsap.to(ctn[1], 0.7, {
-          width: "3000px",
-        });
-  
         gsap.to(ctn[0], 0.7, {
           marginLeft: "-200px",
         });
@@ -535,10 +562,18 @@ if (isMobile()) {
   function outAcc(event, index) {
     // Retrieve the dynamically calculated original width
     let originalWidth = getComputedStyle(event.currentTarget).width;
+    
+    gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 100% 0 0)', duration: 0.2,delay: 0})   
 
     gsap.to(event.currentTarget, 0.7, {
       width: originalWidth,
     });
+
+    // Reset color for all titles
+    titles.forEach((title, idx) => {
+      gsap.to(title, { color: "transparent" });
+    });
+
 
     // Use forEach to iterate over siblings
     event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -567,6 +602,9 @@ if (isMobile()) {
 /* ****************** End Middle dom ****************** */
 
 /* ******************  dom manipulation ****************** */
+
+// Chequear si se trata de un dispositivo movil y cargar condicionalmente el carrusel o la lista de marcas.
+
 if (isMobile()) {
   bgVideo.src = "";
   textCtn2.innerHTML = `
@@ -799,6 +837,8 @@ urls1.forEach((url) => {
   videoCamara.appendChild(img);
 });
 
+// Animaciones de la pagina con scrollTrigger, tres instancias, una para cada tipo de pantalla.
+
 if (isDesktop()) {
   /* ************************** Desktop Timeline ************************** */
 
@@ -807,7 +847,7 @@ if (isDesktop()) {
       trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=2000% bottom",
-      scrub: 5,
+      scrub: true,
       pin: true,
       inertia: true,
     },
