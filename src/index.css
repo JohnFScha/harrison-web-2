@@ -2127,6 +2127,17 @@ div#textAllCtn .letter-container .spacerSpan {
   nav section#menu ul li a {
     font-size: 3.5rem;
   }
+
+  .modal .close {
+    position: absolute;
+    z-index: 50000;
+    top: 11%;
+    right: 11.5%;
+    width: 60px;
+    cursor: pointer;
+    filter: invert(1);
+    cursor: url("assets/cursor-mano.svg"), pointer;
+  }
 }
 
 /*# sourceMappingURL=flip.css.map */

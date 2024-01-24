@@ -968,7 +968,8 @@ if (isDesktop()) {
       newVideo.id = "modalVideo";
       let swapSrc = document.createElement("source");
       swapSrc.src = videos[index];
-      newVideo.controls = true;
+      newVideo.setAttribute("controlslist", "nodownload");
+      newVideo.controls = "controls";
       newVideo.appendChild(swapSrc);
       modalContent.appendChild(newVideo);
       modal.classList.remove("hidden");
@@ -979,6 +980,7 @@ if (isDesktop()) {
       body.style.position = "fixed";
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+        duration: 0
       });
     })
   );
@@ -1264,7 +1266,7 @@ if (isDesktop()) {
     {
       opacity: 1,
       stagger: 0.1,
-      duration: 0.5,
+      duration: 0.2,
       scrollTrigger: ".dup-ctn span",
     },
     ">"
@@ -1275,7 +1277,7 @@ if (isDesktop()) {
     {
       color: "#D1D821",
       stagger: 0.1,
-      duration: 0.5,
+      duration: 0.2,
     },
     "<"
   );
@@ -1352,7 +1354,7 @@ if (isDesktop()) {
     {
       opacity: 1,
       stagger: 0.1,
-      duration: 0.5,
+      duration: 0.2,
       scrollTrigger: ".dup-ctn span",
     },
     ">"
@@ -1363,7 +1365,7 @@ if (isDesktop()) {
     {
       color: "#D1D821",
       stagger: 0.1,
-      duration: 0.5,
+      duration: 0.2,
     },
     "<"
   );
@@ -2396,7 +2398,8 @@ if (isDesktop()) {
       newVideo.id = "modalVideo";
       let swapSrc = document.createElement("source");
       swapSrc.src = videos[index];
-      newVideo.controls = true;
+      newVideo.setAttribute("controlslist", "nodownload");
+      newVideo.controls = "controls";
       newVideo.appendChild(swapSrc);
       modalContent.appendChild(newVideo);
       modal.classList.remove("hidden");
@@ -3821,7 +3824,8 @@ if (isDesktop()) {
       newVideo.id = "modalVideo";
       let swapSrc = document.createElement("source");
       swapSrc.src = videos[index];
-      newVideo.controls = true;
+      newVideo.setAttribute("controlslist", "nodownload");
+      newVideo.controls = "controls";
       newVideo.appendChild(swapSrc);
       modalContent.appendChild(newVideo);
       modal.classList.remove("hidden");
