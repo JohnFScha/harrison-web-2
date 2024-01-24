@@ -271,7 +271,9 @@ const intro = document.getElementById("intro");
 let txtCtn = document.querySelectorAll(".text-ctn-1");
 let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
-let hoveredTitleCtn = document.querySelectorAll("section.portfolio li h2:hover");
+let hoveredTitleCtn = document.querySelectorAll(
+  "section.portfolio li h2:hover"
+);
 let descCtn = document.querySelectorAll(".desc-ctn");
 let ctnHr = document.querySelectorAll("hr.ctn-line");
 let previewVideos = document.querySelectorAll(".preview-video");
@@ -360,7 +362,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/X.webp";
             expandBtnImgs[1].style.opacity = 0.5;
             expandBtnImgs[2].style.opacity = 0.5;
-            titles[0].style.color = 'rgb(203, 219, 67)'
+            titles[0].style.color = "rgb(203, 219, 67)";
           } else if (index === 1) {
             txtInnerCtn[1].classList.add("reveal");
             txtInnerCtn[2].classList.add("reveal");
@@ -375,7 +377,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[2].style.opacity = 0.5;
-            titles[1].style.color = 'rgb(203, 219, 67)'
+            titles[1].style.color = "rgb(203, 219, 67)";
           } else if (index === 2) {
             txtInnerCtn[3].classList.add("reveal");
             txtInnerCtn[0].classList.remove("reveal");
@@ -387,7 +389,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/X.webp";
             expandBtnImgs[0].style.opacity = 0.5;
             expandBtnImgs[1].style.opacity = 0.5;
-            titles[2].style.color = 'rgb(203, 219, 67)'
+            titles[2].style.color = "rgb(203, 219, 67)";
           }
         }
 
@@ -416,7 +418,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/expand.webp";
             expandBtnImgs[1].style.opacity = 1;
             expandBtnImgs[2].style.opacity = 1;
-            titles[0].style.color = 'transparent';
+            titles[0].style.color = "transparent";
           } else if (index === 1) {
             txtInnerCtn[1].classList.remove("reveal");
             txtInnerCtn[2].classList.remove("reveal");
@@ -429,7 +431,7 @@ if (isMobile()) {
             expandBtnImgs[2].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[2].style.opacity = 1;
-            titles[1].style.color = 'transparent'
+            titles[1].style.color = "transparent";
           } else if (index === 2) {
             txtInnerCtn[3].classList.remove("reveal");
             expandBtns[0].disabled = false;
@@ -438,7 +440,7 @@ if (isMobile()) {
             expandBtnImgs[1].src = "src/assets/expand.webp";
             expandBtnImgs[0].style.opacity = 1;
             expandBtnImgs[1].style.opacity = 1;
-            titles[2].style.color = 'transparent'
+            titles[2].style.color = "transparent";
           }
         }
 
@@ -457,29 +459,36 @@ if (isMobile()) {
     });
   });
 } else {
-
   gsap.set(ctn[0], {
     width: "1000px",
   });
 
   gsap.set(titles[0], {
-    color: 'rgb(203, 219, 67)'
-  })
+    color: "rgb(203, 219, 67)",
+  });
 
   ctn.forEach((element, index) => {
     element.addEventListener("mouseover", (event) => hoverAcc(event, index));
     element.addEventListener("mouseout", (event) => outAcc(event, index));
   });
-  
+
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
     if (isDesktop()) {
       if (index !== 0) {
-        gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 100% 0 0)', duration: 0.2,delay: 0})
+        gsap.to(txtInnerCtn[0], {
+          clipPath: "inset(0 100% 0 0)",
+          duration: 0.2,
+          delay: 0,
+        });
       } else if (index === 0) {
-        gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 0 0 0)', duration: 0.2,delay: 0})
+        gsap.to(txtInnerCtn[0], {
+          clipPath: "inset(0 0 0 0)",
+          duration: 0.2,
+          delay: 0,
+        });
       }
-       
+
       gsap.to(event.currentTarget, 0.7, {
         width: "2000px",
       });
@@ -491,7 +500,6 @@ if (isMobile()) {
 
       // Change color for the hovered title
       gsap.to(titles[index], { color: "rgb(203, 219, 67)" });
-
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -512,7 +520,7 @@ if (isMobile()) {
       if (index === 1) {
         gsap.to(ctn[1], 0.7, {
           width: "3000px",
-          clipPath: 'inset(0 0 0 0)'
+          clipPath: "inset(0 0 0 0)",
         });
 
         gsap.to(ctn[0], 0.7, {
@@ -562,8 +570,12 @@ if (isMobile()) {
   function outAcc(event, index) {
     // Retrieve the dynamically calculated original width
     let originalWidth = getComputedStyle(event.currentTarget).width;
-    
-    gsap.to(txtInnerCtn[0], {clipPath: 'inset(0 100% 0 0)', duration: 0.2,delay: 0})   
+
+    gsap.to(txtInnerCtn[0], {
+      clipPath: "inset(0 100% 0 0)",
+      duration: 0.2,
+      delay: 0,
+    });
 
     gsap.to(event.currentTarget, 0.7, {
       width: originalWidth,
@@ -573,7 +585,6 @@ if (isMobile()) {
     titles.forEach((title, idx) => {
       gsap.to(title, { color: "transparent" });
     });
-
 
     // Use forEach to iterate over siblings
     event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -847,9 +858,14 @@ if (isDesktop()) {
       trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=2000% bottom",
-      scrub: true,
+      scrub: 2,
       pin: true,
-      inertia: true,
+      snap: {
+        inertia: false,
+        snapTo: "labels", // snap to the closest label in the timeline
+        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 1, // wait 0.2 seconds from the last scroll event before doing the snapping
+      },
     },
   });
 
@@ -902,17 +918,17 @@ if (isDesktop()) {
       } else if (a.innerText.toLowerCase() === `portfolio`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-          duration: 2,
+          duration: 0,
         });
       } else if (a.innerText.toLowerCase() === `servicios`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-          duration: 2,
+          duration: 0,
         });
       } else if (a.innerText.toLowerCase() === `clientes`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-          duration: 2,
+          duration: 0,
         });
       }
 
@@ -948,11 +964,6 @@ if (isDesktop()) {
       if (currentVideo && currentVideo.parentNode) {
         currentVideo.parentNode.removeChild(currentVideo);
       }
-      // Save the current scroll position
-      // const scrollPosition = window.scrollY;
-
-      // Disable body scrolling
-      // wrapperCtn.style.overflow = "hidden";
       let newVideo = document.createElement("video");
       newVideo.id = "modalVideo";
       let swapSrc = document.createElement("source");
@@ -962,19 +973,13 @@ if (isDesktop()) {
       modalContent.appendChild(newVideo);
       modal.classList.remove("hidden");
       modal.classList.add("shown");
-      // wrapperCtn.style.top = `-${scrollPosition}px`;
       newVideo.play();
       currentVideo = newVideo;
-      // mainTimeline.scrub = 0;
-      // mainTimeline.scrollTrigger.pause();
       mainTimeline.seek("portfolio");
       body.style.position = "fixed";
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
       });
-      // wrapperCtn.style.zIndex = "500 !important";
-
-      // mainTimeline.scrollTrigger.disable(false);
     })
   );
 
@@ -987,13 +992,9 @@ if (isDesktop()) {
         modal.classList.remove("shown");
         modal.classList.add("hidden");
       }, 500);
-
-      // progress.style.zIndex = "0 !important";
     }
     wrapperCtn.style.overflow = "";
-    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
     wrapperCtn.style.top = "";
-    // window.scrollTo(0, -scrollPosition);
 
     mainTimeline.seek("portfolio");
     body.style.position = "absolute";
@@ -1023,12 +1024,12 @@ if (isDesktop()) {
     "#scrollea",
     {
       opacity: 1,
-      duration: 2,
+      duration: 1,
       x: 0,
     },
     {
       opacity: 0,
-      duration: 2,
+      duration: 1,
       x: -100,
     }
   );
@@ -1040,7 +1041,8 @@ if (isDesktop()) {
     },
     {
       display: "none",
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1050,19 +1052,21 @@ if (isDesktop()) {
     },
     {
       display: "flex",
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-camara",
     {
       opacity: 0,
-      duration: 5,
+      duration: 1,
     },
     {
       opacity: 1,
-      duration: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   const cameraFrames = gsap.utils.toArray("#video-camara img");
@@ -1075,8 +1079,8 @@ if (isDesktop()) {
       },
       {
         display: "block",
-        stagger: 0.3,
-        duration: 0.2,
+        stagger: 0.1,
+        duration: 0.01,
       }
     );
     if (index < cameraFrames.length - 1) {
@@ -1089,43 +1093,48 @@ if (isDesktop()) {
     {
       transform: "scale(0)",
       opacity: 0,
-      duration: 10,
+      duration: 1,
     },
     {
       transform: "scale(1)",
       opacity: 1,
-      duration: 10,
-      delay: -30,
-    }
+      duration: 1,
+    },
+    ">-1.5"
   );
 
   mainTimeline.fromTo(
     ".fill",
     {
       color: "transparent",
-      stagger: 1,
-      duration: 5,
-      delay: -20,
+      stagger: 0.1,
+      duration: 0.5,
     },
     {
       color: "#D1D821",
-      stagger: 1,
-      duration: 5,
-      delay: -20,
-    }
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">-0.5"
   );
 
-  mainTimeline.to("#texto", {
-    y: -800,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    "#texto",
+    {
+      y: -800,
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#intro", {
-    opacity: 0,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    "#intro",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#intro",
@@ -1136,7 +1145,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   /* *********** END INTRO SCROLLING ********** */
@@ -1147,59 +1157,17 @@ if (isDesktop()) {
     "#portfolio",
     {
       display: "none",
-      duration: 2,
-      delay: 2,
+      opacity: 0,
+      zIndex: -1,
+      duration: 1,
     },
     {
       display: "block",
-      duration: 2,
-      delay: 2,
-    }
-  );
-
-  mainTimeline.fromTo(
-    "#nav button",
-    {
-      opacity: 0,
-      scale: 0,
-      duration: 2,
-    },
-    {
       opacity: 1,
-      scale: 1,
-      duration: 2,
-      scrollTrigger: "#nav .social-ctn .social-nav",
-    }
-  );
-
-  mainTimeline.fromTo(
-    "#nav .social-ctn .social-nav",
-    {
-      opacity: 0,
-      scale: 0,
-      duration: 2,
-    },
-    {
-      opacity: 1,
-      scale: 1,
-      duration: 2,
-      scrollTrigger: "#nav button",
-    }
-  );
-
-  mainTimeline.fromTo(
-    ".portfolio",
-    {
-      opacity: 0,
-      zIndex: -1,
-      delay: -30,
-    },
-    {
-      opacity: 1,
-      delay: -30,
-      duration: 10,
+      duration: 1,
       zIndex: 2,
-    }
+    },
+    ">-3"
   );
 
   mainTimeline.fromTo(
@@ -1211,197 +1179,306 @@ if (isDesktop()) {
     {
       zIndex: -1,
       visibility: "hidden",
-    }
+    },
+    ">"
   );
 
-  mainTimeline.to(".bg-rodaje", {
-    yPercent: -66,
-    duration: 25,
-    opacity: 0.8,
-    scrollTrigger: ".sup-rodaje",
-    ease: "power1.inOut",
-  });
+  mainTimeline.to(
+    ".bg-rodaje",
+    {
+      yPercent: -66,
+      duration: 1,
+      opacity: 0.8,
+      ease: "power1.inOut",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    delay: 3,
-    duration: 23,
-    yPercent: -66,
-    ease: "power1.inOut",
-  });
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      yPercent: -66,
+      ease: "power1.inOut",
+    },
+    ">-0.9"
+  );
+
+  mainTimeline.fromTo(
+    "#nav button",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 0.5,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 1,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      scrollTrigger: "#nav button",
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 0,
       y: 200,
-      duration: 2,
-      delay: -5,
+      duration: 1,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 2,
-      delay: -5,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to(".txt-ctn-1 .txt-row h2", {
-    opacity: 1,
-    duration: 5,
-  });
+  mainTimeline.to(
+    ".txt-ctn-1 .txt-row h2",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    ">-0.2"
+  ).addLabel('intro-portfolio', ">");
 
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    opacity: 1,
-    stagger: 0.5,
-    duration: 5,
-    scrollTrigger: ".dup-ctn span",
-  });
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-    delay: 5,
-  });
+  mainTimeline.to(
+    ".txt-ctn-1 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".sup-rodaje.zoomed", {
-    duration: 3,
-    opacity: 1,
-    delay: 10,
-  });
+  mainTimeline.to(
+    ".txt-ctn-1 .dup-ctn span",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".txt-ctn-1", {
-    duration: 5,
-    opacity: 0,
-  });
+  mainTimeline.to(
+    ".sup-rodaje.zoomed",
+    {
+      duration: 1,
+      opacity: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect1", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
+  mainTimeline.to(
+    ".txt-ctn-1",
+    {
+      duration: 0.5,
+      opacity: 0,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect2", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 1,
-  });
+  mainTimeline.to(
+    "#rect1",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    duration: 10,
-    scale: 2.5,
-    transformOrigin: "32% bottom",
-    scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
-  });
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".bg-overlay", {
-    duration: 5,
-    opacity: 0.3,
-  });
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      scale: 2.5,
+      transformOrigin: "32% bottom",
+      scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".txt-ctn-2 .txt-row h2", {
-    opacity: 1,
-    duration: 4,
-  });
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 0.5,
+      opacity: 0.3,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    opacity: 1,
-    stagger: 0.5,
-    duration: 5,
-    scrollTrigger: ".dup-ctn span",
-  });
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-    delay: 4,
-  });
+  mainTimeline.to(
+    ".txt-ctn-2 .txt-row h2",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    ">"
+  ).addLabel('second-text', ">");
 
-  mainTimeline.to(".txt-ctn-2", {
-    opacity: 0,
-    duration: 4,
-    delay: 4,
-  });
+  mainTimeline.to(
+    ".txt-ctn-2 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".pf-accordion-outer", {
-    opacity: 1,
-    duration: 4,
-    scrollTrigger: ".bg-overlay",
-    zIndex: 20,
-  });
+  mainTimeline.to(
+    ".txt-ctn-2 .dup-ctn span",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".bg-overlay", {
-    duration: 4,
-    opacity: 0.5,
-    scrollTrigger: ".pf-accordion-outer ol li h2",
-  });
+  mainTimeline.to(
+    ".txt-ctn-2",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    y: 0,
-    opacity: 1,
-    stagger: 1,
-    duration: 3,
-    delay: 2,
-  });
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 1,
+      opacity: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer",
+    {
+      opacity: 1,
+      duration: 0.5,
+      zIndex: 20,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.5,
+      duration: 0.5,
+    },
+    ">"
+  );
 
   mainTimeline
     .to(".pf-accordion", {
-      delay: 10,
       opacity: 1,
-      duration: 2,
+      duration: 1,
     })
     .addLabel("portfolio");
 
-  mainTimeline.to(".pf-accordion", {
-    delay: 5,
-    opacity: 0,
-    duration: 6,
-    scrollTrigger: ".pf-accordion",
-  });
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 30,
+      opacity: 0,
+      stagger: 0.5,
+      duration: 0.5,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    y: 30,
-    opacity: 0,
-    stagger: 1,
-    delay: 4,
-    duration: 5,
-  });
+  mainTimeline.to(
+    ".pf-accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    duration: 0,
-    display: "none",
-  });
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      duration: 0,
+      display: "none",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    backgroundColor: "transparent",
-    duration: 0,
-    scrollTrigger: ".box-ctn",
-  });
-  mainTimeline.to(".sup-rodaje", {
-    delay: 4,
-    duration: 10,
-    width: "700%",
-    left: "-480%",
-    top: "-300%",
-    scrollTrigger: ".box-ctn",
-  });
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      backgroundColor: "transparent",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      width: "700%",
+      left: "-480%",
+      top: "-300%",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     ".box-ctn",
     {
-      delay: 4,
-      duration: 10,
+      duration: 1,
       transform:
         "translate(-3.5535px, 50.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851)",
       xPercent: -0,
       top: "34.9998%",
     },
     {
-      delay: 4,
-      duration: 10,
+      duration: 2,
       transform: "scale(4) skew(3.5deg, 7deg) translate(-5px, 40px)",
       xPercent: -100,
       top: "30%",
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -1413,15 +1490,19 @@ if (isDesktop()) {
     {
       opacity: 0,
       y: 200,
-      duration: 5,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to(".portfolio", {
-    opacity: 0,
-    duration: 8,
-  });
+  mainTimeline.to(
+    ".portfolio",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
   /* *********** END PORTFOLIO SCROLLING ********** */
 
@@ -1435,10 +1516,10 @@ if (isDesktop()) {
     },
     {
       opacity: 1,
-      duration: 8,
-      delay: -10,
+      duration: 1,
       zIndex: 3,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1450,39 +1531,34 @@ if (isDesktop()) {
     {
       display: "block",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 0,
-      duration: 4,
+      duration: 1,
     },
     {
       opacity: 1,
-      duration: 4,
+      duration: 1,
       onStart: () => {
         middleVideo.play();
       },
-    }
-  );
+    },
+    "<"
+  ).addLabel('video-calidad', ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-      duration: 3,
+      duration: 3
     });
     middleVideo.currentTime = 0;
     middleVideo.load();
-  });
-
-  subir.addEventListener("click", () => {
-    gsap.to(window, {
-      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-      duration: 2,
-    });
   });
 
   mainTimeline.fromTo(
@@ -1494,24 +1570,24 @@ if (isDesktop()) {
     {
       display: "none",
       delay: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 1,
-      duration: 10,
-      delay: -10,
     },
     {
       opacity: 0,
-      duration: 10,
-      delay: 20,
+      duration: 1,
+      delay: 10,
       onComplete: () => {
         middleVideo.pause();
       },
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1523,7 +1599,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1532,29 +1609,29 @@ if (isDesktop()) {
       delay: -10,
       rotateX: 0,
       opacity: 0,
-      duration: 5,
+      duration: 1,
     },
     {
       delay: -10,
       rotateX: 0,
       opacity: 0.5,
-      duration: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 0,
-      delay: 5,
       y: 200,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 4,
-      delay: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1566,43 +1643,55 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 1000,
+      duration: 2,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline
-    .fromTo(
-      "#middle .text",
+    .to(
+      "#rect3",
       {
-        y: 1000,
-        duration: 10,
+        attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+        fill: "#CBDB43",
+        duration: 1,
       },
-      {
-        y: 0,
-        stagger: 1,
-        duration: 10,
-      }
+      "<"
     )
-    .addLabel("start-tiempo");
+    .addLabel("start-tiempo", ">");
 
-  mainTimeline.to("#rect2", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
-
-  mainTimeline
-    .to("#rect3", {
-      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-      fill: "#CBDB43",
-      duration: 1,
-    })
-    .addLabel("servicios");
-
-  mainTimeline.to("#middle #text-container .letter", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-  });
+  mainTimeline.to(
+    "#middle #text-container .letter",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -1611,10 +1700,12 @@ if (isDesktop()) {
     },
     {
       x: -2000,
-      delay: 3,
-      duration: 30,
-    }
+      duration: 2,
+      snap: "x",
+    },
+    ">"
   );
+
   mainTimeline.fromTo(
     "#middle #text-container",
     {
@@ -1622,49 +1713,65 @@ if (isDesktop()) {
     },
     {
       display: "none",
-    }
+    },
+    ">"
   );
-  mainTimeline.to(".acc-borders", {
-    opacity: 1,
-    x: 0,
-    duration: 20,
-    width: "400vw",
-    delay: -35,
-  });
+
+  mainTimeline.to(
+    ".acc-borders",
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      width: "400vw",
+      snap: "x",
+    },
+    ">-3"
+  );
 
   mainTimeline
     .fromTo(
       ".accordion",
       {
         x: 2000,
-        delay: -20,
-        duration: 20,
+        duration: 1,
       },
       {
         x: 0,
-        delay: -20,
-        duration: 20,
-      }
+        duration: 1,
+        snap: "x, y",
+      },
+      ">"
     )
-    .addLabel("servicios");
+    .addLabel("servicios", ">");
 
-  mainTimeline.to(".accordion", {
-    rotateX: -69.3,
-    duration: 10,
-    delay: 10,
-  });
+  mainTimeline.to(
+    ".accordion",
+    {
+      rotateX: -69.3,
+      duration: 1,
+      delay: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".accordion", {
-    opacity: 0,
-    duration: 2,
-    delay: -4,
-  });
+  mainTimeline.to(
+    ".accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".bg-video", {
-    opacity: 0,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    "<"
+  );
 
   /* *********** END MIDDLE SCROLLING ********** */
 
@@ -1677,9 +1784,9 @@ if (isDesktop()) {
     },
     {
       opacity: 0,
-      duration: 16,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -1689,7 +1796,8 @@ if (isDesktop()) {
     },
     {
       opacity: 1,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1701,99 +1809,98 @@ if (isDesktop()) {
     {
       zIndex: 4,
       rotateX: 0,
-      duration: 10,
-      scrollTrigger: ".accordion",
+      duration: 2,
+      snap: "x, y",
       onStart: () => {
         startCountdown();
       },
-    }
-  );
+    },
+    "<"
+  ).addLabel('video-tiempo', ">");
 
-  mainTimeline.to("#video-tiempo #text-container-2 .text", {
-    y: 1500,
-    duration: 0,
-  });
+  mainTimeline.to(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      duration: 0,
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     "#tiempoVidCtn",
     {
       opacity: 0,
-      delay: -10,
     },
     {
       opacity: 1,
-      duration: 6,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2",
     {
       x: -2000,
-      duration: 0,
-      delay: -10,
     },
     {
       x: 0,
-      duration: 0,
-      delay: -10,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2 .text",
     {
       y: 1500,
-      delay: 15,
     },
     {
       y: 0,
-      stagger: 0.5,
-      duration: 15,
-      delay: 10,
-    }
+      stagger: 0.2,
+      duration: 1,
+    },
+    "<+0.5"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2 .letter",
     {
       color: "transparent",
-      duration: 4,
-      delay: 1,
+      duration: 1,
     },
     {
       color: "rgb(203, 219, 67)",
-      stagger: 0.5,
-      duration: 5,
-      delay: 1,
-    }
+      stagger: 0.2,
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo",
     {
       rotateX: 0,
-      duration: 20,
+      duration: 0.5,
     },
     {
       rotateX: 110,
-      duration: 20,
-      scrollTrigger: ".accordion",
-    }
+      duration: 0.5,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo",
     {
       opacity: 1,
-      duration: 20,
-      scrollTrigger: ".accordion",
+      duration: 1,
     },
     {
       opacity: 0,
-      // delay: 12,
-      duration: 20,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1805,7 +1912,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -1817,33 +1925,28 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     ".bg-video",
-    {
-      opacity: 0,
-      duration: 0,
-    },
-    {
-      opacity: 0.5,
-      duration: 0,
-    }
+    { rotateX: 0, opacity: 0 },
+    { rotateX: 0, opacity: 1 },
+    ">-0.1"
   );
-
-  mainTimeline.fromTo(".bg-video", { rotateX: 0 }, { rotateX: 0 });
 
   mainTimeline.fromTo(
     ".bg-video",
     {
       rotateX: -65,
-      duration: 20,
+      duration: 0.5,
     },
     {
       rotateX: 0,
-      duration: 20,
-    }
+      duration: 0.5,
+    },
+    ">"
   );
 
   /* *********** TIEMPO SCROLLING ********** */
@@ -1855,15 +1958,12 @@ if (isDesktop()) {
     {
       zIndex: -1,
       opacity: 0,
-      duration: 10,
-      delay: -20,
     },
     {
       zIndex: 5,
       opacity: 1,
-      duration: 10,
-      delay: -20,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1873,8 +1973,9 @@ if (isDesktop()) {
     },
     {
       x: 0,
-      duration: 25,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -1884,16 +1985,19 @@ if (isDesktop()) {
     },
     {
       x: 0,
-      duration: 30,
-      delay: -18,
-    }
-  );
+      duration: 1,
+    },
+    ">"
+  ).addLabel("end-intro", ">");
 
-  mainTimeline.to("#p1", {
-    delay: 20,
-    duration: 30,
-    x: -2000,
-  });
+  mainTimeline.to(
+    "#p1",
+    {
+      duration: 1,
+      x: -2000,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
@@ -1904,33 +2008,48 @@ if (isDesktop()) {
     {
       opacity: 1,
       y: 0,
-      duration: 16,
-      delay: -2,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to("#p1", {
-    opacity: 0,
-    duration: 0,
-  });
+  mainTimeline.to(
+    "#p1",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect3", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
+  mainTimeline.to(
+    "#rect3",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect4", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 1,
-  });
+  mainTimeline.to(
+    "#rect4",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to("#p2", {
-    delay: -30,
-    duration: 20,
-    y: 150,
-  });
+  mainTimeline.to(
+    "#p2",
+    {
+      duration: 1,
+      y: 150,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     ".flipLogoContainer",
@@ -1941,7 +2060,8 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -1949,13 +2069,12 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-      delay: -20,
     },
     {
       display: "block",
       duration: 0,
-      delay: -20,
-    }
+    },
+    ">"
   );
 
   mainTimeline
@@ -1963,24 +2082,26 @@ if (isDesktop()) {
       "#carousel-container",
       {
         transform: "scale(0)",
-        duration: 10,
-        delay: -20,
+        duration: 1,
       },
       {
         transform: "scale(1.5)",
-        duration: 10,
-        delay: -20,
-      }
+        duration: 1,
+      },
+      ">"
     )
     .addLabel("clientes");
 
-  mainTimeline.to("#txt-container-2", {
-    delay: 30,
-    y: 800,
-    duration: 30,
-    transform: "scale(0.5)",
-    opacity: 0,
-  });
+  mainTimeline.to(
+    "#txt-container-2",
+    {
+      y: 800,
+      duration: 1,
+      transform: "scale(0.5)",
+      opacity: 0,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#txt-container-2",
@@ -1991,38 +2112,42 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 1,
-      duration: 5,
+      duration: 1,
     },
     {
       opacity: 0,
-      duration: 5,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to("#progressbar-ctn", {
-    display: "none",
-  });
+  mainTimeline.to(
+    "#progressbar-ctn",
+    {
+      display: "none",
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     ".bg-video",
     {
       opacity: 0.5,
-      duration: 12,
-      delay: -15,
+      duration: 1,
     },
     {
       opacity: 0.8,
-      duration: 12,
-      delay: -15,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2030,23 +2155,26 @@ if (isDesktop()) {
     {
       y: -1000,
       transform: "scale(2.5)",
-      duration: 20,
-      delay: -20,
+      duration: 1,
       opacity: 0,
     },
     {
-      delay: -20,
       y: 0,
       transform: "scale(1.6)",
-      duration: 20,
+      duration: 1,
       opacity: 1,
-    }
+    },
+    ">"
+  ).addLabel('logo-intro', ">");
+
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      duration: 1,
+      rotateY: 809,
+    },
+    ">"
   );
-  mainTimeline.to("#svgOutro", {
-    delay: 10,
-    duration: 20,
-    rotateY: 809,
-  });
 
   mainTimeline.fromTo(
     "#txt-container-2",
@@ -2057,90 +2185,92 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
-  mainTimeline.to("#svgOutro", {
-    visibility: "hidden",
-  });
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      visibility: "hidden",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#textAllCtn",
     {
       visibility: "hidden",
       rotateY: -90,
-      duration: 10,
+      duration: 1,
     },
     {
       visibility: "visible",
       rotateY: 0,
-      duration: 10,
-      delay: 10,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
-  mainTimeline.to([".charSpan"], {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-  });
+  mainTimeline.to(
+    [".charSpan"],
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".charSpan", {
-    delay: 10,
-  });
+  mainTimeline.to(
+    "#textAllCtn",
+    {
+      scale: 0.6,
+      y: -100,
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#textAllCtn", {
-    scale: 0.6,
-    y: -100,
-    duration: 5,
-  });
-
-  mainTimeline.to(".subTextContainer", {
-    y: 0,
-    visibility: "visible",
-  });
+  mainTimeline.to(
+    ".subTextContainer",
+    {
+      y: 0,
+      visibility: "visible",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "nav .social-ctn a",
     {
       scale: 1,
-      duration: 4,
+      duration: 1,
     },
     {
       scale: 0,
-      duration: 4,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     ".svgSocial",
-    { scale: 0, duration: 5 },
-    { scale: 1, duration: 5 }
+    { scale: 0, duration: 1 },
+    { scale: 1, duration: 1 },
+    "<"
   );
 
-  mainTimeline.staggerTo(
-    [".charSpan2"],
-    3,
+  mainTimeline.to(
+    ".charSpan2",
     {
       color: "#D1D821",
       opacity: 1,
-      duration: 10,
+      stagger: 0.1,
+      duration: 0.1,
     },
-    0.5
-  );
-
-  mainTimeline.fromTo(
-    "#subir",
-    {
-      y: 500,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 2,
-    }
-  );
+    ">"
+  ).addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
 } else if (isLaptop()) {
@@ -2151,9 +2281,14 @@ if (isDesktop()) {
       trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=2000% bottom",
-      scrub: true,
+      scrub: 2,
       pin: true,
-      inertia: true,
+      snap: {
+        inertia: false,
+        snapTo: "labels", // snap to the closest label in the timeline
+        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 1, // wait 0.2 seconds from the last scroll event before doing the snapping
+      },
     },
   });
 
@@ -2325,12 +2460,12 @@ if (isDesktop()) {
     "#scrollea",
     {
       opacity: 1,
-      duration: 2,
+      duration: 1,
       x: 0,
     },
     {
       opacity: 0,
-      duration: 2,
+      duration: 1,
       x: -100,
     }
   );
@@ -2342,7 +2477,8 @@ if (isDesktop()) {
     },
     {
       display: "none",
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2352,19 +2488,21 @@ if (isDesktop()) {
     },
     {
       display: "flex",
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-camara",
     {
       opacity: 0,
-      duration: 5,
+      duration: 1,
     },
     {
       opacity: 1,
-      duration: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   const cameraFrames = gsap.utils.toArray("#video-camara img");
@@ -2377,8 +2515,8 @@ if (isDesktop()) {
       },
       {
         display: "block",
-        stagger: 0.3,
-        duration: 0.2,
+        stagger: 0.1,
+        duration: 0.01,
       }
     );
     if (index < cameraFrames.length - 1) {
@@ -2391,43 +2529,48 @@ if (isDesktop()) {
     {
       transform: "scale(0)",
       opacity: 0,
-      duration: 10,
+      duration: 1,
     },
     {
       transform: "scale(1)",
       opacity: 1,
-      duration: 10,
-      delay: -30,
-    }
+      duration: 1,
+    },
+    ">-1.5"
   );
 
   mainTimeline.fromTo(
     ".fill",
     {
       color: "transparent",
-      stagger: 1,
-      duration: 5,
-      delay: -20,
+      stagger: 0.1,
+      duration: 0.5,
     },
     {
       color: "#D1D821",
-      stagger: 1,
-      duration: 5,
-      delay: -20,
-    }
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">-0.5"
   );
 
-  mainTimeline.to("#texto", {
-    y: -800,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    "#texto",
+    {
+      y: -800,
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#intro", {
-    opacity: 0,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    "#intro",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#intro",
@@ -2438,7 +2581,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   /* *********** END INTRO SCROLLING ********** */
@@ -2449,59 +2593,17 @@ if (isDesktop()) {
     "#portfolio",
     {
       display: "none",
-      duration: 2,
-      delay: 2,
+      opacity: 0,
+      zIndex: -1,
+      duration: 1,
     },
     {
       display: "block",
-      duration: 2,
-      delay: 2,
-    }
-  );
-
-  mainTimeline.fromTo(
-    "#nav button",
-    {
-      opacity: 0,
-      scale: 0,
-      duration: 2,
-    },
-    {
       opacity: 1,
-      scale: 1,
-      duration: 2,
-      scrollTrigger: "#nav .social-ctn .social-nav",
-    }
-  );
-
-  mainTimeline.fromTo(
-    "#nav .social-ctn .social-nav",
-    {
-      opacity: 0,
-      scale: 0,
-      duration: 2,
-    },
-    {
-      opacity: 1,
-      scale: 1,
-      duration: 2,
-      scrollTrigger: "#nav button",
-    }
-  );
-
-  mainTimeline.fromTo(
-    ".portfolio",
-    {
-      opacity: 0,
-      zIndex: -1,
-      delay: -30,
-    },
-    {
-      opacity: 1,
-      delay: -30,
-      duration: 10,
+      duration: 1,
       zIndex: 2,
-    }
+    },
+    ">-3"
   );
 
   mainTimeline.fromTo(
@@ -2513,198 +2615,305 @@ if (isDesktop()) {
     {
       zIndex: -1,
       visibility: "hidden",
-    }
+    },
+    ">"
   );
 
-  mainTimeline.to(".bg-rodaje", {
-    yPercent: -62,
-    duration: 25,
-    opacity: 0.8,
-    scrollTrigger: ".sup-rodaje",
-    ease: "power1.inOut",
-  });
+  mainTimeline.to(
+    ".bg-rodaje",
+    {
+      yPercent: -62,
+      duration: 1,
+      opacity: 0.8,
+      ease: "power1.inOut",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    delay: 3,
-    duration: 23,
-    yPercent: -62,
-    ease: "power1.inOut",
-  });
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      yPercent: -62,
+      ease: "power1.inOut",
+    },
+    ">-0.9"
+  );
+
+  mainTimeline.fromTo(
+    "#nav button",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 0.5,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 1,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      scrollTrigger: "#nav button",
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 0,
       y: 200,
-      duration: 2,
-      delay: -5,
+      duration: 1,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 2,
-      delay: -5,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to(".txt-ctn-1 .txt-row h2", {
-    opacity: 1,
-    duration: 5,
-  });
-
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    opacity: 1,
-    stagger: 0.5,
-    duration: 5,
-    scrollTrigger: ".dup-ctn span",
-  });
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-    delay: 5,
-  });
-
-  mainTimeline.to(".sup-rodaje.zoomed", {
-    duration: 3,
-    opacity: 1,
-    delay: 10,
-  });
-
-  mainTimeline.to(".txt-ctn-1", {
-    duration: 5,
-    opacity: 0,
-  });
-
-  mainTimeline.to("#rect1", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
-
-  mainTimeline.to("#rect2", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 1,
-  });
-
-  mainTimeline.to(".sup-rodaje", {
-    duration: 10,
-    scale: 2.5,
-    transformOrigin: "32% bottom",
-    scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
-  });
-
-  mainTimeline.to(".bg-overlay", {
-    duration: 5,
-    opacity: 0.3,
-  });
-
-  mainTimeline.to(".txt-ctn-2 .txt-row h2", {
-    opacity: 1,
-    duration: 4,
-  });
-
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    opacity: 1,
-    stagger: 0.5,
-    duration: 5,
-    scrollTrigger: ".dup-ctn span",
-  });
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-    delay: 4,
-  });
-
-  mainTimeline.to(".txt-ctn-2", {
-    opacity: 0,
-    duration: 4,
-    delay: 4,
-  });
-
-  mainTimeline.to(".pf-accordion-outer", {
-    opacity: 1,
-    duration: 4,
-    scrollTrigger: ".bg-overlay",
-    zIndex: 20,
-  });
-
-  mainTimeline.to(".bg-overlay", {
-    duration: 4,
-    opacity: 0.5,
-    scrollTrigger: ".pf-accordion-outer ol li h2",
-  });
-
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    y: 0,
-    opacity: 1,
-    stagger: 1,
-    duration: 3,
-    delay: 2,
-  });
-
-  mainTimeline
-    .to(".pf-accordion", {
-      delay: 10,
+  mainTimeline.to(
+    ".txt-ctn-1 .txt-row h2",
+    {
       opacity: 1,
-      duration: 2,
-    })
-    .addLabel("portfolio");
+      duration: 1,
+    },
+    ">-0.2"
+  ).addLabel('intro-portfolio', ">");
+
+  mainTimeline.to(
+    ".txt-ctn-1 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-1 .dup-ctn span",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje.zoomed",
+    {
+      duration: 1,
+      opacity: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-1",
+    {
+      duration: 0.5,
+      opacity: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect1",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      scale: 2.5,
+      transformOrigin: "32% bottom",
+      scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 0.5,
+      opacity: 0.3,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-2 .txt-row h2",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    ">"
+  ).addLabel('second-text', ">");
+
+  mainTimeline.to(
+    ".txt-ctn-2 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-2 .dup-ctn span",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-2",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 1,
+      opacity: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer",
+    {
+      opacity: 1,
+      duration: 0.5,
+      zIndex: 20,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.5,
+      duration: 0.5,
+    },
+    ">"
+  );
 
   mainTimeline.to(".pf-accordion", {
-    delay: 5,
-    opacity: 0,
-    duration: 6,
-    scrollTrigger: ".pf-accordion",
-  });
+      opacity: 1,
+      duration: 1,
+    }).addLabel("portfolio");
 
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    y: 30,
-    opacity: 0,
-    stagger: 1,
-    delay: 4,
-    duration: 5,
-  });
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 30,
+      opacity: 0,
+      stagger: 0.5,
+      duration: 0.5,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".pf-accordion-outer ol li h2", {
-    duration: 0,
-    display: "none",
-  });
+  mainTimeline.to(
+    ".pf-accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    backgroundColor: "transparent",
-    duration: 0,
-    scrollTrigger: ".box-ctn",
-  });
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      duration: 0,
+      display: "none",
+    },
+    ">"
+  );
 
-  mainTimeline.to(".sup-rodaje", {
-    // delay: 4,
-    duration: 5,
-    width: "700%",
-    left: "-480%",
-    top: "-340%",
-    scrollTrigger: ".box-ctn",
-  });
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      backgroundColor: "transparent",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      width: "700%",
+      left: "-480%",
+      top: "-300%",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     ".box-ctn",
     {
-      // delay: -2,
-      duration: 5,
+      duration: 1,
       transform:
-        "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(1.0075, 0.85)",
-      top: "50%",
+      "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(1.0075, 0.85)",
+      xPercent: -0,
+      top: "34.9998%",
     },
     {
-      // delay: -2,
-      duration: 7,
+      duration: 2,
       transform:
-        "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(4.1)",
-      top: "50%",
-      scrollTrigger: ".sup-rodaje",
-    }
+      "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(4.1)",
+      xPercent: -100,
+      top: "30%",
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -2716,15 +2925,19 @@ if (isDesktop()) {
     {
       opacity: 0,
       y: 200,
-      duration: 5,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to(".portfolio", {
-    opacity: 0,
-    duration: 8,
-  });
+  mainTimeline.to(
+    ".portfolio",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
   /* *********** END PORTFOLIO SCROLLING ********** */
 
@@ -2738,10 +2951,10 @@ if (isDesktop()) {
     },
     {
       opacity: 1,
-      duration: 8,
-      delay: -10,
+      duration: 1,
       zIndex: 3,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2753,39 +2966,34 @@ if (isDesktop()) {
     {
       display: "block",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 0,
-      duration: 4,
+      duration: 1,
     },
     {
       opacity: 1,
-      duration: 4,
+      duration: 1,
       onStart: () => {
         middleVideo.play();
       },
-    }
-  );
+    },
+    "<"
+  ).addLabel('video-calidad', ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-      duration: 3,
+      duration: 3
     });
     middleVideo.currentTime = 0;
     middleVideo.load();
-  });
-
-  subir.addEventListener("click", () => {
-    gsap.to(window, {
-      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-      duration: 2,
-    });
   });
 
   mainTimeline.fromTo(
@@ -2797,24 +3005,24 @@ if (isDesktop()) {
     {
       display: "none",
       delay: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#middleVidCtn",
     {
       opacity: 1,
-      duration: 10,
-      delay: -10,
     },
     {
       opacity: 0,
-      duration: 10,
-      delay: 20,
+      duration: 1,
+      delay: 10,
       onComplete: () => {
         middleVideo.pause();
       },
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2826,7 +3034,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2835,29 +3044,29 @@ if (isDesktop()) {
       delay: -10,
       rotateX: 0,
       opacity: 0,
-      duration: 5,
+      duration: 1,
     },
     {
       delay: -10,
       rotateX: 0,
       opacity: 0.5,
-      duration: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 0,
-      delay: 5,
       y: 200,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 4,
-      delay: 5,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -2869,43 +3078,55 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 1000,
+      duration: 2,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline
-    .fromTo(
-      "#middle .text",
+    .to(
+      "#rect3",
       {
-        y: 1000,
-        duration: 10,
+        attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+        fill: "#CBDB43",
+        duration: 1,
       },
-      {
-        y: 0,
-        stagger: 1,
-        duration: 10,
-      }
+      "<"
     )
-    .addLabel("start-tiempo");
+    .addLabel("start-tiempo", ">");
 
-  mainTimeline.to("#rect2", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
-
-  mainTimeline
-    .to("#rect3", {
-      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-      fill: "#CBDB43",
-      duration: 1,
-    })
-    .addLabel("servicios");
-
-  mainTimeline.to("#middle #text-container .letter", {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-  });
+  mainTimeline.to(
+    "#middle #text-container .letter",
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -2914,10 +3135,12 @@ if (isDesktop()) {
     },
     {
       x: -2000,
-      delay: 3,
-      duration: 30,
-    }
+      duration: 2,
+      snap: "x",
+    },
+    ">"
   );
+
   mainTimeline.fromTo(
     "#middle #text-container",
     {
@@ -2925,49 +3148,65 @@ if (isDesktop()) {
     },
     {
       display: "none",
-    }
+    },
+    ">"
   );
-  mainTimeline.to(".acc-borders", {
-    opacity: 1,
-    x: 0,
-    duration: 20,
-    width: "400vw",
-    delay: -35,
-  });
+
+  mainTimeline.to(
+    ".acc-borders",
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      width: "400vw",
+      snap: "x",
+    },
+    ">-3"
+  );
 
   mainTimeline
     .fromTo(
       ".accordion",
       {
         x: 2000,
-        delay: -20,
-        duration: 20,
+        duration: 1,
       },
       {
         x: 0,
-        delay: -20,
-        duration: 20,
-      }
+        duration: 1,
+        snap: "x, y",
+      },
+      ">"
     )
-    .addLabel("servicios");
+    .addLabel("servicios", ">");
 
-  mainTimeline.to(".accordion", {
-    rotateX: -69.3,
-    duration: 10,
-    delay: 10,
-  });
+  mainTimeline.to(
+    ".accordion",
+    {
+      rotateX: -69.3,
+      duration: 1,
+      delay: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".accordion", {
-    opacity: 0,
-    duration: 2,
-    delay: -4,
-  });
+  mainTimeline.to(
+    ".accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to(".bg-video", {
-    opacity: 0,
-    duration: 10,
-    delay: -10,
-  });
+  mainTimeline.to(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    "<"
+  );
 
   /* *********** END MIDDLE SCROLLING ********** */
 
@@ -2980,9 +3219,9 @@ if (isDesktop()) {
     },
     {
       opacity: 0,
-      duration: 16,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -2992,7 +3231,8 @@ if (isDesktop()) {
     },
     {
       opacity: 1,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -3004,99 +3244,98 @@ if (isDesktop()) {
     {
       zIndex: 4,
       rotateX: 0,
-      duration: 10,
-      scrollTrigger: ".accordion",
+      duration: 2,
+      snap: "x, y",
       onStart: () => {
         startCountdown();
       },
-    }
-  );
+    },
+    "<"
+  ).addLabel('video-tiempo', ">");
 
-  mainTimeline.to("#video-tiempo #text-container-2 .text", {
-    y: 1500,
-    duration: 0,
-  });
+  mainTimeline.to(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      duration: 0,
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     "#tiempoVidCtn",
     {
       opacity: 0,
-      delay: -10,
     },
     {
       opacity: 1,
-      duration: 6,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2",
     {
       x: -2000,
-      duration: 0,
-      delay: -10,
     },
     {
       x: 0,
-      duration: 0,
-      delay: -10,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2 .text",
     {
       y: 1500,
-      delay: 15,
     },
     {
       y: 0,
-      stagger: 0.5,
-      duration: 15,
-      delay: 10,
-    }
+      stagger: 0.2,
+      duration: 1,
+    },
+    "<+0.5"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo #text-container-2 .letter",
     {
       color: "transparent",
-      duration: 4,
-      delay: 1,
+      duration: 1,
     },
     {
       color: "rgb(203, 219, 67)",
-      stagger: 0.5,
-      duration: 5,
-      delay: 1,
-    }
+      stagger: 0.2,
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo",
     {
       rotateX: 0,
-      duration: 20,
+      duration: 0.5,
     },
     {
       rotateX: 110,
-      duration: 20,
-      scrollTrigger: ".accordion",
-    }
+      duration: 0.5,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#video-tiempo",
     {
       opacity: 1,
-      duration: 20,
-      scrollTrigger: ".accordion",
+      duration: 1,
     },
     {
       opacity: 0,
-      // delay: 12,
-      duration: 20,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -3108,7 +3347,8 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -3120,33 +3360,28 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
     ".bg-video",
-    {
-      opacity: 0,
-      duration: 0,
-    },
-    {
-      opacity: 0.5,
-      duration: 0,
-    }
+    { rotateX: 0, opacity: 0 },
+    { rotateX: 0, opacity: 1 },
+    ">-0.1"
   );
-
-  mainTimeline.fromTo(".bg-video", { rotateX: 0 }, { rotateX: 0 });
 
   mainTimeline.fromTo(
     ".bg-video",
     {
       rotateX: -65,
-      duration: 20,
+      duration: 0.5,
     },
     {
       rotateX: 0,
-      duration: 20,
-    }
+      duration: 0.5,
+    },
+    ">"
   );
 
   /* *********** TIEMPO SCROLLING ********** */
@@ -3158,15 +3393,12 @@ if (isDesktop()) {
     {
       zIndex: -1,
       opacity: 0,
-      duration: 10,
-      delay: -20,
     },
     {
       zIndex: 5,
       opacity: 1,
-      duration: 10,
-      delay: -20,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -3176,8 +3408,9 @@ if (isDesktop()) {
     },
     {
       x: 0,
-      duration: 25,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
   mainTimeline.fromTo(
@@ -3187,16 +3420,19 @@ if (isDesktop()) {
     },
     {
       x: 0,
-      duration: 30,
-      delay: -18,
-    }
-  );
+      duration: 1,
+    },
+    ">"
+  ).addLabel("end-intro", ">");
 
-  mainTimeline.to("#p1", {
-    delay: 20,
-    duration: 30,
-    x: -2000,
-  });
+  mainTimeline.to(
+    "#p1",
+    {
+      duration: 1,
+      x: -2000,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
@@ -3207,33 +3443,48 @@ if (isDesktop()) {
     {
       opacity: 1,
       y: 0,
-      duration: 16,
-      delay: -2,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to("#p1", {
-    opacity: 0,
-    duration: 0,
-  });
+  mainTimeline.to(
+    "#p1",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect3", {
-    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
-    fill: "#D9D9D9",
-    duration: 1,
-  });
+  mainTimeline.to(
+    "#rect3",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#rect4", {
-    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-    fill: "#CBDB43",
-    duration: 1,
-  });
+  mainTimeline.to(
+    "#rect4",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
 
-  mainTimeline.to("#p2", {
-    delay: -30,
-    duration: 20,
-    y: 150,
-  });
+  mainTimeline.to(
+    "#p2",
+    {
+      duration: 1,
+      y: 150,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     ".flipLogoContainer",
@@ -3244,7 +3495,8 @@ if (isDesktop()) {
     {
       display: "flex",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -3252,13 +3504,12 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-      delay: -20,
     },
     {
       display: "block",
       duration: 0,
-      delay: -20,
-    }
+    },
+    ">"
   );
 
   mainTimeline
@@ -3266,24 +3517,26 @@ if (isDesktop()) {
       "#carousel-container",
       {
         transform: "scale(0)",
-        duration: 10,
-        delay: -20,
+        duration: 1,
       },
       {
         transform: "scale(1.2)",
-        duration: 10,
-        delay: -20,
-      }
+        duration: 1,
+      },
+      ">"
     )
     .addLabel("clientes");
 
-  mainTimeline.to("#txt-container-2", {
-    delay: 30,
-    y: 800,
-    duration: 30,
-    transform: "scale(0.5)",
-    opacity: 0,
-  });
+  mainTimeline.to(
+    "#txt-container-2",
+    {
+      y: 800,
+      duration: 1,
+      transform: "scale(0.5)",
+      opacity: 0,
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#txt-container-2",
@@ -3294,38 +3547,42 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     "#progressbar-ctn",
     {
       opacity: 1,
-      duration: 5,
+      duration: 1,
     },
     {
       opacity: 0,
-      duration: 5,
-      delay: 0,
-    }
+      duration: 1,
+    },
+    "<"
   );
 
-  mainTimeline.to("#progressbar-ctn", {
-    display: "none",
-  });
+  mainTimeline.to(
+    "#progressbar-ctn",
+    {
+      display: "none",
+    },
+    "<"
+  );
 
   mainTimeline.fromTo(
     ".bg-video",
     {
       opacity: 0.5,
-      duration: 12,
-      delay: -15,
+      duration: 1,
     },
     {
       opacity: 0.8,
-      duration: 12,
-      delay: -15,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
@@ -3333,23 +3590,26 @@ if (isDesktop()) {
     {
       y: -1000,
       transform: "scale(2.5)",
-      duration: 20,
-      delay: -20,
+      duration: 1,
       opacity: 0,
     },
     {
-      delay: -20,
       y: 0,
       transform: "scale(1.6)",
-      duration: 20,
+      duration: 1,
       opacity: 1,
-    }
+    },
+    ">"
+  ).addLabel('logo-intro', ">");
+
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      duration: 1,
+      rotateY: 809,
+    },
+    ">"
   );
-  mainTimeline.to("#svgOutro", {
-    delay: 10,
-    duration: 20,
-    rotateY: 809,
-  });
 
   mainTimeline.fromTo(
     "#txt-container-2",
@@ -3360,90 +3620,92 @@ if (isDesktop()) {
     {
       display: "none",
       duration: 0,
-    }
+    },
+    ">"
   );
 
-  mainTimeline.to("#svgOutro", {
-    visibility: "hidden",
-  });
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      visibility: "hidden",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "#textAllCtn",
     {
       visibility: "hidden",
       rotateY: -90,
-      duration: 10,
+      duration: 1,
     },
     {
       visibility: "visible",
       rotateY: 0,
-      duration: 10,
-      delay: 10,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
-  mainTimeline.to([".charSpan"], {
-    color: "#D1D821",
-    stagger: 0.5,
-    duration: 5,
-  });
+  mainTimeline.to(
+    [".charSpan"],
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">"
+  );
 
-  mainTimeline.to(".charSpan", {
-    delay: 10,
-  });
+  mainTimeline.to(
+    "#textAllCtn",
+    {
+      scale: 0.6,
+      y: -100,
+      duration: 1,
+    },
+    ">"
+  );
 
-  mainTimeline.to("#textAllCtn", {
-    scale: 0.6,
-    y: -100,
-    duration: 5,
-  });
-
-  mainTimeline.to(".subTextContainer", {
-    y: 0,
-    visibility: "visible",
-  });
+  mainTimeline.to(
+    ".subTextContainer",
+    {
+      y: 0,
+      visibility: "visible",
+    },
+    ">"
+  );
 
   mainTimeline.fromTo(
     "nav .social-ctn a",
     {
       scale: 1,
-      duration: 4,
+      duration: 1,
     },
     {
       scale: 0,
-      duration: 4,
-    }
+      duration: 1,
+    },
+    ">"
   );
 
   mainTimeline.fromTo(
     ".svgSocial",
-    { scale: 0, duration: 5 },
-    { scale: 1, duration: 5 }
+    { scale: 0, duration: 1 },
+    { scale: 1, duration: 1 },
+    "<"
   );
 
-  mainTimeline.staggerTo(
-    [".charSpan2"],
-    3,
+  mainTimeline.to(
+    ".charSpan2",
     {
       color: "#D1D821",
       opacity: 1,
-      duration: 10,
+      stagger: 0.1,
+      duration: 0.1,
     },
-    0.5
-  );
-
-  mainTimeline.fromTo(
-    "#subir",
-    {
-      y: 500,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 2,
-    }
-  );
+    ">"
+  ).addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
 } else if (isMobile()) {
