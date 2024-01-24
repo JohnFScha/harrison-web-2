@@ -528,12 +528,26 @@ if (isMobile()) {
         });
       }
     } else if (isLaptop()) {
+      if (index !== 0) {
+        gsap.to(txtInnerCtn[0], {
+          clipPath: "inset(0 100% 0 0)",
+          duration: 0.2,
+          delay: 0,
+        });
+      } else if (index === 0) {
+        gsap.to(txtInnerCtn[0], {
+          clipPath: "inset(0 0 0 0)",
+          duration: 0.2,
+          delay: 0,
+        });
+      }
+
       gsap.to(event.currentTarget, 0.7, {
         width: "3000px",
       });
 
       titles.forEach((title) => {
-        gsap.to(title[index], { color: "rgb(203, 219, 67)" });
+        gsap.to(title[index], { color: "transparent" });
       });
 
       // Change color for the hovered title
@@ -568,44 +582,86 @@ if (isMobile()) {
   }
 
   function outAcc(event, index) {
-    // Retrieve the dynamically calculated original width
-    let originalWidth = getComputedStyle(event.currentTarget).width;
-
-    gsap.to(txtInnerCtn[0], {
-      clipPath: "inset(0 100% 0 0)",
-      duration: 0.2,
-      delay: 0,
-    });
-
-    gsap.to(event.currentTarget, 0.7, {
-      width: originalWidth,
-    });
-
-    // Reset color for all titles
-    titles.forEach((title, idx) => {
-      gsap.to(title, { color: "transparent" });
-    });
-
-    // Use forEach to iterate over siblings
-    event.currentTarget.parentNode.childNodes.forEach((sibling) => {
-      if (sibling !== event.currentTarget && sibling.nodeType === 1) {
-        gsap.to(sibling, 0.7, {
+    if (isDesktop()) {
+      // Retrieve the dynamically calculated original width
+      let originalWidth = getComputedStyle(event.currentTarget).width;
+  
+      gsap.to(txtInnerCtn[0], {
+        clipPath: "inset(0 100% 0 0)",
+        duration: 0.2,
+        delay: 0,
+      });
+  
+      gsap.to(event.currentTarget, 0.7, {
+        width: originalWidth,
+      });
+  
+      // Reset color for all titles
+      titles.forEach((title, idx) => {
+        gsap.to(title, { color: "transparent" });
+      });
+  
+      // Use forEach to iterate over siblings
+      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+          gsap.to(sibling, 0.7, {
+            width: originalWidth,
+          });
+        }
+      });
+  
+      // Check if the hovered element is the second or third
+      if (index === 1 || index === 2) {
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "0",
+        });
+      }
+  
+      if (index === 1) {
+        gsap.to(ctn[1], 0.7, {
           width: originalWidth,
         });
       }
-    });
-
-    // Check if the hovered element is the second or third
-    if (index === 1 || index === 2) {
-      gsap.to(ctn[0], 0.7, {
-        marginLeft: "0",
+    } else if (isLaptop()) {
+      // Retrieve the dynamically calculated original width
+      let originalWidth = getComputedStyle(event.currentTarget).width;
+  
+      gsap.to(txtInnerCtn[0], {
+        clipPath: "inset(0 100% 0 0)",
+        duration: 0.2,
+        delay: 0,
       });
-    }
-
-    if (index === 1) {
-      gsap.to(ctn[1], 0.7, {
+  
+      gsap.to(event.currentTarget, 0.7, {
         width: originalWidth,
       });
+  
+      // Reset color for all titles
+      titles.forEach((title, idx) => {
+        gsap.to(title, { color: "transparent" });
+      });
+  
+      // Use forEach to iterate over siblings
+      event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+        if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+          gsap.to(sibling, 0.7, {
+            width: originalWidth,
+          });
+        }
+      });
+  
+      // Check if the hovered element is the second or third
+      if (index === 1 || index === 2) {
+        gsap.to(ctn[0], 0.7, {
+          marginLeft: "0",
+        });
+      }
+  
+      if (index === 1) {
+        gsap.to(ctn[1], 0.7, {
+          width: originalWidth,
+        });
+      }
     }
   }
 }
