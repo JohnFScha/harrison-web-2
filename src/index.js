@@ -812,7 +812,7 @@ if (isMobile()) {
       margin: "-12 0",
     });
     gsap.to(descCtn[index], 0.3, {
-      y: -100,
+      y: -25,
       opacity: 0,
     });
     gsap.to(titleCtn[index], 0.3, {
@@ -861,9 +861,9 @@ if (isDesktop()) {
       scrub: 2,
       pin: true,
       snap: {
-        inertia: false,
+        inertia: true,
         snapTo: "labels", // snap to the closest label in the timeline
-        duration: { min: 0.5, max: 2 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
         delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
       },
     },
@@ -1118,7 +1118,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     ">-0.5"
-  );
+  ).addLabel("end-intro-text", ">");
 
   mainTimeline.to(
     "#texto",
@@ -1259,7 +1259,7 @@ if (isDesktop()) {
       duration: 1,
     },
     ">-0.2"
-  ).addLabel('intro-portfolio', ">");
+  );
 
   mainTimeline.to(
     ".txt-ctn-1 .dup-ctn span",
@@ -1280,7 +1280,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     "<"
-  );
+  ).addLabel('intro-portfolio', ">");
 
   mainTimeline.to(
     ".sup-rodaje.zoomed",
@@ -1347,7 +1347,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     ">"
-  ).addLabel('second-text', ">");
+  );
 
   mainTimeline.to(
     ".txt-ctn-2 .dup-ctn span",
@@ -1368,7 +1368,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     "<"
-  );
+  ).addLabel('second-text', ">");
 
   mainTimeline.to(
     ".txt-ctn-2",
@@ -1583,8 +1583,8 @@ if (isDesktop()) {
     },
     {
       opacity: 0,
-      duration: 1,
-      delay: 10,
+      duration: 0.5,
+      delay: 5,
       onComplete: () => {
         middleVideo.pause();
       },
@@ -1608,13 +1608,11 @@ if (isDesktop()) {
   mainTimeline.fromTo(
     ".bg-video",
     {
-      delay: -10,
       rotateX: 0,
       opacity: 0,
       duration: 1,
     },
     {
-      delay: -10,
       rotateX: 0,
       opacity: 0.5,
       duration: 1,
@@ -1682,8 +1680,7 @@ if (isDesktop()) {
         duration: 0.5,
       },
       "<"
-    )
-    .addLabel("start-tiempo", ">");
+    );
 
   mainTimeline.to(
     "#middle #text-container .letter",
@@ -1693,7 +1690,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     ">+1"
-  );
+  ).addLabel("start-tiempo", ">");
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -1873,11 +1870,11 @@ if (isDesktop()) {
     },
     {
       color: "rgb(203, 219, 67)",
-      stagger: 0.2,
-      duration: 1,
+      stagger: 0.1,
+      duration: 0.5,
     },
     ">"
-  );
+  ).addLabel('end-video-tiempo', ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
@@ -2555,7 +2552,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     ">-0.5"
-  );
+  ).addLabel("end-intro-text", ">");
 
   mainTimeline.to(
     "#texto",
@@ -2696,7 +2693,7 @@ if (isDesktop()) {
       duration: 1,
     },
     ">-0.2"
-  ).addLabel('intro-portfolio', ">");
+  );
 
   mainTimeline.to(
     ".txt-ctn-1 .dup-ctn span",
@@ -2717,7 +2714,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     "<"
-  );
+  ).addLabel('intro-portfolio', ">");
 
   mainTimeline.to(
     ".sup-rodaje.zoomed",
@@ -2731,7 +2728,7 @@ if (isDesktop()) {
   mainTimeline.to(
     ".txt-ctn-1",
     {
-      duration: 0.5,
+      duration: 0.1,
       opacity: 0,
     },
     ">"
@@ -2781,10 +2778,10 @@ if (isDesktop()) {
     ".txt-ctn-2 .txt-row h2",
     {
       opacity: 1,
-      duration: 1,
+      duration: 0.5,
     },
     ">"
-  ).addLabel('second-text', ">");
+  );
 
   mainTimeline.to(
     ".txt-ctn-2 .dup-ctn span",
@@ -2805,7 +2802,7 @@ if (isDesktop()) {
       duration: 0.5,
     },
     "<"
-  );
+  ).addLabel('second-text', ">");
 
   mainTimeline.to(
     ".txt-ctn-2",
@@ -2819,10 +2816,10 @@ if (isDesktop()) {
   mainTimeline.to(
     ".bg-overlay",
     {
-      duration: 1,
+      duration: 0.5,
       opacity: 0.5,
     },
-    ">"
+    "<"
   );
 
   mainTimeline.to(
@@ -2840,16 +2837,18 @@ if (isDesktop()) {
     {
       y: 0,
       opacity: 1,
-      stagger: 0.5,
+      stagger: 0.2,
       duration: 0.5,
     },
     ">"
   );
 
-  mainTimeline.to(".pf-accordion", {
+  mainTimeline
+    .to(".pf-accordion", {
       opacity: 1,
       duration: 1,
-    }).addLabel("portfolio");
+    })
+    .addLabel("portfolio");
 
   mainTimeline.to(
     ".pf-accordion-outer ol li h2",
@@ -2895,7 +2894,7 @@ if (isDesktop()) {
       duration: 1,
       width: "700%",
       left: "-480%",
-      top: "-300%",
+      top: "-350%",
     },
     ">"
   );
@@ -2904,15 +2903,13 @@ if (isDesktop()) {
     ".box-ctn",
     {
       duration: 1,
-      transform:
-      "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(1.0075, 0.85)",
+      transform: "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(0.9925, 0.85)",
       xPercent: -0,
       top: "34.9998%",
     },
     {
       duration: 2,
-      transform:
-      "translate(-1.5535px, -47.6139px) rotate(7.0004deg) skew(10.5001deg, 0deg) scale(4.1)",
+      transform: "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(4.1, 4.1)",
       xPercent: -100,
       top: "30%",
     },
@@ -3019,8 +3016,8 @@ if (isDesktop()) {
     },
     {
       opacity: 0,
-      duration: 1,
-      delay: 10,
+      duration: 0.5,
+      delay: 5,
       onComplete: () => {
         middleVideo.pause();
       },
@@ -3044,13 +3041,11 @@ if (isDesktop()) {
   mainTimeline.fromTo(
     ".bg-video",
     {
-      delay: -10,
       rotateX: 0,
       opacity: 0,
       duration: 1,
     },
     {
-      delay: -10,
       rotateX: 0,
       opacity: 0.5,
       duration: 1,
@@ -3089,7 +3084,7 @@ if (isDesktop()) {
     "#middle .text",
     {
       y: 1000,
-      duration: 2,
+      duration: 1,
     },
     {
       y: 0,
@@ -3104,9 +3099,9 @@ if (isDesktop()) {
     {
       attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
       fill: "#D9D9D9",
-      duration: 1,
+      duration: 0.5,
     },
-    ">"
+    "<"
   );
 
   mainTimeline
@@ -3115,11 +3110,10 @@ if (isDesktop()) {
       {
         attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
         fill: "#CBDB43",
-        duration: 1,
+        duration: 0.5,
       },
       "<"
-    )
-    .addLabel("start-tiempo", ">");
+    );
 
   mainTimeline.to(
     "#middle #text-container .letter",
@@ -3128,8 +3122,8 @@ if (isDesktop()) {
       stagger: 0.1,
       duration: 0.5,
     },
-    ">"
-  );
+    ">+1"
+  ).addLabel("start-tiempo", ">");
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -3309,11 +3303,11 @@ if (isDesktop()) {
     },
     {
       color: "rgb(203, 219, 67)",
-      stagger: 0.2,
-      duration: 1,
+      stagger: 0.1,
+      duration: 0.5,
     },
     ">"
-  );
+  ).addLabel('end-video-tiempo', ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
