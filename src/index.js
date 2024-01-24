@@ -863,8 +863,8 @@ if (isDesktop()) {
       snap: {
         inertia: false,
         snapTo: "labels", // snap to the closest label in the timeline
-        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 1, // wait 0.2 seconds from the last scroll event before doing the snapping
+        duration: { min: 0.5, max: 2 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
       },
     },
   });
@@ -1266,7 +1266,7 @@ if (isDesktop()) {
     {
       opacity: 1,
       stagger: 0.1,
-      duration: 0.2,
+      duration: 0.5,
       scrollTrigger: ".dup-ctn span",
     },
     ">"
@@ -1277,7 +1277,7 @@ if (isDesktop()) {
     {
       color: "#D1D821",
       stagger: 0.1,
-      duration: 0.2,
+      duration: 0.5,
     },
     "<"
   );
@@ -1294,7 +1294,7 @@ if (isDesktop()) {
   mainTimeline.to(
     ".txt-ctn-1",
     {
-      duration: 0.5,
+      duration: 0.1,
       opacity: 0,
     },
     ">"
@@ -1344,7 +1344,7 @@ if (isDesktop()) {
     ".txt-ctn-2 .txt-row h2",
     {
       opacity: 1,
-      duration: 1,
+      duration: 0.5,
     },
     ">"
   ).addLabel('second-text', ">");
@@ -1354,7 +1354,7 @@ if (isDesktop()) {
     {
       opacity: 1,
       stagger: 0.1,
-      duration: 0.2,
+      duration: 0.5,
       scrollTrigger: ".dup-ctn span",
     },
     ">"
@@ -1365,7 +1365,7 @@ if (isDesktop()) {
     {
       color: "#D1D821",
       stagger: 0.1,
-      duration: 0.2,
+      duration: 0.5,
     },
     "<"
   );
@@ -1382,10 +1382,10 @@ if (isDesktop()) {
   mainTimeline.to(
     ".bg-overlay",
     {
-      duration: 1,
+      duration: 0.5,
       opacity: 0.5,
     },
-    ">"
+    "<"
   );
 
   mainTimeline.to(
@@ -1403,7 +1403,7 @@ if (isDesktop()) {
     {
       y: 0,
       opacity: 1,
-      stagger: 0.5,
+      stagger: 0.2,
       duration: 0.5,
     },
     ">"
@@ -1653,7 +1653,7 @@ if (isDesktop()) {
     "#middle .text",
     {
       y: 1000,
-      duration: 2,
+      duration: 1,
     },
     {
       y: 0,
@@ -1668,9 +1668,9 @@ if (isDesktop()) {
     {
       attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
       fill: "#D9D9D9",
-      duration: 1,
+      duration: 0.5,
     },
-    ">"
+    "<"
   );
 
   mainTimeline
@@ -1679,7 +1679,7 @@ if (isDesktop()) {
       {
         attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
         fill: "#CBDB43",
-        duration: 1,
+        duration: 0.5,
       },
       "<"
     )
@@ -1692,7 +1692,7 @@ if (isDesktop()) {
       stagger: 0.1,
       duration: 0.5,
     },
-    ">"
+    ">+1"
   );
 
   mainTimeline.fromTo(
@@ -1934,7 +1934,7 @@ if (isDesktop()) {
   mainTimeline.fromTo(
     ".bg-video",
     { rotateX: 0, opacity: 0 },
-    { rotateX: 0, opacity: 1 },
+    { rotateX: 0, opacity: 0.5 },
     ">-0.1"
   );
 
@@ -3370,7 +3370,7 @@ if (isDesktop()) {
   mainTimeline.fromTo(
     ".bg-video",
     { rotateX: 0, opacity: 0 },
-    { rotateX: 0, opacity: 1 },
+    { rotateX: 0, opacity: 0.5 },
     ">-0.1"
   );
 
