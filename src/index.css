@@ -2136,6 +2136,12 @@ div#textAllCtn .letter-container .spacerSpan {
     filter: invert(1);
     cursor: url("assets/cursor-mano.svg"), pointer;
   }
+
+  #middle #video-tiempo #elementos-desk {
+    width: 100%;
+    height: 95%;
+    top: 5%;
+  }
 }
 
 /*# sourceMappingURL=flip.css.map */

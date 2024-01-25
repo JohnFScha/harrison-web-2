@@ -2342,7 +2342,7 @@ if (isDesktop()) {
         inertia: false,
         snapTo: "labels", // snap to the closest label in the timeline
         duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 1, // wait 0.2 seconds from the last scroll event before doing the snapping
+        delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
       },
     },
   });
@@ -3771,7 +3771,12 @@ if (isDesktop()) {
       end: "bottom+=2000% bottom",
       scrub: true,
       pin: true,
-      inertia: true,
+      snap: {
+        inertia: false,
+        snapTo: "labels", // snap to the closest label in the timeline
+        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+      },
     },
   });
 
@@ -3824,17 +3829,17 @@ if (isDesktop()) {
       } else if (a.innerText.toLowerCase() === `portfolio`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-          duration: 2,
+          duration: 0,
         });
       } else if (a.innerText.toLowerCase() === `servicios`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-          duration: 2,
+          duration: 0,
         });
       } else if (a.innerText.toLowerCase() === `clientes`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-          duration: 2,
+          duration: 0,
         });
       }
 
@@ -4009,7 +4014,7 @@ if (isDesktop()) {
       duration: 10,
       delay: -25,
     }
-  );
+  ).addLabel("intro-text-end", ">");
 
   mainTimeline.to("#texto", {
     y: -800,
@@ -4169,7 +4174,7 @@ if (isDesktop()) {
     opacity: 1,
     duration: 5,
     delay: -5,
-  });
+  }).addLabel('intro-portfolio', ">");
 
   mainTimeline.to(".sup-rodaje.zoomed", {
     duration: 3,
@@ -4215,8 +4220,7 @@ if (isDesktop()) {
     opacity: 1,
     duration: 4,
     delay: -4,
-    scrollTrigger: ".dup-ctn span",
-  });
+  }).addLabel("portfolio-second-text", ">");
 
   mainTimeline.to(".txt-ctn-2", {
     opacity: 0,
@@ -4446,7 +4450,7 @@ if (isDesktop()) {
         middleVideo.play();
       },
     }
-  );
+  ).addLabel("video-calidad-intro", ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
@@ -4456,13 +4460,6 @@ if (isDesktop()) {
     });
     middleVideo.currentTime = 0;
     middleVideo.load();
-  });
-
-  subir.addEventListener("click", () => {
-    gsap.to(window, {
-      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-      duration: 2,
-    });
   });
 
   mainTimeline.fromTo(
@@ -4559,8 +4556,7 @@ if (isDesktop()) {
         stagger: 1,
         duration: 10,
       }
-    )
-    .addLabel("start-tiempo");
+    );
 
   mainTimeline.to("#rect2", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
@@ -4573,8 +4569,7 @@ if (isDesktop()) {
       attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
       fill: "#CBDB43",
       duration: 1,
-    })
-    .addLabel("servicios");
+    });
 
   mainTimeline.fromTo(
     "#middle .text",
@@ -4585,9 +4580,9 @@ if (isDesktop()) {
       y: -2000,
       delay: 3,
       duration: 50,
-      scrollTrigger: ".acc-borders",
     }
-  );
+  ).addLabel("start-tiempo", ">");
+
   mainTimeline.fromTo(
     ".acc-borders",
     {
@@ -4595,7 +4590,6 @@ if (isDesktop()) {
       x: 1000,
       duration: 20,
       width: "0vw",
-      delay: -10,
       scrollTrigger: ".accordion #parent",
     },
     {
@@ -4603,10 +4597,11 @@ if (isDesktop()) {
       x: 0,
       duration: 20,
       width: "400vw",
-      delay: -10,
       scrollTrigger: ".accordion #parent",
-    }
+    },
+    ">-60"
   );
+
   mainTimeline
     .fromTo(
       ".accordion #parent",
@@ -4621,7 +4616,8 @@ if (isDesktop()) {
         delay: -5,
       }
     )
-    .addLabel("servicios");
+    .addLabel("servicios", ">");
+
   mainTimeline.fromTo(
     "#middle #text-container",
     {
@@ -4729,7 +4725,7 @@ if (isDesktop()) {
         startCountdown();
       },
     }
-  );
+  ).addLabel("video-calidad", ">");
 
   mainTimeline.to("#video-tiempo #text-container-2 .text", {
     y: 1500,
@@ -4779,7 +4775,7 @@ if (isDesktop()) {
   mainTimeline.to("#video-tiempo #text-container-2 .letter", {
     duration: 5,
     delay: 5,
-  });
+  }).addLabel("video-tiempo-texto", ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
@@ -5012,7 +5008,7 @@ if (isDesktop()) {
       duration: 2,
       opacity: 1,
     }
-  );
+  ).addLabel("svg-end", ">");
 
   mainTimeline.to("#svgOutro", {
     delay: 5,
@@ -5049,7 +5045,7 @@ if (isDesktop()) {
       duration: 4,
       delay: 5,
     }
-  );
+  ).addLabel("end-text", ">");
 
   mainTimeline.to(".charSpan", {
     delay: 10,
@@ -5091,6 +5087,13 @@ if (isDesktop()) {
     duration: 2,
   });
 
+  subir.addEventListener("click", () => {
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+      duration: 2,
+    });
+  });
+
   mainTimeline.fromTo(
     "#subir",
     {
@@ -5102,7 +5105,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 2,
     }
-  );
+  ).addLabel("end", ">");
 
   /* *********** END TIMELINE ********** */
 }
