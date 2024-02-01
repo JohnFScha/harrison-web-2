@@ -5,11 +5,11 @@ function isMobile() {
 }
 
 function isLaptop() {
-  return window.innerWidth >= 900;
+  return window.innerWidth >= 900 && window.innerHeight >= 700;
 }
 
 function isDesktop() {
-  return window.innerWidth >= 1920;
+  return window.innerWidth >= 1920 && window.innerHeight >= 700;
 }
 
 let countdownStarted = false;
