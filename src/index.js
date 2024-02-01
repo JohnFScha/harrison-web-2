@@ -1,10 +1,11 @@
-// Function to check if the screen width is 900px or less
+/* ******************** HELPER FUNCTIONS ******************** */
+
 function isMobile() {
-  return window.innerWidth < 1366;
+  return window.innerWidth < 900;
 }
 
 function isLaptop() {
-  return window.innerWidth >= 1366;
+  return window.innerWidth >= 900;
 }
 
 function isDesktop() {
@@ -498,11 +499,11 @@ if (isMobile()) {
 
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent" });
+        gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
       });
 
       // Change color for the hovered title
-      gsap.to(titles[index], { color: "rgb(203, 219, 67)" });
+      gsap.to(titles[index], { color: "rgb(203, 219, 67)", webkitTextStroke: "0" });
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -558,11 +559,12 @@ if (isMobile()) {
 
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent" });
+        gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
       });
 
       // Change color for the hovered title
-      gsap.to(titles[index], { color: "rgb(203, 219, 67)" });
+      gsap.to(titles[index], { color: "rgb(203, 219, 67)", webkitTextStroke: "0" });
+
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -614,7 +616,7 @@ if (isMobile()) {
       // Reset color for all titles
       titles.forEach((title, idx) => {
         if (idx !== 0) {
-          gsap.to(title, { color: "transparent" });
+          gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
         }
       });
 
@@ -661,7 +663,7 @@ if (isMobile()) {
       // Reset color for all titles
       titles.forEach((title, idx) => {
         if (idx !== 0) {
-          gsap.to(title, { color: "transparent" });
+          gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
         }
       });
 
@@ -941,7 +943,7 @@ if (isDesktop()) {
       scrub: 2,
       pin: true,
       snap: {
-        inertia: true,
+        inertia: false,
         snapTo: "labels", // snap to the closest label in the timeline
         duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
         delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping

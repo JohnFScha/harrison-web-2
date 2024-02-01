@@ -131,6 +131,24 @@ button {
     font-size: 1rem;
 }
 
+@media screen and (max-width: 1366px) {
+    main .titleCtn {
+        font-size: 17rem;
+    }
+
+    main .error {
+        left: 6%
+    }
+
+    main .subCtn {
+        top: 62%;
+    }
+
+    main .subCtn .social {
+        bottom: 2%
+    }
+}
+
 @media screen and (max-width: 900px) {
     main {
         width: 100vw;
