@@ -336,6 +336,8 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
+// Funcionamiento del acordeon, segun pantallas.
+
 let ctn = document.querySelectorAll(".child");
 let childTitleCtn = document.querySelectorAll(".child .title-ctn");
 let titles = gsap.utils.toArray(".child .title-ctn h1");
@@ -478,6 +480,7 @@ if (isMobile()) {
       if (index !== 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 100% 0 0)",
+          paddingRight: '0',
           duration: 0.2,
           delay: 0,
         });
@@ -527,13 +530,20 @@ if (isMobile()) {
           marginLeft: "-200px",
         });
       }
+
     } else if (isLaptop()) {
+      
       if (index !== 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 100% 0 0)",
           duration: 0.2,
           delay: 0,
         });
+
+        gsap.to(ctn[0], {
+          paddingRight: "0px",
+        });
+
       } else if (index === 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 0 0 0)",
@@ -543,11 +553,12 @@ if (isMobile()) {
       }
 
       gsap.to(event.currentTarget, 0.7, {
-        width: "3000px",
+        width: "2000px",
       });
 
-      titles.forEach((title) => {
-        gsap.to(title[index], { color: "transparent" });
+      // Reset color for all titles
+      titles.forEach((title, idx) => {
+        gsap.to(title, { color: "transparent" });
       });
 
       // Change color for the hovered title
@@ -583,24 +594,30 @@ if (isMobile()) {
 
   function outAcc(event, index) {
     if (isDesktop()) {
+      gsap.to(ctn[0], { width: "1000px" });
+      gsap.to(ctn[0], { paddingRight: "400px" });
+      gsap.to(titles[0], { color: "rgb(203, 219, 67)" });
+
       // Retrieve the dynamically calculated original width
       let originalWidth = getComputedStyle(event.currentTarget).width;
-  
+
       gsap.to(txtInnerCtn[0], {
-        clipPath: "inset(0 100% 0 0)",
+        clipPath: "inset(0 0 0 0)",
         duration: 0.2,
         delay: 0,
       });
-  
+
       gsap.to(event.currentTarget, 0.7, {
         width: originalWidth,
       });
-  
+
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent" });
+        if (idx !== 0) {
+          gsap.to(title, { color: "transparent" });
+        }
       });
-  
+
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
         if (sibling !== event.currentTarget && sibling.nodeType === 1) {
@@ -609,38 +626,45 @@ if (isMobile()) {
           });
         }
       });
-  
+
       // Check if the hovered element is the second or third
       if (index === 1 || index === 2) {
         gsap.to(ctn[0], 0.7, {
           marginLeft: "0",
         });
       }
-  
+
       if (index === 1) {
         gsap.to(ctn[1], 0.7, {
           width: originalWidth,
         });
       }
+      
     } else if (isLaptop()) {
+      gsap.to(ctn[0], { width: "1000px" });
+      gsap.to(ctn[0], { paddingRight: "600px" });
+      gsap.to(titles[0], { color: "rgb(203, 219, 67)" });
+
       // Retrieve the dynamically calculated original width
       let originalWidth = getComputedStyle(event.currentTarget).width;
-  
+
       gsap.to(txtInnerCtn[0], {
-        clipPath: "inset(0 100% 0 0)",
+        clipPath: "inset(0 0 0 0)",
         duration: 0.2,
         delay: 0,
       });
-  
+
       gsap.to(event.currentTarget, 0.7, {
         width: originalWidth,
       });
-  
+
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent" });
+        if (idx !== 0) {
+          gsap.to(title, { color: "transparent" });
+        }
       });
-  
+
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
         if (sibling !== event.currentTarget && sibling.nodeType === 1) {
@@ -649,14 +673,14 @@ if (isMobile()) {
           });
         }
       });
-  
+
       // Check if the hovered element is the second or third
       if (index === 1 || index === 2) {
         gsap.to(ctn[0], 0.7, {
           marginLeft: "0",
         });
       }
-  
+
       if (index === 1) {
         gsap.to(ctn[1], 0.7, {
           width: originalWidth,
@@ -969,22 +993,22 @@ if (isDesktop()) {
       if (a.innerText.toLowerCase() === `inicio`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-          duration: 0,
+          duration: 1,
         });
       } else if (a.innerText.toLowerCase() === `portfolio`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-          duration: 0,
+          duration: 1,
         });
       } else if (a.innerText.toLowerCase() === `servicios`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-          duration: 0,
+          duration: 1,
         });
       } else if (a.innerText.toLowerCase() === `clientes`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-          duration: 0,
+          duration: 1,
         });
       }
 
@@ -1036,7 +1060,7 @@ if (isDesktop()) {
       body.style.position = "fixed";
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-        duration: 0
+        duration: 0,
       });
     })
   );
@@ -1076,7 +1100,7 @@ if (isDesktop()) {
         display: "flex",
       }
     )
-    .addLabel("intro");
+    .addLabel("intro", "<");
 
   mainTimeline.fromTo(
     "#scrollea",
@@ -1161,20 +1185,22 @@ if (isDesktop()) {
     ">-1.5"
   );
 
-  mainTimeline.fromTo(
-    ".fill",
-    {
-      color: "transparent",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    ">-0.5"
-  ).addLabel("end-intro-text", ">");
+  mainTimeline
+    .fromTo(
+      ".fill",
+      {
+        color: "transparent",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">-0.5"
+    )
+    .addLabel("end-intro-text", ">");
 
   mainTimeline.to(
     "#texto",
@@ -1328,15 +1354,17 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.to(
-    ".txt-ctn-1 .dup-ctn span",
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    "<"
-  ).addLabel('intro-portfolio', ">");
+  mainTimeline
+    .to(
+      ".txt-ctn-1 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("intro-portfolio", ">");
 
   mainTimeline.to(
     ".sup-rodaje.zoomed",
@@ -1416,15 +1444,17 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.to(
-    ".txt-ctn-2 .dup-ctn span",
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    "<"
-  ).addLabel('second-text', ">");
+  mainTimeline
+    .to(
+      ".txt-ctn-2 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("second-text", ">");
 
   mainTimeline.to(
     ".txt-ctn-2",
@@ -1465,23 +1495,23 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline
-    .to(".pf-accordion", {
-      opacity: 1,
-      duration: 1,
-    })
-    .addLabel("portfolio");
+  mainTimeline.to(".pf-accordion", {
+    opacity: 1,
+    duration: 1,
+  });
 
-  mainTimeline.to(
-    ".pf-accordion-outer ol li h2",
-    {
-      y: 30,
-      opacity: 0,
-      stagger: 0.5,
-      duration: 0.5,
-    },
-    ">"
-  );
+  mainTimeline
+    .to(
+      ".pf-accordion-outer ol li h2",
+      {
+        y: 30,
+        opacity: 0,
+        stagger: 0.5,
+        duration: 0.5,
+      },
+      ">"
+    )
+    .addLabel("portfolio", "<");
 
   mainTimeline.to(
     ".pf-accordion",
@@ -1593,27 +1623,29 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 0,
-      duration: 1,
-    },
-    {
-      opacity: 1,
-      duration: 1,
-      onStart: () => {
-        middleVideo.play();
+  mainTimeline
+    .fromTo(
+      "#middleVidCtn",
+      {
+        opacity: 0,
+        duration: 1,
       },
-    },
-    "<"
-  ).addLabel('video-calidad', ">");
+      {
+        opacity: 1,
+        duration: 1,
+        onStart: () => {
+          middleVideo.play();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-calidad", ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-      duration: 3
+      duration: 3,
     });
     middleVideo.currentTime = 0;
     middleVideo.load();
@@ -1727,26 +1759,27 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline
-    .to(
-      "#rect3",
-      {
-        attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-        fill: "#CBDB43",
-        duration: 0.5,
-      },
-      "<"
-    );
-
   mainTimeline.to(
-    "#middle #text-container .letter",
+    "#rect3",
     {
-      color: "#D1D821",
-      stagger: 0.1,
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
       duration: 0.5,
     },
-    ">+1"
-  ).addLabel("start-tiempo", ">");
+    "<"
+  );
+
+  mainTimeline
+    .to(
+      "#middle #text-container .letter",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">+1"
+    )
+    .addLabel("start-tiempo", ">");
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -1855,23 +1888,25 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.fromTo(
-    "#video-tiempo",
-    {
-      zIndex: -1,
-      rotateX: 115.3,
-    },
-    {
-      zIndex: 4,
-      rotateX: 0,
-      duration: 2,
-      snap: "x, y",
-      onStart: () => {
-        startCountdown();
+  mainTimeline
+    .fromTo(
+      "#video-tiempo",
+      {
+        zIndex: -1,
+        rotateX: 115.3,
       },
-    },
-    "<"
-  ).addLabel('video-tiempo', ">");
+      {
+        zIndex: 4,
+        rotateX: 0,
+        duration: 2,
+        snap: "x, y",
+        onStart: () => {
+          startCountdown();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-tiempo", ">");
 
   mainTimeline.to(
     "#video-tiempo #text-container-2 .text",
@@ -1918,19 +1953,21 @@ if (isDesktop()) {
     "<+0.5"
   );
 
-  mainTimeline.fromTo(
-    "#video-tiempo #text-container-2 .letter",
-    {
-      color: "transparent",
-      duration: 1,
-    },
-    {
-      color: "rgb(203, 219, 67)",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    ">"
-  ).addLabel('end-video-tiempo', ">");
+  mainTimeline
+    .fromTo(
+      "#video-tiempo #text-container-2 .letter",
+      {
+        color: "transparent",
+        duration: 1,
+      },
+      {
+        color: "rgb(203, 219, 67)",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">"
+    )
+    .addLabel("end-video-tiempo", ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
@@ -2033,17 +2070,19 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.fromTo(
-    "#p2",
-    {
-      x: 2000,
-    },
-    {
-      x: 0,
-      duration: 1,
-    },
-    ">"
-  ).addLabel("end-intro", ">");
+  mainTimeline
+    .fromTo(
+      "#p2",
+      {
+        x: 2000,
+      },
+      {
+        x: 0,
+        duration: 1,
+      },
+      ">"
+    )
+    .addLabel("end-intro", ">");
 
   mainTimeline.to(
     "#p1",
@@ -2145,7 +2184,7 @@ if (isDesktop()) {
       },
       ">"
     )
-    .addLabel("clientes");
+    .addLabel("clientes", ">");
 
   mainTimeline.to(
     "#txt-container-2",
@@ -2205,22 +2244,24 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.fromTo(
-    "#svgOutro",
-    {
-      y: -1000,
-      transform: "scale(2.5)",
-      duration: 1,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      transform: "scale(1.6)",
-      duration: 1,
-      opacity: 1,
-    },
-    ">"
-  ).addLabel('logo-intro', ">");
+  mainTimeline
+    .fromTo(
+      "#svgOutro",
+      {
+        y: -1000,
+        transform: "scale(2.5)",
+        duration: 1,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        transform: "scale(1.6)",
+        duration: 1,
+        opacity: 1,
+      },
+      ">"
+    )
+    .addLabel("logo-intro", ">");
 
   mainTimeline.to(
     "#svgOutro",
@@ -2316,16 +2357,18 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.to(
-    ".charSpan2",
-    {
-      color: "#D1D821",
-      opacity: 1,
-      stagger: 0.1,
-      duration: 0.1,
-    },
-    ">"
-  ).addLabel("page-end", ">");
+  mainTimeline
+    .to(
+      ".charSpan2",
+      {
+        color: "#D1D821",
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.1,
+      },
+      ">"
+    )
+    .addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
 } else if (isLaptop()) {
@@ -2396,17 +2439,17 @@ if (isDesktop()) {
       } else if (a.innerText.toLowerCase() === `portfolio`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
-          duration: 2,
+          duration: 1,
         });
       } else if (a.innerText.toLowerCase() === `servicios`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
-          duration: 2,
+          duration: 1,
         });
       } else if (a.innerText.toLowerCase() === `clientes`) {
         gsap.to(window, {
           scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
-          duration: 2,
+          duration: 1,
         });
       }
 
@@ -2595,20 +2638,22 @@ if (isDesktop()) {
     ">-1.5"
   );
 
-  mainTimeline.fromTo(
-    ".fill",
-    {
-      color: "transparent",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    ">-0.5"
-  ).addLabel("end-intro-text", ">");
+  mainTimeline
+    .fromTo(
+      ".fill",
+      {
+        color: "transparent",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">-0.5"
+    )
+    .addLabel("end-intro-text", ">");
 
   mainTimeline.to(
     "#texto",
@@ -2762,15 +2807,17 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.to(
-    ".txt-ctn-1 .dup-ctn span",
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    "<"
-  ).addLabel('intro-portfolio', ">");
+  mainTimeline
+    .to(
+      ".txt-ctn-1 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("intro-portfolio", ">");
 
   mainTimeline.to(
     ".sup-rodaje.zoomed",
@@ -2850,15 +2897,17 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.to(
-    ".txt-ctn-2 .dup-ctn span",
-    {
-      color: "#D1D821",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    "<"
-  ).addLabel('second-text', ">");
+  mainTimeline
+    .to(
+      ".txt-ctn-2 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("second-text", ">");
 
   mainTimeline.to(
     ".txt-ctn-2",
@@ -2904,7 +2953,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 1,
     })
-    .addLabel("portfolio");
+    .addLabel("portfolio", ">");
 
   mainTimeline.to(
     ".pf-accordion-outer ol li h2",
@@ -2959,13 +3008,15 @@ if (isDesktop()) {
     ".box-ctn",
     {
       duration: 1,
-      transform: "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(0.9925, 0.85)",
+      transform:
+        "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(0.9925, 0.85)",
       xPercent: -0,
       top: "34.9998%",
     },
     {
       duration: 2,
-      transform: "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(4.1, 4.1)",
+      transform:
+        "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(4.1, 4.1)",
       xPercent: -100,
       top: "30%",
     },
@@ -3026,27 +3077,29 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 0,
-      duration: 1,
-    },
-    {
-      opacity: 1,
-      duration: 1,
-      onStart: () => {
-        middleVideo.play();
+  mainTimeline
+    .fromTo(
+      "#middleVidCtn",
+      {
+        opacity: 0,
+        duration: 1,
       },
-    },
-    "<"
-  ).addLabel('video-calidad', ">");
+      {
+        opacity: 1,
+        duration: 1,
+        onStart: () => {
+          middleVideo.play();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-calidad", ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
-      duration: 3
+      duration: 3,
     });
     middleVideo.currentTime = 0;
     middleVideo.load();
@@ -3160,26 +3213,27 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline
-    .to(
-      "#rect3",
-      {
-        attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-        fill: "#CBDB43",
-        duration: 0.5,
-      },
-      "<"
-    );
-
   mainTimeline.to(
-    "#middle #text-container .letter",
+    "#rect3",
     {
-      color: "#D1D821",
-      stagger: 0.1,
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
       duration: 0.5,
     },
-    ">+1"
-  ).addLabel("start-tiempo", ">");
+    "<"
+  );
+
+  mainTimeline
+    .to(
+      "#middle #text-container .letter",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">+1"
+    )
+    .addLabel("start-tiempo", ">");
 
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -3288,23 +3342,25 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.fromTo(
-    "#video-tiempo",
-    {
-      zIndex: -1,
-      rotateX: 115.3,
-    },
-    {
-      zIndex: 4,
-      rotateX: 0,
-      duration: 2,
-      snap: "x, y",
-      onStart: () => {
-        startCountdown();
+  mainTimeline
+    .fromTo(
+      "#video-tiempo",
+      {
+        zIndex: -1,
+        rotateX: 115.3,
       },
-    },
-    "<"
-  ).addLabel('video-tiempo', ">");
+      {
+        zIndex: 4,
+        rotateX: 0,
+        duration: 2,
+        snap: "x, y",
+        onStart: () => {
+          startCountdown();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-tiempo", ">");
 
   mainTimeline.to(
     "#video-tiempo #text-container-2 .text",
@@ -3351,19 +3407,21 @@ if (isDesktop()) {
     "<+0.5"
   );
 
-  mainTimeline.fromTo(
-    "#video-tiempo #text-container-2 .letter",
-    {
-      color: "transparent",
-      duration: 1,
-    },
-    {
-      color: "rgb(203, 219, 67)",
-      stagger: 0.1,
-      duration: 0.5,
-    },
-    ">"
-  ).addLabel('end-video-tiempo', ">");
+  mainTimeline
+    .fromTo(
+      "#video-tiempo #text-container-2 .letter",
+      {
+        color: "transparent",
+        duration: 1,
+      },
+      {
+        color: "rgb(203, 219, 67)",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">"
+    )
+    .addLabel("end-video-tiempo", ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
@@ -3466,17 +3524,19 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.fromTo(
-    "#p2",
-    {
-      x: 2000,
-    },
-    {
-      x: 0,
-      duration: 1,
-    },
-    ">"
-  ).addLabel("end-intro", ">");
+  mainTimeline
+    .fromTo(
+      "#p2",
+      {
+        x: 2000,
+      },
+      {
+        x: 0,
+        duration: 1,
+      },
+      ">"
+    )
+    .addLabel("end-intro", ">");
 
   mainTimeline.to(
     "#p1",
@@ -3638,22 +3698,24 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.fromTo(
-    "#svgOutro",
-    {
-      y: -1000,
-      transform: "scale(2.5)",
-      duration: 1,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      transform: "scale(1.6)",
-      duration: 1,
-      opacity: 1,
-    },
-    ">"
-  ).addLabel('logo-intro', ">");
+  mainTimeline
+    .fromTo(
+      "#svgOutro",
+      {
+        y: -1000,
+        transform: "scale(2.5)",
+        duration: 1,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        transform: "scale(1.6)",
+        duration: 1,
+        opacity: 1,
+      },
+      ">"
+    )
+    .addLabel("logo-intro", ">");
 
   mainTimeline.to(
     "#svgOutro",
@@ -3749,16 +3811,18 @@ if (isDesktop()) {
     "<"
   );
 
-  mainTimeline.to(
-    ".charSpan2",
-    {
-      color: "#D1D821",
-      opacity: 1,
-      stagger: 0.1,
-      duration: 0.1,
-    },
-    ">"
-  ).addLabel("page-end", ">");
+  mainTimeline
+    .to(
+      ".charSpan2",
+      {
+        color: "#D1D821",
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.1,
+      },
+      ">"
+    )
+    .addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
 } else if (isMobile()) {
@@ -4001,20 +4065,22 @@ if (isDesktop()) {
     }
   });
 
-  mainTimeline.fromTo(
-    "#texto",
-    {
-      transform: "scale(0)",
-      opacity: 0,
-      duration: 10,
-    },
-    {
-      transform: "scale(1)",
-      opacity: 1,
-      duration: 10,
-      delay: -25,
-    }
-  ).addLabel("intro-text-end", ">");
+  mainTimeline
+    .fromTo(
+      "#texto",
+      {
+        transform: "scale(0)",
+        opacity: 0,
+        duration: 10,
+      },
+      {
+        transform: "scale(1)",
+        opacity: 1,
+        duration: 10,
+        delay: -25,
+      }
+    )
+    .addLabel("intro-text-end", ">");
 
   mainTimeline.to("#texto", {
     y: -800,
@@ -4170,11 +4236,13 @@ if (isDesktop()) {
     duration: 5,
   });
 
-  mainTimeline.to(".txt-ctn-1 .dup-ctn span", {
-    opacity: 1,
-    duration: 5,
-    delay: -5,
-  }).addLabel('intro-portfolio', ">");
+  mainTimeline
+    .to(".txt-ctn-1 .dup-ctn span", {
+      opacity: 1,
+      duration: 5,
+      delay: -5,
+    })
+    .addLabel("intro-portfolio", ">");
 
   mainTimeline.to(".sup-rodaje.zoomed", {
     duration: 3,
@@ -4216,11 +4284,13 @@ if (isDesktop()) {
     duration: 4,
   });
 
-  mainTimeline.to(".txt-ctn-2 .dup-ctn span", {
-    opacity: 1,
-    duration: 4,
-    delay: -4,
-  }).addLabel("portfolio-second-text", ">");
+  mainTimeline
+    .to(".txt-ctn-2 .dup-ctn span", {
+      opacity: 1,
+      duration: 4,
+      delay: -4,
+    })
+    .addLabel("portfolio-second-text", ">");
 
   mainTimeline.to(".txt-ctn-2", {
     opacity: 0,
@@ -4437,20 +4507,22 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 0,
-      duration: 4,
-    },
-    {
-      opacity: 1,
-      duration: 4,
-      onStart: () => {
-        middleVideo.play();
+  mainTimeline
+    .fromTo(
+      "#middleVidCtn",
+      {
+        opacity: 0,
+        duration: 4,
       },
-    }
-  ).addLabel("video-calidad-intro", ">");
+      {
+        opacity: 1,
+        duration: 4,
+        onStart: () => {
+          middleVideo.play();
+        },
+      }
+    )
+    .addLabel("video-calidad-intro", ">");
 
   middleVideo.addEventListener("ended", () => {
     middleVideo.style.display = "none";
@@ -4544,19 +4616,18 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline
-    .fromTo(
-      "#middle .text",
-      {
-        y: 1000,
-        duration: 10,
-      },
-      {
-        y: 0,
-        stagger: 1,
-        duration: 10,
-      }
-    );
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 1000,
+      duration: 10,
+    },
+    {
+      y: 0,
+      stagger: 1,
+      duration: 10,
+    }
+  );
 
   mainTimeline.to("#rect2", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
@@ -4564,24 +4635,25 @@ if (isDesktop()) {
     duration: 1,
   });
 
-  mainTimeline
-    .to("#rect3", {
-      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
-      fill: "#CBDB43",
-      duration: 1,
-    });
+  mainTimeline.to("#rect3", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
 
-  mainTimeline.fromTo(
-    "#middle .text",
-    {
-      y: 0,
-    },
-    {
-      y: -2000,
-      delay: 3,
-      duration: 50,
-    }
-  ).addLabel("start-tiempo", ">");
+  mainTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 0,
+      },
+      {
+        y: -2000,
+        delay: 3,
+        duration: 50,
+      }
+    )
+    .addLabel("start-tiempo", ">");
 
   mainTimeline.fromTo(
     ".acc-borders",
@@ -4710,22 +4782,24 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline.fromTo(
-    "#video-tiempo",
-    {
-      zIndex: -1,
-      rotateX: 115.3,
-    },
-    {
-      zIndex: 4,
-      rotateX: 0,
-      duration: 10,
-      scrollTrigger: ".accordion",
-      onStart: () => {
-        startCountdown();
+  mainTimeline
+    .fromTo(
+      "#video-tiempo",
+      {
+        zIndex: -1,
+        rotateX: 115.3,
       },
-    }
-  ).addLabel("video-calidad", ">");
+      {
+        zIndex: 4,
+        rotateX: 0,
+        duration: 10,
+        scrollTrigger: ".accordion",
+        onStart: () => {
+          startCountdown();
+        },
+      }
+    )
+    .addLabel("video-calidad", ">");
 
   mainTimeline.to("#video-tiempo #text-container-2 .text", {
     y: 1500,
@@ -4772,10 +4846,12 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline.to("#video-tiempo #text-container-2 .letter", {
-    duration: 5,
-    delay: 5,
-  }).addLabel("video-tiempo-texto", ">");
+  mainTimeline
+    .to("#video-tiempo #text-container-2 .letter", {
+      duration: 5,
+      delay: 5,
+    })
+    .addLabel("video-tiempo-texto", ">");
 
   mainTimeline.fromTo(
     "#video-tiempo",
@@ -4992,23 +5068,25 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline.fromTo(
-    "#svgOutro",
-    {
-      y: -1000,
-      transform: "scale(2.5)",
-      duration: 2,
-      delay: 0,
-      opacity: 0,
-    },
-    {
-      delay: 0,
-      y: 0,
-      transform: "scale(1.6)",
-      duration: 2,
-      opacity: 1,
-    }
-  ).addLabel("svg-end", ">");
+  mainTimeline
+    .fromTo(
+      "#svgOutro",
+      {
+        y: -1000,
+        transform: "scale(2.5)",
+        duration: 2,
+        delay: 0,
+        opacity: 0,
+      },
+      {
+        delay: 0,
+        y: 0,
+        transform: "scale(1.6)",
+        duration: 2,
+        opacity: 1,
+      }
+    )
+    .addLabel("svg-end", ">");
 
   mainTimeline.to("#svgOutro", {
     delay: 5,
@@ -5032,20 +5110,22 @@ if (isDesktop()) {
     visibility: "hidden",
   });
 
-  mainTimeline.fromTo(
-    "#textAllCtn",
-    {
-      visibility: "hidden",
-      rotateY: -90,
-      duration: 4,
-    },
-    {
-      visibility: "visible",
-      rotateY: 0,
-      duration: 4,
-      delay: 5,
-    }
-  ).addLabel("end-text", ">");
+  mainTimeline
+    .fromTo(
+      "#textAllCtn",
+      {
+        visibility: "hidden",
+        rotateY: -90,
+        duration: 4,
+      },
+      {
+        visibility: "visible",
+        rotateY: 0,
+        duration: 4,
+        delay: 5,
+      }
+    )
+    .addLabel("end-text", ">");
 
   mainTimeline.to(".charSpan", {
     delay: 10,
@@ -5094,18 +5174,20 @@ if (isDesktop()) {
     });
   });
 
-  mainTimeline.fromTo(
-    "#subir",
-    {
-      y: 500,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 2,
-    }
-  ).addLabel("end", ">");
+  mainTimeline
+    .fromTo(
+      "#subir",
+      {
+        y: 500,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 2,
+      }
+    )
+    .addLabel("end", ">");
 
   /* *********** END TIMELINE ********** */
 }
