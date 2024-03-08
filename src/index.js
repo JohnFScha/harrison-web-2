@@ -1,11 +1,15 @@
 /* ******************** HELPER FUNCTIONS ******************** */
 
 function isMobile() {
-  return window.innerWidth < 900;
+  return window.innerWidth < 1024;
 }
 
+// function isLowEnd() {
+//   return window.innerWidth >= 1024 && window.innerHeight >= 700;
+// }
+
 function isLaptop() {
-  return window.innerWidth >= 900 && window.innerHeight >= 700;
+  return window.innerWidth >= 1366 && window.innerHeight >= 700;
 }
 
 function isDesktop() {
@@ -481,7 +485,7 @@ if (isMobile()) {
       if (index !== 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 100% 0 0)",
-          paddingRight: '0',
+          paddingRight: "0",
           duration: 0.2,
           delay: 0,
         });
@@ -499,11 +503,17 @@ if (isMobile()) {
 
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
+        gsap.to(title, {
+          color: "transparent",
+          webkitTextStroke: "2px rgb(203, 219, 67)",
+        });
       });
 
       // Change color for the hovered title
-      gsap.to(titles[index], { color: "rgb(203, 219, 67)", webkitTextStroke: "0" });
+      gsap.to(titles[index], {
+        color: "rgb(203, 219, 67)",
+        webkitTextStroke: "0",
+      });
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -531,9 +541,7 @@ if (isMobile()) {
           marginLeft: "-200px",
         });
       }
-
     } else if (isLaptop()) {
-      
       if (index !== 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 100% 0 0)",
@@ -544,7 +552,6 @@ if (isMobile()) {
         gsap.to(ctn[0], {
           paddingRight: "0px",
         });
-
       } else if (index === 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 0 0 0)",
@@ -559,12 +566,17 @@ if (isMobile()) {
 
       // Reset color for all titles
       titles.forEach((title, idx) => {
-        gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
+        gsap.to(title, {
+          color: "transparent",
+          webkitTextStroke: "2px rgb(203, 219, 67)",
+        });
       });
 
       // Change color for the hovered title
-      gsap.to(titles[index], { color: "rgb(203, 219, 67)", webkitTextStroke: "0" });
-
+      gsap.to(titles[index], {
+        color: "rgb(203, 219, 67)",
+        webkitTextStroke: "0",
+      });
 
       // Use forEach to iterate over siblings
       event.currentTarget.parentNode.childNodes.forEach((sibling) => {
@@ -616,7 +628,10 @@ if (isMobile()) {
       // Reset color for all titles
       titles.forEach((title, idx) => {
         if (idx !== 0) {
-          gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
+          gsap.to(title, {
+            color: "transparent",
+            webkitTextStroke: "2px rgb(203, 219, 67)",
+          });
         }
       });
 
@@ -641,7 +656,6 @@ if (isMobile()) {
           width: originalWidth,
         });
       }
-      
     } else if (isLaptop()) {
       gsap.to(ctn[0], { width: "1000px" });
       gsap.to(ctn[0], { paddingRight: "600px" });
@@ -663,7 +677,10 @@ if (isMobile()) {
       // Reset color for all titles
       titles.forEach((title, idx) => {
         if (idx !== 0) {
-          gsap.to(title, { color: "transparent", webkitTextStroke: "2px rgb(203, 219, 67)" });
+          gsap.to(title, {
+            color: "transparent",
+            webkitTextStroke: "2px rgb(203, 219, 67)",
+          });
         }
       });
 
