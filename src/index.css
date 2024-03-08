@@ -375,7 +375,7 @@ body #intro {
 }
 
 #intro #video #texto p {
-  font-size: 5rem;
+  font-size: calc(5rem + 10%);
   margin-right: 0;
   text-align: center;
   color: transparent;
@@ -388,7 +388,7 @@ body #intro {
 }
 
 #intro #video #texto .spanIntroCtn p {
-  font-size: 5rem;
+  font-size: calc(5rem + 10%);
   margin-right: 1rem;
   text-align: center;
   color: transparent;
@@ -875,7 +875,7 @@ section.portfolio .logo-box {
 }
 
 .title-ctn h1 {
-  color:rgb(203, 219, 67);
+  color: rgb(203, 219, 67);
 }
 
 .text-ctn {
@@ -1821,7 +1821,7 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 50px;
   }
 
-  .modal .close { 
+  .modal .close {
     position: absolute;
     z-index: 50000;
     bottom: 18% !important;

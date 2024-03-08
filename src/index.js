@@ -1,19 +1,15 @@
 /* ******************** HELPER FUNCTIONS ******************** */
 
 function isMobile() {
-  return window.innerWidth < 1024;
+  return window.innerWidth < 500;
 }
 
-// function isLowEnd() {
-//   return window.innerWidth >= 1024 && window.innerHeight >= 700;
-// }
-
 function isLaptop() {
-  return window.innerWidth >= 1366 && window.innerHeight >= 700;
+  return window.innerWidth >= 500 && window.innerWidth <= 1920;
 }
 
 function isDesktop() {
-  return window.innerWidth >= 1920 && window.innerHeight >= 700;
+  return window.innerWidth >= 1920;
 }
 
 let countdownStarted = false;
