@@ -85,13 +85,17 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-window.onload = () => {
-  const init = document.getElementById("init");
+/* Loading page */
+const init = document.getElementById("init");
+
+window.addEventListener("load", () => {
   init.style.animation = "fadeOutAnimation 1s";
   setTimeout(() => {
     init.style.display = "none";
-  }, 1000); 
-};
+  }, 1200); 
+});
+
+/* End loading page */
 
 if (isMobile()) {
   Swal.fire({
@@ -108,7 +112,7 @@ if (isMobile()) {
     window.location.href = "/404.html"; // Adjust the path as needed
   }, 30000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
-  window.addEventListener("load", () => {
+  window.addEventListener("DOMContentLoaded", () => {
     clearTimeout(timeout);
   });
 } else {
@@ -116,7 +120,7 @@ if (isMobile()) {
     window.location.href = "/404.html"; // Adjust the path as needed
   }, 20000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
-  window.addEventListener("load", () => {
+  window.addEventListener("DOMContentLoaded", () => {
     clearTimeout(timeout);
   });
 }
@@ -312,6 +316,7 @@ let currentVideo = null;
 
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
+  middleVidSection.setAttribute("muted", true)
   desliza.innerHTML = ``;
   rodajeZoomed.src = "src/assets/rodaje1_mobile.webp"
   rodajeSup.src = "src/assets/rodaje1_mobile.webp"
@@ -332,6 +337,7 @@ if (isMobile()) {
 <polygon class="st0" points="140.8,287 134.3,287 134.3,315 154.8,315 154.8,309.7 140.8,309.7 	" />
 <polygon class="st0" points="164.9,287 158.5,287 158.5,315 179,315 179,309.7 164.9,309.7 	" />`;
   middleVidSection.src = "src/assets/calidad.webm";
+  middleVidSection.muted
   rodajeZoomed.src = "src/assets/rodaje1_.webp"
   rodajeSup.src = "src/assets/rodaje1_.webp"
   rodajeBg.src = "src/assets/rodaje_fondo2.webp"
@@ -940,7 +946,7 @@ if (isMobile()) {
 
 /* ******** Video frames ******** */
 
-let urls1 = new Array(190)
+/* let urls1 = new Array(190)
   .fill()
   .map(
     (_, i) => {
@@ -955,7 +961,7 @@ urls1.forEach((url) => {
   let img = new Image();
   img.src = url;
   videoCamara.appendChild(img);
-});
+}); */
 
 // Animaciones de la pagina con scrollTrigger, tres instancias, una para cada tipo de pantalla.
 
@@ -1075,6 +1081,7 @@ if (isDesktop()) {
       }
       let newVideo = document.createElement("video");
       newVideo.id = "modalVideo";
+      newVideo.preload = "none"
       let swapSrc = document.createElement("source");
       swapSrc.src = videos[index];
       newVideo.setAttribute("controlslist", "nodownload");
@@ -1299,7 +1306,7 @@ if (isDesktop()) {
   mainTimeline.to(
     ".bg-rodaje",
     {
-      yPercent: -66,
+      yPercent: -60,
       duration: 1,
       opacity: 0.8,
       ease: "power1.inOut",
@@ -1311,7 +1318,7 @@ if (isDesktop()) {
     ".sup-rodaje",
     {
       duration: 1,
-      yPercent: -66,
+      yPercent: -60,
       ease: "power1.inOut",
     },
     ">-0.9"
@@ -1438,7 +1445,7 @@ if (isDesktop()) {
     {
       duration: 1,
       scale: 2.5,
-      transformOrigin: "32% bottom",
+      transformOrigin: "32% 87.5%",
       scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
     },
     ">"
@@ -2891,7 +2898,7 @@ if (isDesktop()) {
     {
       duration: 1,
       scale: 2.5,
-      transformOrigin: "32% bottom",
+      transformOrigin: "32% 84%",
       scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
     },
     ">"
