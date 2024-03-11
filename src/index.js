@@ -90,7 +90,7 @@ window.onload = () => {
   init.style.animation = "fadeOutAnimation 1s";
   setTimeout(() => {
     init.style.display = "none";
-  }, 1000);
+  }, 1000); 
 };
 
 if (isMobile()) {
@@ -104,21 +104,21 @@ if (isMobile()) {
     position: "bottom",
     customClass: "alert",
   });
-  const timeout = setTimeout(() => {
+  /* const timeout = setTimeout(() => {
     window.location.href = "/404.html"; // Adjust the path as needed
   }, 20000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
   window.addEventListener("load", () => {
     clearTimeout(timeout);
-  });
+  }); */
 } else {
-  const timeout = setTimeout(() => {
+  /* const timeout = setTimeout(() => {
     window.location.href = "/404.html"; // Adjust the path as needed
   }, 10000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
   window.addEventListener("load", () => {
     clearTimeout(timeout);
-  });
+  }); */
 }
 
 /* ************* DOM elements ************ */
@@ -304,10 +304,12 @@ const videos = [
   "src/assets/casos/delsud-comp.webm",
   "src/assets/casos/flexy-comp.webm",
 ];
+
 let currentVideo = null;
 
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
+  middleVidSection.setAttribute("loading", "lazy")
   desliza.innerHTML = ``;
 } else {
   desliza.innerHTML = `<path class="st0"
@@ -325,12 +327,15 @@ if (isMobile()) {
 <polygon class="st0" points="140.8,287 134.3,287 134.3,315 154.8,315 154.8,309.7 140.8,309.7 	" />
 <polygon class="st0" points="164.9,287 158.5,287 158.5,315 179,315 179,309.7 164.9,309.7 	" />`;
   middleVidSection.src = "src/assets/calidad.webm";
+  middleVidSection.setAttribute("loading", "lazy")
 }
 
 if (isMobile()) {
   videoTiempo.src = "src/assets/Video-tiempo_v.webm";
+  videoTiempo.setAttribute("loading", "lazy")
 } else {
   videoTiempo.src = "src/assets/video-tiempo.webm";
+  videoTiempo.setAttribute("loading", "lazy")
 }
 
 /* ****************** end Portfolio dom ****************** */
@@ -739,43 +744,43 @@ if (isMobile()) {
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logo_Desarrollos.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logo_FCE.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logos_La_Caja.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logos_NBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logos_PBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logos_Sancor.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
           </video>
         </div>
         <div class="card-ctn">
           <img src="src/assets/marcas/Marcas_Logos_Yacoub.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
           </video>
         </div>
       </figure>
@@ -930,10 +935,10 @@ if (isMobile()) {
 
 /* ******** Video frames ******** */
 
-let urls1 = new Array(380)
+let urls1 = new Array(190)
   .fill()
   .map(
-    (_, i) => `src/assets/camara-frames/introframes(${(i + 1).toString()}).webp`
+    (_, i) => `src/assets/camara-frames/introframes (${(i + 1).toString()}).webp`
   );
 
 urls1.forEach((url) => {
@@ -1115,7 +1120,7 @@ if (isDesktop()) {
         display: "flex",
       }
     )
-    .addLabel("intro", "<");
+    .addLabel("intro", ">");
 
   mainTimeline.fromTo(
     "#scrollea",
@@ -1197,7 +1202,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 1,
     },
-    ">-1.5"
+    ">-0.7"
   );
 
   mainTimeline
@@ -2568,7 +2573,7 @@ if (isDesktop()) {
         display: "flex",
       }
     )
-    .addLabel("intro");
+    .addLabel("intro", ">");
 
   mainTimeline.fromTo(
     "#scrollea",
@@ -2650,7 +2655,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 1,
     },
-    ">-1.5"
+    ">-0.7"
   );
 
   mainTimeline
@@ -4013,7 +4018,7 @@ if (isDesktop()) {
         display: "flex",
       }
     )
-    .addLabel("intro");
+    .addLabel("intro", ">");
 
   mainTimeline.fromTo(
     "#scrollea",
@@ -4092,7 +4097,7 @@ if (isDesktop()) {
         transform: "scale(1)",
         opacity: 1,
         duration: 10,
-        delay: -25,
+        delay: -15,
       }
     )
     .addLabel("intro-text-end", ">");
@@ -4100,13 +4105,13 @@ if (isDesktop()) {
   mainTimeline.to("#texto", {
     y: -800,
     duration: 10,
-    delay: -10,
+    delay: -5,
   });
 
   mainTimeline.to("#intro", {
     opacity: 0,
     duration: 20,
-    delay: -10,
+    delay: -5,
   });
 
   mainTimeline.fromTo(
