@@ -104,21 +104,21 @@ if (isMobile()) {
     position: "bottom",
     customClass: "alert",
   });
-  /* const timeout = setTimeout(() => {
+  const timeout = setTimeout(() => {
+    window.location.href = "/404.html"; // Adjust the path as needed
+  }, 30000); // 10 seconds in milliseconds
+  // Clear the timeout if the content loads before the timeout triggers
+  window.addEventListener("load", () => {
+    clearTimeout(timeout);
+  });
+} else {
+  const timeout = setTimeout(() => {
     window.location.href = "/404.html"; // Adjust the path as needed
   }, 20000); // 10 seconds in milliseconds
   // Clear the timeout if the content loads before the timeout triggers
   window.addEventListener("load", () => {
     clearTimeout(timeout);
-  }); */
-} else {
-  /* const timeout = setTimeout(() => {
-    window.location.href = "/404.html"; // Adjust the path as needed
-  }, 10000); // 10 seconds in milliseconds
-  // Clear the timeout if the content loads before the timeout triggers
-  window.addEventListener("load", () => {
-    clearTimeout(timeout);
-  }); */
+  });
 }
 
 /* ************* DOM elements ************ */
