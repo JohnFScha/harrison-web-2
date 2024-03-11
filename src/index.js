@@ -284,6 +284,9 @@ let videoTiempo = document.querySelector("#tiempoVidCtn");
 let videoTiempoSection = document.querySelector("section#video-tiempo");
 let txtContainers = document.querySelectorAll(".child .text-ctn");
 let txtInnerCtn = document.querySelectorAll(".child .text-ctn ol");
+let rodajeZoomed = document.getElementById("rodaje-zoomed")
+let rodajeSup = document.getElementById("rodaje-sup")
+let rodajeBg = document.getElementById("rodaje-bg")
 
 // modals
 const liElements = [];
@@ -310,6 +313,9 @@ let currentVideo = null;
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
   desliza.innerHTML = ``;
+  rodajeZoomed.src = "src/assets/rodaje1_mobile.webp"
+  rodajeSup.src = "src/assets/rodaje1_mobile.webp"
+  rodajeBg.src = "src/assets/rodaje_fondo2-mobile.webp"
 } else {
   desliza.innerHTML = `<path class="st0"
   d="M89.8,306c1.8-0.8,3.2-1.9,4.2-3.4c1-1.5,1.5-3.3,1.5-5.4c0-2.1-0.5-3.9-1.5-5.4c-1-1.5-2.4-2.7-4.2-3.5 c-1.8-0.8-4-1.2-6.5-1.2H71.2v28h6.5v-7.8h5.6c0.1,0,0.2,0,0.3,0L89,315h7L89.8,306C89.7,306,89.7,306,89.8,306z M87.4,293.6 c1,0.9,1.5,2.1,1.5,3.6c0,1.5-0.5,2.7-1.5,3.6c-1,0.9-2.5,1.3-4.5,1.3h-5.3v-9.8h5.3C84.9,292.3,86.4,292.7,87.4,293.6z" />
@@ -326,6 +332,9 @@ if (isMobile()) {
 <polygon class="st0" points="140.8,287 134.3,287 134.3,315 154.8,315 154.8,309.7 140.8,309.7 	" />
 <polygon class="st0" points="164.9,287 158.5,287 158.5,315 179,315 179,309.7 164.9,309.7 	" />`;
   middleVidSection.src = "src/assets/calidad.webm";
+  rodajeZoomed.src = "src/assets/rodaje1_.webp"
+  rodajeSup.src = "src/assets/rodaje1_.webp"
+  rodajeBg.src = "src/assets/rodaje_fondo2.webp"
 }
 
 if (isMobile()) {
@@ -934,13 +943,17 @@ if (isMobile()) {
 let urls1 = new Array(190)
   .fill()
   .map(
-    (_, i) => `src/assets/camara-frames/introframes (${(i + 1).toString()}).webp`
-  );
+    (_, i) => {
+      if(isMobile()) {
+        return `src/assets/camara-frames-mobile/introframes (${(i + 1).toString()}).webp`
+      } else {
+        return `src/assets/camara-frames/introframes (${(i + 1).toString()}).webp`
+      }
+    });
 
 urls1.forEach((url) => {
   let img = new Image();
   img.src = url;
-  img.class = "camara";
   videoCamara.appendChild(img);
 });
 
