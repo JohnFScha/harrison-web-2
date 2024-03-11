@@ -309,7 +309,6 @@ let currentVideo = null;
 
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
-  middleVidSection.setAttribute("loading", "lazy")
   desliza.innerHTML = ``;
 } else {
   desliza.innerHTML = `<path class="st0"
@@ -327,15 +326,12 @@ if (isMobile()) {
 <polygon class="st0" points="140.8,287 134.3,287 134.3,315 154.8,315 154.8,309.7 140.8,309.7 	" />
 <polygon class="st0" points="164.9,287 158.5,287 158.5,315 179,315 179,309.7 164.9,309.7 	" />`;
   middleVidSection.src = "src/assets/calidad.webm";
-  middleVidSection.setAttribute("loading", "lazy")
 }
 
 if (isMobile()) {
   videoTiempo.src = "src/assets/Video-tiempo_v.webm";
-  videoTiempo.setAttribute("loading", "lazy")
 } else {
   videoTiempo.src = "src/assets/video-tiempo.webm";
-  videoTiempo.setAttribute("loading", "lazy")
 }
 
 /* ****************** end Portfolio dom ****************** */
