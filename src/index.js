@@ -92,7 +92,7 @@ window.addEventListener("load", () => {
   init.style.animation = "fadeOutAnimation 1s";
   setTimeout(() => {
     init.style.display = "none";
-  }, 1200); 
+  }, 950); 
 });
 
 /* End loading page */
