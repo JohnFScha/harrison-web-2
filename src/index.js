@@ -1,5 +1,7 @@
 /* ******************** HELPER FUNCTIONS ******************** */
 
+// * Funciones que retornan el ancho de pantalla para cargar la instancia adecuada de scrollTrigger
+
 function isMobile() {
   return window.innerWidth < 500;
 }
@@ -11,6 +13,8 @@ function isLaptop() {
 function isDesktop() {
   return window.innerWidth >= 1920;
 }
+
+// * Funciones para generar y renderizar el contador de la seccion de video de tiempo.
 
 let countdownStarted = false;
 let countdownInterval;
@@ -86,6 +90,9 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 /* Loading page */
+
+//* Pantalla de carga: si se trata de mobile, se dispara el alerta indicandole al usuario que visite la pagina en una computadora. En ambos casos se inicia un contador que espera a que se cargue el contenido entero del DOM, y en caso de que por algun motivo no pueda, se reenvia al usuario a la pagina 404. Si la carga ocurre sin problema, se aplican estilos a la pantalla para que desaparezca del documento y de inicio al scroll.
+
 const init = document.getElementById("init");
 
 if (isMobile()) {
@@ -179,6 +186,8 @@ body.addEventListener("mousemove", (e) => {
 /* ********* end CURSOR *********** */
 
 /****** menu ***** */
+
+// * Funcionamiento del menu de navegacion de acuerdo a pantallas.
 
 const menuTl = gsap.timeline({ paused: true });
 
@@ -315,6 +324,8 @@ const videos = [
 
 let currentVideo = null;
 
+// * Cargar o bien "desliza" o "scrollea" en el SVG inicial dependiendo de la pantalla.
+
 if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
   middleVidSection.setAttribute("muted", true);
@@ -344,6 +355,8 @@ if (isMobile()) {
   rodajeBg.src = "src/assets/rodaje_fondo2.webp";
 }
 
+// * Cargar dinamicamente una version u otra del video de "tiempo" de acuerdo a dimensiones de pantallas.
+
 if (isMobile()) {
   videoTiempo.src = "src/assets/Video-tiempo_v.webm";
 } else {
@@ -354,11 +367,13 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
-// Funcionamiento del acordeon, segun pantallas.
+// * Funcionamiento del acordeon, segun pantallas.
 
 let ctn = document.querySelectorAll(".child");
 let childTitleCtn = document.querySelectorAll(".child .title-ctn");
 let titles = gsap.utils.toArray(".child .title-ctn h1");
+
+/* *********** MOBILE *********** */
 
 if (isMobile()) {
   let isOpen = false;
@@ -478,7 +493,11 @@ if (isMobile()) {
       }
     });
   });
-} else {
+} 
+
+/* *********** DESKTOP/LAPTOP *********** */
+
+else {
   gsap.set(ctn[0], {
     width: "1000px",
   });
@@ -726,7 +745,7 @@ if (isMobile()) {
 
 /* ******************  dom manipulation ****************** */
 
-// Chequear si se trata de un dispositivo movil y cargar condicionalmente el carrusel o la lista de marcas.
+// * Chequear si se trata de un dispositivo movil y cargar condicionalmente el carrusel o la lista de marcas.
 
 if (isMobile()) {
   bgVideo.src = "";
@@ -945,7 +964,9 @@ if (isMobile()) {
 
 /* ****************** end dom manipulation ****************** */
 
-/* ******** Video frames ******** */
+// ! ***************** LEGACY FRAME LOADER ******************* //
+
+// ! Originalmente esta parte del codigo se utilizaba para cargar dinamicamente los frames de la camara de fotos, pero ya que eso siginificaba una carga muy importante para la memoria del navegador, decidimos cargar manualmente los frames al HTML de modo tal que el navegador solo realice la descarga de las fotos en lugar de tambien tener que cargar las imagenes al DOM.
 
 /* let urls1 = new Array(190)
   .fill()
@@ -964,7 +985,7 @@ urls1.forEach((url) => {
   videoCamara.appendChild(img);
 }); */
 
-// Animaciones de la pagina con scrollTrigger, tres instancias, una para cada tipo de pantalla.
+// * Animaciones de la pagina con scrollTrigger, tres instancias, una para cada tipo de pantalla.
 
 if (isDesktop()) {
   /* ************************** Desktop Timeline ************************** */
@@ -974,18 +995,34 @@ if (isDesktop()) {
       trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=2000% bottom",
-      scrub: 2,
+      scrub: true,
       pin: true,
+      ease: "back.inOut",
+      // * Funcion para loguear en la consola la velocidad, la posicion y la direccion del scroll tras cada tick.
+      // * Descomentar el console.log para poder acceder a esas variables en la consola.
+      onUpdate: (self) => {
+        /* console.log(
+          "Progress:",
+          self.progress.toFixed(3),
+          "Direction:",
+          self.direction,
+          "velocity",
+          self.getVelocity()
+        ) */
+      },
       snap: {
-        inertia: false,
+        inertia: true,
         snapTo: "labels", // snap to the closest label in the timeline
-        duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+        duration: {min: 0.2, max: 3}, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0, // wait 0.1 seconds from the last scroll event before doing the snapping
       },
     },
   });
 
+
   /* ********* MENU ********* */
+
+  //* Comportamiento del menu de navegación. Consta de un timeline especifico el cual el usuario al presionar el boton o bien pone play, o si la animacion esta completa, lo pone en reversa. 
 
   collapse.addEventListener("click", () => {
     // Check if the timeline is reversing
@@ -1021,6 +1058,8 @@ if (isDesktop()) {
   });
 
   let links = gsap.utils.toArray(".nav-link");
+
+  //* La navegación usa el plugin 'scrollTo' de GSAP, una vez el usuario clickea en un item, 'adelanta' el timeline hasta el label acorde. Se puede ajustar la duración de este comportamiento modificando la propiedad 'duration' (se maneja en segundos)
 
   links.forEach((a) => {
     a.addEventListener("click", (e) => {
@@ -1075,6 +1114,9 @@ if (isDesktop()) {
 
   /* ***** casos portfolio ***** */
 
+  //* Se carga un video, de acuerdo al elemento que se clickee, se setean todas sus propiedades y se lo carga al DOM en el contenedor a tal efecto. Cuando el usuario clickea otro elemento, se desmonta ese video y se monta el nuevo y el proceso se repite.
+
+  // Montado del video
   liElements.forEach((liElement, index) =>
     liElement.addEventListener("click", () => {
       if (currentVideo && currentVideo.parentNode) {
@@ -1102,6 +1144,7 @@ if (isDesktop()) {
     })
   );
 
+  // Desmontado del video
   closeModal.addEventListener("click", () => {
     if (currentVideo) {
       setTimeout(() => {
@@ -1198,8 +1241,7 @@ if (isDesktop()) {
       },
       {
         display: "block",
-        stagger: 0.1,
-        duration: 0.01,
+        duration: 0.02,
       }
     );
     if (index < cameraFrames.length - 1) {
@@ -1219,7 +1261,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 1,
     },
-    ">-0.7"
+    ">-1.2"
   );
 
   mainTimeline

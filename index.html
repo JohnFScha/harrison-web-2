@@ -14,20 +14,25 @@
 </head>
 
 <body id="body" class="close">
+  
+  <!-- main wrapper para el pin de ScrollTrigger -->
   <main class="wrapper">
+
+    <!-- contenedor del modal donde se cargan los videos del portfolio -->
     <div class="modal-container">
       <div class="modal hidden" id="modal">
         <div class="modal-content" id="modalContent">
           <svg class="close" id="closeModal" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" viewBox="0 0 512 512"
-            style="enable-background: new 0 0 512 512" xml:space="preserve">
-            <path class="st0"
-              d="M338.2,188.9L271.1,256l67.1,67.1c4.2,4.2,4.2,10.9,0,15.1c-2.1,2.1-4.8,3.1-7.6,3.1c-2.7,0-5.5-1-7.6-3.1  L256,271.1l-67.1,67.1c-2.1,2.1-4.8,3.1-7.6,3.1c-2.7,0-5.5-1-7.6-3.1c-4.2-4.2-4.2-10.9,0-15.1l67.1-67.1l-67.1-67.1  c-4.2-4.2-4.2-10.9,0-15.1c4.2-4.2,10.9-4.2,15.1,0l67.1,67.1l67.1-67.1c4.2-4.2,10.9-4.2,15.1,0C342.3,178,342.3,184.7,338.2,188.9  L338.2,188.9z M512,256c0,141.2-114.8,256-256,256S0,397.2,0,256S114.8,0,256,0S512,114.8,512,256z M490.7,256  c0-129.4-105.3-234.7-234.7-234.7S21.3,126.6,21.3,256S126.6,490.7,256,490.7S490.7,385.4,490.7,256z" />
-          </svg>
-        </div>
+          xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" viewBox="0 0 512 512"
+          style="enable-background: new 0 0 512 512" xml:space="preserve">
+          <path class="st0"
+          d="M338.2,188.9L271.1,256l67.1,67.1c4.2,4.2,4.2,10.9,0,15.1c-2.1,2.1-4.8,3.1-7.6,3.1c-2.7,0-5.5-1-7.6-3.1  L256,271.1l-67.1,67.1c-2.1,2.1-4.8,3.1-7.6,3.1c-2.7,0-5.5-1-7.6-3.1c-4.2-4.2-4.2-10.9,0-15.1l67.1-67.1l-67.1-67.1  c-4.2-4.2-4.2-10.9,0-15.1c4.2-4.2,10.9-4.2,15.1,0l67.1,67.1l67.1-67.1c4.2-4.2,10.9-4.2,15.1,0C342.3,178,342.3,184.7,338.2,188.9  L338.2,188.9z M512,256c0,141.2-114.8,256-256,256S0,397.2,0,256S114.8,0,256,0S512,114.8,512,256z M490.7,256  c0-129.4-105.3-234.7-234.7-234.7S21.3,126.6,21.3,256S126.6,490.7,256,490.7S490.7,385.4,490.7,256z" />
+        </svg>
       </div>
     </div>
-
+    </div>
+  
+    <!-- contenedor para el widget de seccion de pagina  -->
     <div id="progressbar-ctn">
       <svg width="417" height="119" viewBox="0 0 417 119" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 57L407.5 57" stroke="#D9D9D9" stroke-width="5.66667" />
@@ -52,6 +57,7 @@
       </svg>
     </div>
 
+    <!-- contenedor de la barra de navegacion -->
     <nav id="nav">
       <div class="social-ctn">
         <a href="mailto:hola@agenciaharrison.com.ar" target="_blank" rel="noopener noreferrer" class="social-nav">
@@ -137,6 +143,7 @@
       </section>
     </nav>
 
+    <!-- seccion de intro con la camara y el tunel -->
     <section id="intro">
       <section class="container" id="init">
         <svg width="120" height="143" viewBox="0 0 120 143" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -399,6 +406,7 @@
       </section>
     </section>
 
+    <!-- seccion portfolio -->
     <section class="portfolio" id="portfolio">
 
       <img class="sup-rodaje zoomed" src="src/assets/rodaje1_.webp" alt="rodaje superior zoomed" id="rodaje-zoomed"
@@ -521,8 +529,13 @@
       </div>
     </section>
 
+    <!-- contenedor de las secciones finales -->
     <section id="middle">
+
+      <!-- video calidad -->
       <video src="" id="middleVidCtn"></video>
+      
+      <!-- contenedor del texto que sigue al video de calidad -->
       <section id="text-container">
         <p class="text">Y ENCONTRAMOS JUNTOS,</p>
         <p class="text" id="letter-ctn">
@@ -544,6 +557,7 @@
         <p class="text">DE CONTARLA</p>
       </section>
 
+      <!-- contenedor de la seccion de servicios -->
       <section class="accordion">
         <div class="acc-borders"></div>
         <div id='parent'>
@@ -622,10 +636,13 @@
           </div>
         </div>
       </section>
+
+      <!-- video de fondo para todas las secciones siguientes -->
       <video class="bg-video" autoplay muted loop>
         <source src="src/assets/fondo_tarjetas_azul-v.webm" id="bg-video" type="video/webm">
       </video>
 
+      <!-- video tiempo -->
       <section id="video-tiempo">
         <div id="count-ctn">
           <div id="countdown-timer"></div>
@@ -780,10 +797,12 @@
         </section>
       </section>
 
+      <!-- texto del video de tiempo -->
       <section id="txt-container-2">
 
       </section>
 
+      <!-- contenedor de la seccion de clientes + seccion final -->
       <section class="flipLogoContainer">
         <svg width="120" height="143" id="svgOutro" viewBox="0 0 120 143" xmlns="http://www.w3.org/2000/svg">
           <g id="Layer_1" clip-path="url(#clip0_771_407)">
@@ -799,6 +818,7 @@
             </clipPath>
           </defs>
         </svg>
+
         <div id="textAllCtn">
           <p class="textPostC" id="p1_postC">¿QUERÉS DARLE UN</p>
           <p class="letter-container">
@@ -821,6 +841,7 @@
             <span class="charSpan">?</span>
           </p>
         </div>
+
         <div class="subTextContainer" id="subTextContainer">
           <div class="socialContainer">
             <div class="svgSocial" id="svgLinkedIn">
@@ -880,6 +901,7 @@
         </div>
       </section>
 
+      <!-- contenedor del boton para subir arriba del todo en version mobile -->
       <section id="subir">
         <button id="subirbtn">
           <svg width="46" height="65" viewBox="0 0 46 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -901,13 +923,21 @@
     </section>
   </main>
 
+  <!-- import de los assets externos -->
+
+  <!-- lenis.js -->
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  
+  <!-- Sweet Alert para version mobile -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- <script src="src/index.js" defer></script> -->
-  <script src="bundle.js" defer></script>
+
+  <script src="src/index.js" defer></script>
+  <!-- <script src="bundle.js" defer></script> -->
 </body>
 
 </html>
