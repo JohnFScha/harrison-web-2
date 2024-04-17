@@ -997,7 +997,6 @@ if (isDesktop()) {
       end: "bottom+=2000% bottom",
       scrub: true,
       pin: true,
-      ease: "back.inOut",
       // * Funcion para loguear en la consola la velocidad, la posicion y la direccion del scroll tras cada tick.
       // * Descomentar el console.log para poder acceder a esas variables en la consola.
       onUpdate: (self) => {
@@ -1010,12 +1009,7 @@ if (isDesktop()) {
           self.getVelocity()
         ) */
       },
-      snap: {
-        inertia: true,
-        snapTo: "labels", // snap to the closest label in the timeline
-        duration: {min: 0.2, max: 3}, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 0, // wait 0.1 seconds from the last scroll event before doing the snapping
-      },
+      snap: 'labelsDirectional',
     },
   });
 
@@ -1186,12 +1180,12 @@ if (isDesktop()) {
     "#scrollea",
     {
       opacity: 1,
-      duration: 1,
+      duration: 0.5,
       x: 0,
     },
     {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       x: -100,
     }
   );
@@ -1222,14 +1216,14 @@ if (isDesktop()) {
     "#video-camara",
     {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
     },
     {
       opacity: 1,
-      duration: 1,
+      duration: 0.5,
     },
     ">"
-  );
+  ).addLabel('init-camara', '>');
 
   const cameraFrames = gsap.utils.toArray("#video-camara img");
 
@@ -1241,7 +1235,7 @@ if (isDesktop()) {
       },
       {
         display: "block",
-        duration: 0.02,
+        duration: 0.05,
       }
     );
     if (index < cameraFrames.length - 1) {
@@ -1261,7 +1255,7 @@ if (isDesktop()) {
       opacity: 1,
       duration: 1,
     },
-    ">-1.2"
+    ">-2.5"
   );
 
   mainTimeline
@@ -1294,7 +1288,7 @@ if (isDesktop()) {
     "#intro",
     {
       opacity: 0,
-      duration: 2,
+      duration: 1,
     },
     ">"
   );
@@ -1322,15 +1316,15 @@ if (isDesktop()) {
       display: "none",
       opacity: 0,
       zIndex: -1,
-      duration: 1,
+      duration: 0.5,
     },
     {
       display: "block",
       opacity: 1,
-      duration: 1,
+      duration: 0.5,
       zIndex: 2,
     },
-    ">-3"
+    ">-2"
   );
 
   mainTimeline.fromTo(
