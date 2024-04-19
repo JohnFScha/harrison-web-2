@@ -7,7 +7,7 @@ function isMobile() {
 }
 
 function isLaptop() {
-  return window.innerWidth >= 500 && window.innerWidth <= 1920;
+  return window.innerWidth >= 500 && window.innerWidth < 1920;
 }
 
 function isDesktop() {
@@ -493,11 +493,9 @@ if (isMobile()) {
       }
     });
   });
-} 
+} else {
 
 /* *********** DESKTOP/LAPTOP *********** */
-
-else {
   gsap.set(ctn[0], {
     width: "1000px",
   });
@@ -1000,23 +998,28 @@ if (isDesktop()) {
       // * Funcion para loguear en la consola la velocidad, la posicion y la direccion del scroll tras cada tick.
       // * Descomentar el console.log para poder acceder a esas variables en la consola.
       onUpdate: (self) => {
-        /* console.log(
-          "Progress:",
-          self.progress.toFixed(3),
+        console.log(
+          /* "Progress:",
+          self.progress.toFixed(3), */
           "Direction:",
-          self.direction,
-          "velocity",
-          self.getVelocity()
-        ) */
+          self.direction
+          /* "velocity",
+          self.getVelocity() */
+        );
       },
-      snap: 'labelsDirectional',
+      snap: {
+        snapTo: "labelsDirectional",
+        delay: 0.001,
+        duration: { min: 0.2, max: 3 },
+        ease: "power2.inOut",
+        inertia: true,
+      },
     },
   });
 
-
   /* ********* MENU ********* */
 
-  //* Comportamiento del menu de navegación. Consta de un timeline especifico el cual el usuario al presionar el boton o bien pone play, o si la animacion esta completa, lo pone en reversa. 
+  //* Comportamiento del menu de navegación. Consta de un timeline especifico el cual el usuario al presionar el boton o bien pone play, o si la animacion esta completa, lo pone en reversa.
 
   collapse.addEventListener("click", () => {
     // Check if the timeline is reversing
@@ -1212,18 +1215,20 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline.fromTo(
-    "#video-camara",
-    {
-      opacity: 0,
-      duration: 0.5,
-    },
-    {
-      opacity: 1,
-      duration: 0.5,
-    },
-    ">"
-  ).addLabel('init-camara', '>');
+  mainTimeline
+    .fromTo(
+      "#video-camara",
+      {
+        opacity: 0,
+        duration: 0.5,
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+      },
+      ">"
+    )
+    .addLabel("init-camara", ">");
 
   const cameraFrames = gsap.utils.toArray("#video-camara img");
 
@@ -1961,25 +1966,23 @@ if (isDesktop()) {
     ">"
   );
 
-  mainTimeline
-    .fromTo(
-      "#video-tiempo",
-      {
-        zIndex: -1,
-        rotateX: 115.3,
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      duration: 2,
+      snap: "x, y",
+      onStart: () => {
+        startCountdown();
       },
-      {
-        zIndex: 4,
-        rotateX: 0,
-        duration: 2,
-        snap: "x, y",
-        onStart: () => {
-          startCountdown();
-        },
-      },
-      "<"
-    )
-    .addLabel("video-tiempo", ">");
+    },
+    "<"
+  );
 
   mainTimeline.to(
     "#video-tiempo #text-container-2 .text",
@@ -2452,13 +2455,19 @@ if (isDesktop()) {
       trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=2000% bottom",
-      scrub: 2,
+      scrub: true,
       pin: true,
+      onUpdate: (self) => {
+        console.log(
+          'Direction:',
+          self.direction
+        );
+      },
       snap: {
         inertia: false,
-        snapTo: "labels", // snap to the closest label in the timeline
-        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
+        snapTo: "labelsDirectional", // snap to the closest label in the timeline
+        duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.001, // wait 0.2 seconds from the last scroll event before doing the snapping
       },
     },
   });
@@ -3910,9 +3919,9 @@ if (isDesktop()) {
       pin: true,
       snap: {
         inertia: false,
-        snapTo: "labels", // snap to the closest label in the timeline
-        duration: { min: 1, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-        delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+        snapTo: "labelsDirectional", // snap to the closest label in the timeline
+        duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.001, // wait 0.2 seconds from the last scroll event before doing the snapping
       },
     },
   });
@@ -4855,24 +4864,22 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline
-    .fromTo(
-      "#video-tiempo",
-      {
-        zIndex: -1,
-        rotateX: 115.3,
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
       },
-      {
-        zIndex: 4,
-        rotateX: 0,
-        duration: 10,
-        scrollTrigger: ".accordion",
-        onStart: () => {
-          startCountdown();
-        },
-      }
-    )
-    .addLabel("video-calidad", ">");
+    }
+  );
 
   mainTimeline.to("#video-tiempo #text-container-2 .text", {
     y: 1500,
