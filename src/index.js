@@ -1001,8 +1001,8 @@ if (isDesktop()) {
         console.log(
           /* "Progress:",
           self.progress.toFixed(3), */
-          "Direction:",
-          self.direction
+          // "Direction:",
+          // self.direction
           /* "velocity",
           self.getVelocity() */
         );
@@ -2458,10 +2458,10 @@ if (isDesktop()) {
       scrub: true,
       pin: true,
       onUpdate: (self) => {
-        console.log(
-          'Direction:',
-          self.direction
-        );
+        // console.log(
+        //   'Direction:',
+        //   self.direction
+        // );
       },
       snap: {
         inertia: false,
