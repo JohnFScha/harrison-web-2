@@ -2191,7 +2191,7 @@ div#textAllCtn .letter-container .spacerSpan {
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
     margin: 2rem 0;
     position: fixed;
     bottom: 0;
@@ -2203,7 +2203,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   nav section#menu .social-ctn-2 a img {
-    width: 2.5rem;
+    width: 3.5rem;
   }
 
   nav section#menu ul {
@@ -2213,12 +2213,12 @@ div#textAllCtn .letter-container .spacerSpan {
     align-items: center;
     gap: 1rem;
     height: 10%;
-    margin-top: 12rem;
+    margin: 17rem 0;
   }
 
   nav section#menu ul li a {
     display: block;
-    font-size: 2rem;
+    font-size: 3.5rem;
     text-transform: uppercase;
     -webkit-text-stroke: 2px rgb(29, 62, 78);
   }
@@ -2227,11 +2227,16 @@ div#textAllCtn .letter-container .spacerSpan {
     width: 30%;
   }
 
-  nav section#menu ul #logo-menu {
+  nav section#menu ul li#logo-menu {
     position: fixed;
-    top: 35px;
-    left: 0;
+    top: 60px;
+    left: 20px;
     margin: 1rem 1.5rem;
+  }
+
+  nav section#menu ul li#logo-menu svg {
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   /* ============= intro ============ */
