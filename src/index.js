@@ -870,7 +870,7 @@ if (isMobile() || isTablet()) {
       opacity: 1,
     });
     gsap.to(titleCtn[index], 0.3, {
-      color: "rgb(203, 219, 67)",
+      color: "rgb(203, 219, 67)"
     });
     gsap.to(titleCtn[(0, 2)], 0.7, {
       height: 70,

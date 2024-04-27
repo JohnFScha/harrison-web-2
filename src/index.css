@@ -2386,6 +2386,7 @@ div#textAllCtn .letter-container .spacerSpan {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding-top: 70px;
   }
 
   section.portfolio ol li h2 {
@@ -2397,9 +2398,13 @@ div#textAllCtn .letter-container .spacerSpan {
     margin-bottom: 5px;
   }
 
+  section.portfolio ol li .desc-ctn bold {
+    margin-top: 10px;
+  }
+
   section.portfolio ol li .desc-ctn p,
   section.portfolio ol li .desc-ctn bold {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   section.portfolio ol #delsud {
