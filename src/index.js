@@ -1,6 +1,6 @@
 /* ******************** HELPER FUNCTIONS ******************** */
 
-// * Funciones que retornan el ancho de pantalla para cargar la instancia adecuada de scrollTrigger
+// * Funciones que retornan el ancho de pantalla para cargar la instancia adecuada de scrollTrigger y otros elementos del DOM.
 
 function isMobile() {
   return window.innerWidth <= 500;
@@ -193,7 +193,7 @@ body.addEventListener("mousemove", (e) => {
 
 /****** menu ***** */
 
-// * Funcionamiento del menu de navegacion de acuerdo a pantallas. En mobile se abre hacia la izquiera, en mobile hacia arriba.
+// * Funcionamiento del menu de navegacion de acuerdo a pantallas. En mobile se abre hacia la izquierda, en mobile hacia arriba.
 
 const menuTl = gsap.timeline({ paused: true });
 
@@ -292,9 +292,7 @@ const intro = document.getElementById("intro");
 let txtCtn = document.querySelectorAll(".text-ctn-1");
 let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
-let hoveredTitleCtn = document.querySelectorAll(
-  "section.portfolio li h2:hover"
-);
+let hoveredTitleCtn = document.querySelectorAll("section.portfolio li h2:hover");
 let descCtn = document.querySelectorAll(".desc-ctn");
 let ctnHr = document.querySelectorAll("hr.ctn-line");
 let previewVideos = document.querySelectorAll(".preview-video");
