@@ -2114,7 +2114,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
 /* * Tablet */
 
-@media only screen and (min-width: 501px) and (max-width: 800px) {
+@media only screen and (min-width: 501px) and (max-width: 850px) {
 
   #intro #init {
     background-size: 100px;
@@ -2242,7 +2242,7 @@ div#textAllCtn .letter-container .spacerSpan {
   /* ============= intro ============ */
 
   body #intro #video #video-camara img {
-    object-fit: contain;
+    object-fit: cover;
     transform: rotate(-90deg);
     width: 100vh;
     height: 100%;
@@ -2495,11 +2495,11 @@ div#textAllCtn .letter-container .spacerSpan {
   /* accordion */
 
   #middle .acc-borders {
-    height: 75%;
+    height: 72%;
   }
 
   #middle section.accordion {
-    clip-path: inset(160px 0 160px 0);
+    clip-path: inset(14% 0 14% 0);
     overflow: hidden;
   }
 
@@ -2748,7 +2748,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
 /* * Laptop */
 
-@media only screen and (min-width: 801px) and (max-width: 1366px) {
+@media only screen and (min-width: 851px) and (max-width: 1366px) {
   nav section#menu {
     position: fixed;
     top: 0;

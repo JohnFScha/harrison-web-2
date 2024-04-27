@@ -7,11 +7,11 @@ function isMobile() {
 }
 
 function isTablet() {
-  return window.innerWidth > 500 && window.innerWidth <= 800;
+  return window.innerWidth > 500 && window.innerWidth <= 850;
 }
 
 function isLaptop() {
-  return window.innerWidth > 800 && window.innerWidth < 1920;
+  return window.innerWidth > 850 && window.innerWidth < 1920;
 }
 
 function isDesktop() {
@@ -4214,7 +4214,7 @@ if (isDesktop()) {
       duration: 2,
       delay: 2,
     }
-  );
+  ), "<";
 
   mainTimeline.fromTo(
     "#nav button",
@@ -5261,7 +5261,7 @@ if (isDesktop()) {
   subir.addEventListener("click", () => {
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-      duration: 2,
+      duration: 0,
     });
   });
 
@@ -6624,7 +6624,7 @@ if (isDesktop()) {
   subir.addEventListener("click", () => {
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
-      duration: 2,
+      duration: 0,
     });
   });
 
