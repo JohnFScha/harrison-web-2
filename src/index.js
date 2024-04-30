@@ -6,17 +6,41 @@ function isMobile() {
   return window.innerWidth <= 500;
 }
 
-function isTablet() {
-  return window.innerWidth > 500 && window.innerWidth <= 850;
+function isTabletPortrait() {
+  return (
+    window.innerWidth > 500 &&
+    window.innerWidth <= 1025 &&
+    window.innerHeight > 800
+  );
+}
+
+function isTabletLanscape() {
+  return (
+    window.innerWidth > 1025 &&
+    window.innerWidth <= 1366 &&
+    window.innerHeight > 800
+  );
 }
 
 function isLaptop() {
-  return window.innerWidth > 850 && window.innerWidth < 1920;
+  return (
+    window.innerWidth > 1025 &&
+    window.innerWidth < 1920 &&
+    window.innerHeight <= 800
+  );
 }
 
 function isDesktop() {
   return window.innerWidth >= 1920;
 }
+
+console.log(`
+  Is mobile: ${isMobile()}
+  Is tablet in portrait: ${isTabletPortrait()}
+  Is tablet in landscape: ${isTabletLanscape()}
+  Is Laptop: ${isLaptop()}
+  Is desktop: ${isDesktop()}
+`);
 
 // * Funciones para generar y renderizar el contador de la seccion de video de tiempo.
 
@@ -99,7 +123,11 @@ requestAnimationFrame(raf);
 
 const init = document.getElementById("init");
 
-if (isMobile() || isTablet()) {
+screen.orientation.addEventListener("change", () => {
+  window.location.reload();
+});
+
+if (isMobile() || isTabletPortrait() || isTabletLanscape()) {
   Swal.fire({
     title: "¡HOLA!",
     text: "Para una mejor experiencia, te invitamos a visitar nuestra web desde una computadora",
@@ -159,7 +187,7 @@ const subir = document.querySelector("#subir #subirbtn");
 //* Se insertan y animan elementos con el evento de movimiento de mouse. Cuando no se registra mas movimiento de mouse, se eliminan esos elementos del body.
 
 body.addEventListener("mousemove", (e) => {
-  if (isMobile() ||isTablet()) {
+  if (isMobile() || isTabletPortrait() || isTabletLanscape()) {
     return;
   }
 
@@ -197,7 +225,7 @@ body.addEventListener("mousemove", (e) => {
 
 const menuTl = gsap.timeline({ paused: true });
 
-if (isMobile() || isTablet()) {
+if (isMobile() || isTabletPortrait() || isTabletLanscape()) {
   menuTl.fromTo(
     menu,
     {
@@ -292,7 +320,9 @@ const intro = document.getElementById("intro");
 let txtCtn = document.querySelectorAll(".text-ctn-1");
 let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
-let hoveredTitleCtn = document.querySelectorAll("section.portfolio li h2:hover");
+let hoveredTitleCtn = document.querySelectorAll(
+  "section.portfolio li h2:hover"
+);
 let descCtn = document.querySelectorAll(".desc-ctn");
 let ctnHr = document.querySelectorAll("hr.ctn-line");
 let previewVideos = document.querySelectorAll(".preview-video");
@@ -330,7 +360,7 @@ let currentVideo = null;
 
 // * Cargar o bien "desliza" o "scrollea" en el SVG inicial dependiendo de la pantalla.
 
-if (isMobile() || isTablet()) {
+if (isMobile() || isTabletPortrait()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm";
   middleVidSection.setAttribute("muted", true);
   desliza.innerHTML = ``;
@@ -361,7 +391,7 @@ if (isMobile() || isTablet()) {
 
 // * Cargar dinamicamente una version u otra del video de "tiempo" de acuerdo a dimensiones de pantallas.
 
-if (isMobile() || isTablet()) {
+if (isMobile() || isTabletPortrait()) {
   videoTiempo.src = "src/assets/Video-tiempo_v.webm";
 } else {
   videoTiempo.src = "src/assets/video-tiempo.webm";
@@ -383,7 +413,7 @@ let titles = gsap.utils.toArray(".child .title-ctn h1");
 
 //* En otras pantallas cuando se hace hover se expande el elemento para mostrar el contenido, al tiempo que se contraen los demas. El primer elemento siempre queda desplegado para dar una señal al usuario del comportamiento del carrousel.
 
-if (isMobile() || isTablet()) {
+if (isMobile() || isTabletPortrait()) {
   let isOpen = false;
 
   expandBtns.forEach((btn, index) => {
@@ -502,8 +532,7 @@ if (isMobile() || isTablet()) {
     });
   });
 } else {
-
-/* *********** DESKTOP/LAPTOP *********** */
+  /* *********** DESKTOP/LAPTOP *********** */
   gsap.set(ctn[0], {
     width: "1000px",
   });
@@ -579,7 +608,7 @@ if (isMobile() || isTablet()) {
           marginLeft: "-200px",
         });
       }
-    } else if (isLaptop()) {
+    } else if (isLaptop() || isTabletLanscape()) {
       if (index !== 0) {
         gsap.to(txtInnerCtn[0], {
           clipPath: "inset(0 100% 0 0)",
@@ -694,7 +723,7 @@ if (isMobile() || isTablet()) {
           width: originalWidth,
         });
       }
-    } else if (isLaptop()) {
+    } else if (isLaptop() || isTabletLanscape()) {
       gsap.to(ctn[0], { width: "1000px" });
       gsap.to(ctn[0], { paddingRight: "600px" });
       gsap.to(titles[0], { color: "rgb(203, 219, 67)" });
@@ -753,7 +782,7 @@ if (isMobile() || isTablet()) {
 
 // * Chequear si se trata de un dispositivo movil y cargar condicionalmente el carrusel o la lista de marcas.
 
-if (isMobile() || isTablet()) {
+if (isMobile() || isTabletPortrait()) {
   bgVideo.src = "";
   textCtn2.innerHTML = `
   <p id="p1">Y DESDE AHÍ NACEN</p>
@@ -826,7 +855,10 @@ if (isMobile() || isTablet()) {
   `;
 }
 
-if (isMobile() || isTablet()) {
+// * Funcionamiento del acordeon de la sección portfolio, en mobile el click revela el contenedor y pone play al preview.
+// *  En desk y laptop el mouseover revela el contenido y pone play al preview
+
+if (isMobile() || isTabletPortrait()) {
   titleOuterCtn.forEach((element, index) => {
     element.addEventListener("click", (event) => {
       element.disabled = true;
@@ -870,13 +902,99 @@ if (isMobile() || isTablet()) {
       opacity: 1,
     });
     gsap.to(titleCtn[index], 0.3, {
-      color: "rgb(203, 219, 67)"
+      color: "rgb(203, 219, 67)",
     });
     gsap.to(titleCtn[(0, 2)], 0.7, {
       height: 70,
     });
     gsap.to(titleCtn[1], 0.7, {
       height: 120,
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 1,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 0.4,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0,
+    });
+  }
+
+  function animateOut(index) {
+    // Your existing out function code
+    gsap.to(ctnHr[index], 0.5, {
+      margin: "-12 0",
+    });
+    gsap.to(descCtn[index], 0.3, {
+      y: -100,
+      opacity: 0,
+    });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "transparent",
+      height: "auto",
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 0,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 1,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0.4,
+    });
+  }
+} else if (isTabletLanscape()) {
+  titleOuterCtn.forEach((element, index) => {
+    element.addEventListener("click", (event) => {
+      element.disabled = true;
+      event.stopPropagation();
+      toggleClickCtn(index);
+    });
+  });
+
+  // Add click event listener to the document
+  document.addEventListener("click", (event) => {
+    // Convert titleOuterCtn to an array
+    const titleOuterArray = Array.from(titleOuterCtn);
+
+    // Check if the clicked element is not inside any fieldset
+    if (!titleOuterArray.some((fieldset) => fieldset.contains(event.target))) {
+      // Trigger animateOut for each element
+      titleOuterArray.forEach((element, index) => {
+        element.disabled = true;
+        animateOut(index);
+        titleCtn[index].style.zIndex = -1;
+      });
+    }
+  });
+
+  function toggleClickCtn(index) {
+    titleOuterCtn.forEach((element, i) => {
+      if (i !== index) {
+        element.disabled = true;
+        titleCtn[i].style.zIndex = -1;
+        animateOut(i);
+      }
+    });
+
+    titleCtn[index].style.zIndex = 10;
+
+    gsap.to(ctnHr[index], 0.5, {
+      margin: "20 0 10 0",
+    });
+    gsap.to(descCtn[index], 0.3, {
+      y: 0,
+      opacity: 1,
+    });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "rgb(203, 219, 67)",
+    });
+    gsap.to(titleCtn[(0, 2)], 0.7, {
+      height: 100,
+    });
+    gsap.to(titleCtn[1], 0.7, {
+      height: 200,
     });
     gsap.to(previewVideos[index], 0.4, {
       opacity: 1,
@@ -978,7 +1096,7 @@ if (isMobile() || isTablet()) {
   .fill()
   .map(
     (_, i) => {
-      if(isMobile() || isTablet()) {
+      if(isMobile() || isTabletPortrait()) {
         return `src/assets/camara-frames-mobile/introframes (${(i + 1).toString()}).webp`
       } else {
         return `src/assets/camara-frames/introframes (${(i + 1).toString()}).webp`
@@ -1006,14 +1124,15 @@ if (isDesktop()) {
       // * Funcion para loguear en la consola la velocidad, la posicion y la direccion del scroll tras cada tick.
       // * Descomentar el console.log para poder acceder a esas variables en la consola.
       onUpdate: (self) => {
-        console.log(
+        console
+          .log
           /* "Progress:",
           self.progress.toFixed(3), */
           /* "Direction:",
           self.direction */
           /* "velocity",
           self.getVelocity() */
-        );
+          ();
       },
       snap: {
         snapTo: "labelsDirectional",
@@ -3915,7 +4034,7 @@ if (isDesktop()) {
     .addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
-} else if (isTablet()) {
+} else if (isTabletPortrait()) {
   /* ************************** MOBILE TIMELINE ************************** */
 
   const mainTimeline = gsap.timeline({
@@ -4212,7 +4331,8 @@ if (isDesktop()) {
       duration: 2,
       delay: 2,
     }
-  ), "<";
+  ),
+    "<";
 
   mainTimeline.fromTo(
     "#nav button",
@@ -4706,19 +4826,20 @@ if (isDesktop()) {
     }
   );
 
-  mainTimeline.fromTo(
-    "#middle .text",
-    {
-      y: 1000,
-      duration: 10,
-    },
-    {
-      y: 0,
-      stagger: 1,
-      duration: 10,
-    }
-  )
-  .addLabel("start-tiempo", ">");
+  mainTimeline
+    .fromTo(
+      "#middle .text",
+      {
+        y: 1000,
+        duration: 10,
+      },
+      {
+        y: 0,
+        stagger: 1,
+        duration: 10,
+      }
+    )
+    .addLabel("start-tiempo", ">");
 
   mainTimeline.to("#rect2", {
     attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
@@ -4732,18 +4853,17 @@ if (isDesktop()) {
     duration: 1,
   });
 
-  mainTimeline
-    .fromTo(
-      "#middle .text",
-      {
-        y: 0,
-      },
-      {
-        y: -2000,
-        delay: 3,
-        duration: 50,
-      }
-    );
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 0,
+    },
+    {
+      y: -2000,
+      delay: 3,
+      duration: 50,
+    }
+  );
 
   mainTimeline.fromTo(
     ".acc-borders",
@@ -5221,7 +5341,7 @@ if (isDesktop()) {
 
   mainTimeline.to("#textAllCtn", {
     scale: 0.8,
-    margin: 'auto',
+    margin: "auto",
     y: -100,
     duration: 2,
   });
@@ -5277,6 +5397,1466 @@ if (isDesktop()) {
       }
     )
     .addLabel("end", ">");
+
+  /* *********** END TIMELINE ********** */
+} else if (isTabletLanscape()) {
+  /* ************************** Desktop Timeline ************************** */
+
+  const mainTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: "main.wrapper",
+      start: "top top",
+      end: "bottom+=2000% bottom",
+      scrub: true,
+      pin: true,
+      onUpdate: (self) => {
+        // console.log(
+        //   'Direction:',
+        //   self.direction
+        // );
+      },
+      snap: {
+        inertia: false,
+        snapTo: "labelsDirectional", // snap to the closest label in the timeline
+        duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.001, // wait 0.2 seconds from the last scroll event before doing the snapping
+      },
+    },
+  });
+
+  /* ********* MENU ********* */
+
+  collapse.addEventListener("click", () => {
+    // Check if the timeline is reversing
+    const isReversing = menuTl.isActive() && menuTl.reversed();
+
+    // Disable the button if the timeline is reversing
+    if (isReversing) {
+      return;
+    }
+
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
+    if (body.className.match("close")) {
+      body.className = "open";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
+    } else if (body.className.includes("open")) {
+      body.className = "close";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
+    }
+    if (menuTl.totalProgress() === 0) {
+      menuTl.play();
+    } else if (menuTl.totalProgress() > 0) {
+      menuTl.reverse();
+    }
+  });
+
+  let links = gsap.utils.toArray(".nav-link");
+
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (a.innerText.toLowerCase() === `inicio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+          duration: 0,
+        });
+      } else if (a.innerText.toLowerCase() === `portfolio`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+          duration: 1,
+        });
+      } else if (a.innerText.toLowerCase() === `servicios`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+          duration: 1,
+        });
+      } else if (a.innerText.toLowerCase() === `clientes`) {
+        gsap.to(window, {
+          scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+          duration: 1,
+        });
+      }
+
+      isRotated = !isRotated;
+      icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
+      collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+      if (body.className.match("close")) {
+        body.className = "open";
+        social[0].src = "src/assets/mail-dark.webp";
+        social[1].src = "src/assets/whatsapp-dark.webp";
+        social[2].src = "src/assets/ig-dark.webp";
+        social[3].src = "src/assets/Linkedin-dark.webp";
+      } else if (body.className.includes("open")) {
+        body.className = "close";
+        social[0].src = "src/assets/mail.webp";
+        social[1].src = "src/assets/wsp.webp";
+        social[2].src = "src/assets/ig.webp";
+        social[3].src = "src/assets/Linkedin.webp";
+      }
+
+      if (menuTl.paused() || menuTl.totalProgress() === 0) {
+        menuTl.play();
+      } else if (menuTl) {
+        menuTl.reverse();
+      }
+    });
+  });
+
+  /* ***** casos portfolio ***** */
+
+  liElements.forEach((liElement, index) =>
+    liElement.addEventListener("click", () => {
+      if (currentVideo && currentVideo.parentNode) {
+        currentVideo.parentNode.removeChild(currentVideo);
+      }
+      // Save the current scroll position
+      // const scrollPosition = window.scrollY;
+
+      // Disable body scrolling
+      // wrapperCtn.style.overflow = "hidden";
+      let newVideo = document.createElement("video");
+      newVideo.id = "modalVideo";
+      let swapSrc = document.createElement("source");
+      swapSrc.src = videos[index];
+      newVideo.setAttribute("controlslist", "nodownload");
+      newVideo.controls = "controls";
+      newVideo.appendChild(swapSrc);
+      modalContent.appendChild(newVideo);
+      modal.classList.remove("hidden");
+      modal.classList.add("shown");
+      // wrapperCtn.style.top = `-${scrollPosition}px`;
+      newVideo.play();
+      currentVideo = newVideo;
+      // mainTimeline.scrub = 0;
+      // mainTimeline.scrollTrigger.pause();
+      mainTimeline.seek("portfolio");
+      body.style.position = "fixed";
+      gsap.to(window, {
+        scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      });
+      // wrapperCtn.style.zIndex = "500 !important";
+
+      // mainTimeline.scrollTrigger.disable(false);
+    })
+  );
+
+  closeModal.addEventListener("click", () => {
+    if (currentVideo) {
+      setTimeout(() => {
+        currentVideo.pause();
+        currentVideo.parentNode.removeChild(currentVideo);
+        currentVideo = null;
+        modal.classList.remove("shown");
+        modal.classList.add("hidden");
+      }, 500);
+
+      // progress.style.zIndex = "0 !important";
+    }
+    wrapperCtn.style.overflow = "";
+    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
+    wrapperCtn.style.top = "";
+    // window.scrollTo(0, -scrollPosition);
+
+    mainTimeline.seek("portfolio");
+    body.style.position = "absolute";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+      duration: 0,
+    });
+  });
+
+  /* *********** INTRO SCROLLING ********** */
+
+  mainTimeline
+    .fromTo(
+      "#scrollea",
+      {
+        display: "none",
+      },
+      {
+        display: "flex",
+      }
+    )
+    .addLabel("intro", ">");
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      opacity: 1,
+      duration: 1,
+      x: 0,
+    },
+    {
+      opacity: 0,
+      duration: 1,
+      x: -100,
+    }
+  );
+
+  mainTimeline.fromTo(
+    "#scrollea",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#video",
+    {
+      display: "none",
+    },
+    {
+      display: "flex",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#video-camara",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    ">"
+  );
+
+  const cameraFrames = gsap.utils.toArray("#video-camara img");
+
+  cameraFrames.forEach((img, index) => {
+    mainTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.1,
+        duration: 0.01,
+      }
+    );
+    if (index < cameraFrames.length - 1) {
+      mainTimeline.set(img, { display: "none" });
+    }
+  });
+
+  mainTimeline.fromTo(
+    "#texto",
+    {
+      transform: "scale(0)",
+      opacity: 0,
+      duration: 1,
+    },
+    {
+      transform: "scale(1)",
+      opacity: 1,
+      duration: 1,
+    },
+    ">-0.7"
+  );
+
+  mainTimeline
+    .fromTo(
+      ".fill",
+      {
+        color: "transparent",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">-0.5"
+    )
+    .addLabel("end-intro-text", ">");
+
+  mainTimeline.to(
+    "#texto",
+    {
+      y: -800,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#intro",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    },
+    ">"
+  );
+
+  /* *********** END INTRO SCROLLING ********** */
+
+  /* *********** PORTFOLIO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "none",
+      opacity: 0,
+      zIndex: -1,
+      duration: 1,
+    },
+    {
+      display: "block",
+      opacity: 1,
+      duration: 1,
+      zIndex: 2,
+    },
+    ">-3"
+  );
+
+  mainTimeline.fromTo(
+    "#intro",
+    {
+      zIndex: 1,
+      visibility: "visible",
+    },
+    {
+      zIndex: -1,
+      visibility: "hidden",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".bg-rodaje",
+    {
+      yPercent: -55,
+      duration: 1,
+      opacity: 0.8,
+      ease: "power1.inOut",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      yPercent: -55,
+      ease: "power1.inOut",
+    },
+    ">-0.9"
+  );
+
+  mainTimeline.fromTo(
+    "#nav button",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 0.5,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#nav .social-ctn .social-nav",
+    {
+      opacity: 0,
+      scale: 0,
+      duration: 1,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      scrollTrigger: "#nav button",
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+      duration: 1,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-1 .txt-row h2",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    ">-0.2"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-1 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
+
+  mainTimeline
+    .to(
+      ".txt-ctn-1 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("intro-portfolio", ">");
+
+  mainTimeline.to(
+    ".sup-rodaje.zoomed",
+    {
+      duration: 1,
+      opacity: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-1",
+    {
+      duration: 0.1,
+      opacity: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect1",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      scale: 2.5,
+      transformOrigin: "32% 85%",
+      scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 0.5,
+      opacity: 0.3,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-2 .txt-row h2",
+    {
+      opacity: 1,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".txt-ctn-2 .dup-ctn span",
+    {
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.5,
+      scrollTrigger: ".dup-ctn span",
+    },
+    ">"
+  );
+
+  mainTimeline
+    .to(
+      ".txt-ctn-2 .dup-ctn span",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      "<"
+    )
+    .addLabel("second-text", ">");
+
+  mainTimeline.to(
+    ".txt-ctn-2",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".bg-overlay",
+    {
+      duration: 0.5,
+      opacity: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer",
+    {
+      opacity: 1,
+      duration: 0.5,
+      zIndex: 20,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.2,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline
+    .to(".pf-accordion", {
+      opacity: 1,
+      duration: 1,
+    })
+    .addLabel("portfolio", ">");
+
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      y: 30,
+      opacity: 0,
+      stagger: 0.5,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".pf-accordion-outer ol li h2",
+    {
+      duration: 0,
+      display: "none",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      backgroundColor: "transparent",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".sup-rodaje",
+    {
+      duration: 1,
+      width: "700%",
+      left: "-480%",
+      top: "-350%",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    ".box-ctn",
+    {
+      duration: 1,
+      transform:
+        "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(0.9925, 0.65)",
+      xPercent: -0,
+      top: "34.9998%",
+    },
+    {
+      duration: 2,
+      transform:
+        "translate(-2.5535px, 62.3861px) rotate(7deg) skew(10.5deg, 0deg) scale(4.1, 4.1)",
+      xPercent: -100,
+      top: "30%",
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      y: 0,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".portfolio",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  /* *********** END PORTFOLIO SCROLLING ********** */
+
+  /* *********** MIDDLE SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#middle",
+    {
+      opacity: 0,
+      zIndex: -1,
+    },
+    {
+      opacity: 1,
+      duration: 1,
+      zIndex: 3,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "block",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#middleVidCtn",
+      {
+        opacity: 0,
+        duration: 1,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        onStart: () => {
+          middleVideo.play();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-calidad", ">");
+
+  middleVideo.addEventListener("ended", () => {
+    middleVideo.style.display = "none";
+    gsap.to(window, {
+      scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+      duration: 3,
+    });
+    middleVideo.currentTime = 0;
+    middleVideo.load();
+  });
+
+  mainTimeline.fromTo(
+    "#portfolio",
+    {
+      display: "block",
+      delay: 0,
+    },
+    {
+      display: "none",
+      delay: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 0.5,
+      delay: 5,
+      onComplete: () => {
+        middleVideo.pause();
+      },
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middleVidCtn",
+    {
+      display: "block",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: 0,
+      opacity: 0,
+      duration: 1,
+    },
+    {
+      rotateX: 0,
+      opacity: 0.5,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    ".accordion",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middle .text",
+    {
+      y: 1000,
+      duration: 1,
+    },
+    {
+      y: 0,
+      stagger: 0.5,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect2",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#rect3",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 0.5,
+    },
+    "<"
+  );
+
+  mainTimeline
+    .to(
+      "#middle #text-container .letter",
+      {
+        color: "#D1D821",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">+1"
+    )
+    .addLabel("start-tiempo", ">");
+
+  mainTimeline.fromTo(
+    "#middle #text-container",
+    {
+      x: 0,
+    },
+    {
+      x: -2000,
+      duration: 2,
+      snap: "x",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#middle #text-container",
+    {
+      display: "flex",
+    },
+    {
+      display: "none",
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".acc-borders",
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      width: "400vw",
+      snap: "x",
+    },
+    ">-3"
+  );
+
+  mainTimeline
+    .fromTo(
+      ".accordion",
+      {
+        x: 2000,
+        duration: 1,
+      },
+      {
+        x: 0,
+        duration: 1,
+        snap: "x, y",
+      },
+      ">"
+    )
+    .addLabel("servicios", ">");
+
+  mainTimeline.to(
+    ".accordion",
+    {
+      rotateX: -69.3,
+      duration: 1,
+      delay: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".accordion",
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    ".bg-video",
+    {
+      opacity: 0,
+      duration: 2,
+    },
+    "<"
+  );
+
+  /* *********** END MIDDLE SCROLLING ********** */
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+    },
+    ">"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#video-tiempo",
+      {
+        zIndex: -1,
+        rotateX: 115.3,
+      },
+      {
+        zIndex: 4,
+        rotateX: 0,
+        duration: 2,
+        snap: "x, y",
+        onStart: () => {
+          startCountdown();
+        },
+      },
+      "<"
+    )
+    .addLabel("video-tiempo", ">");
+
+  mainTimeline.to(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#tiempoVidCtn",
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2",
+    {
+      x: -2000,
+    },
+    {
+      x: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+    },
+    {
+      y: 0,
+      stagger: 0.2,
+      duration: 1,
+    },
+    "<+0.5"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#video-tiempo #text-container-2 .letter",
+      {
+        color: "transparent",
+        duration: 1,
+      },
+      {
+        color: "rgb(203, 219, 67)",
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      ">"
+    )
+    .addLabel("end-video-tiempo", ">");
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      rotateX: 0,
+      duration: 0.5,
+    },
+    {
+      rotateX: 110,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    { rotateX: 0, opacity: 0 },
+    { rotateX: 0, opacity: 0.5 },
+    ">-0.1"
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      rotateX: -65,
+      duration: 0.5,
+    },
+    {
+      rotateX: 0,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  /* *********** TIEMPO SCROLLING ********** */
+
+  /* **************** SECCION FINAL ***************** */
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      zIndex: -1,
+      opacity: 0,
+    },
+    {
+      zIndex: 5,
+      opacity: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#p1",
+    {
+      x: 2000,
+    },
+    {
+      x: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#p2",
+      {
+        x: 2000,
+      },
+      {
+        x: 0,
+        duration: 1,
+      },
+      ">"
+    )
+    .addLabel("end-intro", ">");
+
+  mainTimeline.to(
+    "#p1",
+    {
+      duration: 1,
+      x: -2000,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#p1",
+    {
+      opacity: 0,
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect3",
+    {
+      attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+      fill: "#D9D9D9",
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#rect4",
+    {
+      attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+      fill: "#CBDB43",
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#p2",
+    {
+      duration: 1,
+      y: 150,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    ".flipLogoContainer",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "flex",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#carousel-container",
+    {
+      display: "none",
+      duration: 0,
+    },
+    {
+      display: "block",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#carousel-container",
+      {
+        transform: "scale(0)",
+        duration: 1,
+      },
+      {
+        transform: "scale(1.2)",
+        duration: 1,
+      },
+      ">"
+    )
+    .addLabel("clientes");
+
+  mainTimeline.to(
+    "#txt-container-2",
+    {
+      y: 800,
+      duration: 1,
+      transform: "scale(0.5)",
+      opacity: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 1,
+    },
+    {
+      opacity: 0,
+      duration: 1,
+    },
+    "<"
+  );
+
+  mainTimeline.to(
+    "#progressbar-ctn",
+    {
+      display: "none",
+    },
+    "<"
+  );
+
+  mainTimeline.fromTo(
+    ".bg-video",
+    {
+      opacity: 0.5,
+      duration: 1,
+    },
+    {
+      opacity: 0.8,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline
+    .fromTo(
+      "#svgOutro",
+      {
+        y: -1000,
+        transform: "scale(2.5)",
+        duration: 1,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        transform: "scale(1.6)",
+        duration: 1,
+        opacity: 1,
+      },
+      ">"
+    )
+    .addLabel("logo-intro", ">");
+
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      duration: 1,
+      rotateY: 809,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#txt-container-2",
+    {
+      display: "flex",
+      duration: 0,
+    },
+    {
+      display: "none",
+      duration: 0,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#svgOutro",
+    {
+      visibility: "hidden",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "#textAllCtn",
+    {
+      visibility: "hidden",
+      rotateY: -90,
+      duration: 1,
+    },
+    {
+      visibility: "visible",
+      rotateY: 0,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    [".charSpan"],
+    {
+      color: "#D1D821",
+      stagger: 0.1,
+      duration: 0.5,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    "#textAllCtn",
+    {
+      scale: 0.6,
+      y: -100,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.to(
+    ".subTextContainer",
+    {
+      y: 0,
+      visibility: "visible",
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    "nav .social-ctn a",
+    {
+      scale: 1,
+      duration: 1,
+    },
+    {
+      scale: 0,
+      duration: 1,
+    },
+    ">"
+  );
+
+  mainTimeline.fromTo(
+    ".svgSocial",
+    { scale: 0, duration: 1 },
+    { scale: 1, duration: 1 },
+    "<"
+  );
+
+  mainTimeline
+    .to(
+      ".charSpan2",
+      {
+        color: "#D1D821",
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.1,
+      },
+      ">"
+    )
+    .addLabel("page-end", ">");
 
   /* *********** END TIMELINE ********** */
 } else if (isMobile()) {
@@ -5426,9 +7006,7 @@ if (isDesktop()) {
       // progress.style.zIndex = "0 !important";
     }
     wrapperCtn.style.overflow = "";
-    // const scrollPosition = parseInt(document.body.style.top || "0", 10);
     wrapperCtn.style.top = "";
-    // window.scrollTo(0, -scrollPosition);
 
     mainTimeline.seek("portfolio");
     body.style.position = "absolute";
