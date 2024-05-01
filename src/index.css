@@ -2146,7 +2146,7 @@ div#textAllCtn .letter-container .spacerSpan {
   #progressbar-ctn {
     width: 100%;
     left: 0;
-    height: 130px;
+    height: 140px;
   }
 
   #progressbar-ctn svg {
@@ -2662,8 +2662,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #mobileBrandsCtn img.mobileBrands {
-    height: 100px;
-    width: 100px;
+    width: 25%;
     margin: 0.2rem;
   }
 
@@ -2772,6 +2771,11 @@ div#textAllCtn .letter-container .spacerSpan {
     bottom: 15%;
     background-color: transparent;
     transform: translate(-3%, 12%) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.15, 1.4);
+  }
+
+  #mobileBrandsCtn img.mobileBrands {
+    width: 29%;
+    margin: 0.2rem;
   }
 }
 
