@@ -2045,6 +2045,7 @@ if (isDesktop()) {
     ".accordion",
     {
       opacity: 0,
+      display: 'none',
       duration: 1,
     },
     "<"
@@ -3503,7 +3504,8 @@ if (isDesktop()) {
     ".accordion",
     {
       opacity: 0,
-      duration: 1,
+      display: 'none',
+      duration: 1
     },
     "<"
   );
@@ -4913,6 +4915,7 @@ if (isDesktop()) {
 
   mainTimeline.to(".accordion", {
     opacity: 0,
+    display: 'none',
     duration: 2,
     delay: -4,
   });
@@ -6332,7 +6335,8 @@ if (isDesktop()) {
     ".accordion",
     {
       opacity: 0,
-      duration: 1,
+      display: 'none',
+      duration: 1
     },
     "<"
   );
@@ -7736,6 +7740,7 @@ if (isDesktop()) {
 
   mainTimeline.to(".accordion", {
     opacity: 0,
+    display: 'none',
     duration: 2,
     delay: -4,
   });

@@ -249,12 +249,14 @@ nav section#menu ul li a {
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 3px rgb(29, 62, 78);
-  transition: color 0.5s ease;
+  transition: color 0.5s ease-out;
   cursor: none;
 }
 
 nav section#menu ul li a:hover {
   color: rgb(29, 62, 78);
+  -webkit-text-stroke: 1px rgb(29, 62, 78);
+  transition: color 0.5s ease-out;
 }
 
 nav button {
