@@ -34,14 +34,6 @@ function isDesktop() {
   return window.innerWidth >= 1920;
 }
 
-console.log(`
-  Is mobile: ${isMobile()}
-  Is tablet in portrait: ${isTabletPortrait()}
-  Is tablet in landscape: ${isTabletLanscape()}
-  Is Laptop: ${isLaptop()}
-  Is desktop: ${isDesktop()}
-`);
-
 // * Funciones para generar y renderizar el contador de la seccion de video de tiempo.
 
 let countdownStarted = false;
@@ -1543,6 +1535,7 @@ if (isDesktop()) {
     ".txt-ctn-1 .txt-row h2",
     {
       opacity: 1,
+      zIndex: 1,
       duration: 1,
     },
     ">-0.2"
@@ -4664,7 +4657,7 @@ if (isDesktop()) {
   mainTimeline.to(".box-ctn", {
     delay: -2,
     duration: 7,
-    transform: "scale(4.1)",
+    //transform: "scale(4.1)",
     top: "50%",
   });
 
@@ -4857,11 +4850,13 @@ if (isDesktop()) {
     "#middle .text",
     {
       y: 0,
+      opacity: 1
     },
     {
-      y: -2000,
+      y: -300,
+      opacity: 0,
       delay: 3,
-      duration: 50,
+      duration: 5,
     }
   );
 
@@ -5044,10 +5039,12 @@ if (isDesktop()) {
     "#video-tiempo #text-container-2 .text",
     {
       y: 1500,
+      opacity: 0,
       delay: 15,
     },
     {
       y: 0,
+      opacity: 1,
       stagger: 0.5,
       duration: 15,
       delay: 10,
@@ -6570,7 +6567,6 @@ if (isDesktop()) {
       },
       ">"
     )
-    .addLabel("end-intro", ">");
 
   mainTimeline.to(
     "#p1",
