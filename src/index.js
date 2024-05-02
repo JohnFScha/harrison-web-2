@@ -2080,9 +2080,11 @@ if (isDesktop()) {
     "#video-tiempo",
     {
       opacity: 0,
+      display: 'none'
     },
     {
       opacity: 1,
+      display: 'flex'
     },
     ">"
   );
@@ -3539,9 +3541,11 @@ if (isDesktop()) {
     "#video-tiempo",
     {
       opacity: 0,
+      display: 'none'
     },
     {
       opacity: 1,
+      display: 'flex'
     },
     ">"
   );
@@ -4942,10 +4946,12 @@ if (isDesktop()) {
     "#video-tiempo",
     {
       opacity: 0,
+      display: 'none',
       duration: 0,
     },
     {
       opacity: 1,
+      display: 'flex',
       duration: 0,
     }
   );
@@ -6370,9 +6376,11 @@ if (isDesktop()) {
     "#video-tiempo",
     {
       opacity: 0,
+      display: 'none',
     },
     {
       opacity: 1,
+      display: 'flex',
     },
     ">"
   );
@@ -7767,10 +7775,12 @@ if (isDesktop()) {
     "#video-tiempo",
     {
       opacity: 0,
+      display: 'none',
       duration: 0,
     },
     {
       opacity: 1,
+      display: 'flex',
       duration: 0,
     }
   );
